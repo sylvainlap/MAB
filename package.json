@@ -1,0 +1,16 @@
+{
+	"name": "proto",
+	"description": "First prototype of MEAN full stack",
+	"version": "0.1.0",
+	"main": "server.js",
+	"dependencies": {
+		"express": "~4.6.0",
+		"body-parser": "~1.4.0",
+		"morgan": "~1.2.0",
+		"mongoose": "~3.8.13",
+		"bcrypt-nodejs": "~0.0.3",
+		"jwt-simple": "~0.2.0",
+		"moment": "~2.7.0",
+		"less-middleware": "~1.0.0"
+	}
+}
