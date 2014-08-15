@@ -1,24 +1,24 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose');
-var Animal   = mongoose.model('Animal');
+var mongoose  = require('mongoose');
+var Treatment = mongoose.model('Treatment');
 
-exports.getAnimals = function(req, res, next) {
-	Animal.find(function(err, animals) {
+exports.getTreatments = function(req, res, next) {
+	Treatment.find(function(err, treatments) {
 		if (err)
 			return res.json(err);
 
-		res.json(animals);
+		res.json(treatments);
 	});
 };
 
-exports.createAnimal = function(req, res, next) {
-	var animal = new Animal(req.body);
-	animal.save(function(err) {
+exports.postTreatment = function(req, res, next) {
+	var treatment = new Treatment(req.body);
+	treatment.save(function(err) {
 		if (err)
 			return res.json(err);
 
-		res.json(animal);
+		res.json(treatment);
 	});
 };

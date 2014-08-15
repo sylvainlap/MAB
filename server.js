@@ -27,7 +27,7 @@ app.use(express.static(__dirname + '/public'));
 
 // get the models
 require('./app/models/user.models');
-require('./app/models/animal.models');
+require('./app/models/treatment.models');
 
 // get the routes
 require('./app/routes/core.routes')(app);

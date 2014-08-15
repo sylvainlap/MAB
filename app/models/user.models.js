@@ -14,34 +14,37 @@ var UserSchema = new Schema({
 	username: {
 		type: String,
 		trim: true,
-		required: '{PATH} is required!',
+		required: true,
 		unique: true
 	},
 	password: {
 		type: String,
-		required: '{PATH} is required!',
+		required: true
 	},
 	structure: {
-		type: String,
-		trim: true,
-		required: '{PATH} is required!'
+		type: Number,
+		required: true
 	},
 	geoloc: {
-		type: Number,
-		required: '{PATH} is required!'
+		type: String,
+		required: true
 	},
 	activity: {
-		type: Schema.Types.Mixed,
-		required: '{PATH} is required!'
+		type: Array,
+		required: true
 	},
-	age: {
-		type: Number,
-		required: '{PATH} is required!'
+	volume: {
+		type: Array,
+		required: true
+	},
+	school: {
+		type: Schema.Types.Mixed,
+		required: true
 	},
 	lang: {
 		type: String,
 		trim: true,
-		required: '{PATH} is required!'
+		required: true
 	},
 	favs: {
 		type: Schema.Types.Mixed,
