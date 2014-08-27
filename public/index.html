@@ -1,0 +1,293 @@
+<!doctype html>
+<html ng-app="mabapp">
+	<head>
+		<meta charset="utf-8">
+		<title>Monitoring AB v0.1.0</title>
+
+		<link rel="stylesheet" type="text/css" href="./css/custom.css" />
+	</head>
+	<body ng-controller="MainCtrl">
+		<div class="container">
+			<div class="">
+				
+				<div class="header">
+				
+<!-- === LANGUAGE SWITCH === -->				
+					<a href="#" ng-click="l='EN'">EN</a>
+					<a href="#" ng-click="l='FR'">FR</a>
+					<h1>
+						<span class="glyphicon glyphicon-stats"></span> MAB v0.1.0
+<!-- === USER MENU === -->
+						<div class="pull-right btn btn-info text-left"
+							ng-click="showUserMenu=!showUserMenu"
+							ng-mouseleave="showUserMenu=false"
+							ng-if="user.token!=undefined">
+							<span class="glyphicon glyphicon-user"></span> {{ user.username }}
+							<a class="btn btn-default btn-sm"
+								ng-click="userMgt.getProfile('open')"
+								ng-if="showUserMenu">
+								<span class="glyphicon glyphicon-cog"></span>
+								{{ lang['front_profile'][l] }}
+							</a>
+							<a class="btn btn-danger btn-sm"
+								ng-click="userMgt.logout()"
+								ng-if="showUserMenu">
+								<span class="glyphicon glyphicon-off"></span>
+								{{ lang['front_disconnect'][l] }}
+							</a>
+						</div>
+					</h1>
+				</div>
+<!-- === TRACE BOX === -->
+				<alert ng-repeat="msg in messages"
+					type="{{ msg.type }}"
+					close="closeAlert($index)">
+					{{ msg.msg }}
+				</alert>
+
+<!-- === REGISTER PANE === -->
+				<div class="auth-pane" ng-if="user.token==undefined">
+					<div class="well">
+						<h3>{{ lang['front_register'][l] }}</h3>
+						<form class="form-inline">
+							<div class="form-group">
+								<label class="sr-only">{{ lang['front_username'][l] }}</label>
+								<input type="text" name="username" class="form-control"
+								placeholder="{{ lang['front_username'][l] }}" ng-model="formData.username" />
+							</div>
+							<div class="form-group">
+								<label class="sr-only">{{ lang['front_password'][l] }}</label>
+								<input type="password" name="password" class="form-control"
+								placeholder="{{ lang['front_password'][l] }}" ng-model="formData.password" />
+							</div>
+							<button class="btn btn-warning" ng-click="userMgt.register()">
+								<span class="glyphicon glyphicon-user"></span>
+								{{ lang['front_register'][l] }}
+							</button>
+							<button class="btn btn-success" ng-click="userMgt.login()">
+								<span class="glyphicon glyphicon-lock"></span>
+								{{ lang['front_login'][l] }}
+							</button>
+						</form>
+					</div>
+				</div>
+<!-- === EDIT PROFILE PANE === -->
+				<div class="editprofile-pane" ng-if="user.token != undefined && showProfile">
+					<div class="well">
+						<h3>{{ lang['front_profile_manager'][l] }}</h3>
+						<form>
+							<div class="form-group row">
+								<label class="col-md-4 col-xs-4">{{ lang['front_username'][l] }}</label>
+								<input type="text" name="username" class="col-md-8 col-xs-8"
+								placeholder="{{ lang['front_username'][l] }}" ng-model="formData.username"/>
+							</div>
+							<div class="form-group row">
+								<label class="col-md-4 col-xs-4">{{ lang['front_password'][l] }}</label>
+								<input type="password" name="password" class="col-md-8 col-xs-8"
+								placeholder="{{ lang['front_password'][l] }}" ng-model="formData.password" />
+							</div>
+							<div class="form-group row">
+								<label class="col-md-4 col-xs-4">{{ lang['front_structure'][l] }}</label>
+								<input type="text" name="structure" class="col-md-8 col-xs-8"
+									placeholder="{{ lang['front_structure'][l] }}" ng-model="formData.structure"/>
+							</div>
+							<div class="form-group row">
+								<label class="col-md-4 col-xs-4">{{ lang['front_localisation'][l] }}</label>
+								<input type="number" name="localisation" class="col-md-8 col-xs-8"
+									placeholder="{{ lang['front_localisation'][l] }}" ng-model="formData.geoloc" />
+							</div>
+							<div class="form-group row">
+								<label class="col-md-4 col-xs-4">{{ lang['front_school'][l] }}</label>
+								<input type="text" name="city" class="col-md-4 col-xs-4"
+									placeholder="lang['front_city'][l]" ng-model="formData.school.city" />
+								<input type="number" name="promo" class="col-md-4 col-xs-4"
+									placeholder="{{ lang['front_promo'][l] }}" ng-model="formData.school.promo" />
+							</div>
+							<div class="form-group row">
+								<label class="col-md-4 col-xs-4">{{ lang['front_language'][l] }}</label>
+								<input type="text" name="language" class="col-md-2  col-xs-2"
+									placeholder="{{ lang['front_language'][l] }}" ng-model="formData.lang" />
+							</div>
+							<!-- TODO: activity -->
+							<button class="btn btn-success"
+								ng-click="userMgt.updateProfile()">
+								<span class="glyphicon glyphicon-flash"></span> 
+								{{ lang['front_save_changes'][l] }}
+							</button>
+							<button class="btn btn-danger" ng-click="userMgt.getProfile('close')">
+								<span class="glyphicon glyphicon-remove"></span> 
+								{{ lang['front_cancel'][l] }}
+							</button>
+						</form>
+					</div>
+				</div>
+<!-- === MAIN FORM PANE === -->
+				<div class="logged-pane" ng-if="user.token != undefined && !showProfile">
+					<div class="well">
+						<h3>{{ lang['front_main_form_title'][l] }}</h3>
+						<form ng-submit="dataMgt.recordTreatment()">
+							<legend>{{ lang['front_treatment'][l] }}</legend>
+							<div class="row form-group">
+								<label class="col-md-4 col-xs-4">
+									{{ lang['front_start_date'][l] }}
+								</label>
+								<p class="input-group">
+					            	<input type="text" class="form-control col-md-8 col-xs-8"
+					            	datepicker-popup="{{format}}"
+					            	is-open="opened"
+					            	datepicker-options="dateOptions"
+					            	close-text="{{ lang['front_close'][l] }}"
+					            	current-text="{{ lang['front_today'][l] }}"
+					            	clear-text="{{ lang['front_clear'][l] }}"
+					            	starting-day="1"
+					            	ng-required="true"
+					            	ng-model="formData.date_dispense"
+					            	/>
+					            	<span class="input-group-btn">
+					            		<button type="button" class="btn btn-default"
+					            		ng-click="open($event)">
+					            			<i class="glyphicon glyphicon-calendar"></i>
+					            		</button>
+					            	</span>
+					            </p>
+				            </div>
+							<div class="row form-group">
+								<label class="col-md-4 col-xs-4">
+									{{ lang['front_pathology'][l] }}
+								</label>
+								<select name="pathology" class="col-md-8 col-xs-8"
+									ng-model="formData.pathology">
+									<option value="{{ patho }}" 
+										ng-repeat="patho in enums['tra_pathology']">
+										{{ lang[patho][l] }}
+									</option>
+								</select>
+							</div>
+							<div class="row form-group">
+								<label class="col-md-4 col-xs-4">
+									{{ lang['front_treat_type'][l] }}
+								</label>
+								<select name="treatment_type" class="col-md-8 col-xs-8"
+									ng-model="formData.type">
+									<option value="{{ type }}" 
+										ng-repeat="type in enums['tra_type']">
+										{{ lang[type][l] }}
+									</option>
+								</select>
+							</div>
+							<div class="row form-group">
+								<label class="col-md-4 col-xs-4">
+									{{ lang['front_treat_init'][l] }}
+								</label>
+								<select name="treatment_init" class="col-md-8 col-xs-8"
+									ng-model="formData.init_tre">
+									<option value="{{ init }}" 
+										ng-repeat="init in enums['tra_init']">
+										{{ lang[init][l] }}
+									</option>
+								</select>
+							</div>
+							<div class="row form-group">
+								<label class="col-md-4 col-xs-4">
+									{{ lang['front_follow_sample'][l] }}
+								</label>
+								<input type="checkbox" name="follow_sample" class="col-md-1 col-xs-1"
+									ng-model="formData.follow_sample"/>
+							</div>
+							<div class="row form-group">
+								<label class="col-md-4 col-xs-4">
+									{{ lang['front_treat_duration'][l] }}
+								</label>
+								<input type="number" name="duration" class="col-md-2 col-xs-2"
+									ng-model="formData.duration" />
+								<label class="col-md-4 col-xs-4">
+									{{ lang['front_treat_frequency'][l] }}
+								</label>
+								<input type="number" step="any" name="frequency" class="col-md-2 col-xs-2"
+									ng-model="formData.frequency" />
+							</div>
+							
+							<legend>{{ lang['front_animals'][l] }}</legend>
+							<div class="row form-group">
+								<label class="col-md-2 col-xs-2">
+									{{ lang['front_species'][l] }}
+								</label>
+								<select name="animal_species" class="col-md-2 col-xs-2"
+									ng-model="formData.species">
+									<option value="{{ animal }}" 
+										ng-repeat="animal in enums['ani_species']">
+										{{ lang[animal][l] }}
+									</option>
+								</select>
+								<label class="col-md-2 col-xs-2">
+									{{ lang['front_animal_type'][l] }}
+								</label>
+								<select name="animal_type" class="col-md-2 col-xs-2"
+									ng-model="formData.animal_type">
+									<option value="{{ type }}" 
+										ng-repeat="type in enums['ani_type']">
+										{{ lang[type][l] }}
+									</option>
+								</select>
+								<label class="col-md-2 col-xs-2">
+									{{ lang['front_animal_age'][l] }}
+								</label>
+								<input type="number" name="age" class="col-md-2 col-xs-2"
+									ng-model="formData.age" />
+							</div>
+							<div class="row">
+								<label class="col-md-2 col-xs-2">
+									{{ lang['front_client_type'][l] }}
+								</label>
+								<select name="client_type" class="col-md-2 col-xs-2"
+									ng-model="formData.species">
+									<option value="{{ client }}" 
+										ng-repeat="client in enums['ani_client_types']">
+										{{ lang[client][l] }}
+									</option>
+								</select>
+								<label class="col-md-3 col-xs-3">
+									{{ lang['front_animal_environment'][l] }}
+								</label>
+								<select multiple name="animal_env" class="col-md-5 col-xs-5"
+									ng-model="formData.animal_env">
+									<option value="{{ env }}" 
+										ng-repeat="env in enums['ani_environment']">
+										{{ lang[env][l] }}
+									</option>
+								</select>
+							</div>
+							<div class="form-group">
+							</div>
+							
+							<legend>{{ lang['front_treat_prescription'][l] }}</legend>
+							
+							<button type="submit" class="btn btn-success">
+								<span class="glyphicon glyphicon-flash"></span>
+								{{ lang['front_record'][l] }}
+							</button>
+						</form>
+					</div>
+				</div>
+<!-- === DEBUG PANE === -->
+				<div class="debug-pane well" ng-if="false">
+					<h3 ng-click="debug=!debug">DEBUG</h3>
+					<dl ng-if="debug">
+					<dd>{{ formData }}</dd>
+					</dl>
+				</div>
+
+				
+			</div>
+		</div>
+		<script src="./js/libraries/angular.min.js"></script>
+		<script src="./js/libraries/ui-bootstrap-tpls.min.js"></script>
+		<script src="./js/libraries/angular-local-storage.min.js"></script>
+
+		<script src="./js/configuration/lang.js"></script>
+		
+		<script src="./js/app.front.js"></script>
+		<script src="./js/controllers/MainCtrl.js"></script>
+		<script src="./js/services/messageService.js"></script>
+	</body>
+</html>
