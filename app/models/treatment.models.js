@@ -49,7 +49,7 @@ var TreatmentSchema = new Schema({
 		required: true
 	},
 	animals: {
-		type: [Schema.Types.Mixed], // [{species:string, type:string, age:string, weight:number, quantity:number, environment:[String]}..]
+		type: [Schema.Types.Mixed], // [{species:string, type:string, age:string, weight:number, quantity:number, environment:[String]},...]
 		required: true
 	},
 	prescription: {
