@@ -15,7 +15,7 @@ var TreatmentSchema = new Schema({
 	date_dispense: {
 		type: Date,
 		required: true
-	}
+	},
 	pathology: {
 		type: String,
 		required: true
@@ -45,7 +45,7 @@ var TreatmentSchema = new Schema({
 		required: true
 	},
 	veterinary: {
-		type: ObjectId,
+		type: Schema.Types.ObjectId,
 		required: true
 	},
 	animals: {
