@@ -10,6 +10,7 @@ mabapp.controller('MainCtrl',[
 	$scope.lang = lang;
 	$scope.enums = enums;
 	$scope.animals = animals;
+	$scope.products = products;
 	
 	//shortcuts
 	lss = localStorageService;
