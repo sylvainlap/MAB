@@ -5,9 +5,11 @@ mabapp.controller('MainCtrl',[
 	'messageService',
 	function($scope, $http, localStorageService, messageService) {
 
-	// languages
+	// config load
 	$scope.l = 'FR';
 	$scope.lang = lang;
+	$scope.enums = enums;
+	$scope.animals = animals;
 	
 	//shortcuts
 	lss = localStorageService;
@@ -15,6 +17,7 @@ mabapp.controller('MainCtrl',[
 	// $scope init
 	$scope.formData = {};
 	$scope.formData.school = {};
+	$scope.formData.animals = [];
 	$scope.showProfile = false;
 	$scope.showUserMenu = false;
 	$scope.user = {};
@@ -48,6 +51,37 @@ mabapp.controller('MainCtrl',[
 				$scope.messages = messageService.log(data);
 				$scope.formData = {};
 			});
+		},
+		/**
+		 * Build the animal object from the selected value
+		 */
+		buildAnimal : function() {
+			var tmpAnimal = $scope.formData.tmpAnimal.split('|');
+			$scope.formData.animals.species = tmpAnimal[0];
+			$scope.formData.animals.type = tmpAnimal[1];
+			$scope.formData.animals.age = tmpAnimal[2];
+			$scope.formData.animals.weight = tmpAnimal[3];
+			
+		},
+		/**
+		 * Build and add the animal object from the selected value
+		 */
+		addAnimal : function() {
+			var tmpAnimal = $scope.formData.tmpAnimal.split('|');
+			$scope.formData.animals.push({
+				species : tmpAnimal[0],
+				type : tmpAnimal[1],
+				age : tmpAnimal[2],
+				weight : tmpAnimal[3],
+				quantity : $scope.formData.quantity,
+				environment : $scope.formData.animal_env
+			});
+		},
+		/**
+		 * Build and add the animal object from the selected value
+		 */
+		removeAnimal : function(index) {
+			$scope.formData.animals.splice(index, 1);
 		}
 	};
 	
@@ -173,21 +207,4 @@ mabapp.controller('MainCtrl',[
 		$scope.messages.splice(0, $scope.messages.length);
 	}
 	// END ALERTS
-	
-	$scope.loadSysData = function() {
-		$http({
-			method:'GET',
-			url:'/api/enum',
-			headers:{'x-access-token':$scope.user.token}
-		})
-		.success(function(data){
-			$scope.messages = messageService.log(data);
-			$scope.enums = {};
-			for(var e=0; e<data.length;e++){
-				$scope.enums[data[e]['name']] = data[e]['data'];
-			}
-		});
-	};
-	// === DB Load ===
-	$scope.loadSysData();
 }]);
