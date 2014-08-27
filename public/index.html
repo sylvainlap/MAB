@@ -272,7 +272,18 @@
 							</div>
 							
 							<legend>{{ lang['front_treat_prescription'][l] }}</legend>
-							
+							<div class="row">
+								<label class="col-md-1 col-xs-1">
+									produits
+								</label>
+								<select name="product" class="col-md-2 col-xs-2"
+									ng-model="formData.product">
+									<option value="{{ product.name }}" 
+										ng-repeat="product in products">
+										{{ product.name }}
+									</option>
+								</select>
+							</div>
 							<button type="submit" class="btn btn-success">
 								<span class="glyphicon glyphicon-flash"></span>
 								{{ lang['front_record'][l] }}
@@ -296,6 +307,7 @@
 		<script src="./js/configuration/lang.data.js"></script>
 		<script src="./js/configuration/enums.data.js"></script>
 		<script src="./js/configuration/animals.data.js"></script>
+		<script src="./js/configuration/products.data.js"></script>
 		
 		<script src="./js/app.front.js"></script>
 		<script src="./js/controllers/MainCtrl.js"></script>
