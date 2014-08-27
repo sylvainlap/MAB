@@ -168,7 +168,7 @@
 									{{ lang['front_treat_type'][l] }}
 								</label>
 								<select name="treatment_type" class="col-md-8 col-xs-8"
-									ng-model="formData.type">
+									ng-model="formData.treat_type">
 									<option value="{{ type }}" 
 										ng-repeat="type in enums['tra_type']">
 										{{ lang[type][l] }}
@@ -180,7 +180,7 @@
 									{{ lang['front_treat_init'][l] }}
 								</label>
 								<select name="treatment_init" class="col-md-8 col-xs-8"
-									ng-model="formData.init_tre">
+									ng-model="formData.treat_init">
 									<option value="{{ init }}" 
 										ng-repeat="init in enums['tra_init']">
 										{{ lang[init][l] }}
@@ -208,52 +208,63 @@
 							</div>
 							
 							<legend>{{ lang['front_animals'][l] }}</legend>
+							<div class="well">
+								<p ng-repeat="a in formData.animals">
+									{{ lang[a.species][l] + ' ' + lang[a.type][l] + ' ' + lang[a.age][l] + ' (' + a.quantity + ') [ ' }}
+									<span ng-repeat="env in a.environment">{{ lang[env][l] + ' '}}</span> {{ ']' }}
+									<a class="btn btn-xs btn-default" title="{{ lang['front_remove'][l]}}" ng-click="dataMgt.removeAnimal($index)">
+										<span class="glyphicon glyphicon-minus"></span>
+									</a>
+								</p>
+							</div>
 							<div class="row form-group">
-								<label class="col-md-2 col-xs-2">
+								<label class="col-md-1 col-xs-1">
 									{{ lang['front_species'][l] }}
 								</label>
-								<select name="animal_species" class="col-md-2 col-xs-2"
-									ng-model="formData.species">
-									<option value="{{ animal }}" 
-										ng-repeat="animal in enums['ani_species']">
-										{{ lang[animal][l] }}
-									</option>
+								<select name="animal" class="col-md-3 col-xs-3"
+									ng-model="formData.tmpAnimal">
+									<optgroup label="{{ lang[species][l] }}" 
+										ng-repeat="(species, types) in animals">
+										<option disabled class="optssgroup"
+											ng-repeat-start="(type, ages) in types">
+											-- {{ lang[type][l] }} --
+										</option>
+										<option value="{{ species + '|'  + type + '|' + age + '|' + weight }}"
+											ng-repeat="(age, weight) in ages">
+											{{ lang[species][l] + '/'  + lang[type][l] + '/' + lang[age][l] }}
+										</option>
+										<option disabled ng-repeat-end></option>
+									</optgroup>
 								</select>
-								<label class="col-md-2 col-xs-2">
-									{{ lang['front_animal_type'][l] }}
+								<label class="col-md-1 col-xs-1">
+									{{ lang['front_animal_quantity'][l] }}
 								</label>
-								<select name="animal_type" class="col-md-2 col-xs-2"
-									ng-model="formData.animal_type">
-									<option value="{{ type }}" 
-										ng-repeat="type in enums['ani_type']">
-										{{ lang[type][l] }}
-									</option>
-								</select>
+								<input type="number" name="quantity" class="col-md-1 col-xs-1"
+									ng-model="formData.quantity" />
 								<label class="col-md-2 col-xs-2">
-									{{ lang['front_animal_age'][l] }}
-								</label>
-								<input type="number" name="age" class="col-md-2 col-xs-2"
-									ng-model="formData.age" />
-							</div>
-							<div class="row">
-								<label class="col-md-2 col-xs-2">
-									{{ lang['front_client_type'][l] }}
-								</label>
-								<select name="client_type" class="col-md-2 col-xs-2"
-									ng-model="formData.species">
-									<option value="{{ client }}" 
-										ng-repeat="client in enums['ani_client_types']">
-										{{ lang[client][l] }}
-									</option>
-								</select>
-								<label class="col-md-3 col-xs-3">
 									{{ lang['front_animal_environment'][l] }}
 								</label>
-								<select multiple name="animal_env" class="col-md-5 col-xs-5"
+								<select multiple name="animal_env" class="col-md-2 col-xs-2"
 									ng-model="formData.animal_env">
 									<option value="{{ env }}" 
 										ng-repeat="env in enums['ani_environment']">
 										{{ lang[env][l] }}
+									</option>
+								</select>
+								<div class="col-md-1 col-xs-1">&nbsp;</div>
+								<a class="btn btn-default btn-md col-md-1 col-xs-1" title="{{ lang['front_add'][l]}}" ng-click="dataMgt.addAnimal()">
+									<span class="glyphicon glyphicon-plus">
+								</a>
+							</div>
+							<div class="row">
+								<label class="col-md-1 col-xs-1">
+									{{ lang['front_client_type'][l] }}
+								</label>
+								<select name="client_type" class="col-md-2 col-xs-2"
+									ng-model="formData.client_type">
+									<option value="{{ client }}" 
+										ng-repeat="client in enums['ani_client_types']">
+										{{ lang[client][l] }}
 									</option>
 								</select>
 							</div>
@@ -270,11 +281,9 @@
 					</div>
 				</div>
 <!-- === DEBUG PANE === -->
-				<div class="debug-pane well" ng-if="false">
-					<h3 ng-click="debug=!debug">DEBUG</h3>
-					<dl ng-if="debug">
-					<dd>{{ formData }}</dd>
-					</dl>
+				<div class="debug-pane well" ng-if="true">
+					<p ng-click="debug=!debug">DEBUG</p>
+					<textarea class="col-md-12 col-xs-12" ng-if="debug">{{ formData }}</textarea>
 				</div>
 
 				
@@ -284,7 +293,9 @@
 		<script src="./js/libraries/ui-bootstrap-tpls.min.js"></script>
 		<script src="./js/libraries/angular-local-storage.min.js"></script>
 
-		<script src="./js/configuration/lang.js"></script>
+		<script src="./js/configuration/lang.data.js"></script>
+		<script src="./js/configuration/enums.data.js"></script>
+		<script src="./js/configuration/animals.data.js"></script>
 		
 		<script src="./js/app.front.js"></script>
 		<script src="./js/controllers/MainCtrl.js"></script>

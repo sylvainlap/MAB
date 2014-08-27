@@ -40,8 +40,8 @@ var TreatmentSchema = new Schema({
 		type: Number,
 		required: true
 	},
-	dispense_mode: {
-		type: Number,
+	client_type: {
+		type: String,
 		required: true
 	},
 	veterinary: {
@@ -49,11 +49,11 @@ var TreatmentSchema = new Schema({
 		required: true
 	},
 	animals: {
-		type: Array, // [{animal:Animal, q:Number}]
+		type: [Schema.Types.Mixed], // [{species:string, type:string, age:string, weight:number, quantity:number, environment:[String]},...]
 		required: true
 	},
 	prescription: {
-		type: Array, // [{product:proA, qty: 10},{product:proB, qty: 50}]
+		type: Array, // [{product:proA, qty: 10, dm: String},{product:proB, qty: 50, dm: String}]
 		required: true
 	}
 });
