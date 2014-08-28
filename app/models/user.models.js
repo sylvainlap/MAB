@@ -21,7 +21,7 @@ var UserSchema = new Schema({
 		type: String,
 		required: true
 	},
-	structure: {
+	/*structure: {
 		type: Number,
 		required: true
 	},
@@ -48,7 +48,7 @@ var UserSchema = new Schema({
 	},
 	favs: {
 		type: Schema.Types.Mixed,
-	},
+	},*/
 	created: {
 		type: Date,
 		default: Date.now
