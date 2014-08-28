@@ -240,7 +240,7 @@
 									{{ lang['front_animal_quantity'][l] }}
 								</label>
 								<input type="number" name="quantity" class="col-md-1 col-xs-1"
-									ng-model="formData.quantity" />
+									ng-model="formData.animalQuantity" />
 								<label class="col-md-2 col-xs-2">
 									{{ lang['front_animal_environment'][l] }}
 								</label>
@@ -272,17 +272,39 @@
 							</div>
 							
 							<legend>{{ lang['front_treat_prescription'][l] }}</legend>
+							<div class="well">
+								<p ng-repeat="a in formData.products">
+									{{ 	a.name + ' ' +
+										a.quantity + ' ' +
+										((a.nunit!='vrac' && a.nunit!=undefined)?a.nunit +' de '+ a.qunit + a.unit:a.unit)
+									}}
+									<a class="btn btn-xs btn-default" title="{{ lang['front_remove'][l]}}" ng-click="dataMgt.removeProduct($index)">
+										<span class="glyphicon glyphicon-minus"></span>
+									</a>
+								</p>
+							</div>
 							<div class="row">
 								<label class="col-md-1 col-xs-1">
-									produits
+									{{ lang['front_products'][l] }}
 								</label>
-								<select name="product" class="col-md-2 col-xs-2"
-									ng-model="formData.product">
-									<option value="{{ product.name }}" 
-										ng-repeat="product in products">
-										{{ product.name }}
+								<select name="product" class="col-md-3 col-xs-3"
+									ng-model="formData.tmpProduct" ng_change="dataMgt.buildProduct()">
+									<option value="{{ p.name }}" 
+										ng-repeat="p in products">
+										{{ p.name }}
 									</option>
 								</select>
+								<label class="col-md-1 col-xs-1">
+									{{ lang['front_product_quantity'][l] }}
+								</label>
+								<input type="number" name="product_quantity" class="col-md-1 col-xs-1" 	ng-model="formData.productQuantity" />
+								<label class="col-md-3 col-xs-3">
+									{{ 'en '+((curProduct.nunit!='vrac' && curProduct.nunit!=undefined)?curProduct.nunit +' de '+ curProduct.qunit + curProduct.unit:curProduct.unit) }}
+								</label>
+								<div class="col-md-1 col-xs-1">&nbsp;</div>
+								<a class="btn btn-default btn-md col-md-1 col-xs-1" title="{{ lang['front_add'][l]}}" ng-click="dataMgt.addProduct()">
+									<span class="glyphicon glyphicon-plus">
+								</a>
 							</div>
 							<button type="submit" class="btn btn-success">
 								<span class="glyphicon glyphicon-flash"></span>
@@ -295,6 +317,7 @@
 				<div class="debug-pane well" ng-if="true">
 					<p ng-click="debug=!debug">DEBUG</p>
 					<textarea class="col-md-12 col-xs-12" ng-if="debug">{{ formData }}</textarea>
+					<textarea class="col-md-12 col-xs-12" ng-if="debug">{{ curProduct }}</textarea>
 				</div>
 
 				
@@ -303,6 +326,7 @@
 		<script src="./js/libraries/angular.min.js"></script>
 		<script src="./js/libraries/ui-bootstrap-tpls.min.js"></script>
 		<script src="./js/libraries/angular-local-storage.min.js"></script>
+		<script src ="./js/libraries/queryJson.js"></script>
 
 		<script src="./js/configuration/lang.data.js"></script>
 		<script src="./js/configuration/enums.data.js"></script>

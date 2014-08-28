@@ -156,6 +156,14 @@ var lang =
 			'FR':'enregistrer',
 			'EN':'record'
 		},
+		'front_products':{
+			'FR':'produits',
+			'EN':'products'
+		},
+		'front_product_quantity':{
+			'FR':'quantité',
+			'EN':'quantity'
+		},
 		/* === ERRORS & MESSAGES === */
 		'msg_no_change_saved':{
 			'FR':'Aucun changement à enregistrer',
