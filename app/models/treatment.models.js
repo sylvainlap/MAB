@@ -45,7 +45,7 @@ var TreatmentSchema = new Schema({
 		required: true
 	},
 	veterinary: {
-		type: Schema.Types.ObjectId,
+		type: Schema.Types.Mixed,
 		required: true
 	},
 	animals: {

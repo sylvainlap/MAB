@@ -6,3 +6,6 @@ function findOne(j,f,v){
 		}
 	}
 }
+function print(j){
+	return j;
+}

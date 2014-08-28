@@ -16,23 +16,37 @@ mabapp.controller('MainCtrl',[
 	lss = localStorageService;
 	
 	// $scope init
-	$scope.data = {
-		school : {},
-		animals : [],
-		products : []
+	$scope.reset = {
+		data : function(){
+			$scope.data = {
+					school : {},
+					animals : [],
+					prescription : []
+			};
+		},
+		tmp : function(){
+			$scope.tmp = {
+					animal:{},
+					product:{}
+			};
+		},
+		ui : function(){
+			$scope.ui = {
+					showProfile : false,
+					showUserMenu : false
+			}
+		},
+		user : function(){
+			$scope.user = {
+					username : lss.get('user_username'),
+					token : lss.get('user_token')
+			};
+		}
 	};
-	$scope.tmp = {
-		animal:{},
-		product:{}
-	};
-	$scope.ui = {
-		showProfile : false,
-		showUserMenu : false
-	}
-	$scope.user = {
-		username : lss.get('user_username'),
-		token : lss.get('user_token')
-	};
+	$scope.reset.data();
+	$scope.reset.tmp();
+	$scope.reset.ui();
+	$scope.reset.user();
 
 	// === EVENT WATCH ===
 	$scope.$on('message.new', function(event){
@@ -48,6 +62,8 @@ mabapp.controller('MainCtrl',[
 		 */
 		recordTreatment : function() {
 			$scope.data.user = $scope.user;
+			$scope.data.veterinary = $scope.user;
+			console.log($scope.data);
 			$http({
 				method:'POST',
 				url:'/api/treatment',
@@ -55,7 +71,7 @@ mabapp.controller('MainCtrl',[
 				data:$scope.data})
 			.success(function(data){
 				$scope.messages = messageService.log(data);
-				$scope.data = {};
+				$scope.reset.data();
 			});
 		},
 		/**
@@ -91,14 +107,15 @@ mabapp.controller('MainCtrl',[
 		 * 
 		 */
 		addProduct : function() {
-			$scope.data.products.push($scope.tmp.product);
+			$scope.data.prescription.push($scope.tmp.product);
 			$scope.tmp.product = {};
+			$scope.tmp.productName = undefined;
 		},
 		/**
 		 * 
 		 */
 		removeProduct : function(index) {
-			$scope.data.products.splice(index, 1);
+			$scope.data.prescription.splice(index, 1);
 		}
 		
 	};
@@ -121,7 +138,7 @@ mabapp.controller('MainCtrl',[
 			.success(function(data) {
 				$scope.messages = messageService.log(data);
 				// clear the form
-				$scope.data = {};
+				$scope.reset.data();
 			});
 		},
 		/**
@@ -140,7 +157,7 @@ mabapp.controller('MainCtrl',[
 				lss.set('user_token', data.token);
 				
 				// clear the form
-				$scope.data = {};
+				$scope.reset.data();
 			});
 		},
 		/**
@@ -173,7 +190,7 @@ mabapp.controller('MainCtrl',[
 				$scope.messages = messageService.log({message : $scope.lang['msg_no_change_saved'][$scope.l]});
 					
 				$scope.ui.showProfile = false;
-				$scope.data = {};
+				$scope.reset.data();
 			}
 		},
 		/**
@@ -188,7 +205,7 @@ mabapp.controller('MainCtrl',[
 				.success(function(data){
 					$scope.messages = messageService.log(data);
 					
-					$scope.data = {};
+					$scope.reset.data();
 					$scope.ui.showProfile = false;
 			});
 		}

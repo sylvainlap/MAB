@@ -17,6 +17,7 @@ exports.postTreatment = function(req, res, next) {
 	var treatment = new Treatment(req.body);
 	treatment.save(function(err) {
 		if (err)
+			console.log(err);
 			return res.json(err);
 
 		res.json(treatment);

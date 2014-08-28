@@ -288,8 +288,8 @@
 		<!-- == GRP Treatment Products List Creation -->
 						<legend>{{ lang['front_treat_prescription'][l] }}</legend>
 				<!-- == DISP Products List -->
-						<div class="products row bg-info" ng-if="data.products.length>0">
-							<p class="selected-item" ng-repeat="p in data.products">
+						<div class="products row bg-info" ng-if="data.prescription.length>0">
+							<p class="selected-item" ng-repeat="p in data.prescription">
 								<span class="col-xs-4">
 									{{ 	p.name }}
 								</span>
@@ -345,7 +345,7 @@
 				</div>
 			</div>
 <!-- === DEBUG PANE === -->
-			<div class="debug-pane well" ng-if="false">
+			<div class="debug-pane well" ng-if="true">
 				<p ng-click="debug=!debug">DEBUG</p>
 				<textarea class="col-md-12 col-xs-12" ng-if="debug">{{ data }}</textarea>
 				<textarea class="col-md-12 col-xs-12" ng-if="debug">{{ tmp }}</textarea>
