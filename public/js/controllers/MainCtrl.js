@@ -16,25 +16,28 @@ mabapp.controller('MainCtrl',[
 	lss = localStorageService;
 	
 	// $scope init
-	$scope.formData = {};
-	$scope.formData.school = {};
-	$scope.formData.animals = [];
-	$scope.formData.tmpProduct = {};
-	$scope.formData.products = [];
-	$scope.showProfile = false;
-	$scope.showUserMenu = false;
-	$scope.user = {};
-	$scope.user.username = '';
-	$scope.user.token = '';
-
-	// === LocalStorage Load ===
-	$scope.user.username = lss.get('user_username');
-	$scope.user.token = lss.get('user_token');
+	$scope.data = {
+		school : {},
+		animals : [],
+		products : []
+	};
+	$scope.tmp = {
+		animal:{},
+		product:{}
+	};
+	$scope.ui = {
+		showProfile : false,
+		showUserMenu : false
+	}
+	$scope.user = {
+		username : lss.get('user_username'),
+		token : lss.get('user_token')
+	};
 
 	// === EVENT WATCH ===
 	$scope.$on('message.new', function(event){
 		console.log('about to clear...');
-		setTimeout($scope.clearAlerts, 5000);
+		setTimeout($scope.alertMgt.clearAlerts, 5000);
 	});
 	
 	
@@ -44,66 +47,58 @@ mabapp.controller('MainCtrl',[
 		 * Record a Treatment
 		 */
 		recordTreatment : function() {
-			$scope.formData.user = $scope.user;
+			$scope.data.user = $scope.user;
 			$http({
 				method:'POST',
 				url:'/api/treatment',
 				headers:{'x-access-token':$scope.user.token},
-				data:$scope.formData})
+				data:$scope.data})
 			.success(function(data){
 				$scope.messages = messageService.log(data);
-				$scope.formData = {};
+				$scope.data = {};
 			});
-		},
-		/**
-		 * Build the animal object from the selected value
-		 */
-		buildAnimal : function() {
-			var tmpAnimal = $scope.formData.tmpAnimal.split('|');
-			$scope.formData.animals.species = tmpAnimal[0];
-			$scope.formData.animals.type = tmpAnimal[1];
-			$scope.formData.animals.age = tmpAnimal[2];
-			$scope.formData.animals.weight = tmpAnimal[3];
-			
 		},
 		/**
 		 * Build and add the animal object from the selected value
 		 */
 		addAnimal : function() {
-			var tmpAnimal = $scope.formData.tmpAnimal.split('|');
-			$scope.formData.animals.push({
-				species : tmpAnimal[0],
-				type : tmpAnimal[1],
-				age : tmpAnimal[2],
-				weight : tmpAnimal[3],
-				quantity : $scope.formData.animalQuantity,
-				environment : $scope.formData.animal_env
+			var animal = $scope.tmp.animal.raw.split('|');
+			$scope.data.animals.push({
+				species : animal[0],
+				type : animal[1],
+				age : animal[2],
+				weight : animal[3],
+				quantity : $scope.tmp.animal.quantity,
+				environment : $scope.tmp.animal.environment
 			});
+			$scope.tmp.animal = {};
 		},
 		/**
 		 * remove animal from selection
 		 */
 		removeAnimal : function(index) {
-			$scope.formData.animals.splice(index, 1);
+			$scope.data.animals.splice(index, 1);
 		},
 		/**
 		 * 
 		 */
 		buildProduct : function(){
-			$scope.curProduct = findOne(products, 'name', $scope.formData.tmpProduct);
+			var q = $scope.tmp.product.quantity;
+			$scope.tmp.product = findOne(products, 'name', $scope.tmp.product.name);
+			$scope.tmp.product.quantity = q;
 		},
 		/**
 		 * 
 		 */
 		addProduct : function() {
-			$scope.curProduct.quantity = $scope.formData.productQuantity;
-			$scope.formData.products.push($scope.curProduct);
+			$scope.data.products.push($scope.tmp.product);
+			$scope.tmp.product = {};
 		},
 		/**
 		 * 
 		 */
 		removeProduct : function(index) {
-			$scope.formData.products.splice(index, 1);
+			$scope.data.products.splice(index, 1);
 		}
 		
 	};
@@ -116,36 +111,36 @@ mabapp.controller('MainCtrl',[
 		register : function() {
 			/* TMP */
 			// TODO : les infos requises sont fournies par l’identification SAS
-			$scope.formData.lang = 'NR';
-			$scope.formData.age = 0;
-			$scope.formData.geoloc = 0;
-			$scope.formData.structure = 'NR';
-			$scope.formData.activity = {'bovine':'1.0'};
+			$scope.data.lang = 'NR';
+			$scope.data.age = 0;
+			$scope.data.geoloc = 0;
+			$scope.data.structure = 'NR';
+			$scope.data.activity = {'bovine':'1.0'};
 			/* /TMP */
-			$http.post('/register', $scope.formData)
+			$http.post('/register', $scope.data)
 			.success(function(data) {
 				$scope.messages = messageService.log(data);
 				// clear the form
-				$scope.formData = {};
+				$scope.data = {};
 			});
 		},
 		/**
 		 * Login known user
 		 */
 		login : function() {
-			$http.post('/login', $scope.formData)
+			$http.post('/login', $scope.data)
 			.success(function(data) {
 				$scope.messages = messageService.log(data);
 				
 				// retrieve user data
-				$scope.user.username = $scope.formData.username;
+				$scope.user.username = $scope.data.username;
 				$scope.user.token = data.token;
 				// save user data in localStorageService
-				lss.set('user_username', $scope.formData.username);
+				lss.set('user_username', $scope.data.username);
 				lss.set('user_token', data.token);
 				
 				// clear the form
-				$scope.formData = {};
+				$scope.data = {};
 			});
 		},
 		/**
@@ -158,10 +153,10 @@ mabapp.controller('MainCtrl',[
 		},
 		/**
 		 * TODO : impossible de faire autrement... je voulais faire comme pour la gestion de
-		 * showUserMenu, ça ne marche que comme ça... 
+		 * ui.showUserMenu, ça ne marche que comme ça... 
 		 */
 		getProfile : function(t){
-			$scope.formData.username = $scope.user.username;
+			$scope.data.username = $scope.user.username;
 			if(t=='open'){
 				$http({
 					method:'GET',
@@ -170,15 +165,15 @@ mabapp.controller('MainCtrl',[
 					.success(function(data){
 						$scope.messages = messageService.log(data);
 						
-						$scope.formData = data;
-						$scope.showProfile = true;
+						$scope.data = data;
+						$scope.ui.showProfile = true;
 					});
 			}
 			else{
 				$scope.messages = messageService.log({message : $scope.lang['msg_no_change_saved'][$scope.l]});
 					
-				$scope.showProfile = false;
-				$scope.formData = {};
+				$scope.ui.showProfile = false;
+				$scope.data = {};
 			}
 		},
 		/**
@@ -189,26 +184,34 @@ mabapp.controller('MainCtrl',[
 				method:'POST',
 				url:'/profile',
 				headers:{'x-access-token':$scope.user.token},
-				data:$scope.formData})
+				data:$scope.data})
 				.success(function(data){
 					$scope.messages = messageService.log(data);
 					
-					$scope.formData = {};
-					$scope.showProfile = false;
+					$scope.data = {};
+					$scope.ui.showProfile = false;
 			});
 		}
 	};
 
-	
+	$scope.alertMgt = {
+			closeAlert : function(index) {
+				$scope.messages.splice(index, 1);
+			},
+			clearAlerts : function() {
+				console.log('clear !');
+				$scope.messages.splice(0, $scope.messages.length);
+			}
+	};
 	
 
 	// ==== DATE PICKER ====
 	$scope.today = function() {
-		$scope.formData.date_dispense = new Date();
+		$scope.data.date_dispense = new Date();
 	};
 	$scope.today();
 	$scope.clear = function () {
-		$scope.formData.date_dispense = null;
+		$scope.data.date_dispense = null;
 	};
 	$scope.open = function($event) {
 		$event.preventDefault();
@@ -220,14 +223,4 @@ mabapp.controller('MainCtrl',[
 	$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 	$scope.format = $scope.formats[1];
 	// END DATE
-	
-	// ==== ALERTS ====
-	$scope.closeAlert = function(index) {
-		$scope.messages.splice(index, 1);
-	};
-	$scope.clearAlerts = function() {
-		console.log('clear !');
-		$scope.messages.splice(0, $scope.messages.length);
-	}
-	// END ALERTS
 }]);
