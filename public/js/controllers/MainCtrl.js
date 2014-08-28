@@ -19,6 +19,8 @@ mabapp.controller('MainCtrl',[
 	$scope.formData = {};
 	$scope.formData.school = {};
 	$scope.formData.animals = [];
+	$scope.formData.tmpProduct = {};
+	$scope.formData.products = [];
 	$scope.showProfile = false;
 	$scope.showUserMenu = false;
 	$scope.user = {};
@@ -74,16 +76,36 @@ mabapp.controller('MainCtrl',[
 				type : tmpAnimal[1],
 				age : tmpAnimal[2],
 				weight : tmpAnimal[3],
-				quantity : $scope.formData.quantity,
+				quantity : $scope.formData.animalQuantity,
 				environment : $scope.formData.animal_env
 			});
 		},
 		/**
-		 * Build and add the animal object from the selected value
+		 * remove animal from selection
 		 */
 		removeAnimal : function(index) {
 			$scope.formData.animals.splice(index, 1);
+		},
+		/**
+		 * 
+		 */
+		buildProduct : function(){
+			$scope.curProduct = findOne(products, 'name', $scope.formData.tmpProduct);
+		},
+		/**
+		 * 
+		 */
+		addProduct : function() {
+			$scope.curProduct.quantity = $scope.formData.productQuantity;
+			$scope.formData.products.push($scope.curProduct);
+		},
+		/**
+		 * 
+		 */
+		removeProduct : function(index) {
+			$scope.formData.products.splice(index, 1);
 		}
+		
 	};
 	
 	// === USER MANAGEMENT FUNCTIONS ===
