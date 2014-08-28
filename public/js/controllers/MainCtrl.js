@@ -84,7 +84,7 @@ mabapp.controller('MainCtrl',[
 		 */
 		buildProduct : function(){
 			var q = $scope.tmp.product.quantity;
-			$scope.tmp.product = findOne(products, 'name', $scope.tmp.product.name);
+			$scope.tmp.product = findOne(products, 'name', $scope.tmp.productName);
 			$scope.tmp.product.quantity = q;
 		},
 		/**

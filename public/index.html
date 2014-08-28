@@ -8,334 +8,347 @@
 	</head>
 	<body ng-controller="MainCtrl">
 		<div class="container">
-			<div class="">
-				
-				<div class="header">
+			<div class="header">
 				
 <!-- === LANGUAGE SWITCH === -->				
-					<a href="#" ng-click="l='EN'">EN</a>
-					<a href="#" ng-click="l='FR'">FR</a>
-					<h1>
+				<a href="#" ng-click="l='EN'">EN</a>
+				<a href="#" ng-click="l='FR'">FR</a>
+				<h1>
 <!-- === TITLE === -->
-						<span class="glyphicon glyphicon-stats"></span> MAB
+					<span class="glyphicon glyphicon-stats"></span> MAB
 <!-- === USER MENU === -->
-						<div class="pull-right btn btn-info text-left" 	ng-click="ui.showUserMenu=!ui.showUserMenu" ng-mouseleave="ui.showUserMenu=false" ng-if="user.token!=undefined">
+					<div class="pull-right btn btn-info text-left" 	ng-click="ui.showUserMenu=!ui.showUserMenu" ng-mouseleave="ui.showUserMenu=false" ng-if="user.token!=undefined">
 		<!-- == Username -->
-							<span class="glyphicon glyphicon-user"></span>
-							{{ user.username }}
+						<span class="glyphicon glyphicon-user"></span>
+						{{ user.username }}
 		<!-- == BTN Profile -->
-							<a class="btn btn-default btn-sm" ng-click="userMgt.getProfile('open')" ng-if="ui.showUserMenu">
-								<span class="glyphicon glyphicon-cog"></span>
-								{{ lang['front_profile'][l] }}
-							</a>
+						<a class="btn btn-default btn-sm" ng-click="userMgt.getProfile('open')" ng-if="ui.showUserMenu">
+							<span class="glyphicon glyphicon-cog"></span>
+							{{ lang['front_profile'][l] }}
+						</a>
 		<!-- == BTN Logout -->
-							<a class="btn btn-danger btn-sm" ng-click="userMgt.logout()" ng-if="ui.showUserMenu">
-								<span class="glyphicon glyphicon-off"></span>
-								{{ lang['front_disconnect'][l] }}
-							</a>
-						</div>
-					</h1>
-				</div>
+						<a class="btn btn-danger btn-sm" ng-click="userMgt.logout()" ng-if="ui.showUserMenu">
+							<span class="glyphicon glyphicon-off"></span>
+							{{ lang['front_disconnect'][l] }}
+						</a>
+					</div>
+				</h1>
+			</div>
 				
 				
 <!-- === TRACE BOX === -->
-				<alert ng-repeat="msg in messages" type="{{ msg.type }}" close="alertMgt.closeAlert($index)">
-					{{ msg.msg }}
-				</alert>
+			<alert ng-repeat="msg in messages" type="{{ msg.type }}" close="alertMgt.closeAlert($index)">
+				{{ msg.msg }}
+			</alert>
 
 <!-- === REGISTER PANE === -->
-				<div class="auth-pane" ng-if="user.token==undefined">
-					<div class="well">
-						<h3>{{ lang['front_register'][l] }}</h3>
-						<form class="form-inline">
+			<div class="auth-pane" ng-if="user.token==undefined">
+				<div class="well">
+					<h3>{{ lang['front_register'][l] }}</h3>
+					<form class="form-inline">
 		<!-- == INP Username -->
-							<div class="form-group">
-								<label class="sr-only">{{ lang['front_username'][l] }}</label>
-								<input type="text" name="username" class="form-control" placeholder="{{ lang['front_username'][l] }}" ng-model="data.username" />
-							</div>
+						<div class="row form-group">
+							<label class="sr-only">{{ lang['front_username'][l] }}</label>
+							<input class="col-xs-12 form-control" type="text" name="username" placeholder="{{ lang['front_username'][l] }}" ng-model="data.username" />
+						</div>
 		<!-- == INP Password -->
-							<div class="form-group">
-								<label class="sr-only">{{ lang['front_password'][l] }}</label>
-								<input type="password" name="password" class="form-control" placeholder="{{ lang['front_password'][l] }}" ng-model="data.password" />
-							</div>
+						<div class="row form-group">
+							<label class="sr-only">{{ lang['front_password'][l] }}</label>
+							<input class="col-xs-12 form-control" type="password" name="password" placeholder="{{ lang['front_password'][l] }}" ng-model="data.password" />
+						</div>
+						<div class="row form-group">
 		<!-- == BTN Login -->
-							<button class="btn btn-success" ng-click="userMgt.login()">
+							<button class="col-xs-5 btn btn-success" ng-click="userMgt.login()">
 								<span class="glyphicon glyphicon-lock"></span>
 								{{ lang['front_login'][l] }}
 							</button>
 		<!-- == BTN Register -->
-							<button class="btn btn-warning" ng-click="userMgt.register()">
+							<button class="col-xs-offset-2 col-xs-5 btn btn-warning" ng-click="userMgt.register()">
 								<span class="glyphicon glyphicon-user"></span>
 								{{ lang['front_register'][l] }}
 							</button>
-						</form>
-					</div>
+						</div>
+					</form>
 				</div>
+			</div>
 				
 				
 <!-- === EDIT PROFILE PANE === -->
-				<div class="editprofile-pane" ng-if="user.token != undefined && ui.showProfile">
-					<div class="well">
-						<h3>{{ lang['front_profile_manager'][l] }}</h3>
-						<form>
+			<div class="editprofile-pane" ng-if="user.token != undefined && ui.showProfile">
+				<div class="well">
+					<h3>{{ lang['front_profile_manager'][l] }}</h3>
+					<form>
 		<!-- == INP Usernamer -->
-							<div class="form-group row">
-								<label class="col-md-4 col-xs-4">{{ lang['front_username'][l] }}</label>
-								<input class="col-md-8 col-xs-8"  type="text" name="username"placeholder="{{ lang['front_username'][l] }}" ng-model="data.username"/>
-							</div>
+						<div class="form-group row">
+							<label class="col-xs-4">{{ lang['front_username'][l] }}</label>
+							<input class="col-xs-8"  type="text" name="username"placeholder="{{ lang['front_username'][l] }}" ng-model="data.username"/>
+						</div>
 		<!-- == INP Password -->
-							<div class="form-group row">
-								<label class="col-md-4 col-xs-4">{{ lang['front_password'][l] }}</label>
-								<input class="col-md-8 col-xs-8" type="password" name="password" placeholder="{{ lang['front_password'][l] }}" ng-model="data.password" />
-							</div>
+						<div class="form-group row">
+							<label class="col-xs-4">{{ lang['front_password'][l] }}</label>
+							<input class="col-xs-8" type="password" name="password" placeholder="{{ lang['front_password'][l] }}" ng-model="data.password" />
+						</div>
 		<!-- == INP Structure -->
-							<div class="form-group row">
-								<label class="col-md-4 col-xs-4">{{ lang['front_structure'][l] }}</label>
-								<input class="col-md-8 col-xs-8" type="text" name="structure" placeholder="{{ lang['front_structure'][l] }}" ng-model="data.structure"/>
-							</div>
+						<div class="form-group row">
+							<label class="col-xs-4">{{ lang['front_structure'][l] }}</label>
+							<input class="col-xs-8" type="text" name="structure" placeholder="{{ lang['front_structure'][l] }}" ng-model="data.structure"/>
+						</div>
 		<!-- == INP Localisation -->
-							<div class="form-group row">
-								<label class="col-md-4 col-xs-4">{{ lang['front_localisation'][l] }}</label>
-								<input class="col-md-8 col-xs-8" type="number" name="localisation" placeholder="{{ lang['front_localisation'][l] }}" ng-model="data.geoloc" />
-							</div>
+						<div class="form-group row">
+							<label class="col-xs-4">{{ lang['front_localisation'][l] }}</label>
+							<input class="col-xs-8" type="number" name="localisation" placeholder="{{ lang['front_localisation'][l] }}" ng-model="data.geoloc" />
+						</div>
 		<!-- == GRP School -->
-							<div class="form-group row">
-								<label class="col-md-4 col-xs-4">{{ lang['front_school'][l] }}</label>
+						<div class="form-group row">
+							<label class="col-xs-4">{{ lang['front_school'][l] }}</label>
 				<!-- == INP City -->
-								<input class="col-md-4 col-xs-4" type="text" name="city" placeholder="lang['front_city'][l]" ng-model="data.school.city" />
+							<input class="col-xs-4" type="text" name="city" placeholder="lang['front_city'][l]" ng-model="data.school.city" />
 				<!-- == INP Promo -->
-								<input class="col-md-4 col-xs-4" type="number" name="promo" placeholder="{{ lang['front_promo'][l] }}" ng-model="data.school.promo" />
-							</div>
+							<input class="col-xs-4" type="number" name="promo" placeholder="{{ lang['front_promo'][l] }}" ng-model="data.school.promo" />
+						</div>
 		<!-- == INP Language -->
-							<div class="form-group row">
-								<label class="col-md-4 col-xs-4">{{ lang['front_language'][l] }}</label>
-								<input class="col-md-2  col-xs-2" type="text" name="language" placeholder="{{ lang['front_language'][l] }}" ng-model="data.lang" />
-							</div>
+						<div class="form-group row">
+							<label class="col-xs-4">{{ lang['front_language'][l] }}</label>
+							<input class="col-xs-2" type="text" name="language" placeholder="{{ lang['front_language'][l] }}" ng-model="data.lang" />
+						</div>
 							
-							<!-- TODO: activity -->
+						<!-- TODO: activity -->
 							
 		<!-- == BTN Update -->
-							<button class="btn btn-success" ng-click="userMgt.updateProfile()">
+						<div class="row form-group">
+							<button class="col-xs-5 btn btn-success" ng-click="userMgt.updateProfile()">
 								<span class="glyphicon glyphicon-flash"></span> 
 								{{ lang['front_save_changes'][l] }}
 							</button>
 		<!-- == BTN Cancel -->
-							<button class="btn btn-danger" ng-click="userMgt.getProfile('close')">
+							<button class="col-xs-5 col-xs-offset-2 btn btn-danger" ng-click="userMgt.getProfile('close')">
 								<span class="glyphicon glyphicon-remove"></span> 
 								{{ lang['front_cancel'][l] }}
 							</button>
-						</form>
-					</div>
+						</div>
+					</form>
 				</div>
+			</div>
 				
 				
 <!-- === TREATMENT FORM PANE === -->
-				<div class="logged-pane" ng-if="user.token != undefined && !ui.showProfile">
-					<div class="well">
-						<h3>{{ lang['front_main_form_title'][l] }}</h3>
-						<form ng-submit="dataMgt.recordTreatment()">
+			<div class="logged-pane" ng-if="user.token != undefined && !ui.showProfile">
+				<div class="well">
+					<h3>{{ lang['front_main_form_title'][l] }}</h3>
+					<form ng-submit="dataMgt.recordTreatment()">
 
 		<!-- == GRP Treatment infos -->
-							<legend>{{ lang['front_treatment'][l] }}</legend>
+						<legend>{{ lang['front_treatment'][l] }}</legend>
 				<!-- == INP Date -->
-							<div class="row form-group">
-								<label class="col-md-4 col-xs-4">
-									{{ lang['front_start_date'][l] }}
-								</label>
-								<p class="input-group">
-					            	<input class="form-control col-md-8 col-xs-8" type="text"
-					            	datepicker-popup="{{format}}"
-					            	is-open="opened"
-					            	datepicker-options="dateOptions"
-					            	close-text="{{ lang['front_close'][l] }}"
-					            	current-text="{{ lang['front_today'][l] }}"
-					            	clear-text="{{ lang['front_clear'][l] }}"
-					            	starting-day="1"
-					            	ng-required="true"
-					            	ng-model="data.date_dispense"
-					            	/>
-					            	<span class="input-group-btn">
-					            		<button type="button" class="btn btn-default"
-					            		ng-click="open($event)">
-					            			<i class="glyphicon glyphicon-calendar"></i>
-					            		</button>
-					            	</span>
-					            </p>
-				            </div>
+						<div class="row form-group">
+							<label class="col-xs-4">
+								{{ lang['front_start_date'][l] }}
+							</label>
+							<p class="input-group">
+				            	<input class="col-xs-8 form-control" type="text"
+				            	datepicker-popup="{{format}}"
+				            	is-open="opened"
+				            	datepicker-options="dateOptions"
+				            	close-text="{{ lang['front_close'][l] }}"
+				            	current-text="{{ lang['front_today'][l] }}"
+				            	clear-text="{{ lang['front_clear'][l] }}"
+				            	starting-day="1"
+				            	ng-required="true"
+				            	ng-model="data.date_dispense"
+				            	/>
+				            	<span class="input-group-btn">
+				            		<button type="button" class="btn btn-default" ng-click="open($event)">
+				            			<i class="glyphicon glyphicon-calendar"></i>
+				            		</button>
+				            	</span>
+				            </p>
+			            </div>
 				<!-- == INP Pathology -->
-							<div class="row form-group">
-								<label class="col-md-4 col-xs-4">
-									{{ lang['front_pathology'][l] }}
-								</label>
-								<select class="col-md-8 col-xs-8" name="pathology" ng-model="data.pathology">
-									<option value="{{ patho }}" ng-repeat="patho in enums['tra_pathology']">
-										{{ lang[patho][l] }}
-									</option>
-								</select>
-							</div>
+			            <div class="form-group row">
+							<label class="col-xs-4">
+								{{ lang['front_pathology'][l] }}
+							</label>
+							<select class="col-xs-8" name="pathology" ng-model="data.pathology">
+								<option value="{{ patho }}" ng-repeat="patho in enums['tra_pathology']">
+									{{ lang[patho][l] }}
+								</option>
+							</select>
+						</div>
 				<!-- == INP Treatment Type -->
-							<div class="row form-group">
-								<label class="col-md-4 col-xs-4">
-									{{ lang['front_treat_type'][l] }}
-								</label>
-								<select class="col-md-8 col-xs-8" name="treatment_type" ng-model="data.treat_type">
-									<option value="{{ type }}" ng-repeat="type in enums['tra_type']">
-										{{ lang[type][l] }}
-									</option>
-								</select>
-							</div>
+						<div class="form-group row">
+							<label class="col-xs-4">
+								{{ lang['front_treat_type'][l] }}
+							</label>
+							<select class="col-xs-8" name="treatment_type" ng-model="data.treat_type">
+								<option value="{{ type }}" ng-repeat="type in enums['tra_type']">
+									{{ lang[type][l] }}
+								</option>
+							</select>
+						</div>
 				<!-- == INP Treatment Init -->
-							<div class="row form-group">
-								<label class="col-md-4 col-xs-4">
-									{{ lang['front_treat_init'][l] }}
-								</label>
-								<select class="col-md-8 col-xs-8" name="treatment_init" ng-model="data.treat_init">
-									<option value="{{ init }}" ng-repeat="init in enums['tra_init']">
-										{{ lang[init][l] }}
-									</option>
-								</select>
-							</div>
+						<div class="form-group row">
+							<label class="col-xs-4">
+								{{ lang['front_treat_init'][l] }}
+							</label>
+							<select class="col-xs-8" name="treatment_init" ng-model="data.treat_init">
+								<option value="{{ init }}" ng-repeat="init in enums['tra_init']">
+									{{ lang[init][l] }}
+								</option>
+							</select>
+						</div>
 				<!-- == INP Treatment Follow Sample -->
-							<div class="row form-group">
-								<label class="col-md-4 col-xs-4">
-									{{ lang['front_follow_sample'][l] }}
-								</label>
-								<input class="col-md-1 col-xs-1" type="checkbox" name="follow_sample" ng-model="data.follow_sample"/>
-							</div>
-				<!-- == GRP Treatment Duration/Freq -->
-							<div class="row form-group">
-					<!-- == INP Duration -->
-								<label class="col-md-4 col-xs-4">
-									{{ lang['front_treat_duration'][l] }}
-								</label>
-								<input class="col-md-2 col-xs-2" type="number" name="duration" ng-model="data.duration" />
-					<!-- == INP Frequency -->
-								<label class="col-md-4 col-xs-4">
-									{{ lang['front_treat_frequency'][l] }}
-								</label>
-								<input class="col-md-2 col-xs-2" type="number" step="any" name="frequency" ng-model="data.frequency" />
-							</div>
-							
+						<div class="form-group row">
+							<label class="col-xs-4">
+								{{ lang['front_follow_sample'][l] }}
+							</label>
+							<input class="col-xs-8" type="checkbox" name="follow_sample" ng-model="data.follow_sample"/>
+						</div>
+				<!-- == INP Duration -->
+						<div class="form-group row">
+							<label class="col-xs-4">
+								{{ lang['front_treat_duration'][l] }}
+							</label>
+							<input class="col-xs-8" type="number" name="duration" ng-model="data.duration" />
+						</div>
+				<!-- == INP Frequency -->
+						<div class="form-group row">
+							<label class="col-xs-4">
+								{{ lang['front_treat_frequency'][l] }}
+							</label>
+							<input class="col-xs-8" type="number" step="any" name="frequency" ng-model="data.frequency" />
+						</div>
 		<!-- == GRP Treatment Animals List Creation -->
-							<legend>{{ lang['front_animals'][l] }}</legend>
+						<legend>{{ lang['front_animals'][l] }}</legend>
 				<!-- == DISP Animals List -->
-							<div class="well">
-								<p ng-repeat="a in data.animals">
-									{{ lang[a.species][l] + ' ' + lang[a.type][l] + ' ' + lang[a.age][l] + ' (' + a.quantity + ') [ ' }}
-									<span ng-repeat="env in a.environment">{{ lang[env][l] + ' '}}</span> {{ ']' }}
+						<div class="animals row bg-info" ng-if="data.animals.length>0">
+							<p class="selected-item" ng-repeat="a in data.animals">
+								<span class="col-xs-10">
+									{{ a.quantity }} {{ lang[a.species][l] }} {{ lang[a.type][l] }} {{ lang[a.age][l] }} [<span ng-repeat="env in a.environment">{{ lang[env][l] + ' '}}</span>]
+								</span>
 						<!-- == BTN Animal Remove -->
-									<a class="btn btn-xs btn-default" title="{{ lang['front_remove'][l]}}" ng-click="dataMgt.removeAnimal($index)">
-										<span class="glyphicon glyphicon-minus"></span>
-									</a>
-								</p>
-							</div>
-							<div class="row form-group">
+								<button class="col-xs-2 btn btn-xs btn-warning" type="button" ng-click="dataMgt.removeAnimal($index)">
+									<span class="glyphicon glyphicon-minus"></span>
+								</button>
+							</p>
+						</div>
 				<!-- == INP Animal -->
-								<label class="col-md-1 col-xs-1">
-									{{ lang['front_species'][l] }}
-								</label>
-								<select class="col-md-3 col-xs-3" name="animal" ng-model="tmp.animal.raw">
-									<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
-										<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
-											-- {{ lang[type][l] }} --
-										</option>
-										<option value="{{ species + '|'  + type + '|' + age + '|' + weight }}" ng-repeat="(age, weight) in ages">
-											{{ lang[species][l] + '/'  + lang[type][l] + '/' + lang[age][l] }}
-										</option>
-										<option disabled ng-repeat-end></option>
-									</optgroup>
-								</select>
+						<div class="row form-group">
+							<label class="col-xs-4">
+								{{ lang['front_species'][l] }}
+							</label>
+							<select class="col-xs-8" name="animal" ng-model="tmp.animal.raw">
+								<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
+									<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
+										-- {{ lang[type][l] }} --
+									</option>
+									<option value="{{ species + '|'  + type + '|' + age + '|' + weight }}" ng-repeat="(age, weight) in ages">
+										{{ lang[species][l] + '/'  + lang[type][l] + '/' + lang[age][l] }}
+									</option>
+									<option disabled ng-repeat-end></option>
+								</optgroup>
+							</select>
+						</div>
 				<!-- == INP Animal quantity -->
-								<label class="col-md-1 col-xs-1">
-									{{ lang['front_animal_quantity'][l] }}
-								</label>
-								<input class="col-md-1 col-xs-1" type="number" name="quantity" ng-model="tmp.animal.quantity" />
+						<div class="form-group row">
+							<label class="col-xs-4">
+								{{ lang['front_animal_quantity'][l] }}
+							</label>
+							<input class="col-xs-8" type="number" name="quantity" ng-model="tmp.animal.quantity" />
+						</div>
 				<!-- == SEL Animal Environment -->
-								<label class="col-md-2 col-xs-2">
-									{{ lang['front_animal_environment'][l] }}
-								</label>
-								<select class="col-md-2 col-xs-2" multiple name="animal_env" ng-model="tmp.animal.environment">
-									<option value="{{ env }}" ng-repeat="env in enums['ani_environment']">
-										{{ lang[env][l] }}
-									</option>
-								</select>
-								<div class="col-md-1 col-xs-1">&nbsp;</div>
+						<div class="form-group row">
+							<label class="col-xs-4">
+								{{ lang['front_animal_environment'][l] }}
+							</label>
+							<select class="col-xs-8" multiple name="animal_env" ng-model="tmp.animal.environment">
+								<option value="{{ env }}" ng-repeat="env in enums['ani_environment']">
+									{{ lang[env][l] }}
+								</option>
+							</select>
+						</div>
 				<!-- == BTN Animal Add -->
-								<a class="btn btn-default btn-md col-md-1 col-xs-1" title="{{ lang['front_add'][l]}}" ng-click="dataMgt.addAnimal()">
-									<span class="glyphicon glyphicon-plus">
-								</a>
-							</div>
+						<div class="form-group row">
+							<button class="col-xs-8 col-xs-offset-4 btn btn-info" type="button" ng-click="dataMgt.addAnimal()">
+								<span class="glyphicon glyphicon-plus"></span> {{ lang['front_add'][l]}}
+							</button>
+						</div>
 				<!-- == SEL Client Type -->
-							<div class="row">
-								<label class="col-md-1 col-xs-1">
-									{{ lang['front_client_type'][l] }}
-								</label>
-								<select class="col-md-2 col-xs-2" name="client_type" ng-model="data.client_type">
-									<option value="{{ client }}" 
-										ng-repeat="client in enums['ani_client_types']">
-										{{ lang[client][l] }}
-									</option>
-								</select>
-							</div>
+						<div class="form-group row">
+							<label class="col-xs-4">
+								{{ lang['front_client_type'][l] }}
+							</label>
+							<select class="col-xs-8" name="client_type" ng-model="data.client_type">
+								<option value="{{ client }}" 
+									ng-repeat="client in enums['ani_client_types']">
+									{{ lang[client][l] }}
+								</option>
+							</select>
+						</div>
 							
 		<!-- == GRP Treatment Products List Creation -->
-							<legend>{{ lang['front_treat_prescription'][l] }}</legend>
+						<legend>{{ lang['front_treat_prescription'][l] }}</legend>
 				<!-- == DISP Products List -->
-							<div class="well">
-								<p ng-repeat="p in data.products">
-									{{ 	p.name + ' ' +
-										p.quantity + ' ' +
-										((p.nunit!='vrac' && p.nunit!=undefined)?p.nunit +' de '+ p.qunit + p.unit:p.unit)
-									}}
+						<div class="products row bg-info" ng-if="data.products.length>0">
+							<p class="selected-item" ng-repeat="p in data.products">
+								<span class="col-xs-4">
+									{{ 	p.name }}
+								</span>
+								<span class="col-xs-2 text-right">
+									{{ p.quantity }}
+								</span>
+								<span class="col-xs-4">
+									{{ ((p.nunit!='vrac' && p.nunit!=undefined)?p.nunit +' de '+ p.qunit + p.unit:p.unit) }}
+								</span>
 						<!-- == BTN Product Remove -->
-									<a class="btn btn-xs btn-default" title="{{ lang['front_remove'][l]}}" ng-click="dataMgt.removeProduct($index)">
-										<span class="glyphicon glyphicon-minus"></span>
-									</a>
-								</p>
-							</div>
-							<div class="row">
+								<button class="col-xs-2 btn btn-xs btn-default" type="button" ng-click="dataMgt.removeProduct($index)">
+									<span class="glyphicon glyphicon-minus"></span>
+								</button>
+							</p>
+						</div>
+						<div class="row form-group">
 				<!-- == SEL Product -->
-								<label class="col-md-1 col-xs-1">
-									{{ lang['front_products'][l] }}
-								</label>
-								<select class="col-md-3 col-xs-3" name="product" ng-model="tmp.product.name" ng_change="dataMgt.buildProduct()">
-									<option value="{{ p.name }}" ng-repeat="p in products">
-										{{ p.name }}
-									</option>
-								</select>
+							<label class="col-xs-4">
+								{{ lang['front_product'][l] }}
+							</label>
+							<select class="col-xs-8" name="product" ng-model="tmp.productName" ng_change="dataMgt.buildProduct()">
+								<option value="{{ p.name }}" ng-repeat="p in products">
+									{{ p.name }}
+								</option>
+							</select>
+						</div>
 				<!-- == INP Product Quantity -->
-								<label class="col-md-1 col-xs-1">
-									{{ lang['front_product_quantity'][l] }}
-								</label>
-								<input type="number" name="product_quantity" class="col-md-1 col-xs-1" 	ng-model="tmp.product.quantity" />
+						<div class="form-group row">
+							<label class="col-xs-4">
+								{{ lang['front_product_quantity'][l] }}
+							</label>
+							<input  class="col-xs-3" type="number" name="product_quantity" ng-model="tmp.product.quantity" />
 				<!-- == DISP Product Unit -->
-								<label class="col-md-3 col-xs-3">
-									{{ 'en '+((tmp.product.nunit!='vrac' && tmp.product.nunit!=undefined)?tmp.product.nunit +' de '+ tmp.product.qunit + tmp.product.unit:tmp.product.unit) }}
-								</label>
-								<div class="col-md-1 col-xs-1">&nbsp;</div>
+							<label class="col-xs-5">
+								{{ 'en '+((tmp.product.nunit!='vrac' && tmp.product.nunit!=undefined)?tmp.product.nunit +' de '+ tmp.product.qunit + tmp.product.unit:tmp.product.unit) }}
+							</label>
+						</div>
 				<!-- == BTN Product Add -->
-								<a class="btn btn-default btn-md col-md-1 col-xs-1" title="{{ lang['front_add'][l]}}" ng-click="dataMgt.addProduct()">
-									<span class="glyphicon glyphicon-plus">
-								</a>
-							</div>
-
+						<div class="form-group row">
+							<button class="col-xs-8 col-xs-offset-4 btn btn-info btn-md" type="button" ng-click="dataMgt.addProduct()">
+								<span class="glyphicon glyphicon-plus"></span> {{ lang['front_add'][l]}}
+							</button>
+						</div>
 
 		<!-- == BTN Record -->
-							<button type="submit" class="btn btn-success">
+						<div class="row form-group">
+							<button type="submit" class="col-xs-12 btn btn-success">
 								<span class="glyphicon glyphicon-flash"></span>
 								{{ lang['front_record'][l] }}
 							</button>
-						</form>
-					</div>
+						</div>
+					</form>
 				</div>
+			</div>
 <!-- === DEBUG PANE === -->
-				<div class="debug-pane well" ng-if="true">
-					<p ng-click="debug=!debug">DEBUG</p>
-					<textarea class="col-md-12 col-xs-12" ng-if="debug">{{ data }}</textarea>
-					<textarea class="col-md-12 col-xs-12" ng-if="debug">{{ tmp }}</textarea>
-				</div>
-
-				
+			<div class="debug-pane well" ng-if="false">
+				<p ng-click="debug=!debug">DEBUG</p>
+				<textarea class="col-md-12 col-xs-12" ng-if="debug">{{ data }}</textarea>
+				<textarea class="col-md-12 col-xs-12" ng-if="debug">{{ tmp }}</textarea>
 			</div>
 		</div>
 		

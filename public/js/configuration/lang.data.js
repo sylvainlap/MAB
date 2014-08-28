@@ -149,16 +149,16 @@ var lang =
 			'EN':'environment'
 		},
 		'front_treat_prescription':{
-			'FR':'prescription',
-			'EN':'prescription'
+			'FR':'Prescription',
+			'EN':'Prescription'
 		},
 		'front_record':{
 			'FR':'enregistrer',
 			'EN':'record'
 		},
-		'front_products':{
-			'FR':'produits',
-			'EN':'products'
+		'front_product':{
+			'FR':'produit',
+			'EN':'product'
 		},
 		'front_product_quantity':{
 			'FR':'quantité',

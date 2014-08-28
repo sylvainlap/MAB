@@ -2,10 +2,32 @@
 @import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,400italic,700,700italic);
 @import url(http://fonts.googleapis.com/css?family=Quicksand:400,700,300);
 
+@brand-primary: #428bca;
+@brand-success: #5cb85c;
+@brand-info:    #5bc0de;
+@brand-warning: #f0ad4e;
+@brand-danger:  #d9534f;
+
 body {
-	padding: 20px;
+	padding: 24px;
 	font-family: 'Quicksand';
 }
 .optssgroup {
 	color: #000;
 }
+.form-group{
+	margin-bottom: 0.25em;
+}
+select, input, button{
+	height: 2.5em;
+}
+label, .selected-item{
+	line-height: 2.5em;
+}
+legend{
+	color: #000;
+	font-weight: bold;
+	border-top: 2px dashed lightgrey;
+	border-bottom: 2px dashed lightgrey;
+}
+
