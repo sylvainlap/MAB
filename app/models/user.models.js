@@ -21,34 +21,28 @@ var UserSchema = new Schema({
 		type: String,
 		required: true
 	},
-	/*structure: {
-		type: Number,
-		required: true
+	structure: {
+		type: String,
 	},
 	geoloc: {
 		type: String,
-		required: true
 	},
 	activity: {
-		type: Array,
-		required: true
+		type: [Schema.Types.Mixed],
 	},
 	volume: {
-		type: Array,
-		required: true
+		type: [Schema.Types.Mixed],
 	},
 	school: {
 		type: Schema.Types.Mixed,
-		required: true
 	},
 	lang: {
 		type: String,
 		trim: true,
-		required: true
 	},
 	favs: {
 		type: Schema.Types.Mixed,
-	},*/
+	},
 	created: {
 		type: Date,
 		default: Date.now
