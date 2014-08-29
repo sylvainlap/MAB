@@ -201,7 +201,11 @@
 				
 <!-- === TREATMENT FORM PANE === -->
 			<div class="logged-pane" ng-if="user.token != undefined && !ui.showProfile">
-				<div class="well">
+				<div class="navigation">
+					<a class="btn btn-default" ng-click="ui.page = 'inclusion'" ng-class="{'btn-primary':ui.page=='inclusion'}">inclusion</a>
+					<a class="btn btn-default" ng-click="ui.page = 'display'" ng-class="{'btn-primary':ui.page=='display'}">display</a>
+				</div>
+				<div class="inclusion-pane well" ng-if="ui.page == 'inclusion'" ng-init="reset.data()">
 					<h3>{{ lang['front_main_form_title'][l] }}</h3>
 					<form ng-submit="dataMgt.recordTreatment()">
 
@@ -437,9 +441,60 @@
 						</div>
 					</form>
 				</div>
+	<!-- == DISPLAY PANE == -->
+				<div class="display-pane well" ng-if="ui.page == 'display'" ng-init="dataMgt.getTreatments()">
+					<h3>Display</h3>
+					<table class='table table-bordered'>
+						<!-- TODO TRANSLATE -->
+						<tr>
+							<th>date</th>
+							<th>{{ lang['front_pathology'][l] }}</th>
+							<th>traitement</th>
+							<th>{{ lang['front_animals'][l] }}</th>
+							<th>{{ lang['front_treat_prescription'][l] }}</th>
+						</tr>
+						<tr ng-repeat="t in data">
+							<td>{{ t.date_dispense.slice(0,t.date_dispense.indexOf('T')) }}</td>
+							<td>{{ lang[t.pathology][l] }}</td>
+							<td>
+								<table class="table">
+									<tr>
+										<th>type</th><td>{{ lang[t.treat_type][l] }}</td>
+									</tr>
+									<tr>
+										<th>initial</th><td>{{ lang[t.treat_init][l] }}</td>
+									</tr>
+									<tr>
+										<th>suit pvt</th><td>{{ t.follow_sample?lang['front_yes'][l]:lang['front_no'][l] }}</td>
+									</tr>
+									<tr>
+										<th>dur/frq</th><td>{{ t.duration }} / {{ t.frequency }}</td>
+									</tr>
+									<tr>
+										<th>client</th><td>{{ lang[t.client_type][l] }}</td>
+									</tr>
+								</table>
+							<td>
+								<table class="table">
+									<tr ng-repeat="a in t.animals">
+										<td>{{ lang[a.species][l] }} {{ lang[a.type][l] }} {{ lang[a.age][l] }}</td>
+										<td>{{ a.quantity }}</td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<table class="table">
+									<tr ng-repeat="p in t.prescription">
+										<td>{{ p.name }}</td>
+										<td>{{ p.quantity }} {{ ((p.nunit!='vrac' && p.nunit!=undefined)?p.nunit +' de '+ p.qunit + p.unit:p.unit) }}</td>
+									</tr>
+								</table></td>
+						</tr>
+					</table>
+				</div>
 			</div>
 <!-- === DEBUG PANE === -->
-			<div class="debug-pane well" ng-if="true">
+			<div class="debug-pane well" ng-if="false">
 				<p ng-click="debug=!debug">DEBUG</p>
 				<textarea class="col-md-12 col-xs-12" ng-if="debug">{{ data }}</textarea>
 				<textarea class="col-md-12 col-xs-12" ng-if="debug">{{ tmp }}</textarea>

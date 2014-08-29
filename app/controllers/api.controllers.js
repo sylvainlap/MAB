@@ -5,7 +5,8 @@ var mongoose  = require('mongoose');
 var Treatment = mongoose.model('Treatment');
 
 exports.getTreatments = function(req, res, next) {
-	Treatment.find(function(err, treatments) {
+	console.log(req.headers.uid);
+	Treatment.find({veterinary:req.headers.uid}, function(err, treatments) {
 		if (err)
 			return res.json(err);
 

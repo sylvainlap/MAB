@@ -39,7 +39,8 @@ mabapp.controller('MainCtrl',[
 		ui : function(){
 			$scope.ui = {
 				showProfile : false,
-				showUserMenu : false
+				showUserMenu : false,
+				page : 'inclusion'
 			}
 		},
 		user : function(){
@@ -78,6 +79,21 @@ mabapp.controller('MainCtrl',[
 			.success(function(data){
 				$scope.messages = messageService.log(data);
 				$scope.reset.data();
+			});
+		},
+		/**
+		 * 
+		 */
+		getTreatments : function() {
+			console.log('get treatments for '+$scope.user._id);
+			$http({
+				method:'GET',
+				url:'/api/treatment',
+				headers:{'x-access-token':$scope.user.token, 'uid':$scope.user._id}
+			})
+			.success(function(data){
+				$scope.messages = messageService.log(data);
+				$scope.data = data;
 			});
 		},
 		/**

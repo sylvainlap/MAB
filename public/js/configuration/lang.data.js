@@ -32,6 +32,14 @@ var lang =
 			'FR':'changer de',
 			'EN':'change'
 		},
+		'front_yes':{
+			'FR':'oui',
+			'EN':'yes'
+		},
+		'front_no':{
+			'FR':'non',
+			'EN':'no'
+		},
 		'front_structure':{
 			'FR':'structure',
 			'EN':'structure'
