@@ -45,19 +45,25 @@
 			<div class="auth-pane" ng-if="user.token==undefined">
 				<div class="well">
 					<h3>{{ lang['front_register'][l] }}</h3>
-					<form class="form-inline row">
+					<form class="form-inline" role="form">
 		<!-- == INP Username -->
-						<input class="col-xs-6" type="text" name="username" placeholder="{{ lang['front_username'][l] }}" ng-model="data.username" />
+						<div class="input-group">
+							<div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+							<input class="form-control" type="text" name="username" placeholder="{{ lang['front_username'][l] }}" ng-model="data.username" />
+						</div>
 		<!-- == INP Password -->
-						<input class="col-xs-6" type="password" name="password" placeholder="{{ lang['front_password'][l] }}" ng-model="data.password" />
+						<div class="input-group">
+							<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+							<input class="form-control" type="password" name="password" placeholder="{{ lang['front_password'][l] }}" ng-model="data.password" />
+						</div>
 		<!-- == BTN Login -->
-						<button class="col-xs-6 btn btn-success" ng-click="userMgt.login()">
-							<span class="glyphicon glyphicon-lock"></span>
+						<button class="btn btn-success" ng-click="userMgt.login()">
+							<span class="glyphicon glyphicon-log-in"></span>
 							{{ lang['front_login'][l] }}
 						</button>
 		<!-- == BTN Register -->
-						<button class="col-xs-6 btn btn-warning" ng-click="userMgt.register()">
-							<span class="glyphicon glyphicon-user"></span>
+						<button class="btn btn-warning" ng-click="userMgt.register()">
+							<span class="glyphicon glyphicon-pencil"></span>
 							{{ lang['front_register'][l] }}
 						</button>
 					</form>
@@ -99,32 +105,35 @@
 				<!-- == INP Promo -->
 							<!-- input class="col-xs-4" type="number" name="promo" placeholder="{{ lang['front_promo'][l] }}" ng-model="data.school.promo" /-->
 							<select class="col-xs-2" name="promo" ng-model="data.school.promo">
-								<option value="y" ng-repeat="y in years">{{ y }}</option>
+								<option value="{{ y }}" ng-selected="y==data.school.promo" ng-repeat="y in years">{{ y }}</option>
 							</select>
 						</div>
 		<!-- == INP Language -->
 						<div class="form-group row">
 							<label class="col-xs-4">{{ lang['front_language'][l] }}</label>
-							<input class="col-xs-2" type="text" name="language" placeholder="{{ lang['front_language'][l] }}" ng-model="data.lang" />
+							<select class="col-xs-2" ng-model="data.lang">
+								<option value="{{ language }}" ng-selected="language==data.lang" ng-repeat="language in lang.list">{{ language }}</option>
+							</select>
 						</div>
 		<!-- == INP Activity -->
 						<legend>{{ lang['front_activity'][l] }}</legend>
 				<!-- == DISP Activities List -->
-						<div class="activities row bg-info">
-							<p class="selected-item" ng-repeat="a in data.activity">
-								<span class="col-xs-5">
+						<table class="table bg-success">
+							<tr ng-repeat="a in data.activity">
+								<td>
 									{{ lang[a.name][l] }}
-								</span>
-								<span class="col-xs-1">:</span>
-								<span class="col-xs-4 text-right">
+								</td>
+								<td class="text-right">
 									 {{ a.ratio + '%' }}
-								</span>
+								</td>
 						<!-- == BTN Activity Remove -->
-								<button class="col-xs-1 col-xs-offset-1 btn btn-xs btn-warning" type="button" ng-click="dataMgt.removeActivity($index)">
-									<span class="glyphicon glyphicon-minus"></span>
-								</button>
-							</p>
-						</div>
+								<td class="text-right">
+									<button class="btn btn-xs btn-warning" type="button" ng-click="dataMgt.removeActivity($index)">
+										<span class="glyphicon glyphicon-minus"></span>
+									</button>
+								</td>
+							</tr>
+						</table>
 				<!-- == INP Activity -->
 						<div class="row form-group">
 							<label class="col-xs-4">
@@ -144,21 +153,22 @@
 		<!-- == INP Volume -->
 						<legend>{{ lang['front_volume'][l] }}</legend>
 				<!-- == DISP volume List -->
-						<div class="volume row bg-info">
-							<p class="selected-item" ng-repeat="v in data.volume">
-								<span class="col-xs-5">
+						<table class="table bg-success">
+							<tr ng-repeat="v in data.volume">
+								<td>
 									{{ lang[v.species][l] }} {{ lang[v.type][l] }} {{ lang[v.age][l] }}
-								</span>
-								<span class="col-xs-1">:</span>
-								<span class="col-xs-4 text-right">
+								</td>
+								<td class="text-right">
 									{{ v.volume }}
-								</span>
+								</td>
 						<!-- == BTN Activity Remove -->
-								<button class="col-xs-1 col-xs-offset-1 btn btn-xs btn-warning" type="button" ng-click="dataMgt.removeVolume($index)">
-									<span class="glyphicon glyphicon-minus"></span>
-								</button>
-							</p>
-						</div>
+								<td class="text-right">
+									<button class="btn btn-xs btn-warning" type="button" ng-click="dataMgt.removeVolume($index)">
+										<span class="glyphicon glyphicon-minus"></span>
+									</button>
+								</td>
+							</tr>
+						</table>
 				<!-- == INP volume -->
 						<div class="row form-group">
 							<label class="col-xs-4">
@@ -313,23 +323,25 @@
 		<!-- == GRP Treatment Animals List Creation -->
 						<legend>{{ lang['front_animals'][l] }}</legend>
 				<!-- == DISP Animals List -->
-						<div class="row form-group" ng-if="!data.animals || data.animals.length==0">
-							<p class="col-xs-12 label-like">
-								<span class="glyphicon glyphicon-question-sign text-danger"></span>
-								{{ lang['front_msg_add_at_list_1_animal'][l] }}
-							</p>
-						</div>
-						<div class="animals row bg-info" ng-if="data.animals.length>0">
-							<p class="selected-item" ng-repeat="a in data.animals">
-								<span class="col-xs-11">
-									{{ a.quantity }} {{ lang[a.species][l] }} {{ lang[a.type][l] }} {{ lang[a.age][l] }} [<span ng-repeat="env in a.environment">{{ lang[env][l] + ' '}}</span>]
-								</span>
+						<table class="table bg-success">
+							<tr ng-if="!data.animals || data.animals.length==0">
+								<th class="bg-danger text-danger">
+									<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;
+									{{ lang['front_msg_add_at_list_1_animal'][l] }}
+								</th>
+							</tr>
+							<tr ng-repeat="a in data.animals">
+								<td>
+									<p><span class="glyphicon glyphicon-ok text-success"></span>&nbsp;{{ a.quantity }} {{ lang[a.species][l] }} {{ lang[a.type][l] }} {{ lang[a.age][l] }} [<span ng-repeat="env in a.environment">{{ lang[env][l] + ' '}}</span>]</p>
+								</td>
 						<!-- == BTN Animal Remove -->
-								<button class="col-xs-1 btn btn-xs btn-warning" type="button" ng-click="dataMgt.removeAnimal($index)">
-									<span class="glyphicon glyphicon-minus"></span>
-								</button>
-							</p>
-						</div>
+								<td class="text-right">
+									<button class="btn btn-xs btn-warning" type="button" ng-click="dataMgt.removeAnimal($index)">
+										<span class="glyphicon glyphicon-minus"></span>
+									</button>
+								</td>
+							</tr>
+						</table>
 				<!-- == INP Animal -->
 						<div class="row form-group">
 							<label class="col-xs-4">
@@ -378,29 +390,32 @@
 		<!-- == GRP Treatment Products List Creation -->
 						<legend>{{ lang['front_treat_prescription'][l] }}</legend>
 				<!-- == DISP Products List -->
-						<div class="row form-group" ng-if="!data.prescription || data.prescription.length==0">
-							<p class="col-xs-12 label-like">
-								<span class="glyphicon glyphicon-question-sign text-danger"></span>
-								{{ lang['front_msg_add_at_list_1_product'][l] }}
-							</p>
-						</div>
-						<div class="products row bg-info" ng-if="data.prescription.length>0">
-							<p class="selected-item" ng-repeat="p in data.prescription">
-								<span class="col-xs-5">
+						<table class="table bg-success">
+							<tr ng-if="!data.prescription || data.prescription.length==0">
+								<th class="bg-danger text-danger">
+									<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;
+									{{ lang['front_msg_add_at_list_1_product'][l] }}
+								</th>
+							</tr>
+							<tr ng-repeat="p in data.prescription">
+								<td>
+									<span class="glyphicon glyphicon-ok text-success"></span>&nbsp;
 									{{ 	p.name }}
-								</span>
-								<span class="col-xs-2 text-right">
+								</td>
+								<td class="text-right">
 									{{ p.quantity }}
-								</span>
-								<span class="col-xs-4">
+								</td>
+								<td>
 									{{ ((p.nunit!='vrac' && p.nunit!=undefined)?p.nunit +' de '+ p.qunit + p.unit:p.unit) }}
-								</span>
-						<!-- == BTN Product Remove -->
-								<button class="col-xs-1 btn btn-xs btn-default" type="button" ng-click="dataMgt.removeProduct($index)">
-									<span class="glyphicon glyphicon-minus"></span>
-								</button>
-							</p>
-						</div>
+								</td>
+							<!-- == BTN Product Remove -->
+								<td class="text-right">
+									<button class="btn btn-xs btn-warning" type="button" ng-click="dataMgt.removeProduct($index)">
+										<span class="glyphicon glyphicon-minus"></span>
+									</button>
+								</td>
+							</tr>
+						</table>
 						<div class="row form-group">
 				<!-- == SEL Product -->
 							<label class="col-xs-4">

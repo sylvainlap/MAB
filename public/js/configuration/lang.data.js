@@ -1,5 +1,6 @@
 var lang =
 {
+		'list':['FR', 'EN'],
 		'front_disconnect':{
 			'FR':'déconnecter',
 			'EN':'disconnect'
