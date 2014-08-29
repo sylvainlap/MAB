@@ -21,31 +21,32 @@ mabapp.controller('MainCtrl',[
 	$scope.reset = {
 		data : function(){
 			$scope.data = {
-					school : {},
-					animals : [],
-					prescription : [],
-					activity : [],
-					volume : []
+				school : {},
+				animals : [],
+				prescription : [],
+				activity : [],
+				volume : []
 			};
 		},
 		tmp : function(){
 			$scope.tmp = {
-					animal:{},
-					product:{},
-					activity:{},
-					volume : {}
+				animal:{},
+				product:{},
+				activity:{},
+				volume : {}
 			};
 		},
 		ui : function(){
 			$scope.ui = {
-					showProfile : false,
-					showUserMenu : false
+				showProfile : false,
+				showUserMenu : false
 			}
 		},
 		user : function(){
 			$scope.user = {
-					username : lss.get('user_username'),
-					token : lss.get('user_token')
+				username : lss.get('user_username'),
+				token : lss.get('user_token'),
+				_id : lss.get('user_id')
 			};
 		}
 	};
@@ -67,7 +68,7 @@ mabapp.controller('MainCtrl',[
 		 */
 		recordTreatment : function() {
 			$scope.data.user = $scope.user;
-			$scope.data.veterinary = $scope.user;
+			$scope.data.veterinary = $scope.user._id;
 			console.log($scope.data);
 			$http({
 				method:'POST',
@@ -189,9 +190,11 @@ mabapp.controller('MainCtrl',[
 				// retrieve user data
 				$scope.user.username = $scope.data.username;
 				$scope.user.token = data.token;
+				$scope.user._id = data._id;
 				// save user data in localStorageService
 				lss.set('user_username', $scope.data.username);
 				lss.set('user_token', data.token);
+				lss.set('user_id', data._id);
 				
 				// clear the form
 				$scope.reset.data();

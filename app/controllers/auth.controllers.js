@@ -43,7 +43,7 @@ exports.login = function(req, res, next) {
 					iss: user.id,
 					exp: expires
 				}, jwtTokenSecret);
-				res.json({ message: 'You are logged!', token: token });
+				res.json({ message: 'You are logged!', token: token , _id:user._id});
 			} else {
 				res.json({ error: 'Sorry, wrong password.' });
 			}
