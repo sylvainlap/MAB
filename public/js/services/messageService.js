@@ -5,8 +5,8 @@ mabapp.service('messageService', ['$rootScope', function($rootScope){
 			messages.push({ type : 'success', msg : data.message});
 			$rootScope.$broadcast('message.new');
 		}
-		else if(data && data.errors && data.errors!=''){
-			messages.push({ type : 'danger', msg : data.errors});
+		else if(data && data.error && data.error!=''){
+			messages.push({ type : 'danger', msg : data.error});
 			$rootScope.$broadcast('message.new');
 		}
 		return messages;
