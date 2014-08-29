@@ -24,6 +24,14 @@ var lang =
 			'FR':'mot de passe',
 			'EN':'password'
 		},
+		'front_user_info':{
+			'FR':'informations utilisateur',
+			'EN':'user informations'
+		},
+		'front_change':{
+			'FR':'changer de',
+			'EN':'change'
+		},
 		'front_structure':{
 			'FR':'structure',
 			'EN':'structure'
@@ -31,6 +39,18 @@ var lang =
 		'front_localisation':{
 			'FR':'localisation',
 			'EN':'localisation'
+		},
+		'front_activity':{
+			'FR':'activité',
+			'EN':'activity'
+		},
+		'front_ratio':{
+			'FR':'ratio',
+			'EN':'ratio'
+		},
+		'front_volume':{
+			'FR':'volume',
+			'EN':'volume'
 		},
 		'front_school':{
 			'FR':'école',

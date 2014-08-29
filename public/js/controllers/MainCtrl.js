@@ -11,6 +11,8 @@ mabapp.controller('MainCtrl',[
 	$scope.enums = enums;
 	$scope.animals = animals;
 	$scope.products = products;
+	$scope.years = [];
+
 	
 	//shortcuts
 	lss = localStorageService;
@@ -21,13 +23,17 @@ mabapp.controller('MainCtrl',[
 			$scope.data = {
 					school : {},
 					animals : [],
-					prescription : []
+					prescription : [],
+					activity : [],
+					volume : []
 			};
 		},
 		tmp : function(){
 			$scope.tmp = {
 					animal:{},
-					product:{}
+					product:{},
+					activity:{},
+					volume : {}
 			};
 		},
 		ui : function(){
@@ -50,7 +56,6 @@ mabapp.controller('MainCtrl',[
 
 	// === EVENT WATCH ===
 	$scope.$on('message.new', function(event){
-		console.log('about to clear...');
 		setTimeout($scope.alertMgt.clearAlerts, 5000);
 	});
 	
@@ -116,8 +121,40 @@ mabapp.controller('MainCtrl',[
 		 */
 		removeProduct : function(index) {
 			$scope.data.prescription.splice(index, 1);
+		},
+		/**
+		 * 
+		 */
+		addActivity : function() {
+			$scope.data.activity.push($scope.tmp.activity);
+			$scope.tmp.activity = {};
+		},
+		/**
+		 * 
+		 */
+		removeActivity : function(index) {
+			$scope.data.activity.splice(index, 1);
+		},
+		/**
+		 * Build and add the animal object from the selected value
+		 */
+		addVolume : function() {
+			var animal = $scope.tmp.volume.raw.split('|');
+			$scope.data.volume.push({
+				species : animal[0],
+				type : animal[1],
+				age : animal[2],
+				weight : animal[3],
+				volume : $scope.tmp.volume.value,
+			});
+			$scope.tmp.volume = {};
+		},
+		/**
+		 * remove animal from selection
+		 */
+		removeVolume : function(index) {
+			$scope.data.Volume.splice(index, 1);
 		}
-		
 	};
 	
 	// === USER MANAGEMENT FUNCTIONS ===
@@ -128,11 +165,11 @@ mabapp.controller('MainCtrl',[
 		register : function() {
 			/* TMP */
 			// TODO : les infos requises sont fournies par l’identification SAS
-			$scope.data.lang = 'NR';
-			$scope.data.age = 0;
-			$scope.data.geoloc = 0;
-			$scope.data.structure = 'NR';
-			$scope.data.activity = {'bovine':'1.0'};
+//			$scope.data.lang = 'NR';
+//			$scope.data.age = 0;
+//			$scope.data.geoloc = 0;
+//			$scope.data.structure = 'NR';
+//			$scope.data.activity = {'bovine':'1.0'};
 			/* /TMP */
 			$http.post('/register', $scope.data)
 			.success(function(data) {
@@ -181,8 +218,9 @@ mabapp.controller('MainCtrl',[
 					headers:{'x-access-token':$scope.user.token}})
 					.success(function(data){
 						$scope.messages = messageService.log(data);
-						
-						$scope.data = data;
+						for(i in data){
+							$scope.data[i] = data[i];
+						}
 						$scope.ui.showProfile = true;
 					});
 			}
@@ -212,18 +250,18 @@ mabapp.controller('MainCtrl',[
 	};
 
 	$scope.alertMgt = {
-			closeAlert : function(index) {
-				$scope.messages.splice(index, 1);
-			},
-			clearAlerts : function() {
-				console.log('clear !');
-				$scope.messages.splice(0, $scope.messages.length);
-			}
+		closeAlert : function(index) {
+			$scope.messages.splice(index, 1);
+		},
+		clearAlerts : function() {
+			$scope.messages.splice(0, $scope.messages.length);
+		}
 	};
 	
 
 	// ==== DATE PICKER ====
 	$scope.today = function() {
+		$scope.today = new Date();
 		$scope.data.date_dispense = new Date();
 	};
 	$scope.today();
@@ -235,7 +273,9 @@ mabapp.controller('MainCtrl',[
 		$event.stopPropagation();
 		$scope.opened = true;
 	};
-	
+	for(var y=$scope.today.getFullYear() - 100; y<=$scope.today.getFullYear(); y++){
+		$scope.years.push(y);
+	}
 	$scope.initDate = new Date('2016-15-20');
 	$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 	$scope.format = $scope.formats[1];
