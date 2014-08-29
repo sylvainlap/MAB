@@ -191,13 +191,13 @@
 							</button>
 						</div>
 		<!-- == BTN Update -->
-						<div class="row form-group">
-							<button class="col-xs-5 btn btn-success" ng-click="userMgt.updateProfile()">
-								<span class="glyphicon glyphicon-flash"></span> 
+						<div class="validation row form-group">
+							<button class="col-xs-offset-2 col-xs-4 btn-lg btn btn-success" ng-click="userMgt.updateProfile()">
+								<span class="glyphicon glyphicon-floppy-save"></span> 
 								{{ lang['front_save_changes'][l] }}
 							</button>
 		<!-- == BTN Cancel -->
-							<button class="col-xs-5 col-xs-offset-2 btn btn-danger" ng-click="userMgt.getProfile('close')">
+							<button class="col-xs-4 btn-lg btn btn-danger" ng-click="userMgt.getProfile('close')">
 								<span class="glyphicon glyphicon-remove"></span> 
 								{{ lang['front_cancel'][l] }}
 							</button>
@@ -218,10 +218,11 @@
 				<!-- == INP Date -->
 						<div class="row form-group">
 							<label class="col-xs-4">
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.date_dispense, 'glyphicon-ok-sign text-success':data.date_dispense}"></span>
 								{{ lang['front_start_date'][l] }}
 							</label>
 							<p class="input-group">
-				            	<input class="col-xs-8 form-control" type="text"
+				            	<input class="col-xs-7 form-control" type="text"
 				            	datepicker-popup="{{format}}"
 				            	is-open="opened"
 				            	datepicker-options="dateOptions"
@@ -242,6 +243,7 @@
 				<!-- == INP Pathology -->
 			            <div class="form-group row">
 							<label class="col-xs-4">
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.pathology, 'glyphicon-ok-sign text-success':data.pathology}"></span>
 								{{ lang['front_pathology'][l] }}
 							</label>
 							<select class="col-xs-8" name="pathology" ng-model="data.pathology">
@@ -253,6 +255,7 @@
 				<!-- == INP Treatment Type -->
 						<div class="form-group row">
 							<label class="col-xs-4">
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.treat_type, 'glyphicon-ok-sign text-success':data.treat_type}"></span>
 								{{ lang['front_treat_type'][l] }}
 							</label>
 							<select class="col-xs-8" name="treatment_type" ng-model="data.treat_type">
@@ -264,6 +267,7 @@
 				<!-- == INP Treatment Init -->
 						<div class="form-group row">
 							<label class="col-xs-4">
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.treat_init, 'glyphicon-ok-sign text-success':data.treat_init}"></span>
 								{{ lang['front_treat_init'][l] }}
 							</label>
 							<select class="col-xs-8" name="treatment_init" ng-model="data.treat_init">
@@ -275,6 +279,7 @@
 				<!-- == INP Treatment Follow Sample -->
 						<div class="form-group row">
 							<label class="col-xs-4">
+								<span class="glyphicon glyphicon-ok-sign text-success"></span>
 								{{ lang['front_follow_sample'][l] }}
 							</label>
 							<input class="col-xs-8" type="checkbox" name="follow_sample" ng-model="data.follow_sample"/>
@@ -282,6 +287,7 @@
 				<!-- == INP Duration -->
 						<div class="form-group row">
 							<label class="col-xs-4">
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.duration, 'glyphicon-ok-sign text-success':data.duration}"></span>
 								{{ lang['front_treat_duration'][l] }}
 							</label>
 							<input class="col-xs-8" type="number" name="duration" ng-model="data.duration" />
@@ -289,13 +295,34 @@
 				<!-- == INP Frequency -->
 						<div class="form-group row">
 							<label class="col-xs-4">
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.frequency||data.frequency>3, 'glyphicon-ok-sign text-success':data.frequency}"></span>
 								{{ lang['front_treat_frequency'][l] }}
 							</label>
 							<input class="col-xs-8" type="number" step="any" name="frequency" ng-model="data.frequency" />
 						</div>
+				<!-- == SEL Client Type -->
+						<div class="form-group row">
+							<label class="col-xs-4">
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.client_type, 'glyphicon-ok-sign text-success':data.client_type}"></span>
+								{{ lang['front_client_type'][l] }}
+							</label>
+							<select class="col-xs-8" name="client_type" ng-model="data.client_type">
+								<option value="{{ client }}" 
+									ng-repeat="client in enums['ani_client_types']">
+									{{ lang[client][l] }}
+								</option>
+							</select>
+						</div>
+						
 		<!-- == GRP Treatment Animals List Creation -->
 						<legend>{{ lang['front_animals'][l] }}</legend>
 				<!-- == DISP Animals List -->
+						<div class="row form-group" ng-if="!data.animals || data.animals.length==0">
+							<p class="col-xs-12 label-like">
+								<span class="glyphicon glyphicon-question-sign text-danger"></span>
+								{{ lang['front_msg_add_at_list_1_animal'][l] }}
+							</p>
+						</div>
 						<div class="animals row bg-info" ng-if="data.animals.length>0">
 							<p class="selected-item" ng-repeat="a in data.animals">
 								<span class="col-xs-11">
@@ -310,6 +337,7 @@
 				<!-- == INP Animal -->
 						<div class="row form-group">
 							<label class="col-xs-4">
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.animal.raw, 'glyphicon-ok-sign text-success':tmp.animal.raw}"></span>
 								{{ lang['front_species'][l] }}
 							</label>
 							<select class="col-xs-8" name="animal" ng-model="tmp.animal.raw">
@@ -327,6 +355,7 @@
 				<!-- == INP Animal quantity -->
 						<div class="form-group row">
 							<label class="col-xs-4">
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.animal.quantity, 'glyphicon-ok-sign text-success':tmp.animal.quantity}"></span>
 								{{ lang['front_animal_quantity'][l] }}
 							</label>
 							<input class="col-xs-8" type="number" name="quantity" ng-model="tmp.animal.quantity" />
@@ -334,6 +363,7 @@
 				<!-- == SEL Animal Environment -->
 						<div class="form-group row">
 							<label class="col-xs-4">
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.animal.environment, 'glyphicon-ok-sign text-success':tmp.animal.environment}"></span>
 								{{ lang['front_animal_environment'][l] }}
 							</label>
 							<select class="col-xs-8" multiple name="animal_env" ng-model="tmp.animal.environment">
@@ -344,26 +374,20 @@
 						</div>
 				<!-- == BTN Animal Add -->
 						<div class="form-group row">
-							<button class="col-xs-8 col-xs-offset-4 btn btn-info" type="button" ng-click="dataMgt.addAnimal()">
+							<button class="col-xs-8 col-xs-offset-4 btn btn-info" type="button" ng-click="dataMgt.addAnimal()" ng-disabled="!tmp.animal.quantity||!tmp.animal.environment||!tmp.animal.raw">
 								<span class="glyphicon glyphicon-plus"></span> {{ lang['front_add'][l]}}
 							</button>
-						</div>
-				<!-- == SEL Client Type -->
-						<div class="form-group row">
-							<label class="col-xs-4">
-								{{ lang['front_client_type'][l] }}
-							</label>
-							<select class="col-xs-8" name="client_type" ng-model="data.client_type">
-								<option value="{{ client }}" 
-									ng-repeat="client in enums['ani_client_types']">
-									{{ lang[client][l] }}
-								</option>
-							</select>
 						</div>
 							
 		<!-- == GRP Treatment Products List Creation -->
 						<legend>{{ lang['front_treat_prescription'][l] }}</legend>
 				<!-- == DISP Products List -->
+						<div class="row form-group" ng-if="!data.prescription || data.prescription.length==0">
+							<p class="col-xs-12 label-like">
+								<span class="glyphicon glyphicon-question-sign text-danger"></span>
+								{{ lang['front_msg_add_at_list_1_product'][l] }}
+							</p>
+						</div>
 						<div class="products row bg-info" ng-if="data.prescription.length>0">
 							<p class="selected-item" ng-repeat="p in data.prescription">
 								<span class="col-xs-5">
@@ -384,6 +408,7 @@
 						<div class="row form-group">
 				<!-- == SEL Product -->
 							<label class="col-xs-4">
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.productName, 'glyphicon-ok-sign text-success':tmp.productName}"></span>
 								{{ lang['front_product'][l] }}
 							</label>
 							<select class="col-xs-8" name="product" ng-model="tmp.productName" ng_change="dataMgt.buildProduct()">
@@ -395,6 +420,7 @@
 				<!-- == INP Product Quantity -->
 						<div class="form-group row">
 							<label class="col-xs-4">
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.product.quantity, 'glyphicon-ok-sign text-success':tmp.product.quantity}"></span>
 								{{ lang['front_product_quantity'][l] }}
 							</label>
 							<input  class="col-xs-3" type="number" name="product_quantity" ng-model="tmp.product.quantity" />
@@ -405,15 +431,15 @@
 						</div>
 				<!-- == BTN Product Add -->
 						<div class="form-group row">
-							<button class="col-xs-8 col-xs-offset-4 btn btn-info btn-md" type="button" ng-click="dataMgt.addProduct()">
+							<button class="col-xs-8 col-xs-offset-4 btn btn-info btn-md" type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity||!tmp.productName">
 								<span class="glyphicon glyphicon-plus"></span> {{ lang['front_add'][l]}}
 							</button>
 						</div>
 
 		<!-- == BTN Record -->
-						<div class="row form-group">
-							<button type="submit" class="col-xs-12 btn btn-success">
-								<span class="glyphicon glyphicon-flash"></span>
+						<div class="validation row form-group">
+							<button type="submit" class="col-xs-4 col-xs-offset-4 btn btn-lg btn-success" ng-disabled="!data.date_dispense || !data.pathology || !data.treat_type || !data.treat_init || !data.duration || (!data.frequency||data.frequency>3) || !data.client_type || (!data.animals || data.animals.length==0) || (!data.prescription || data.prescription.length==0)">
+								<span class="glyphicon glyphicon-floppy-save"></span>
 								{{ lang['front_record'][l] }}
 							</button>
 						</div>

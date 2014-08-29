@@ -30,7 +30,7 @@ var TreatmentSchema = new Schema({
 	},
 	follow_sample: {
 		type: Boolean,
-		required: true
+		default: false
 	},
 	duration: {
 		type: Number,
