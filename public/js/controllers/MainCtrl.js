@@ -170,7 +170,7 @@ mabapp.controller('MainCtrl',[
 		 * remove animal from selection
 		 */
 		removeVolume : function(index) {
-			$scope.data.Volume.splice(index, 1);
+			$scope.data.volume.splice(index, 1);
 		}
 	};
 	
