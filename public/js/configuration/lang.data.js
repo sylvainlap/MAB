@@ -422,9 +422,13 @@ var lang =
 	    	'FR': 'Désolé, ce nom d\'utilisateur existe déjà.',
 	    	'EN': 'Sorry, this username is already in use.'
 	    },
-	    'back_err_during_validation': {
+	    'back_err_val_account': {
 	    	'FR': 'Désolé, une erreur est survenue durant la validation de votre compte.',
 	    	'EN': 'Sorry, an error occured during your account validation process.'
+	    },
+	    'back_err_val_treatment': {
+	    	'FR': 'Désolé, une erreur est survenue durant la validation du traitement.',
+	    	'EN': 'Sorry, an error occured during your treatment validation process.'
 	    },
 	    'back_logged': {
 	    	'FR': 'Vous êtes maintenant connecté.',
@@ -445,5 +449,25 @@ var lang =
 	    'back_wrong_pass': {
 	    	'FR': 'Désolé, mauvais mot de passe.',
 	    	'EN': 'Sorry, wrong password.'
+	    },
+	    'back_treatment_ok': {
+	    	'FR': 'Votre traitement a bien été enregistré.',
+	    	'EN': 'Your treatment has been successfully recorded.'
+	    },
+	    'back_no_user': {
+	    	'FR': 'Utilisateur non trouvé.',
+	    	'EN': 'User not found.'
+	    },
+	    'back_require_login': {
+	    	'FR': 'Vous devez être authentifié.',
+	    	'EN': 'You need to be logged.'
+	    },
+	    'back_err_profile': {
+	    	'FR': 'Erreur durant la mise à jour de votre profil.',
+	    	'EN': 'Error during profile updating process.'
+	    },
+	    'back_profile_ok': {
+	    	'FR': 'Votre profil a bien été mis à jour.',
+	    	'EN': 'Your profile has been successfully updated.'
 	    }
 };

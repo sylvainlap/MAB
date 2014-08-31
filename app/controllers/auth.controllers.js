@@ -16,7 +16,7 @@ exports.register = function(req, res, next) {
 		user = new User(req.body);
 		user.save(function(err) {
 			if (err)
-				return res.json({ error: 'back_err_during_validation' });
+				return res.json({ error: 'back_err_val_account' });
 
 			// all went good, now we send the token
 			generateToken(user.id, function(token) {
@@ -58,7 +58,7 @@ exports.decodeToken = function(req, res, next) {
 			var decoded = jwt.decode(token, jwtTokenSecret);
 			User.findOne({ _id: decoded.iss }, function(err, user) {
 				if (err)
-					return res.json(err);
+					return res.json({ error: 'back_no_user' });
 
 				req.user = user;
 				return next();
@@ -67,7 +67,6 @@ exports.decodeToken = function(req, res, next) {
 			next(err);
 		}
 	} else {
-		console.log('no token here...');
 		req.user = undefined;
 		next();
 	}
@@ -75,7 +74,7 @@ exports.decodeToken = function(req, res, next) {
 
 exports.requireLogin = function(req, res, next) {
 	if (!req.user) {
-		res.json({ error: 'You need to be authentified !' });
+		res.json({ error: 'back_require_login' });
 	} else {
 		next();
 	}
@@ -85,11 +84,11 @@ exports.getProfile = function(req, res, next) {
 	// req.user is defined
 	User.findById(req.user.id, function(err, user) {
 		if (err)
-			return res.json(err);
+			return res.json({ error: 'back_err_mongo' });
 
 		// should never happen
 		if (!user)
-			return res.json({ error: 'User not found.' });
+			return res.json({ error: 'back_no_user' });
 
 		res.json(user);
 	});
@@ -99,11 +98,11 @@ exports.updateProfile = function(req, res, next) {
 	// req.user is defined
 	User.findById(req.user.id, function(err, user) {
 		if (err)
-			return res.json(err);
+			return res.json({ error: 'back_err_mongo' });
 
 		// should never happen
 		if (!user)
-			return res.json({ error: 'User not found.' });
+			return res.json({ error: 'back_no_user' });
 
 		// c'est un test, mais je pense que ca marche
 		for (var attr in req.body) {
@@ -111,9 +110,9 @@ exports.updateProfile = function(req, res, next) {
 		}
 		user.save(function(err) {
 			if (err)
-				return res.json(err);
+				return res.json({ error: 'back_err_profile' });
 		});
-		res.json({ message: 'Profile successfully updated.' });
+		res.json({ message: 'back_profile_ok' });
 	});
 };
 
