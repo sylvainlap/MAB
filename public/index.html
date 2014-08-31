@@ -38,7 +38,7 @@
 				
 <!-- === TRACE BOX === -->
 			<alert ng-repeat="msg in messages" type="{{ msg.type }}" close="alertMgt.closeAlert($index)">
-				{{ msg.msg }}
+				{{ lang[msg.msg][l] }}
 			</alert>
 
 <!-- === REGISTER PANE === -->

@@ -9,17 +9,19 @@ var User     = mongoose.model('User');
 var jwtTokenSecret = '1mB4tm3n';
 
 exports.register = function(req, res, next) {
-	// SLA: je vais peut etre virer le test d'unicite car la contrainte est deja presente dans le modele
 	User.findOne({ username: req.body.username }, function(err, user) {
 		if (user)
-			return res.json({ error: 'Sorry, username already in use.' });
+			return res.json({ error: 'back_username_exists' });
 
 		user = new User(req.body);
 		user.save(function(err) {
 			if (err)
-				return res.json(err);
+				return res.json({ error: 'back_err_during_validation' });
 
-			res.json(user);
+			// all went good, now we send the token
+			generateToken(user.id, function(token) {
+				res.json({ message: 'back_logged', token: token, _id: user.id });
+			});
 		});
 	});
 };
@@ -27,25 +29,22 @@ exports.register = function(req, res, next) {
 exports.login = function(req, res, next) {
 	User.findOne({ username: req.body.username }, function(err, user) {
 		if (err)
-			return res.json(err);
+			return res.json({ error: 'back_err_mongo' });
 
 		if (!user)
-			return res.json({ error: 'Sorry, user not found.' });
+			return res.json({ error: 'back_user_not_found' });
 
 		user.comparePassword(req.body.password, function(err, isMatch) {
 			if (err)
-				return res.json(err);
+				return res.json({ error: 'back_err_compare' });
 
 			if (isMatch) {
 				// build and send the token
-				var expires = moment().add('days', 7).valueOf();
-				var token = jwt.encode({
-					iss: user.id,
-					exp: expires
-				}, jwtTokenSecret);
-				res.json({ message: 'You are logged!', token: token , _id:user._id});
+				generateToken(user.id, function(token) {
+					res.json({ message: 'back_logged', token: token, _id: user.id });
+				});
 			} else {
-				res.json({ error: 'Sorry, wrong password.' });
+				res.json({ error: 'back_wrong_pass' });
 			}
 		});
 	});
@@ -117,3 +116,12 @@ exports.updateProfile = function(req, res, next) {
 		res.json({ message: 'Profile successfully updated.' });
 	});
 };
+
+function generateToken(id, callback) {
+	var expires = moment().add('days', 7).valueOf();
+	var token = jwt.encode({
+		iss: id,
+		exp: expires
+	}, jwtTokenSecret);
+	callback(token);
+}

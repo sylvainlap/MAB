@@ -1,6 +1,6 @@
 {
-	"name": "proto",
-	"description": "First prototype of MEAN full stack",
+	"name": "MAB",
+	"description": "Monitoring AB",
 	"version": "0.1.0",
 	"main": "server.js",
 	"dependencies": {
