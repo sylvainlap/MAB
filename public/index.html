@@ -11,8 +11,9 @@
 			<div class="header">
 				
 <!-- === LANGUAGE SWITCH === -->				
-				<a href="#" ng-click="l='EN'">EN</a>
-				<a href="#" ng-click="l='FR'">FR</a>
+				<select class="switch-lang borderless" ng-model="l">
+					<option value="{{ language }}" ng-selected="language==l" ng-repeat="language in lang.list">{{ language }}</option>
+				</select>
 				<h1>
 <!-- === TITLE === -->
 					<span class="glyphicon glyphicon-stats"></span> MAB

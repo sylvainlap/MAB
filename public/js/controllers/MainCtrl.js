@@ -141,6 +141,9 @@ mabapp.controller('MainCtrl',[
 				environment : environment
 			});
 			$scope.tmp.animal = {};
+			for(var e in enums['ani_environment']){
+				$scope.tmp.animal.environment[enums['ani_environment'][e]] = false;
+			}
 		},
 		/**
 		 * remove animal from selection
