@@ -231,13 +231,12 @@
 							<p class="input-group">
 				            	<input class="col-xs-7 form-control" type="text"
 				            	datepicker-popup="{{format}}"
-				            	is-open="opened"
+				            	is-open="datePicker.opened"
 				            	datepicker-options="dateOptions"
 				            	close-text="{{ lang['front_close'][l] }}"
 				            	current-text="{{ lang['front_today'][l] }}"
 				            	clear-text="{{ lang['front_clear'][l] }}"
-				            	starting-day="1"
-				            	ng-required="true"
+				            	max-date="thisday"
 				            	ng-model="data.date_dispense"
 				            	/>
 				            	<span class="input-group-btn">
@@ -326,6 +325,9 @@
 				<!-- == DISP Animals List -->
 						<table class="table bg-success">
 							<tr ng-if="!data.animals || data.animals.length==0">
+								<td class="bg-warning text-danger">{{ lang['front_empty_list'][l] }}</td>
+							</tr>
+							<tr ng-if="!data.animals || data.animals.length==0">
 								<th class="bg-danger text-danger">
 									<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;
 									{{ lang['front_msg_add_at_list_1_animal'][l] }}
@@ -392,6 +394,9 @@
 						<legend>{{ lang['front_treat_prescription'][l] }}</legend>
 				<!-- == DISP Products List -->
 						<table class="table bg-success">
+							<tr ng-if="!data.prescription || data.prescription.length==0">
+								<td class="bg-warning text-danger">{{ lang['front_empty_list'][l] }}</td>
+							</tr>
 							<tr ng-if="!data.prescription || data.prescription.length==0">
 								<th class="bg-danger text-danger">
 									<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;
@@ -514,7 +519,7 @@
 				<button type="button" ng-click="debug=!debug">DEBUG</button>
 				<textarea class="col-md-12 col-xs-12" ng-if="debug">DATA : {{ '\n'+ print.data }}</textarea>
 				<textarea class="col-md-12 col-xs-12" ng-if="debug">TMP : {{ '\n'+ print.tmp }}</textarea>
-				<textarea class="col-md-12 col-xs-12" ng-if="debug">USER : {{ '\n'+ print.user }}</textarea>
+				<textarea class="col-md-12 col-xs-12" ng-if="debug">USER : {{ '\n'+ opened }}</textarea>
 			</div>
 		</div>
 		

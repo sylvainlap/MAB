@@ -97,6 +97,10 @@ var lang =
 			'FR':'annuler',
 			'EN':'cancel'
 		},
+		'front_empty_list':{
+			'FR':'la liste est vide',
+			'EN':'the list is empty'
+		},
 		'front_add':{
 			'FR':'ajouter',
 			'EN':'add'

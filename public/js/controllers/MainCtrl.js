@@ -1,9 +1,10 @@
 mabapp.controller('MainCtrl',[
 	'$scope',
 	'$http',
+	'$timeout',
 	'localStorageService',
 	'messageService',
-	function($scope, $http, localStorageService, messageService) {
+	function($scope, $http, $timeout, localStorageService, messageService) {
 
 	// config load
 	$scope.lang = lang;
@@ -11,6 +12,7 @@ mabapp.controller('MainCtrl',[
 	$scope.animals = animals;
 	$scope.products = products;
 	$scope.years = [];
+	$scope.datePicker = {};
 
 	
 	//shortcuts
@@ -24,7 +26,8 @@ mabapp.controller('MainCtrl',[
 				animals : [],
 				prescription : [],
 				activity : [],
-				volume : []
+				volume : [],
+				date_dispense: new Date()
 			};
 		},
 		tmp : function(){
@@ -69,9 +72,9 @@ mabapp.controller('MainCtrl',[
 	$scope.l = $scope.user.language?$scope.user.language:'FR';
 	
 	// === EVENT WATCH ===
-	$scope.$on('message.new', function(event){
-		setTimeout($scope.alertMgt.clearAlerts, 5000);
-	});
+//	$scope.$on('message.new', function(event){
+//		setTimeout($scope.alertMgt.clearAlerts, 5000);
+//	});
 	$scope.$watch('data', function(){
 		$scope.print.data = dump($scope.data);
 	},true);
@@ -321,23 +324,35 @@ mabapp.controller('MainCtrl',[
 
 	// ==== DATE PICKER ====
 	$scope.today = function() {
-		$scope.today = new Date();
 		$scope.data.date_dispense = new Date();
+		$scope.thisday = new Date();
 	};
 	$scope.today();
+
 	$scope.clear = function () {
-		$scope.data.date_dispense = null;
+		$scope.date_dispense = null;
 	};
+
 	$scope.open = function($event) {
 		$event.preventDefault();
 		$event.stopPropagation();
-		$scope.opened = true;
+		$timeout(function(){
+			$scope.datePicker.opened = true;
+		}, 50);
 	};
-	for(var y=$scope.today.getFullYear() - 100; y<=$scope.today.getFullYear(); y++){
+
+	$scope.dateOptions = {
+		formatYear: 'yy',
+		startingDay: 1,
+		formatDayTitle: 'MM/yy'
+	};
+
+	$scope.initDate = new Date('2016-15-20');
+	$scope.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+	$scope.format = $scope.formats[0];
+
+	for(var y=$scope.thisday.getFullYear() - 100; y<=$scope.thisday.getFullYear(); y++){
 		$scope.years.push(y);
 	}
-	$scope.initDate = new Date('2016-15-20');
-	$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-	$scope.format = $scope.formats[1];
 	// END DATE
 }]);
