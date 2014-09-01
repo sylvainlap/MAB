@@ -180,17 +180,20 @@ mabapp.controller('MainCtrl',[
 		 * Register new user
 		 */
 		register : function() {
-			/* TMP */
-			// TODO : les infos requises sont fournies par l’identification SAS
-//			$scope.data.lang = 'NR';
-//			$scope.data.age = 0;
-//			$scope.data.geoloc = 0;
-//			$scope.data.structure = 'NR';
-//			$scope.data.activity = {'bovine':'1.0'};
-			/* /TMP */
+			// TODO : identification SAS
 			$http.post('/register', $scope.data)
 			.success(function(data) {
 				$scope.messages = messageService.log(data);
+				
+				// retrieve user data
+				$scope.user.username = $scope.data.username;
+				$scope.user.token = data.token;
+				$scope.user._id = data._id;
+				// save user data in localStorageService
+				lss.set('user_username', $scope.data.username);
+				lss.set('user_token', data.token);
+				lss.set('user_id', data._id);
+				
 				// clear the form
 				$scope.reset.data();
 			});
@@ -222,7 +225,7 @@ mabapp.controller('MainCtrl',[
 		logout : function() {
 			$scope.user = {};
 			lss.clearAll();
-			$scope.messages = messageService.log({message : $scope.lang['msg_on_logged_out'][$scope.l]});
+			$scope.messages = messageService.log({message : 'msg_on_logged_out'});
 		},
 		/**
 		 * TODO : impossible de faire autrement... je voulais faire comme pour la gestion de
@@ -244,7 +247,7 @@ mabapp.controller('MainCtrl',[
 					});
 			}
 			else{
-				$scope.messages = messageService.log({message : $scope.lang['msg_no_change_saved'][$scope.l]});
+				$scope.messages = messageService.log({message : 'msg_no_change_saved'});
 					
 				$scope.ui.showProfile = false;
 				$scope.reset.data();

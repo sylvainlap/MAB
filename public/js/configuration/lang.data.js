@@ -210,6 +210,58 @@ var lang =
 			'FR':'Vous êtes maintenant déconnecté. À bientôt !',
 			'EN':'You are disconnected. See you later !',
 		},
+	    'back_username_exists': {
+	    	'FR': 'Désolé, ce nom d\'utilisateur existe déjà.',
+	    	'EN': 'Sorry, this username is already in use.'
+	    },
+	    'back_err_val_account': {
+	    	'FR': 'Désolé, une erreur est survenue durant la validation de votre compte.',
+	    	'EN': 'Sorry, an error occured during your account validation process.'
+	    },
+	    'back_err_val_treatment': {
+	    	'FR': 'Désolé, une erreur est survenue durant la validation du traitement.',
+	    	'EN': 'Sorry, an error occured during your treatment validation process.'
+	    },
+	    'back_logged': {
+	    	'FR': 'Vous êtes maintenant connecté.',
+	    	'EN': 'You are now logged.'
+	    },
+	    'back_err_mongo': {
+	    	'FR': 'Erreur durant la recherche en base.',
+	    	'EN': 'Error during database research.'
+	    },
+	    'back_user_not_found': {
+	    	'FR': 'Ce nom d\'utilisateur n\'exsite pas.',
+	    	'EN': 'Username not found.'
+	    },
+	    'back_err_compare': {
+	    	'FR': 'Erreur durant la vérification du mot de passe.',
+	    	'EN': 'Error during the password check process'
+	    },
+	    'back_wrong_pass': {
+	    	'FR': 'Désolé, mauvais mot de passe.',
+	    	'EN': 'Sorry, wrong password.'
+	    },
+	    'back_treatment_ok': {
+	    	'FR': 'Votre traitement a bien été enregistré.',
+	    	'EN': 'Your treatment has been successfully recorded.'
+	    },
+	    'back_no_user': {
+	    	'FR': 'Utilisateur non trouvé.',
+	    	'EN': 'User not found.'
+	    },
+	    'back_require_login': {
+	    	'FR': 'Vous devez être authentifié.',
+	    	'EN': 'You need to be logged.'
+	    },
+	    'back_err_profile': {
+	    	'FR': 'Erreur durant la mise à jour de votre profil.',
+	    	'EN': 'Error during profile updating process.'
+	    },
+	    'back_profile_ok': {
+	    	'FR': 'Votre profil a bien été mis à jour.',
+	    	'EN': 'Your profile has been successfully updated.'
+	    },
 	    /* === ENUM TRA_PATHOLOGY ===*/
 		'tra_pathology_respiratory':{
 			'FR': 'respiratoire',
@@ -417,57 +469,5 @@ var lang =
         'ani_client_private': {
 	    	'FR':'particulier',
 	    	'EN':'private'
-	    },
-	    'back_username_exists': {
-	    	'FR': 'Désolé, ce nom d\'utilisateur existe déjà.',
-	    	'EN': 'Sorry, this username is already in use.'
-	    },
-	    'back_err_val_account': {
-	    	'FR': 'Désolé, une erreur est survenue durant la validation de votre compte.',
-	    	'EN': 'Sorry, an error occured during your account validation process.'
-	    },
-	    'back_err_val_treatment': {
-	    	'FR': 'Désolé, une erreur est survenue durant la validation du traitement.',
-	    	'EN': 'Sorry, an error occured during your treatment validation process.'
-	    },
-	    'back_logged': {
-	    	'FR': 'Vous êtes maintenant connecté.',
-	    	'EN': 'You are now logged.'
-	    },
-	    'back_err_mongo': {
-	    	'FR': 'Erreur durant la recherche en base.',
-	    	'EN': 'Error during database research.'
-	    },
-	    'back_user_not_found': {
-	    	'FR': 'Ce nom d\'utilisateur n\'exsite pas.',
-	    	'EN': 'Username not found.'
-	    },
-	    'back_err_compare': {
-	    	'FR': 'Erreur durant la vérification du mot de passe.',
-	    	'EN': 'Error during the password check process'
-	    },
-	    'back_wrong_pass': {
-	    	'FR': 'Désolé, mauvais mot de passe.',
-	    	'EN': 'Sorry, wrong password.'
-	    },
-	    'back_treatment_ok': {
-	    	'FR': 'Votre traitement a bien été enregistré.',
-	    	'EN': 'Your treatment has been successfully recorded.'
-	    },
-	    'back_no_user': {
-	    	'FR': 'Utilisateur non trouvé.',
-	    	'EN': 'User not found.'
-	    },
-	    'back_require_login': {
-	    	'FR': 'Vous devez être authentifié.',
-	    	'EN': 'You need to be logged.'
-	    },
-	    'back_err_profile': {
-	    	'FR': 'Erreur durant la mise à jour de votre profil.',
-	    	'EN': 'Error during profile updating process.'
-	    },
-	    'back_profile_ok': {
-	    	'FR': 'Votre profil a bien été mis à jour.',
-	    	'EN': 'Your profile has been successfully updated.'
 	    }
 };

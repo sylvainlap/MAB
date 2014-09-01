@@ -454,6 +454,7 @@
 								{{ lang['front_record'][l] }}
 							</button>
 						</div>
+						<p class="text-center row text-{{msg.type}}" ng-repeat="msg in messages">{{ lang[msg.msg][l] }}</p>
 					</form>
 				</div>
 	<!-- == DISPLAY PANE == -->
