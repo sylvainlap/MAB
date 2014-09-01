@@ -140,7 +140,7 @@ mabapp.controller('MainCtrl',[
 				quantity : $scope.tmp.animal.quantity,
 				environment : environment
 			});
-			$scope.tmp.animal = {};
+			$scope.tmp.animal = {environment:{}};
 			for(var e in enums['ani_environment']){
 				$scope.tmp.animal.environment[enums['ani_environment'][e]] = false;
 			}
