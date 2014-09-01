@@ -198,7 +198,7 @@ var lang =
 			'EN':'add at least one animal'
 		},
 		'front_msg_add_at_list_1_product':{
-			'FR':'ajouter au moins un product',
+			'FR':'ajouter au moins un produit',
 			'EN':'add at least one product'
 		},
 		/* === ERRORS & MESSAGES === */

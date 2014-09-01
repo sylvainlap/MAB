@@ -371,18 +371,18 @@
 				<!-- == SEL Animal Environment -->
 						<div class="form-group row">
 							<label class="col-xs-4">
-								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.animal.environment, 'glyphicon-ok-sign text-success':tmp.animal.environment}"></span>
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.animal.envControl, 'glyphicon-ok-sign text-success':tmp.animal.envControl}"></span>
 								{{ lang['front_animal_environment'][l] }}
 							</label>
-							<select class="col-xs-8" multiple name="animal_env" ng-model="tmp.animal.environment">
-								<option value="{{ env }}" ng-repeat="env in enums['ani_environment']">
-									{{ lang[env][l] }}
-								</option>
-							</select>
+							<div class="col-xs-8">
+								<div class="input-group" ng-repeat="env in enums['ani_environment']">
+									<input type="checkbox" name="animal_env" ng-model="tmp.animal.environment[env]" ng-change="dataMgt.buildEnvControl()" value="{{ env }}">{{ lang[env][l] }}
+								</div>
+							</div>
 						</div>
 				<!-- == BTN Animal Add -->
 						<div class="form-group row">
-							<button class="col-xs-8 col-xs-offset-4 btn btn-info" type="button" ng-click="dataMgt.addAnimal()" ng-disabled="!tmp.animal.quantity||!tmp.animal.environment||!tmp.animal.raw">
+							<button class="col-xs-4 col-xs-offset-8 btn btn-info" type="button" ng-click="dataMgt.addAnimal()" ng-disabled="!tmp.animal.quantity||!tmp.animal.envControl||!tmp.animal.raw">
 								<span class="glyphicon glyphicon-plus"></span> {{ lang['front_add'][l]}}
 							</button>
 						</div>
@@ -442,7 +442,7 @@
 						</div>
 				<!-- == BTN Product Add -->
 						<div class="form-group row">
-							<button class="col-xs-8 col-xs-offset-4 btn btn-info btn-md" type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity||!tmp.productName">
+							<button class="col-xs-4 col-xs-offset-8 btn btn-info btn-md" type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity||!tmp.productName">
 								<span class="glyphicon glyphicon-plus"></span> {{ lang['front_add'][l]}}
 							</button>
 						</div>
@@ -454,7 +454,6 @@
 								{{ lang['front_record'][l] }}
 							</button>
 						</div>
-						<p class="text-center row text-{{msg.type}}" ng-repeat="msg in messages">{{ lang[msg.msg][l] }}</p>
 					</form>
 				</div>
 	<!-- == DISPLAY PANE == -->
@@ -510,11 +509,11 @@
 				</div>
 			</div>
 <!-- === DEBUG PANE === -->
-			<div class="debug-pane well" ng-if="true">
-				<p ng-click="debug=!debug">DEBUG</p>
-				<textarea class="col-md-12 col-xs-12" ng-if="debug">{{ data }}</textarea>
-				<textarea class="col-md-12 col-xs-12" ng-if="debug">{{ tmp }}</textarea>
-				<textarea class="col-md-12 col-xs-12" ng-if="debug">{{ user }}</textarea>
+			<div class="debug-pane" ng-if="true">
+				<button type="button" ng-click="debug=!debug">DEBUG</button>
+				<textarea class="col-md-12 col-xs-12" ng-if="debug">DATA : {{ '\n'+ print.data }}</textarea>
+				<textarea class="col-md-12 col-xs-12" ng-if="debug">TMP : {{ '\n'+ print.tmp }}</textarea>
+				<textarea class="col-md-12 col-xs-12" ng-if="debug">USER : {{ '\n'+ print.user }}</textarea>
 			</div>
 		</div>
 		

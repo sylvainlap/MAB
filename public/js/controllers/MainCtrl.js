@@ -6,7 +6,6 @@ mabapp.controller('MainCtrl',[
 	function($scope, $http, localStorageService, messageService) {
 
 	// config load
-	$scope.l = 'FR';
 	$scope.lang = lang;
 	$scope.enums = enums;
 	$scope.animals = animals;
@@ -30,11 +29,17 @@ mabapp.controller('MainCtrl',[
 		},
 		tmp : function(){
 			$scope.tmp = {
-				animal:{},
+				animal:{
+					environment:{},
+					envControl:false
+				},
 				product:{},
 				activity:{},
 				volume : {}
 			};
+			for(var e in enums['ani_environment']){
+				$scope.tmp.animal.environment[enums['ani_environment'][e]] = false;
+			}
 		},
 		ui : function(){
 			$scope.ui = {
@@ -47,20 +52,35 @@ mabapp.controller('MainCtrl',[
 			$scope.user = {
 				username : lss.get('user_username'),
 				token : lss.get('user_token'),
-				_id : lss.get('user_id')
+				_id : lss.get('user_id'),
+				language : lss.get('user_l')
 			};
+		},
+		print : function(){
+			$scope.print = {};
 		}
 	};
 	$scope.reset.data();
 	$scope.reset.tmp();
 	$scope.reset.ui();
 	$scope.reset.user();
+	$scope.reset.print();
 
+	$scope.l = $scope.user.language?$scope.user.language:'FR';
+	
 	// === EVENT WATCH ===
 	$scope.$on('message.new', function(event){
 		setTimeout($scope.alertMgt.clearAlerts, 5000);
 	});
-	
+	$scope.$watch('data', function(){
+		$scope.print.data = dump($scope.data);
+	},true);
+	$scope.$watch('tmp', function(){
+		$scope.print.tmp = dump($scope.tmp);
+	},true);
+	$scope.$watch('user', function(){
+		$scope.print.user = dump($scope.user);
+	},true);
 	
 	// === DATA INCLUSION FUNCTIONS ===
 	$scope.dataMgt = {
@@ -70,7 +90,6 @@ mabapp.controller('MainCtrl',[
 		recordTreatment : function() {
 			$scope.data.user = $scope.user;
 			$scope.data.veterinary = $scope.user._id;
-			console.log($scope.data);
 			$http({
 				method:'POST',
 				url:'/api/treatment',
@@ -85,7 +104,6 @@ mabapp.controller('MainCtrl',[
 		 * 
 		 */
 		getTreatments : function() {
-			console.log('get treatments for '+$scope.user._id);
 			$http({
 				method:'GET',
 				url:'/api/treatment',
@@ -96,18 +114,31 @@ mabapp.controller('MainCtrl',[
 				$scope.data = data;
 			});
 		},
+		buildEnvControl : function() {
+			var envControl = false;
+			Object.keys($scope.tmp.animal.environment).forEach(function(k){
+				envControl = envControl || $scope.tmp.animal.environment[k];
+			});
+			$scope.tmp.animal.envControl = envControl;
+		},
 		/**
 		 * Build and add the animal object from the selected value
 		 */
 		addAnimal : function() {
 			var animal = $scope.tmp.animal.raw.split('|');
+			var environment = [];
+			Object.keys($scope.tmp.animal.environment).forEach(function(k){
+				if($scope.tmp.animal.environment[k]){
+					environment.push(k);
+				}
+			});
 			$scope.data.animals.push({
 				species : animal[0],
 				type : animal[1],
 				age : animal[2],
 				weight : animal[3],
 				quantity : $scope.tmp.animal.quantity,
-				environment : $scope.tmp.animal.environment
+				environment : environment
 			});
 			$scope.tmp.animal = {};
 		},
@@ -189,10 +220,12 @@ mabapp.controller('MainCtrl',[
 				$scope.user.username = $scope.data.username;
 				$scope.user.token = data.token;
 				$scope.user._id = data._id;
+				$scope.user.language = data.lang;
 				// save user data in localStorageService
 				lss.set('user_username', $scope.data.username);
 				lss.set('user_token', data.token);
 				lss.set('user_id', data._id);
+				lss.set('user_l', data.lang);
 				
 				// clear the form
 				$scope.reset.data();
@@ -210,10 +243,12 @@ mabapp.controller('MainCtrl',[
 				$scope.user.username = $scope.data.username;
 				$scope.user.token = data.token;
 				$scope.user._id = data._id;
+				$scope.user.language = data.lang;
 				// save user data in localStorageService
 				lss.set('user_username', $scope.data.username);
 				lss.set('user_token', data.token);
 				lss.set('user_id', data._id);
+				lss.set('user_l', data.lang);
 				
 				// clear the form
 				$scope.reset.data();

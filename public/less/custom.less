@@ -18,7 +18,7 @@ body {
 .form-group{
 	margin-bottom: 0.25em;
 }
-select, input{
+select, input[type="text"], input[type="number"]{
 	height: 2.5em;
 }
 label, .label-like, .selected-item{
@@ -33,6 +33,9 @@ legend{
 	font-weight: bold;
 	border-top: 2px dashed lightgrey;
 	border-bottom: 2px dashed lightgrey;
+}
+.btn[disabled]{
+	opacity: 0.5;
 }
 
 
