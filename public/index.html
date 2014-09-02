@@ -10,30 +10,32 @@
 		<div class="container">
 			<div class="header">
 				
-<!-- === LANGUAGE SWITCH === -->				
-				<select class="switch-lang borderless" ng-model="l">
-					<option value="{{ language }}" ng-selected="language==l" ng-repeat="language in lang.list">{{ language }}</option>
-				</select>
-				<h1>
-<!-- === TITLE === -->
-					<span class="glyphicon glyphicon-stats"></span> MAB
+<!-- === LANGUAGE SWITCH === -->
+				<div class="menu menu-lang selectadv pull-left">
+					<select class="switch-lang borderless" ng-model="l">
+						<option value="{{ language }}" ng-selected="language==l" ng-repeat="language in lang.list">{{ language }}</option>
+					</select>
+				</div>				
 <!-- === USER MENU === -->
-					<div class="pull-right btn btn-info text-left" ng-click="ui.showUserMenu=!ui.showUserMenu" ng-mouseleave="ui.showUserMenu=false" ng-if="user.token!=undefined">
+				<div class="menu menu-user pull-right text-left" ng-if="user.token!=undefined">
 		<!-- == Username -->
-						<span class="glyphicon glyphicon-user"></span>
-						{{ user.username }}
+					<span class="glyphicon glyphicon-user"></span>
+					{{ user.username }}
 		<!-- == BTN Profile -->
-						<a class="btn btn-default btn-sm" ng-click="userMgt.getProfile('open')" ng-if="ui.showUserMenu">
-							<span class="glyphicon glyphicon-cog"></span>
-							{{ lang['front_profile'][l] }}
-						</a>
+					<a class="btn btn-default btn-sm" ng-click="userMgt.getProfile('open')">
+						<span class="glyphicon glyphicon-cog"></span>
+						{{ lang['front_profile'][l] }}
+					</a>
 		<!-- == BTN Logout -->
-						<a class="btn btn-danger btn-sm" ng-click="userMgt.logout()" ng-if="ui.showUserMenu">
-							<span class="glyphicon glyphicon-off"></span>
-							{{ lang['front_disconnect'][l] }}
-						</a>
-					</div>
-				</h1>
+					<a class="btn btn-default btn-sm" ng-click="userMgt.logout()">
+						<span class="glyphicon glyphicon-off"></span>
+						{{ lang['front_disconnect'][l] }}
+					</a>
+				</div>
+<!-- === TITLE === -->
+				<div class="title">
+					<span class="glyphicon glyphicon-stats"></span> MAB
+				</div>
 			</div>
 				
 				
@@ -43,7 +45,7 @@
 			</alert>
 
 <!-- === REGISTER PANE === -->
-			<div class="auth-pane" ng-if="user.token==undefined">
+			<div class="pane pane-register" ng-if="user.token==undefined">
 				<div class="well">
 					<h3>{{ lang['front_register'][l] }}</h3>
 					<form class="form-inline" role="form">
@@ -73,7 +75,7 @@
 				
 				
 <!-- === EDIT PROFILE PANE === -->
-			<div class="editprofile-pane" ng-if="user.token != undefined && ui.showProfile">
+			<div class="pane pane-profile" ng-if="user.token != undefined && ui.showProfile">
 				<div class="well">
 					<h3>{{ lang['front_profile_manager'][l] }}</h3>
 					<form>
@@ -104,17 +106,20 @@
 				<!-- == INP City -->
 							<input class="col-xs-6" type="text" name="city" placeholder="{{ lang['front_city'][l] }}" ng-model="data.school.city" />
 				<!-- == INP Promo -->
-							<!-- input class="col-xs-4" type="number" name="promo" placeholder="{{ lang['front_promo'][l] }}" ng-model="data.school.promo" /-->
-							<select class="col-xs-2" name="promo" ng-model="data.school.promo">
-								<option value="{{ y }}" ng-selected="y==data.school.promo" ng-repeat="y in years">{{ y }}</option>
-							</select>
+							<div class="selectadv col-xs-2">
+								<select class="col-xs-2" name="promo" ng-model="data.school.promo">
+									<option value="{{ y }}" ng-selected="y==data.school.promo" ng-repeat="y in years">{{ y }}</option>
+								</select>
+							</div>
 						</div>
 		<!-- == INP Language -->
 						<div class="form-group row">
 							<label class="col-xs-4">{{ lang['front_language'][l] }}</label>
-							<select class="col-xs-2" ng-model="data.lang">
-								<option value="{{ language }}" ng-selected="language==data.lang" ng-repeat="language in lang.list">{{ language }}</option>
-							</select>
+							<div class="selectadv col-xs-2">
+								<select ng-model="data.lang">
+									<option value="{{ language }}" ng-selected="language==data.lang" ng-repeat="language in lang.list">{{ language }}</option>
+								</select>
+							</div>
 						</div>
 		<!-- == INP Activity -->
 						<legend>{{ lang['front_activity'][l] }}</legend>
@@ -140,9 +145,11 @@
 							<label class="col-xs-4">
 								{{ lang['front_add'][l] + ' ' + lang['front_activity'][l] }}
 							</label>
-							<select class="col-xs-4" name="activity" ng-model="tmp.activity.name">
-								<option value="{{ species }}" ng-repeat="(species, types) in animals">{{ lang[species][l] }}</option>
-							</select>
+							<div class="selectadv col-xs-4">
+								<select name="activity" ng-model="tmp.activity.name">
+									<option value="{{ species }}" ng-repeat="(species, types) in animals">{{ lang[species][l] }}</option>
+								</select>
+							</div>
 				<!-- == INP Activity ratio -->
 							<input class="col-xs-2" type="number" name="ratio" ng-model="tmp.activity.ratio" />
 							<label class="col-xs-1">%</label>
@@ -175,17 +182,19 @@
 							<label class="col-xs-4">
 								{{ lang['front_add'][l] + ' ' + lang['front_volume'][l] }}
 							</label>
-							<select class="col-xs-4" name="animal" ng-model="tmp.volume.raw">
-								<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
-									<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
-										-- {{ lang[type][l] }} --
-									</option>
-									<option value="{{ species + '|'  + type + '|' + age + '|' + weight }}" ng-repeat="(age, weight) in ages">
-										{{ lang[species][l] + '/'  + lang[type][l] + '/' + lang[age][l] }}
-									</option>
-									<option disabled ng-repeat-end></option>
-								</optgroup>
-							</select>
+							<div class="selectadv col-xs-4">
+								<select name="animal" ng-model="tmp.volume.raw">
+									<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
+										<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
+											-- {{ lang[type][l] }} --
+										</option>
+										<option value="{{ species + '|'  + type + '|' + age + '|' + weight }}" ng-repeat="(age, weight) in ages">
+											{{ lang[species][l] + '/'  + lang[type][l] + '/' + lang[age][l] }}
+										</option>
+										<option disabled ng-repeat-end></option>
+									</optgroup>
+								</select>
+							</div>
 				<!-- == INP volume value -->
 							<input class="col-xs-2" type="number" name="quantity" ng-model="tmp.volume.value" />
 				<!-- == BTN volume Add -->
@@ -211,11 +220,11 @@
 				
 				
 <!-- === TREATMENT FORM PANE === -->
-			<div class="logged-pane" ng-if="user.token != undefined && !ui.showProfile">
-				<div class="navigation">
-					<a class="btn btn-default" ng-click="ui.page = 'inclusion'" ng-class="{'btn-primary':ui.page=='inclusion'}">inclusion</a>
-					<a class="btn btn-default" ng-click="ui.page = 'display'" ng-class="{'btn-primary':ui.page=='display'}">display</a>
-				</div>
+			<div class="pane navigation" ng-if="user.token != undefined && !ui.showProfile">
+				<a ng-click="ui.page = 'inclusion'" ng-class="{'active':ui.page=='inclusion'}">inclusion</a>
+				<a ng-click="ui.page = 'display'" ng-class="{'active':ui.page=='display'}">display</a>
+			</div>
+			<div class="pane main-pane" ng-if="user.token != undefined && !ui.showProfile">
 				<div class="inclusion-pane well" ng-if="ui.page == 'inclusion'" ng-init="reset.data()">
 					<h3>{{ lang['front_main_form_title'][l] }}</h3>
 					<form ng-submit="dataMgt.recordTreatment()">
@@ -228,8 +237,8 @@
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.date_dispense, 'glyphicon-ok-sign text-success':data.date_dispense}"></span>
 								{{ lang['front_start_date'][l] }}
 							</label>
-							<p class="input-group">
-				            	<input class="col-xs-7 form-control" type="text"
+							<p class="input-group col-xs-8">
+				            	<input class="col-xs-10" type="text"
 				            	datepicker-popup="{{format}}"
 				            	is-open="datePicker.opened"
 				            	datepicker-options="dateOptions"
@@ -239,11 +248,9 @@
 				            	max-date="thisday"
 				            	ng-model="data.date_dispense"
 				            	/>
-				            	<span class="input-group-btn">
-				            		<button type="button" class="btn btn-default" ng-click="open($event)">
-				            			<i class="glyphicon glyphicon-calendar"></i>
-				            		</button>
-				            	</span>
+			            		<button type="button" class="col-xs-2 btn btn-default" ng-click="open($event)">
+			            			<i class="glyphicon glyphicon-calendar"></i>
+			            		</button>
 				            </p>
 			            </div>
 				<!-- == INP Pathology -->
@@ -252,11 +259,13 @@
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.pathology, 'glyphicon-ok-sign text-success':data.pathology}"></span>
 								{{ lang['front_pathology'][l] }}
 							</label>
-							<select class="col-xs-8 dropdown" name="pathology" ng-model="data.pathology">
-								<option value="{{ patho }}" ng-repeat="patho in enums['tra_pathology']">
-									{{ lang[patho][l] }}
-								</option>
-							</select>
+							<div class="selectadv col-xs-8">
+								<select name="pathology" ng-model="data.pathology">
+									<option value="{{ patho }}" ng-repeat="patho in enums['tra_pathology']">
+										{{ lang[patho][l] }}
+									</option>
+								</select>
+							</div>
 						</div>
 				<!-- == INP Treatment Type -->
 						<div class="form-group row">
@@ -264,11 +273,13 @@
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.treat_type, 'glyphicon-ok-sign text-success':data.treat_type}"></span>
 								{{ lang['front_treat_type'][l] }}
 							</label>
-							<select class="col-xs-8" name="treatment_type" ng-model="data.treat_type">
-								<option value="{{ type }}" ng-repeat="type in enums['tra_type']">
-									{{ lang[type][l] }}
-								</option>
-							</select>
+							<div class="selectadv col-xs-8">
+								<select name="treatment_type" ng-model="data.treat_type">
+									<option value="{{ type }}" ng-repeat="type in enums['tra_type']">
+										{{ lang[type][l] }}
+									</option>
+								</select>
+							</div>
 						</div>
 				<!-- == INP Treatment Init -->
 						<div class="form-group row">
@@ -276,11 +287,13 @@
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.treat_init, 'glyphicon-ok-sign text-success':data.treat_init}"></span>
 								{{ lang['front_treat_init'][l] }}
 							</label>
-							<select class="col-xs-8" name="treatment_init" ng-model="data.treat_init">
-								<option value="{{ init }}" ng-repeat="init in enums['tra_init']">
-									{{ lang[init][l] }}
-								</option>
-							</select>
+							<div class="selectadv col-xs-8">
+								<select name="treatment_init" ng-model="data.treat_init">
+									<option value="{{ init }}" ng-repeat="init in enums['tra_init']">
+										{{ lang[init][l] }}
+									</option>
+								</select>
+							</div>
 						</div>
 				<!-- == INP Treatment Follow Sample -->
 						<div class="form-group row">
@@ -288,12 +301,10 @@
 								<span class="glyphicon glyphicon-ok-sign text-success"></span>
 								{{ lang['front_follow_sample'][l] }}
 							</label>
-							<div class="col-xs-8">
-								<input type="checkbox" id="follow_sample" ng-model="data.follow_sample"/>
-								<label for="follow_sample">
-									<span>{{ data.follow_sample?lang['front_yes'][l]:lang['front_no'][l] }}</span>
-								</label>
-							</div>
+							<input type="checkbox" id="follow_sample" ng-model="data.follow_sample"/>
+							<label class="col-xs-8" for="follow_sample">
+								<span>{{ data.follow_sample?lang['front_yes'][l]:lang['front_no'][l] }}</span>
+							</label>
 						</div>
 				<!-- == INP Duration -->
 						<div class="form-group row">
@@ -317,12 +328,14 @@
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.client_type, 'glyphicon-ok-sign text-success':data.client_type}"></span>
 								{{ lang['front_client_type'][l] }}
 							</label>
-							<select class="col-xs-8" name="client_type" ng-model="data.client_type">
-								<option value="{{ client }}" 
-									ng-repeat="client in enums['ani_client_types']">
-									{{ lang[client][l] }}
-								</option>
-							</select>
+							<div class="selectadv col-xs-8">
+								<select name="client_type" ng-model="data.client_type">
+									<option value="{{ client }}" 
+										ng-repeat="client in enums['ani_client_types']">
+										{{ lang[client][l] }}
+									</option>
+								</select>
+							</div>
 						</div>
 						
 		<!-- == GRP Treatment Animals List Creation -->
@@ -356,17 +369,19 @@
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.animal.raw, 'glyphicon-ok-sign text-success':tmp.animal.raw}"></span>
 								{{ lang['front_species'][l] }}
 							</label>
-							<select class="col-xs-8" name="animal" ng-model="tmp.animal.raw">
-								<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
-									<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
-										-- {{ lang[type][l] }} --
-									</option>
-									<option value="{{ species + '|'  + type + '|' + age + '|' + weight }}" ng-repeat="(age, weight) in ages">
-										{{ lang[species][l] + '/'  + lang[type][l] + '/' + lang[age][l] }}
-									</option>
-									<option disabled ng-repeat-end></option>
-								</optgroup>
-							</select>
+							<div class="selectadv col-xs-8">
+								<select name="animal" ng-model="tmp.animal.raw">
+									<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
+										<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
+											-- {{ lang[type][l] }} --
+										</option>
+										<option value="{{ species + '|'  + type + '|' + age + '|' + weight }}" ng-repeat="(age, weight) in ages">
+											{{ lang[species][l] + '/'  + lang[type][l] + '/' + lang[age][l] }}
+										</option>
+										<option disabled ng-repeat-end></option>
+									</optgroup>
+								</select>
+							</div>
 						</div>
 				<!-- == INP Animal quantity -->
 						<div class="form-group row">
@@ -382,13 +397,12 @@
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.animal.envControl, 'glyphicon-ok-sign text-success':tmp.animal.envControl}"></span>
 								{{ lang['front_animal_environment'][l] }}
 							</label>
-							<div class="col-xs-8">
-								<div ng-repeat="env in enums['ani_environment']">
-									<input type="checkbox" name="animal_env" ng-model="tmp.animal.environment[env]" ng-change="dataMgt.buildEnvControl()" id="{{ env }}">
-									<label for="{{ env }}" class="tiny">
-										<span>{{ lang[env][l] }}</span>
-									</label>
-								</div>
+							<div class="col-xs-8 pad0">
+								<input type="checkbox" name="animal_env" ng-repeat-start="env in enums['ani_environment']" ng-model="tmp.animal.environment[env]" ng-change="dataMgt.buildEnvControl()" id="{{ env }}">
+								<label class="col-xs-6" for="{{ env }}" class="tiny">
+									<span>{{ lang[env][l] }}</span>
+								</label>
+								<span ng-repeat-end></span>
 							</div>
 						</div>
 				<!-- == BTN Animal Add -->
@@ -436,11 +450,13 @@
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.productName, 'glyphicon-ok-sign text-success':tmp.productName}"></span>
 								{{ lang['front_product'][l] }}
 							</label>
-							<select class="col-xs-8" name="product" ng-model="tmp.productName" ng_change="dataMgt.buildProduct()">
-								<option value="{{ p.name }}" ng-repeat="p in products">
-									{{ p.name }}
-								</option>
-							</select>
+							<div class="selectadv col-xs-8">
+								<select name="product" ng-model="tmp.productName" ng_change="dataMgt.buildProduct()">
+									<option value="{{ p.name }}" ng-repeat="p in products">
+										{{ p.name }}
+									</option>
+								</select>
+							</div>
 						</div>
 				<!-- == INP Product Quantity -->
 						<div class="form-group row">
@@ -523,8 +539,8 @@
 				</div>
 			</div>
 <!-- === DEBUG PANE === -->
-			<div class="debug-pane" ng-if="true">
-				<button type="button" ng-click="debug=!debug">DEBUG</button>
+			<div class="pane pane-debug" ng-if="true">
+				<a ng-click="debug=!debug">DEBUG</a>
 				<textarea class="col-md-12 col-xs-12" ng-if="debug">DATA : {{ '\n'+ print.data }}</textarea>
 				<textarea class="col-md-12 col-xs-12" ng-if="debug">TMP : {{ '\n'+ print.tmp }}</textarea>
 				<textarea class="col-md-12 col-xs-12" ng-if="debug">USER : {{ '\n'+ opened }}</textarea>
