@@ -1,0 +1,35 @@
+@icon-font-path: "../fonts/";
+@icon-font-name: "glyphicons-halflings-regular";
+@icon-font-svg-id: "glyphicons_halflingsregular";
+@base-font: 'Quicksand';
+._h(@l){
+	font-size: (2-0.2*@l)*1em;
+}
+@primary: #428bca;
+@success: #5cb85c;
+@info:    #5bc0de;
+@warning: #f0ad4e;
+@danger:  #d9534f;
+@default: #bbb;
+//@base:
+
+.border-radius(@r){
+	border-radius: @r;
+	-moz-border-radius: @r;
+	-webkit-border-radius: @r;
+	-o-border-radius: @r;
+	-ms-border-radius: @r;
+}
+.transition(@t){
+	transition: @t;
+	-webkit-transition: @t;
+}
+.box-shadow(@b){
+	box-shadow: @b;
+	-webkit-box-shadow: @b;
+}
+.transform(@t){
+	transform: scale(@t);
+	-ms-transform: scale(@t);
+	-webkit-transform: scale(@t);
+}

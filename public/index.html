@@ -252,7 +252,7 @@
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.pathology, 'glyphicon-ok-sign text-success':data.pathology}"></span>
 								{{ lang['front_pathology'][l] }}
 							</label>
-							<select class="col-xs-8" name="pathology" ng-model="data.pathology">
+							<select class="col-xs-8 dropdown" name="pathology" ng-model="data.pathology">
 								<option value="{{ patho }}" ng-repeat="patho in enums['tra_pathology']">
 									{{ lang[patho][l] }}
 								</option>
@@ -288,7 +288,12 @@
 								<span class="glyphicon glyphicon-ok-sign text-success"></span>
 								{{ lang['front_follow_sample'][l] }}
 							</label>
-							<input class="col-xs-8" type="checkbox" name="follow_sample" ng-model="data.follow_sample"/>
+							<div class="col-xs-8">
+								<input type="checkbox" id="follow_sample" ng-model="data.follow_sample"/>
+								<label for="follow_sample">
+									<span>{{ data.follow_sample?lang['front_yes'][l]:lang['front_no'][l] }}</span>
+								</label>
+							</div>
 						</div>
 				<!-- == INP Duration -->
 						<div class="form-group row">
@@ -378,8 +383,11 @@
 								{{ lang['front_animal_environment'][l] }}
 							</label>
 							<div class="col-xs-8">
-								<div class="input-group" ng-repeat="env in enums['ani_environment']">
-									<input type="checkbox" name="animal_env" ng-model="tmp.animal.environment[env]" ng-change="dataMgt.buildEnvControl()" value="{{ env }}">{{ lang[env][l] }}
+								<div ng-repeat="env in enums['ani_environment']">
+									<input type="checkbox" name="animal_env" ng-model="tmp.animal.environment[env]" ng-change="dataMgt.buildEnvControl()" id="{{ env }}">
+									<label for="{{ env }}" class="tiny">
+										<span>{{ lang[env][l] }}</span>
+									</label>
 								</div>
 							</div>
 						</div>
