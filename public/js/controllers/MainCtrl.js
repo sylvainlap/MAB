@@ -73,8 +73,10 @@ mabapp.controller('MainCtrl',[
 	$scope.reset.print();
 
 	// inject favs value in the product list
-	for(k in $scope.user.favs.products){
-		updateOne($scope.products, 'name', k, 'clics', $scope.user.favs.products[k])
+	if($scope.user.favs!=undefined){
+		for(k in $scope.user.favs.products){
+			updateOne($scope.products, 'name', k, 'clics', $scope.user.favs.products[k])
+		}
 	}
 	
 	$scope.l = $scope.user.language?$scope.user.language:'FR';
