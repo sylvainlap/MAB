@@ -225,6 +225,10 @@ var lang =
 			'FR':'Tous les produits',
 			'EN':'All products'
 		},
+		'front_other_products':{
+			'FR':'Autres produits',
+			'EN':'Other products'
+		},
 		'front_products_match_animal':{
 			'FR':'Correspondant à votre sélection',
 			'EN':'Matching to your selection'

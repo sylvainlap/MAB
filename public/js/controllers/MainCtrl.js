@@ -100,7 +100,10 @@ mabapp.controller('MainCtrl',[
 			products : {
 				target : function(element){
 					return (intersect_safe(element.target, $scope.tmp.species_list).length>0)?true:false;
-				}
+				},
+				notTarget : function(element){
+					return (intersect_safe(element.target, $scope.tmp.species_list).length>0)?false:true;
+				} 
 			}
 	};
 	// === DATA INCLUSION FUNCTIONS ===
