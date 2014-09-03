@@ -37,6 +37,14 @@ var enums =
         "tra_dm_po",
         "tra_dm_loc"
     ],
+    "tra_frequency" : {
+        "tra_freq_unique":0,
+        "tra_freq_1pd":1,
+        "tra_freq_2pd":2,
+        "tra_freq_3pd":3,
+        "tra_freq_1p2d":0.5,
+        "tra_freq_1pw":0.1429
+    },
     "ani_environment" : [ 
         "ani_environment_alone", 
         "ani_environment_group", 

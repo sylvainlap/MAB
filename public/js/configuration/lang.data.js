@@ -379,6 +379,31 @@ var lang =
 	    	'FR':'extension',
 	    	'EN':'extension'
 	    },
+	    /* === ENUM TRA FERQ === */
+	    'tra_freq_unique':{
+	    	'FR':'unique',
+	    	'EN':'unique'
+	    },
+        'tra_freq_1pd':{
+	    	'FR':'1 fois par jour',
+	    	'EN':'1 time daily'
+	    },
+        'tra_freq_2pd':{
+	    	'FR':'2 fois par jour',
+	    	'EN':'2 times daily'
+	    },
+        'tra_freq_3pd':{
+	    	'FR':'3 fois par jour',
+	    	'EN':'3 times daily'
+	    },
+        'tra_freq_1p2d':{
+	    	'FR':'tous les 2 jours',
+	    	'EN':'every 2 days'
+	    },
+        'tra_freq_1pw':{
+	    	'FR':'1 fois par semaine',
+	    	'EN':'1 time per week'
+	    },
 	    /* === ENUM ANIMALS ===*/
 	    'ani_sp_bovin' : {
 	    	'FR':'bovin',

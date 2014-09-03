@@ -40,9 +40,11 @@
 				
 				
 <!-- === TRACE BOX === -->
-			<alert ng-repeat="msg in messages" type="{{ msg.type }}" close="alertMgt.closeAlert($index)">
-				{{ lang[msg.msg][l] }}
-			</alert>
+			<div class="pane">
+				<alert ng-repeat="msg in messages" type="{{ msg.type }}" close="alertMgt.closeAlert($index)">
+					{{ lang[msg.msg][l] }}
+				</alert>
+			</div>
 
 <!-- === REGISTER PANE === -->
 			<div class="pane pane-register" ng-if="user.token==undefined">
@@ -320,7 +322,15 @@
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.frequency||data.frequency>3, 'glyphicon-ok-sign text-success':data.frequency}"></span>
 								{{ lang['front_treat_frequency'][l] }}
 							</label>
-							<input class="col-xs-8" type="number" step="any" name="frequency" ng-model="data.frequency" />
+							<!-- input class="col-xs-8" type="number" step="any" name="frequency" ng-model="data.frequency" /-->
+							<div class="selectadv col-xs-8">
+								<select name="frequency" ng-model="data.frequency">
+									<option value="{{ v }}" 
+										ng-repeat="(f, v) in enums['tra_frequency']">
+										{{ lang[f][l] }}
+									</option>
+								</select>
+							</div>
 						</div>
 				<!-- == SEL Client Type -->
 						<div class="form-group row">
