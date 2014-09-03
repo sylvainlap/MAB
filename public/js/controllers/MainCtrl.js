@@ -2,9 +2,10 @@ mabapp.controller('MainCtrl',[
 	'$scope',
 	'$http',
 	'$timeout',
+	'filterFilter',
 	'localStorageService',
 	'messageService',
-	function($scope, $http, $timeout, localStorageService, messageService) {
+	function($scope, $http, $timeout, filterFilter,localStorageService, messageService) {
 
 	// config load
 	$scope.lang = lang;
@@ -34,9 +35,10 @@ mabapp.controller('MainCtrl',[
 			$scope.tmp = {
 				animal:{
 					environment:{},
-					envControl:false
+					envControl:false,
 				},
 				product:{},
+				species_list:[],
 				activity:{},
 				volume : {}
 			};
@@ -71,7 +73,7 @@ mabapp.controller('MainCtrl',[
 
 	$scope.l = $scope.user.language?$scope.user.language:'FR';
 	
-	// === EVENT WATCH ===
+	// === WATCH ===
 //	$scope.$on('message.new', function(event){
 //		setTimeout($scope.alertMgt.clearAlerts, 5000);
 //	});
@@ -84,7 +86,23 @@ mabapp.controller('MainCtrl',[
 	$scope.$watch('user', function(){
 		$scope.print.user = dump($scope.user);
 	},true);
+	$scope.$watch('data.animals', function(){
+		$scope.tmp.species_list = [];
+		for(var i in $scope.data.animals){
+			var sp = $scope.data.animals[i]['species'].split('p_')[1];
+			if($scope.tmp.species_list.indexOf(sp)<0){
+				$scope.tmp.species_list.push(sp);
+			}
+		}
+	}, true);
 	
+	$scope.filterMgt = {
+			products : {
+				target : function(element){
+					return (intersect_safe(element.target, $scope.tmp.species_list).length>0)?true:false;
+				}
+			}
+	};
 	// === DATA INCLUSION FUNCTIONS ===
 	$scope.dataMgt = {
 		/**

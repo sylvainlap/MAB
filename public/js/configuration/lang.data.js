@@ -221,6 +221,14 @@ var lang =
 			'FR':'ajouter au moins un produit',
 			'EN':'add at least one product'
 		},
+		'front_all_products':{
+			'FR':'Tous les produits',
+			'EN':'All products'
+		},
+		'front_products_match_animal':{
+			'FR':'Correspondant à votre sélection',
+			'EN':'Matching to your selection'
+		},
 		/* === ERRORS & MESSAGES === */
 		'msg_no_change_saved':{
 			'FR':'Aucun changement à enregistrer',

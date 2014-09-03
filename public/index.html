@@ -468,9 +468,16 @@
 							</label>
 							<div class="selectadv col-xs-8">
 								<select name="product" ng-model="tmp.productName" ng_change="dataMgt.buildProduct()">
-									<option value="{{ p.name }}" ng-repeat="p in products">
-										{{ p.name }}
-									</option>
+									<optgroup label="{{ lang['front_products_match_animal'][l] }}">
+										<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.target | orderBy:'name'">
+											{{ p.name }}
+										</option>
+									</optgroup>
+									<optgroup label="{{ lang['front_all_products'][l] }}">
+										<option value="{{ p.name }}" ng-repeat="p in products | orderBy:'name'">
+											{{ p.name }}
+										</option>
+									</optgroup>
 								</select>
 							</div>
 						</div>

@@ -3,22 +3,23 @@ var enums =
     "vet_activities" : [ 
         "vet_activities_cattle", 
         "vet_activities_porcine", 
-        "vet_activities_goat", 
         "vet_activities_equine", 
+        "vet_activities_ovine", 
+        "vet_activities_goat", 
         "vet_activities_canine"
     ],
     "tra_pathology" : [ 
+       "tra_pathology_digestive", 
+       "tra_pathology_fever", 
+       "tra_pathology_genital", 
+       "tra_pathology_limping", 
+       "tra_pathology_mastitis", 
+       "tra_pathology_ocular", 
+       "tra_pathology_peritonitis", 
+       "tra_pathology_post-surgery", 
         "tra_pathology_respiratory", 
-        "tra_pathology_urinary", 
-        "tra_pathology_genital", 
-        "tra_pathology_mastitis", 
-        "tra_pathology_digestive", 
-        "tra_pathology_peritonitis", 
         "tra_pathology_trauma", 
-        "tra_pathology_limping", 
-        "tra_pathology_post-surgery", 
-        "tra_pathology_ocular", 
-        "tra_pathology_fever", 
+        "tra_pathology_urinary", 
         "tra_pathology_other"
     ],
     "tra_type" : [ 
