@@ -1,4 +1,4 @@
-var products = [
+var productsData = [
 	{
 		'name' : 'intramicine',
 		'type' : 'antibio',

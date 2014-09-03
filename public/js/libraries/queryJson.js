@@ -6,6 +6,20 @@ function findOne(j,f,v){
 		}
 	}
 }
+/**
+ * TODO améliorer cette merde !
+ * @param j the json
+ * @param f the field
+ * @param v the value
+ * @returns
+ */
+function updateOne(j,f,v,nf,nv){
+	for(i in j){
+		if (j[i][f] === v){
+			j[i][nf] = nv;
+		}
+	}
+}
 
 /**
  * src : http://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript

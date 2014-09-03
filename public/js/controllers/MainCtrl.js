@@ -11,7 +11,7 @@ mabapp.controller('MainCtrl',[
 	$scope.lang = lang;
 	$scope.enums = enums;
 	$scope.animals = animals;
-	$scope.products = products;
+	$scope.products = productsData;
 	$scope.years = [];
 	$scope.datePicker = {};
 
@@ -58,7 +58,8 @@ mabapp.controller('MainCtrl',[
 				username : lss.get('user_username'),
 				token : lss.get('user_token'),
 				_id : lss.get('user_id'),
-				language : lss.get('user_l')
+				language : lss.get('user_l'),
+				favs : lss.get('user_favs')
 			};
 		},
 		print : function(){
@@ -71,6 +72,11 @@ mabapp.controller('MainCtrl',[
 	$scope.reset.user();
 	$scope.reset.print();
 
+	// inject favs value in the product list
+	for(k in $scope.user.favs.products){
+		updateOne($scope.products, 'name', k, 'clics', $scope.user.favs.products[k])
+	}
+	
 	$scope.l = $scope.user.language?$scope.user.language:'FR';
 	
 	// === WATCH ===
@@ -86,6 +92,9 @@ mabapp.controller('MainCtrl',[
 	$scope.$watch('user', function(){
 		$scope.print.user = dump($scope.user);
 	},true);
+	$scope.$watch('products', function(){
+		$scope.print.products = dump($scope.products);
+	},true);
 	$scope.$watch('data.animals', function(){
 		$scope.tmp.species_list = [];
 		for(var i in $scope.data.animals){
@@ -96,15 +105,19 @@ mabapp.controller('MainCtrl',[
 		}
 	}, true);
 	
+	// === DATA FILTER FUNCTIONS ===
 	$scope.filterMgt = {
-			products : {
-				target : function(element){
-					return (intersect_safe(element.target, $scope.tmp.species_list).length>0)?true:false;
-				},
-				notTarget : function(element){
-					return (intersect_safe(element.target, $scope.tmp.species_list).length>0)?false:true;
-				} 
+		products : {
+			target : function(element){
+				return (intersect_safe(element.target, $scope.tmp.species_list).length>0)?true:false;
+			},
+			notTarget : function(element){
+				return (intersect_safe(element.target, $scope.tmp.species_list).length>0)?false:true;
+			},
+			clics : function(element){
+				return (element.clics>0)?true:false;
 			}
+		}
 	};
 	// === DATA INCLUSION FUNCTIONS ===
 	$scope.dataMgt = {
@@ -121,7 +134,20 @@ mabapp.controller('MainCtrl',[
 				data:$scope.data})
 			.success(function(data){
 				$scope.messages = messageService.log(data);
-				$scope.reset.data();
+				// TODO à vérifier... manque d’élégance.
+				$http({
+					method:'POST',
+					url:'/profile',
+					headers:{'x-access-token':$scope.user.token},
+					data:$scope.user})
+					.success(function(data){
+						//$scope.messages = messageService.log(data);
+						
+						$scope.reset.data();
+						//$scope.ui.showProfile = false;
+				});
+				
+				//$scope.reset.data();
 			});
 		},
 		/**
@@ -181,7 +207,7 @@ mabapp.controller('MainCtrl',[
 		buildProduct : function(){
 			var q = $scope.tmp.product.quantity;
 			var qi = $scope.tmp.product.quantity_init;
-			$scope.tmp.product = findOne(products, 'name', $scope.tmp.productName);
+			$scope.tmp.product = findOne($scope.products, 'name', $scope.tmp.productName);
 			$scope.tmp.product.quantity = q;
 			$scope.tmp.product.quantity_init = qi;
 		},
@@ -190,6 +216,19 @@ mabapp.controller('MainCtrl',[
 		 */
 		addProduct : function() {
 			$scope.data.prescription.push($scope.tmp.product);
+			
+			if($scope.user.favs == undefined){
+				$scope.user.favs = {
+					products: {}
+				};
+			}
+			if($scope.user.favs.products[$scope.tmp.productName]!=undefined){
+				$scope.user.favs.products[$scope.tmp.productName] = $scope.user.favs.products[$scope.tmp.productName] +1; 
+			}
+			else{
+				$scope.user.favs.products[$scope.tmp.productName] = 1;
+			}
+			
 			$scope.tmp.product = {};
 			$scope.tmp.productName = undefined;
 		},
@@ -250,11 +289,13 @@ mabapp.controller('MainCtrl',[
 				$scope.user.token = data.token;
 				$scope.user._id = data._id;
 				$scope.user.language = data.lang;
+				$scope.user.favs = data.favs;
 				// save user data in localStorageService
 				lss.set('user_username', $scope.data.username);
 				lss.set('user_token', data.token);
 				lss.set('user_id', data._id);
 				lss.set('user_l', data.lang);
+				lss.set('user_favs', data.favs);
 				
 				// clear the form
 				$scope.reset.data();
@@ -273,11 +314,13 @@ mabapp.controller('MainCtrl',[
 				$scope.user.token = data.token;
 				$scope.user._id = data._id;
 				$scope.user.language = data.lang;
+				$scope.user.favs = data.favs;
 				// save user data in localStorageService
 				lss.set('user_username', $scope.data.username);
 				lss.set('user_token', data.token);
 				lss.set('user_id', data._id);
 				lss.set('user_l', data.lang);
+				lss.set('user_favs', data.favs);
 				
 				// clear the form
 				$scope.reset.data();

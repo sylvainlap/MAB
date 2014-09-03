@@ -20,7 +20,7 @@ exports.register = function(req, res, next) {
 
 			// all went good, now we send the token
 			generateToken(user.id, function(token) {
-				res.json({ message: 'back_logged', token: token, _id: user.id, lang:user.lang });
+				res.json({ message: 'back_logged', token: token, _id: user.id, lang:user.lang, favs:user.favs });
 			});
 		});
 	});
@@ -41,7 +41,7 @@ exports.login = function(req, res, next) {
 			if (isMatch) {
 				// build and send the token
 				generateToken(user.id, function(token) {
-					res.json({ message: 'back_logged', token: token, _id: user.id, lang:user.lang });
+					res.json({ message: 'back_logged', token: token, _id: user.id, lang:user.lang, favs:user.favs });
 				});
 			} else {
 				res.json({ error: 'back_wrong_pass' });
