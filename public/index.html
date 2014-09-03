@@ -441,10 +441,16 @@
 									{{ 	p.name }}
 								</td>
 								<td class="text-right">
+									{{ p.quantity_init }}
+								</td>
+								<td class="text-right">
+									{{ lang['front_then'][l] }}
+								</td>
+								<td class="text-right">
 									{{ p.quantity }}
 								</td>
 								<td>
-									{{ ((p.nunit!='vrac' && p.nunit!=undefined)?p.nunit +' de '+ p.qunit + p.unit:p.unit) }}
+									{{ ((p.nunit!='vrac' && p.nunit!=undefined)?lang[p.nunit][l] + ' ' + lang['front_of'][l]+ ' '+ p.qunit + p.unit:p.unit) }}
 								</td>
 							<!-- == BTN Product Remove -->
 								<td class="text-right">
@@ -468,21 +474,31 @@
 								</select>
 							</div>
 						</div>
-				<!-- == INP Product Quantity -->
+				<!-- == INP Product Initial Quantity -->
 						<div class="form-group row">
+							<label class="col-xs-4">
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.product.quantity_init, 'glyphicon-ok-sign text-success':tmp.product.quantity_init}"></span>
+								{{ lang['front_product_quantity_init'][l] }}
+							</label>
+							<input  class="col-xs-3" type="number" name="product_quantity_init" ng-model="tmp.product.quantity_init" />
+						<!-- == DISP Product Unit -->
+							<label class="col-xs-5">
+								{{ lang['front_in'][l]+ ' '+((tmp.product.nunit!='vrac' && tmp.product.nunit!=undefined)?lang[tmp.product.nunit][l] +' ' + lang['front_of'][l]+ ' '+ tmp.product.qunit + tmp.product.unit:tmp.product.unit) }}
+							</label>
+				<!-- == INP Product Quantity -->
 							<label class="col-xs-4">
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.product.quantity, 'glyphicon-ok-sign text-success':tmp.product.quantity}"></span>
 								{{ lang['front_product_quantity'][l] }}
 							</label>
 							<input  class="col-xs-3" type="number" name="product_quantity" ng-model="tmp.product.quantity" />
-				<!-- == DISP Product Unit -->
+						<!-- == DISP Product Unit -->
 							<label class="col-xs-5">
-								{{ 'en '+((tmp.product.nunit!='vrac' && tmp.product.nunit!=undefined)?tmp.product.nunit +' de '+ tmp.product.qunit + tmp.product.unit:tmp.product.unit) }}
+								{{ lang['front_in'][l]+ ' '+((tmp.product.nunit!='vrac' && tmp.product.nunit!=undefined)?lang[tmp.product.nunit][l] +' ' + lang['front_of'][l]+ ' '+ tmp.product.qunit + tmp.product.unit:tmp.product.unit) }}
 							</label>
 						</div>
 				<!-- == BTN Product Add -->
 						<div class="form-group row">
-							<button class="col-xs-4 col-xs-offset-8 btn btn-info btn-md" type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity||!tmp.productName">
+							<button class="col-xs-4 col-xs-offset-8 btn btn-info btn-md" type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity_init||!tmp.product.quantity||!tmp.productName">
 								<span class="glyphicon glyphicon-plus"></span> {{ lang['front_add'][l]}}
 							</button>
 						</div>
@@ -541,7 +557,7 @@
 								<table class="table">
 									<tr ng-repeat="p in t.prescription">
 										<td>{{ p.name }}</td>
-										<td>{{ p.quantity }} {{ ((p.nunit!='vrac' && p.nunit!=undefined)?p.nunit +' de '+ p.qunit + p.unit:p.unit) }}</td>
+										<td>{{ p.quantity_init+' / '+p.quantity }} {{ ((p.nunit!='vrac' && p.nunit!=undefined)?lang[p.nunit][l] +' de '+ p.qunit + p.unit:p.unit) }}</td>
 									</tr>
 								</table></td>
 						</tr>

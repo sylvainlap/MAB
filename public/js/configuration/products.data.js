@@ -25,7 +25,7 @@ var products = [
 		'labo' : 'boehringer',
 		'unit' : 'ml',
 		'qunit' : 30,
-		'nunit' : 'flacon',
+		'nunit' : 'pro_nunit_flacon',
 		'target' : ['bovin'],
 		'composition' : {'pénéthamate' : 257}
 	},
@@ -265,7 +265,7 @@ var products = [
 		'labo' : 'vetoquinol',
 		'unit' : 'mg',
 		'qunit' : 1500,
-		'nunit' : 'comprime',
+		'nunit' : 'pro_nunit_pill',
 		'target' : ['bovin', 'porcin'],
 		'composition' : {'marbofloxacine' : 50}
 	},
@@ -305,7 +305,7 @@ var products = [
 		'labo' : 'virbac',
 		'unit' : 'mg',
 		'qunit' : 2500,
-		'nunit' : 'comprime',
+		'nunit' : 'pro_nunit_pill',
 		'target' : ['bovin', 'ovin', 'caprin'],
 		'composition' : {'colistine' : '2500000ui', 'sulfaguanidine' : 1000}
 	},
@@ -315,7 +315,7 @@ var products = [
 		'labo' : 'zoetis',
 		'unit' : 'mg',
 		'qunit' : 2970,
-		'nunit' : 'comprime',
+		'nunit' : 'pro_nunit_pill',
 		'target' : ['bovin'],
 		'composition' : {'amoxicilline' : 400, 'acide clavulanique' : 100}
 	},
@@ -325,7 +325,7 @@ var products = [
 		'labo' : 'msd',
 		'unit' : 'mg',
 		'qunit' : 8000,
-		'nunit' : 'injecteur',
+		'nunit' : 'pro_nunit_injector',
 		'target' : ['bovin'],
 		'composition' : {'cefapirine' : 300}
 	},
@@ -335,7 +335,7 @@ var products = [
 		'labo' : 'zoetis',
 		'unit' : 'mg',
 		'qunit' : 3000,
-		'nunit' : 'injecteur',
+		'nunit' : 'pro_nunit_injector',
 		'target' : ['bovin'],
 		'composition' : {'amoxycilline' : 200, 'acide clavulanique' : 20}
 	},
@@ -345,7 +345,7 @@ var products = [
 		'labo' : 'zoetis',
 		'unit' : 'mg',
 		'qunit' : 3000,
-		'nunit' : 'injecteur',
+		'nunit' : 'pro_nunit_injector',
 		'target' : ['bovin'],
 		'composition' : {'cloxacilline' : 200, 'ampicilline' : 75}
 	},
@@ -355,7 +355,7 @@ var products = [
 		'labo' : 'msd',
 		'unit' : 'mg',
 		'qunit' : 19000,
-		'nunit' : 'injecteur',
+		'nunit' : 'pro_nunit_injector',
 		'target' : ['bovin'],
 		'composition' : {'cefapirine' : 500}
 	},
@@ -365,7 +365,7 @@ var products = [
 		'labo' : 'merial',
 		'unit' : 'mg',
 		'qunit' : 6000,
-		'nunit' : 'comprime',
+		'nunit' : 'pro_nunit_pill',
 		'target' : ['bovin'],
 		'composition' : {'chlortétracycline' : 929.17}
 	},
@@ -375,7 +375,7 @@ var products = [
 		'labo' : 'vetoquinol',
 		'unit' : 'mg',
 		'qunit' : 1000,
-		'nunit' : 'aerosol',
+		'nunit' : 'pro_nunit_aerosol',
 		'target' : ['bovin', 'ovin', 'caprin', 'porcin', 'canin'],
 		'composition' : {'sulfanilamide' : 500, 'chlortétracycline' : 28.50}
 	},
@@ -385,7 +385,7 @@ var products = [
 		'labo' : 'boehringer',
 		'unit' : 'mg',
 		'qunit' : 10000,
-		'nunit' : 'injecteur',
+		'nunit' : 'pro_nunit_injector',
 		'target' : ['bovin'],
 		'composition' : {'cefalexine' : 200, 'kanamycine' : '100000ui'}
 	},
@@ -395,7 +395,7 @@ var products = [
 		'labo' : 'zoetis',
 		'unit' : 'ml',
 		'qunit' : 10,
-		'nunit' : 'injecteur',
+		'nunit' : 'pro_nunit_injector',
 		'target' : ['bovin'],
 		'composition' : {'cefopérazone' : 250}
 	},
@@ -405,7 +405,7 @@ var products = [
 		'labo' : 'msd',
 		'unit' : 'mg',
 		'qunit' : 8000,
-		'nunit' : 'injecteur',
+		'nunit' : 'pro_nunit_injector',
 		'target' : ['bovin'],
 		'composition' : {'cefquinome' : 75}
 	},
@@ -415,7 +415,7 @@ var products = [
 		'labo' : 'zoetis',
 		'unit' : 'ml',
 		'qunit' : 10,
-		'nunit' : 'injecteur',
+		'nunit' : 'pro_nunit_injector',
 		'target' : ['bovin'],
 		'composition' : {'lincomycine' : 330, 'néomycine' : 100}
 	},
@@ -425,7 +425,7 @@ var products = [
 		'labo' : 'virbac',
 		'unit' : 'ml',
 		'qunit' : 10,
-		'nunit' : 'injecteur',
+		'nunit' : 'pro_nunit_injector',
 		'target' : ['bovin'],
 		'composition' : {'benzylpenicilline' : 570, 'dihydrostreptomycine' : 410}
 	},
@@ -435,7 +435,7 @@ var products = [
 		'labo' : 'msd',
 		'unit' : 'mg',
 		'qunit' : 3000,
-		'nunit' : 'injecteur',
+		'nunit' : 'pro_nunit_injector',
 		'target' : ['bovin', 'ovin', 'caprin'],
 		'composition' : {'benzylpenicilline' : 300, 'dihydrostreptomycine' : 100, 'nafcilline' : 100}
 	},
@@ -445,7 +445,7 @@ var products = [
 		'labo' : 'msd',
 		'unit' : 'mg',
 		'qunit' : 3000,
-		'nunit' : 'injecteur',
+		'nunit' : 'pro_nunit_injector',
 		'target' : ['bovin'],
 		'composition' : {'cefalonium' : 250}
 	},
@@ -455,7 +455,7 @@ var products = [
 		'labo' : 'zoetis',
 		'unit' : 'mg',
 		'qunit' : 3600,
-		'nunit' : 'injecteur',
+		'nunit' : 'pro_nunit_injector',
 		'target' : ['bovin'],
 		'composition' : {'cloxacilline' : 600}
 	}

@@ -109,6 +109,18 @@ var lang =
 			'FR':'supprimer',
 			'EN':'remove'
 		},
+		'front_of':{
+			'FR':'de',
+			'EN':'of'
+		},
+		'front_then':{
+			'FR':'puis',
+			'EN':'then'
+		},
+		'front_in':{
+			'FR':'en',
+			'EN':'in'
+		},
 		'front_profile_manager':{
 			'FR':'Configuration du profil',
 			'EN':'Profile manager'
@@ -194,8 +206,12 @@ var lang =
 			'EN':'product'
 		},
 		'front_product_quantity':{
-			'FR':'quantité',
-			'EN':'quantity'
+			'FR':'quantité suite',
+			'EN':'next quantity'
+		},
+		'front_product_quantity_init':{
+			'FR':'quantité initiale',
+			'EN':'initial quantity'
 		},
 		'front_msg_add_at_list_1_animal':{
 			'FR':'ajouter au moins un animal',
@@ -498,5 +514,21 @@ var lang =
         'ani_client_private': {
 	    	'FR':'particulier',
 	    	'EN':'private'
+	    },
+	    'pro_nunit_pill': {
+	    	'FR':'comprimé',
+	    	'EN':'pill'
+	    },
+	    'pro_nunit_injector': {
+	    	'FR':'injecteur',
+	    	'EN':'injector'
+	    },
+	    'pro_nunit_flacon': {
+	    	'FR':'flacon',
+	    	'EN':'flacon'
+	    },
+	    'pro_nunit_aerosol': {
+	    	'FR':'aerosol',
+	    	'EN':'aerosol'
 	    }
 };
