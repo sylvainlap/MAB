@@ -461,13 +461,13 @@
 									{{ 	p.name }}
 								</td>
 								<td class="text-right">
-									{{ p.quantity_init }}
+									{{ (data.frequency!=0)?p.quantity_init:'' }}
 								</td>
 								<td class="text-right">
-									{{ lang['front_then'][l] }}
+									{{ (data.frequency!=0)?lang['front_then'][l]:'' }}
 								</td>
 								<td class="text-right">
-									{{ p.quantity }}
+									{{ (data.frequency!=0)?p.quantity:p.quantity_init }}
 								</td>
 								<td>
 									{{ ((p.nunit!='vrac' && p.nunit!=undefined)?lang[p.nunit][l] + ' ' + lang['front_of'][l]+ ' '+ p.qunit + p.unit:p.unit) }}
@@ -486,11 +486,11 @@
 								<th ng-class="{'text-danger':!tmp.productName, 'text-success':tmp.productName}">
 									{{ lang['front_product'][l] }}
 								</th>
-								<th ng-class="{'text-danger':!tmp.product.quantity_init, 'text-success':tmp.product.quantity_init}"></span>
+								<th ng-class="{'text-danger':!tmp.product.quantity_init, 'text-success':tmp.product.quantity_init}">
 									{{ lang['front_product_quantity_init'][l] }}
 								</th>
-								<th ng-class="{'text-danger':!tmp.product.quantity, 'text-success':tmp.product.quantity}"></span>
-									{{ lang['front_product_quantity'][l] }}
+								<th ng-class="{'text-danger':!tmp.product.quantity, 'text-success':tmp.product.quantity}">
+									<span  ng-hide="data.frequency==0">{{ lang['front_product_quantity'][l] }}</span>
 								</th>
 								<th>&nbsp;</th>
 							</tr>
@@ -528,13 +528,13 @@
 								</td>
 								<td width="26%">
 				<!-- == INP Product Quantity -->
-									<input  class="col-xs-12" type="number" step="any" name="product_quantity" ng-model="tmp.product.quantity" />
+									<input  class="col-xs-12" type="number" step="any" name="product_quantity" ng-hide="data.frequency==0" ng-model="tmp.product.quantity" />
 						<!-- == DISP Product Unit -->
 									{{ lang['front_in'][l]+ ' '+((tmp.product.nunit!='vrac' && tmp.product.nunit!=undefined)?lang[tmp.product.nunit][l] +' ' + lang['front_of'][l]+ ' '+ tmp.product.qunit + tmp.product.unit:tmp.product.unit) }}
 								</td>
 								<td class="adder">
 				<!-- == BTN Product Add -->
-									<button class="col-xs-12 btn btn-info" type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity_init||!tmp.product.quantity||!tmp.productName">
+									<button class="col-xs-12 btn btn-info" type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity_init||(!tmp.product.quantity&&data.frequency>0)||!tmp.productName">
 										<span class="glyphicon glyphicon-plus"></span>
 									</button>
 								</td>
