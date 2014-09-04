@@ -153,6 +153,10 @@ var lang =
 			'FR':'suite prélèvement',
 			'EN':'follow sample'
 		},
+		'front_delivered':{
+			'FR':'prescription délivrée',
+			'EN':'delivered prescription'
+		},
 		'front_treat_duration':{
 			'FR':'durée (en jours)',
 			'EN':'duration (in days)'

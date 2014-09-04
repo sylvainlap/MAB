@@ -540,7 +540,17 @@
 								</td>
 							</tr>
 						</table>
-
+		<!-- == INP Treatment Follow Sample -->
+						<div class="form-group row">
+							<label class="col-xs-4">
+								<span class="glyphicon glyphicon-ok-sign text-success"></span>
+								{{ lang['front_delivered'][l] }}
+							</label>
+							<input type="checkbox" id="delivered" ng-model="data.delivered"/>
+							<label class="col-xs-8" for="delivered">
+								<span>{{ data.delivered?lang['front_yes'][l]:lang['front_no'][l] }}</span>
+							</label>
+						</div>
 
 		<!-- == BTN Record -->
 						<div class="validation row form-group">
@@ -583,6 +593,7 @@
 									<tr>
 										<th>client</th><td>{{ lang[t.client_type][l] }}</td>
 									</tr>
+									<th>délivré</th><td>{{ t.delivered?lang['front_yes'][l]:lang['front_no'][l] }}</td>
 								</table>
 							<td>
 								<table class="table">
@@ -598,7 +609,8 @@
 										<td>{{ p.name }}</td>
 										<td>{{ p.quantity_init+' / '+p.quantity }} {{ ((p.nunit!='vrac' && p.nunit!=undefined)?lang[p.nunit][l] +' de '+ p.qunit + p.unit:p.unit) }}</td>
 									</tr>
-								</table></td>
+								</table>
+							</td>
 						</tr>
 					</table>
 				</div>

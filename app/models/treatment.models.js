@@ -44,6 +44,10 @@ var TreatmentSchema = new Schema({
 		type: String,
 		required: true
 	},
+	delivered: {
+		type: Boolean,
+		default: false
+	},
 	veterinary: {
 		type: Schema.Types.ObjectId,
 		required: true
