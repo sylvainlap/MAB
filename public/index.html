@@ -7,7 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="./css/custom.css" />
 	</head>
 	<body ng-controller="MainCtrl">
-		<div class="container">
+		<div class="container_">
 			<div class="header">
 				
 <!-- === LANGUAGE SWITCH === -->
@@ -19,15 +19,17 @@
 <!-- === USER MENU === -->
 				<div class="menu menu-user pull-right text-left" ng-if="user.token!=undefined">
 		<!-- == Username -->
-					<span class="glyphicon glyphicon-user"></span>
-					{{ user.username }}
+					<span class="userlabel">
+						<span class="glyphicon glyphicon-user"></span>
+						{{ user.username }}
+					</span>
 		<!-- == BTN Profile -->
-					<a class="btn btn-default btn-sm" ng-click="userMgt.getProfile('open')">
+					<a href="" class="btn btn-sm" ng-click="userMgt.getProfile('open')">
 						<span class="glyphicon glyphicon-cog"></span>
 						{{ lang['front_profile'][l] }}
 					</a>
 		<!-- == BTN Logout -->
-					<a class="btn btn-default btn-sm" ng-click="userMgt.logout()">
+					<a href="" class="btn btn-sm" ng-click="userMgt.logout()">
 						<span class="glyphicon glyphicon-off"></span>
 						{{ lang['front_disconnect'][l] }}
 					</a>
@@ -228,7 +230,7 @@
 			</div>
 			<div class="pane main-pane" ng-if="user.token != undefined && !ui.showProfile">
 				<div class="inclusion-pane well" ng-if="ui.page == 'inclusion'" ng-init="reset.data()">
-					<h3>{{ lang['front_main_form_title'][l] }}</h3>
+					<!-- <h3>{{ lang['front_main_form_title'][l] }}</h3> -->
 					<form ng-submit="dataMgt.recordTreatment()">
 
 		<!-- == GRP Treatment infos -->
@@ -240,7 +242,7 @@
 								{{ lang['front_start_date'][l] }}
 							</label>
 							<p class="input-group col-xs-8">
-				            	<input class="col-xs-10" type="text"
+				            	<input class="col-xs-10 box-left" type="text"
 				            	datepicker-popup="{{format}}"
 				            	is-open="datePicker.opened"
 				            	datepicker-options="dateOptions"
@@ -250,7 +252,7 @@
 				            	max-date="thisday"
 				            	ng-model="data.date_dispense"
 				            	/>
-			            		<button type="button" class="col-xs-2 btn btn-default" ng-click="open($event)">
+			            		<button type="button" class="col-xs-2 btn btn-default box-right" ng-click="open($event)">
 			            			<i class="glyphicon glyphicon-calendar"></i>
 			            		</button>
 				            </p>
@@ -347,92 +349,95 @@
 								</select>
 							</div>
 						</div>
+						<div class="form-group row">
+							<label class="col-xs-4">
+								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.client_type, 'glyphicon-ok-sign text-success':data.client_type}"></span>
+								{{ lang['front_client_type'][l] }}
+							</label>
+							<input class="col-xs-8" type="number" name="duration" ng-model="data.duration" />
+						</div>
 						
 		<!-- == GRP Treatment Animals List Creation -->
 						<legend>{{ lang['front_animals'][l] }}</legend>
 				<!-- == DISP Animals List -->
 						<table class="table bg-success">
 							<tr ng-if="!data.animals || data.animals.length==0">
-								<td class="bg-warning text-danger">{{ lang['front_empty_list'][l] }}</td>
-							</tr>
-							<tr ng-if="!data.animals || data.animals.length==0">
 								<th class="bg-danger text-danger">
 									<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;
-									{{ lang['front_msg_add_at_list_1_animal'][l] }}
+									{{ lang['front_empty_list'][l] }}, {{ lang['front_msg_add_at_list_1_animal'][l] }}
 								</th>
 							</tr>
 							<tr ng-repeat="a in data.animals">
 								<td>
-									<p><span class="glyphicon glyphicon-ok text-success"></span>&nbsp;{{ a.quantity }} {{ lang[a.species][l] }} {{ lang[a.type][l] }} {{ lang[a.age][l] }} [<span ng-repeat="env in a.environment">{{ lang[env][l] + ' '}}</span>]</p>
+									<span class="glyphicon glyphicon-ok text-success"></span>&nbsp;{{ a.quantity }} {{ lang[a.species][l] }} {{ lang[a.type][l] }} {{ lang[a.age][l] }} [<span ng-repeat="env in a.environment">{{ lang[env][l] + ' '}}</span>]
 								</td>
 						<!-- == BTN Animal Remove -->
-								<td class="text-right">
-									<button class="btn btn-xs btn-warning" type="button" ng-click="dataMgt.removeAnimal($index)">
+								<td class="text-right adder">
+									<button class="col-xs-12 btn btn-warning" type="button" ng-click="dataMgt.removeAnimal($index)">
 										<span class="glyphicon glyphicon-minus"></span>
 									</button>
 								</td>
 							</tr>
 						</table>
+						<table class="table adder">
+							<tr>
+								<th ng-class="{'text-danger':!tmp.animal.raw, 'text-success':tmp.animal.raw}">
+									{{ lang['front_species'][l] }}
+								</th>
+								<th ng-class="{'text-danger':!tmp.animal.quantity, 'text-success':tmp.animal.quantity}">
+									{{ lang['front_animal_quantity'][l] }}
+								</th>
+								<th ng-class="{'text-danger':!tmp.animal.envControl, 'text-success':tmp.animal.envControl}">
+									{{ lang['front_animal_environment'][l] }}
+								</th>
+								<th>&nbsp;</th>
+							</tr>
+							<tr>
+								<td width="40%">
+									<div class="selectadv">
 				<!-- == INP Animal -->
-						<div class="row form-group">
-							<label class="col-xs-4">
-								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.animal.raw, 'glyphicon-ok-sign text-success':tmp.animal.raw}"></span>
-								{{ lang['front_species'][l] }}
-							</label>
-							<div class="selectadv col-xs-8">
-								<select name="animal" ng-model="tmp.animal.raw">
-									<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
-										<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
-											-- {{ lang[type][l] }} --
-										</option>
-										<option value="{{ species + '|'  + type + '|' + age + '|' + weight }}" ng-repeat="(age, weight) in ages">
-											{{ lang[species][l] + '/'  + lang[type][l] + '/' + lang[age][l] }}
-										</option>
-										<option disabled ng-repeat-end></option>
-									</optgroup>
-								</select>
-							</div>
-						</div>
+										<select name="animal" ng-model="tmp.animal.raw">
+											<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
+												<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
+													-- {{ lang[type][l] }} --
+												</option>
+												<option value="{{ species + '|'  + type + '|' + age + '|' + weight }}" ng-repeat="(age, weight) in ages">
+													{{ lang[species][l] + '/'  + lang[type][l] + '/' + lang[age][l] }}
+												</option>
+												<option disabled ng-repeat-end></option>
+											</optgroup>
+										</select>
+									</div>
+								</td>
+								<td width="15%">
 				<!-- == INP Animal quantity -->
-						<div class="form-group row">
-							<label class="col-xs-4">
-								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.animal.quantity, 'glyphicon-ok-sign text-success':tmp.animal.quantity}"></span>
-								{{ lang['front_animal_quantity'][l] }}
-							</label>
-							<input class="col-xs-8" type="number" name="quantity" ng-model="tmp.animal.quantity" />
-						</div>
+									<input class="col-xs-12" type="number" name="quantity" ng-model="tmp.animal.quantity" />
+								</td>
+								<td>
 				<!-- == SEL Animal Environment -->
-						<div class="form-group row">
-							<label class="col-xs-4">
-								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.animal.envControl, 'glyphicon-ok-sign text-success':tmp.animal.envControl}"></span>
-								{{ lang['front_animal_environment'][l] }}
-							</label>
-							<div class="col-xs-8 pad0">
-								<input type="checkbox" name="animal_env" ng-repeat-start="env in enums['ani_environment']" ng-model="tmp.animal.environment[env]" ng-change="dataMgt.buildEnvControl()" id="{{ env }}">
-								<label class="col-xs-6" for="{{ env }}" class="tiny">
-									<span>{{ lang[env][l] }}</span>
-								</label>
-								<span ng-repeat-end></span>
-							</div>
-						</div>
+									<input type="checkbox" name="animal_env" ng-repeat-start="env in enums['ani_environment']" ng-model="tmp.animal.environment[env]" ng-change="dataMgt.buildEnvControl()" id="{{ env }}">
+									<label class="col-xs-6" for="{{ env }}" class="tiny">
+										<span>{{ lang[env][l] }}</span>
+									</label>
+									<span ng-repeat-end></span>
+								</td>
+								<td class="adder">
 				<!-- == BTN Animal Add -->
-						<div class="form-group row">
-							<button class="col-xs-4 col-xs-offset-8 btn btn-info" type="button" ng-click="dataMgt.addAnimal()" ng-disabled="!tmp.animal.quantity||!tmp.animal.envControl||!tmp.animal.raw">
-								<span class="glyphicon glyphicon-plus"></span> {{ lang['front_add'][l]}}
-							</button>
-						</div>
+									<button class="col-xs-12 btn btn-double btn-info" type="button" ng-click="dataMgt.addAnimal()" ng-disabled="!tmp.animal.quantity||!tmp.animal.envControl||!tmp.animal.raw">
+										<span class="glyphicon glyphicon-plus"></span> <!-- {{ lang['front_add'][l]}} -->
+									</button>
+								</td>
+							</tr>
+						</table>
 							
 		<!-- == GRP Treatment Products List Creation -->
 						<legend>{{ lang['front_treat_prescription'][l] }}</legend>
 				<!-- == DISP Products List -->
 						<table class="table bg-success">
 							<tr ng-if="!data.prescription || data.prescription.length==0">
-								<td class="bg-warning text-danger">{{ lang['front_empty_list'][l] }}</td>
-							</tr>
-							<tr ng-if="!data.prescription || data.prescription.length==0">
 								<th class="bg-danger text-danger">
 									<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;
-									{{ lang['front_msg_add_at_list_1_product'][l] }}
+									{{ lang['front_empty_list'][l] }}, {{ lang['front_msg_add_at_list_1_product'][l] }}
 								</th>
 							</tr>
 							<tr ng-repeat="p in data.prescription">
@@ -453,72 +458,74 @@
 									{{ ((p.nunit!='vrac' && p.nunit!=undefined)?lang[p.nunit][l] + ' ' + lang['front_of'][l]+ ' '+ p.qunit + p.unit:p.unit) }}
 								</td>
 							<!-- == BTN Product Remove -->
-								<td class="text-right">
-									<button class="btn btn-xs btn-warning" type="button" ng-click="dataMgt.removeProduct($index)">
+								<td class="text-right adder">
+									<button class="col-xs-12 btn btn-warning" type="button" ng-click="dataMgt.removeProduct($index)">
 										<span class="glyphicon glyphicon-minus"></span>
 									</button>
 								</td>
 							</tr>
 						</table>
-						<div class="row form-group">
+
+						<table class="table adder">
+							<tr>
+								<th ng-class="{'text-danger':!tmp.productName, 'text-success':tmp.productName}">
+									{{ lang['front_product'][l] }}
+								</th>
+								<th ng-class="{'text-danger':!tmp.product.quantity_init, 'text-success':tmp.product.quantity_init}"></span>
+									{{ lang['front_product_quantity_init'][l] }}
+								</th>
+								<th ng-class="{'text-danger':!tmp.product.quantity, 'text-success':tmp.product.quantity}"></span>
+									{{ lang['front_product_quantity'][l] }}
+								</th>
+								<th>&nbsp;</th>
+							</tr>
+							<tr>
+								<td width="40%">
 				<!-- == SEL Product -->
-							<label class="col-xs-4">
-								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.productName, 'glyphicon-ok-sign text-success':tmp.productName}"></span>
-								{{ lang['front_product'][l] }}
-							</label>
-							<div class="selectadv col-xs-8">
-								<select name="product" ng-model="tmp.productName" ng_change="dataMgt.buildProduct()">
-									<optgroup label="favs">
-										<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | orderBy:'clics':true">
-											{{ p.name }}
-										</option>
-									</optgroup>
-									<optgroup label="{{ lang['front_products_match_animal'][l] }}" ng-if="tmp.species_list.length>0">
-										<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.target | orderBy:'name'">
-											{{ p.name }}
-										</option>
-									</optgroup>
-									<optgroup label="{{ lang['front_other_products'][l] }}" ng-if="tmp.species_list.length>0">
-										<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.notTarget | orderBy:'name'">
-											{{ p.name }}
-										</option>
-									</optgroup>
-									<optgroup label="{{ lang['front_all_products'][l] }}" ng-if="tmp.species_list.length==0">
-										<option value="{{ p.name }}" ng-repeat="p in products | orderBy : 'name'">
-											{{ p.name }}{{ ' '+p.clics}}
-										</option>
-									</optgroup>
-								</select>
-							</div>
-						</div>
+									<div class="selectadv">
+										<select name="product" ng-model="tmp.productName" ng_change="dataMgt.buildProduct()">
+											<optgroup label="favs">
+												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | orderBy:'clics':true">
+													{{ p.name }}
+												</option>
+											</optgroup>
+											<optgroup label="{{ lang['front_products_match_animal'][l] }}" ng-if="tmp.species_list.length>0">
+												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.target | orderBy:'name'">
+													{{ p.name }}
+												</option>
+											</optgroup>
+											<optgroup label="{{ lang['front_other_products'][l] }}" ng-if="tmp.species_list.length>0">
+												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.notTarget | orderBy:'name'">
+													{{ p.name }}
+												</option>
+											</optgroup>
+											<optgroup label="{{ lang['front_all_products'][l] }}" ng-if="tmp.species_list.length==0">
+												<option value="{{ p.name }}" ng-repeat="p in products | orderBy : 'name'">
+													{{ p.name }}{{ ' '+p.clics}}
+												</option>
+											</optgroup>
+										</select>
+									</div>
+								</td>
+								<td width="26%">
 				<!-- == INP Product Initial Quantity -->
-						<div class="form-group row">
-							<label class="col-xs-4">
-								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.product.quantity_init, 'glyphicon-ok-sign text-success':tmp.product.quantity_init}"></span>
-								{{ lang['front_product_quantity_init'][l] }}
-							</label>
-							<input  class="col-xs-3" type="number" name="product_quantity_init" ng-model="tmp.product.quantity_init" />
-						<!-- == DISP Product Unit -->
-							<label class="col-xs-5">
-								{{ lang['front_in'][l]+ ' '+((tmp.product.nunit!='vrac' && tmp.product.nunit!=undefined)?lang[tmp.product.nunit][l] +' ' + lang['front_of'][l]+ ' '+ tmp.product.qunit + tmp.product.unit:tmp.product.unit) }}
-							</label>
+									<input  class="col-xs-12" type="number" name="product_quantity_init" ng-model="tmp.product.quantity_init" />
+								</td>
+								<td width="26%">
 				<!-- == INP Product Quantity -->
-							<label class="col-xs-4">
-								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!tmp.product.quantity, 'glyphicon-ok-sign text-success':tmp.product.quantity}"></span>
-								{{ lang['front_product_quantity'][l] }}
-							</label>
-							<input  class="col-xs-3" type="number" name="product_quantity" ng-model="tmp.product.quantity" />
+									<input  class="col-xs-12" type="number" name="product_quantity" ng-model="tmp.product.quantity" />
 						<!-- == DISP Product Unit -->
-							<label class="col-xs-5">
-								{{ lang['front_in'][l]+ ' '+((tmp.product.nunit!='vrac' && tmp.product.nunit!=undefined)?lang[tmp.product.nunit][l] +' ' + lang['front_of'][l]+ ' '+ tmp.product.qunit + tmp.product.unit:tmp.product.unit) }}
-							</label>
-						</div>
+									{{ lang['front_in'][l]+ ' '+((tmp.product.nunit!='vrac' && tmp.product.nunit!=undefined)?lang[tmp.product.nunit][l] +' ' + lang['front_of'][l]+ ' '+ tmp.product.qunit + tmp.product.unit:tmp.product.unit) }}
+								</td>
+								<td class="adder">
 				<!-- == BTN Product Add -->
-						<div class="form-group row">
-							<button class="col-xs-4 col-xs-offset-8 btn btn-info btn-md" type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity_init||!tmp.product.quantity||!tmp.productName">
-								<span class="glyphicon glyphicon-plus"></span> {{ lang['front_add'][l]}}
-							</button>
-						</div>
+									<button class="col-xs-12 btn btn-info" type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity_init||!tmp.product.quantity||!tmp.productName">
+										<span class="glyphicon glyphicon-plus"></span>
+									</button>
+								</td>
+							</tr>
+						</table>
+
 
 		<!-- == BTN Record -->
 						<div class="validation row form-group">

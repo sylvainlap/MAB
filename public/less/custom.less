@@ -5,21 +5,27 @@
 @import url(http://fonts.googleapis.com/css?family=Quicksand:400,700,300);
 
 body {
-	padding: 1% 0;
+	padding: 0;
 	font-family: 'Quicksand';
+	max-width: 1000px;
+	margin: 0 auto;
 }
 
 // == FORMS =================================================================
-@checkbox-size: 2em;
+@checkbox-size: 2.5em;
 @checkbox-padding-left: 0.5em;
 @form-radius: 0.5em;
+
 .focus{
-	border: 1px @warning solid;
+	background-color: lighten(@base-o, 25%);
 }
 .inputs{
-	border: 1px darken(@default, 15%) solid;
-	.border-radius(@form-radius);
-	.box-shadow(inset 0 0px 2px fadeOut(@default, 10%));
+	.border-radius(0);
+	border: 0;
+	//.box-shadow(inset 3px 3px 3px @default);
+	&:focus{
+		.focus;
+	}
 }
 .btn[disabled]{
 	opacity: 0.4;
@@ -27,15 +33,18 @@ body {
 input, button, .form-control, .btn{
 	.inputs;
 }
+input{
+	background-color: lighten(@base-v, 40%);
+}
 .selectadv{
 	.inputs;
 	overflow: hidden;
 	padding: 0;
-	background: url(../img/arrow-ffffff-down.png) no-repeat right @base-o;
+	background: url(../img/arrow-ffffff-down.png) no-repeat right lighten(@base-v, 20%);
 	min-width: 80px;
 	select{
 		cursor: pointer;
-		padding-left: 1em;
+		padding-left: 0.25em;
 		width: 120%;
 		background: transparent;
 		.border-radius(0);
@@ -46,36 +55,38 @@ input, button, .form-control, .btn{
 		optgroup, option{
 			background-color: #fff;
 			color: #000;
-			padding-left: 1em;
+			padding-left: 0.25em;
 		}
 		option{
 			font-weight: normal;
 			padding-top: 0.25em;
 			padding-bottom: 0.25em;
 		}
+		&:focus{
+			.focus;
+		}
 	}
 }
 .btn, .selectadv{
-	.box-shadow(inset 10px -10px 10px fadeOut(@default, 40%));
+	//.box-shadow(inset -3px -3px 5px @base-v);
 }
 .form-group{
 	margin-bottom: 0.25em;
 }
-select, input[type="text"], input[type="number"]{
+select, input[type="text"], input[type="number"], .btn{
 	height: 2.5em;
 }
 label, .label-like, .selected-item{
 	line-height: 2.5em;
 }
 .validation{
-	border-top: 2px dashed @base-v;
 	padding-top: 2em;
 }
 legend{
 	color: @base-v;
 	font-weight: bold;
-	border-top: 2px dashed @base-v;
-	border-bottom: 2px dashed @base-v;
+	//border-top: 2px dashed @base-v;
+	border-bottom: 1px solid @base-v;
 }
 :focus{
 	.focus;
@@ -101,7 +112,7 @@ legend{
 			top: 0;  
 			width: @checkbox-size;
 			height: @checkbox-size;
-			background-color: #fff; 
+			background-color: lighten(@base-v, 40%); 
 			.inputs; 
 		}
 		&:after{// COCHE
@@ -142,39 +153,59 @@ legend{
 		color: #aaa;  
 	}  
 }
-.menu-lang select{
-	font-size: 0.8em;
-}
 .header{
 	float: left;
 	width: 100%;
+	background-color: @base-v;
+	.menu-lang select{
+		font-size: 0.8em;
+	}
 	.title{
 		font-weight: bold;
 		font-size: 3em;
 		float: left;
 		width: 100%;
 		text-align: center;
-		background-color: @base-v;
 		color: #fff;
 		margin: 0.25em 0;
 		.glyphicon{
 			color: @base-o;
 		}
 	}
+	.menu-user{
+		color: @white;
+		.btn{
+			background-color: darken(@base-v, 10%);
+			color: @white;
+			&:hover{
+				background-color: darken(@base-v, 15%);
+			}
+		}
+		.userlabel{
+			font-weight: bold;
+			font-size: 1.1em;
+		}
+	}
 }
-.navigation a{
-	font-size: 1.25em;
-	padding: 0.25em 0.5em;
-	background-color: darken(@light-base-v, 80%);
-	color: #fff;
-	text-decoration: none;
-	cursor: pointer;
-	display: block;
+.navigation{
+	width: 100%;
 	float: left;
-	&.active{
-		color: @base-v;
-		font-weight: bold;
-		background-color: @light-base-v;
+	a{
+		font-size: 1.25em;
+		padding: 0.25em 0.5em;
+		width: 50%;
+		background-color: @base-v;
+		color: #fff;
+		text-decoration: none;
+		text-align: center;
+		cursor: pointer;
+		display: block;
+		float: left;
+		&.active{
+			color: @base-v;
+			font-weight: bold;
+			background-color: @white;
+		}
 	}
 }
 .pane{
@@ -182,8 +213,35 @@ legend{
 	width: 100%;
 }
 .well{
-	background-color: @light-base-v;
+	background-color: @white;
 	border: none;
 	.border-radius(0px);
 	margin: 0;
+}
+.btn-default{
+	background-color: lighten(@base-v, 20%);
+	color: @white;
+}
+.table{
+	margin: 0;
+	&.adder{
+		th{
+			padding: 0;
+		}
+		td{
+			padding: 0 0.5em 0 0;
+			button.btn-double{
+				line-height: 4.75em;
+				height: auto;
+			}
+		}
+	}
+	td.adder{
+		padding: 0;
+		width: 8%;
+	}
+	
+}
+.row{
+	margin-right: 0;
 }
