@@ -35,6 +35,73 @@ input, button, .form-control, .btn{
 }
 input{
 	background-color: lighten(@base-v, 40%);
+	/* hides the spin-button for firefox */
+	&[type="number"] {
+    	-moz-appearance:textfield;
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+		    -webkit-appearance: none;
+		    margin: 0;
+		}
+	}
+	&[type="checkbox"]{
+		position: absolute;
+		left: -9999px;
+		& + label{
+			position: relative;  
+			padding-left: @checkbox-size + @checkbox-padding-left;
+			line-height: @checkbox-size;
+			font-weight: normal; 
+			cursor: pointer;
+			.glyphicon;
+			&:before{// CASE
+				content: '';
+				position: absolute;  
+				left:0;
+				top: 0;  
+				width: @checkbox-size;
+				height: @checkbox-size;
+				background-color: lighten(@base-v, 40%); 
+				.inputs; 
+			}
+			&:after{// COCHE
+				.glyphicon-ok;
+				position: absolute;  
+				top: 0;
+				left: 0;  
+				font-size: @checkbox-size;  
+				color: @success;  
+				.transition(all .2s);  
+			}
+			span{
+				font-family: @base-font;
+			}
+		}
+		&:not(:checked) + label:after {  
+			opacity: 0;  
+			.transform(scale(0));
+		}
+		&:checked + label:after {  
+			opacity: 1;  
+			.transform(scale(1));
+			background-color: fadeout(@success, 75%);
+		}
+		&:checked:focus + label:before,  
+		&:not(:checked):focus + label:before {  
+			.focus;
+		}
+		&:disabled + label:before {  
+			.box-shadow(none);  
+			border-color: #bbb;  
+			background-color: #ddd;  
+		}  
+		&:disabled:checked + label:after {  
+			color: #999;  
+		}  
+		&:disabled + label {  
+			color: #aaa;  
+		}  
+	}
 }
 .selectadv{
 	.inputs;
@@ -95,64 +162,6 @@ legend{
 	padding: 0;
 }
 // ==== Checkbox
-[type="checkbox"]{
-	position: absolute;
-	left: -9999px;
-	& + label{
-		position: relative;  
-		padding-left: @checkbox-size + @checkbox-padding-left;
-		line-height: @checkbox-size;
-		font-weight: normal; 
-		cursor: pointer;
-		.glyphicon;
-		&:before{// CASE
-			content: '';
-			position: absolute;  
-			left:0;
-			top: 0;  
-			width: @checkbox-size;
-			height: @checkbox-size;
-			background-color: lighten(@base-v, 40%); 
-			.inputs; 
-		}
-		&:after{// COCHE
-			.glyphicon-ok;
-			position: absolute;  
-			top: 0;
-			left: 0;  
-			font-size: @checkbox-size;  
-			color: @success;  
-			.transition(all .2s);  
-		}
-		span{
-			font-family: @base-font;
-		}
-	}
-	&:not(:checked) + label:after {  
-		opacity: 0;  
-		.transform(scale(0));
-	}
-	&:checked + label:after {  
-		opacity: 1;  
-		.transform(scale(1));
-		background-color: fadeout(@success, 75%);
-	}
-	&:checked:focus + label:before,  
-	&:not(:checked):focus + label:before {  
-		.focus;
-	}
-	&:disabled + label:before {  
-		.box-shadow(none);  
-		border-color: #bbb;  
-		background-color: #ddd;  
-	}  
-	&:disabled:checked + label:after {  
-		color: #999;  
-	}  
-	&:disabled + label {  
-		color: #aaa;  
-	}  
-}
 .header{
 	float: left;
 	width: 100%;
@@ -244,4 +253,7 @@ legend{
 }
 .row{
 	margin-right: 0;
+}
+.alert{
+	margin: 0;
 }
