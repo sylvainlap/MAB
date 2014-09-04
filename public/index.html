@@ -129,43 +129,61 @@
 						<legend>{{ lang['front_activity'][l] }}</legend>
 				<!-- == DISP Activities List -->
 						<table class="table bg-success">
+							<tr ng-if="!data.activity || data.activity.length==0">
+								<th class="bg-warning text-warning">
+									<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;
+									{{ lang['front_empty_list'][l] }}
+								</th>
+							</tr>
 							<tr ng-repeat="a in data.activity">
 								<td>
-									{{ lang[a.name][l] }}
+									<span class="glyphicon glyphicon-ok text-success"></span>&nbsp;{{ lang[a.name][l] }}
 								</td>
 								<td class="text-right">
 									 {{ a.ratio + '%' }}
 								</td>
 						<!-- == BTN Activity Remove -->
-								<td class="text-right">
-									<button class="btn btn-xs btn-warning" type="button" ng-click="dataMgt.removeActivity($index)">
+								<td class="text-right adder">
+									<button class="col-xs-12 btn btn-warning" type="button" ng-click="dataMgt.removeActivity($index)">
 										<span class="glyphicon glyphicon-minus"></span>
 									</button>
 								</td>
 							</tr>
 						</table>
+
 				<!-- == INP Activity -->
-						<div class="row form-group">
-							<label class="col-xs-4">
-								{{ lang['front_add'][l] + ' ' + lang['front_activity'][l] }}
-							</label>
-							<div class="selectadv col-xs-4">
-								<select name="activity" ng-model="tmp.activity.name">
-									<option value="{{ species }}" ng-repeat="(species, types) in animals">{{ lang[species][l] }}</option>
-								</select>
-							</div>
-				<!-- == INP Activity ratio -->
-							<input class="col-xs-2" type="number" name="ratio" ng-model="tmp.activity.ratio" />
-							<label class="col-xs-1">%</label>
-				<!-- == BTN Activity Add -->
-							<button class="col-xs-1 col-xs-offset-0 btn btn-info" type="button" ng-click="dataMgt.addActivity()">
-								<span class="glyphicon glyphicon-plus"></span>
-							</button>
-						</div>
+						<table class="table adder">
+							<tr>
+								<td width="50%">
+									<div class="selectadv col-xs-12">
+										<select name="activity" ng-model="tmp.activity.name">
+											<option value="{{ species }}" ng-repeat="(species, types) in animals">{{ lang[species][l] }}</option>
+										</select>
+									</div>
+								</td>
+								<td>
+						<!-- == INP Activity ratio -->
+									<input class="col-xs-12" type="number" name="ratio" ng-model="tmp.activity.ratio" />
+								</td>
+								<td><label class="col-xs-12">%</label></td>
+								<td class="adder">
+						<!-- == BTN Activity Add -->
+									<button class="col-xs-12 btn btn-info" type="button" ng-click="dataMgt.addActivity()" ng-disabled="!tmp.activity.name||!tmp.activity.ratio">
+										<span class="glyphicon glyphicon-plus"></span>
+									</button>
+								</td>
+							</tr>
+						</table>
 		<!-- == INP Volume -->
 						<legend>{{ lang['front_volume'][l] }}</legend>
 				<!-- == DISP volume List -->
 						<table class="table bg-success">
+							<tr ng-if="!data.volume || data.volume.length==0">
+								<th class="bg-warning text-warning">
+									<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;
+									{{ lang['front_empty_list'][l] }}
+								</th>
+							</tr>
 							<tr ng-repeat="v in data.volume">
 								<td>
 									{{ lang[v.species][l] }} {{ lang[v.type][l] }} {{ lang[v.age][l] }}
@@ -174,38 +192,42 @@
 									{{ v.volume }}
 								</td>
 						<!-- == BTN Activity Remove -->
-								<td class="text-right">
-									<button class="btn btn-xs btn-warning" type="button" ng-click="dataMgt.removeVolume($index)">
+								<td class="text-right adder">
+									<button class="col-xs-12 btn btn-warning" type="button" ng-click="dataMgt.removeVolume($index)">
 										<span class="glyphicon glyphicon-minus"></span>
 									</button>
 								</td>
 							</tr>
 						</table>
 				<!-- == INP volume -->
-						<div class="row form-group">
-							<label class="col-xs-4">
-								{{ lang['front_add'][l] + ' ' + lang['front_volume'][l] }}
-							</label>
-							<div class="selectadv col-xs-4">
-								<select name="animal" ng-model="tmp.volume.raw">
-									<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
-										<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
-											-- {{ lang[type][l] }} --
-										</option>
-										<option value="{{ species + '|'  + type + '|' + age + '|' + weight }}" ng-repeat="(age, weight) in ages">
-											{{ lang[species][l] + '/'  + lang[type][l] + '/' + lang[age][l] }}
-										</option>
-										<option disabled ng-repeat-end></option>
-									</optgroup>
-								</select>
-							</div>
-				<!-- == INP volume value -->
-							<input class="col-xs-2" type="number" name="quantity" ng-model="tmp.volume.value" />
-				<!-- == BTN volume Add -->
-							<button class="col-xs-1 col-xs-offset-1 btn btn-info" type="button" ng-click="dataMgt.addVolume()">
-								<span class="glyphicon glyphicon-plus"></span>
-							</button>
-						</div>
+						<table class="table adder">
+							<tr>
+								<td width="50%">
+									<div class="selectadv col-xs-12">
+										<select name="animal" ng-model="tmp.volume.raw">
+											<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
+												<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
+													-- {{ lang[type][l] }} --
+												</option>
+												<option value="{{ species + '|'  + type + '|' + age + '|' + weight }}" ng-repeat="(age, weight) in ages">
+													{{ lang[species][l] + '/'  + lang[type][l] + '/' + lang[age][l] }}
+												</option>
+												<option disabled ng-repeat-end></option>
+											</optgroup>
+										</select>
+									</div>
+								</td>
+								<td>
+									<input class="col-xs-12" type="number" name="quantity" ng-model="tmp.volume.value" />
+								</td>
+								<td><label class="col-xs-12">&nbsp;</label></td>
+								<td class="adder">
+									<button class="col-xs-12 btn btn-info" type="button" ng-click="dataMgt.addVolume()" ng-disabled="!tmp.volume.raw||!tmp.volume.value">
+										<span class="glyphicon glyphicon-plus"></span>
+									</button>
+								</td>
+							</tr>
+						</table>
 		<!-- == BTN Update -->
 						<div class="validation row form-group">
 							<button class="col-xs-offset-2 col-xs-4 btn-lg btn btn-success" ng-click="userMgt.updateProfile()">
