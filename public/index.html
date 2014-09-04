@@ -524,11 +524,11 @@
 								</td>
 								<td width="26%">
 				<!-- == INP Product Initial Quantity -->
-									<input  class="col-xs-12" type="number" name="product_quantity_init" ng-model="tmp.product.quantity_init" />
+									<input  class="col-xs-12" type="number" step="any" name="product_quantity_init" ng-model="tmp.product.quantity_init" />
 								</td>
 								<td width="26%">
 				<!-- == INP Product Quantity -->
-									<input  class="col-xs-12" type="number" name="product_quantity" ng-model="tmp.product.quantity" />
+									<input  class="col-xs-12" type="number" step="any" name="product_quantity" ng-model="tmp.product.quantity" />
 						<!-- == DISP Product Unit -->
 									{{ lang['front_in'][l]+ ' '+((tmp.product.nunit!='vrac' && tmp.product.nunit!=undefined)?lang[tmp.product.nunit][l] +' ' + lang['front_of'][l]+ ' '+ tmp.product.qunit + tmp.product.unit:tmp.product.unit) }}
 								</td>
