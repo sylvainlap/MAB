@@ -62,7 +62,8 @@ input{
 				top: 0;  
 				width: @checkbox-size;
 				height: @checkbox-size;
-				background-color: lighten(@base-v, 40%); 
+				//background-color: lighten(@base-v, 40%); 
+				background-color: @white;
 				.inputs; 
 			}
 			&:after{// COCHE
@@ -83,7 +84,7 @@ input{
 		}
 		&:checked + label:after {  
 			top: 0;
-			background-color: fadeout(@success, 50%);
+			//background-color: fadeout(@success, 50%);
 		}
 		&:checked:focus + label:before,  
 		&:not(:checked):focus + label:before {  
