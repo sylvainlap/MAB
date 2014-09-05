@@ -332,30 +332,6 @@
 								<span>{{ data.follow_sample?lang['front_yes'][l]:lang['front_no'][l] }}</span>
 							</label>
 						</div>
-				<!-- == INP Duration -->
-						<div class="form-group row">
-							<label class="col-xs-4">
-								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.duration, 'glyphicon-ok-sign text-success':data.duration}"></span>
-								{{ lang['front_treat_duration'][l] }}
-							</label>
-							<input class="col-xs-8" type="number" name="duration" ng-model="data.duration" />
-						</div>
-				<!-- == INP Frequency -->
-						<div class="form-group row">
-							<label class="col-xs-4">
-								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.frequency||data.frequency>3, 'glyphicon-ok-sign text-success':data.frequency}"></span>
-								{{ lang['front_treat_frequency'][l] }}
-							</label>
-							<!-- input class="col-xs-8" type="number" step="any" name="frequency" ng-model="data.frequency" /-->
-							<div class="selectadv col-xs-8">
-								<select name="frequency" ng-model="data.frequency">
-									<option value="{{ v }}" 
-										ng-repeat="(f, v) in enums['tra_frequency']">
-										{{ lang[f][l] }}
-									</option>
-								</select>
-							</div>
-						</div>
 				<!-- == SEL Client Type -->
 						<div class="form-group row">
 							<label class="col-xs-4">
@@ -405,7 +381,12 @@
 								<th ng-class="{'text-danger':!tmp.animal.envControl, 'text-success':tmp.animal.envControl}">
 									{{ lang['front_animal_environment'][l] }}
 								</th>
-								<th>&nbsp;</th>
+								<th class="adder" rowspan="3">
+				<!-- == BTN Animal Add -->
+									<button class="col-xs-12 btn btn-h-3 btn-info" type="button" ng-click="dataMgt.addAnimal()" ng-disabled="!tmp.animal.quantity||!tmp.animal.envControl||!tmp.animal.raw">
+										<span class="glyphicon glyphicon-plus"></span> <!-- {{ lang['front_add'][l]}} -->
+									</button>
+								</th>
 							</tr>
 							<tr>
 								<td width="40%">
@@ -436,12 +417,6 @@
 									</label>
 									<span ng-repeat-end></span>
 								</td>
-								<td class="adder">
-				<!-- == BTN Animal Add -->
-									<button class="col-xs-12 btn btn-double btn-info" type="button" ng-click="dataMgt.addAnimal()" ng-disabled="!tmp.animal.quantity||!tmp.animal.envControl||!tmp.animal.raw">
-										<span class="glyphicon glyphicon-plus"></span> <!-- {{ lang['front_add'][l]}} -->
-									</button>
-								</td>
 							</tr>
 						</table>
 							
@@ -458,19 +433,16 @@
 							<tr ng-repeat="p in data.prescription">
 								<td>
 									<span class="glyphicon glyphicon-ok text-success"></span>&nbsp;
-									{{ 	p.name }}
+									{{ 	p.name + ' (' + lang[p.mode][l] + ')'}}
 								</td>
 								<td class="text-right">
-									{{ (data.frequency!=0)?p.quantity_init:'' }}
-								</td>
-								<td class="text-right">
-									{{ (data.frequency!=0)?lang['front_then'][l]:'' }}
-								</td>
-								<td class="text-right">
-									{{ (data.frequency!=0)?p.quantity:p.quantity_init }}
-								</td>
-								<td>
-									{{ ((p.nunit!='vrac' && p.nunit!=undefined)?lang[p.nunit][l] + ' ' + lang['front_of'][l]+ ' '+ p.qunit + p.unit:p.unit) }}
+									{{
+									p.quantity_init +
+									' ' +
+									((p.frequency!=0)?lang['front_then'][l]+' '+p.quantity+' ':'') +
+									((p.nunit!='vrac' && p.nunit!=undefined)?lang[p.nunit][l]+(p.quantity_init>1?lang['s'][l]:''):p.unit) +
+									((p.frequency!=0)?' '+lang[p.frequency][l]+' '+lang['front_during'][l]+' '+p.duration+' '+lang['front_day'][l]:'')
+									}}
 								</td>
 							<!-- == BTN Product Remove -->
 								<td class="text-right adder">
@@ -486,13 +458,21 @@
 								<th ng-class="{'text-danger':!tmp.productName, 'text-success':tmp.productName}">
 									{{ lang['front_product'][l] }}
 								</th>
-								<th ng-class="{'text-danger':!tmp.product.quantity_init, 'text-success':tmp.product.quantity_init}">
-									{{ lang['front_product_quantity_init'][l] }}
+								<th  colspan="2" ng-class="{'text-danger':!tmp.product.quantity_init||!(tmp.product.quantity||enums['tra_frequency'][tmp.product.frequency]==0), 'text-success':tmp.product.quantity_init&&(tmp.product.quantity||enums['tra_frequency'][tmp.product.frequency]==0)}">
+									{{ lang['front_product_quantity'][l] + ' '}}
+									<span class="legend">{{
+										((enums['tra_frequency'][tmp.product.frequency]>0||tmp.product.frequency==undefined)?lang['front_product_quantity_info'][l]:'') +
+										'(' +
+										((tmp.product.nunit!='vrac' && tmp.product.nunit!=undefined)?lang[tmp.product.nunit][l] +' ' + lang['front_of'][l]+ ' ' + tmp.product.qunit + tmp.product.unit:tmp.product.unit) +
+										')'
+										}}
+									</span>
 								</th>
-								<th ng-class="{'text-danger':!tmp.product.quantity, 'text-success':tmp.product.quantity}">
-									<span  ng-hide="data.frequency==0">{{ lang['front_product_quantity'][l] }}</span>
+								<th class="adder" rowspan="4">
+										<button class="col-xs-12 btn-h-4 btn btn-info" type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity_init||!(tmp.product.quantity||enums['tra_frequency'][tmp.product.frequency]==0)||!tmp.productName||!tmp.product.mode||!tmp.product.duration||!tmp.product.frequency">
+										<span class="glyphicon glyphicon-plus"></span>
+									</button>
 								</th>
-								<th>&nbsp;</th>
 							</tr>
 							<tr>
 								<td width="40%">
@@ -528,15 +508,46 @@
 								</td>
 								<td width="26%">
 				<!-- == INP Product Quantity -->
-									<input  class="col-xs-12" type="number" step="any" name="product_quantity" ng-hide="data.frequency==0" ng-model="tmp.product.quantity" />
-						<!-- == DISP Product Unit -->
-									{{ lang['front_in'][l]+ ' '+((tmp.product.nunit!='vrac' && tmp.product.nunit!=undefined)?lang[tmp.product.nunit][l] +' ' + lang['front_of'][l]+ ' '+ tmp.product.qunit + tmp.product.unit:tmp.product.unit) }}
+									<input  class="col-xs-12" type="number" step="any" name="product_quantity" ng-hide="enums['tra_frequency'][tmp.product.frequency]==0" ng-model="tmp.product.quantity" />
 								</td>
-								<td class="adder">
-				<!-- == BTN Product Add -->
-									<button class="col-xs-12 btn btn-info" type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity_init||(!tmp.product.quantity&&data.frequency>0)||!tmp.productName">
-										<span class="glyphicon glyphicon-plus"></span>
-									</button>
+							</tr>
+							<tr>
+								<th ng-class="{'text-danger':!tmp.product.mode, 'text-success':tmp.product.mode}">
+									<span>{{ lang['front_treat_mode'][l] }}</span>
+								</th>
+								<th ng-class="{'text-danger':!tmp.product.duration, 'text-success':tmp.product.duration}">
+									{{ lang['front_treat_duration'][l] }}
+								</th>
+								<th ng-class="{'text-danger':!tmp.product.frequency, 'text-success':tmp.product.frequency}">
+									{{ lang['front_treat_frequency'][l] }}
+								</th>
+							</tr>
+							<tr>
+								<td>
+				<!-- == INP Product mode -->
+									<div class="selectadv col-xs-12">
+										<select name="frequency" ng-model="tmp.product.mode">
+											<option value="{{ f }}" 
+												ng-repeat="f in enums['tra_mode']">
+												{{ lang[f][l] }}
+											</option>
+										</select>
+									</div>
+								</td>
+								<td>
+				<!-- == INP Product treat duration -->
+									<input class="col-xs-12" type="number" name="duration" ng-model="tmp.product.duration" />
+								</td>
+								<td>
+				<!-- == INP Product treat frequency -->
+									<div class="selectadv col-xs-12">
+										<select name="frequency" ng-model="tmp.product.frequency">
+											<option value="{{ f }}" 
+												ng-repeat="(f, v) in enums['tra_frequency']">
+												{{ lang[f][l] }}
+											</option>
+										</select>
+									</div>
 								</td>
 							</tr>
 						</table>
@@ -554,7 +565,7 @@
 
 		<!-- == BTN Record -->
 						<div class="validation row form-group">
-							<button type="submit" class="col-xs-4 col-xs-offset-4 btn btn-lg btn-success" ng-disabled="!data.date_dispense || !data.pathology || !data.treat_type || !data.treat_init || !data.duration || (!data.frequency||data.frequency>3) || !data.client_type || (!data.animals || data.animals.length==0) || (!data.prescription || data.prescription.length==0)">
+							<button type="submit" class="col-xs-4 col-xs-offset-4 btn btn-lg btn-success" ng-disabled="!data.date_dispense || !data.pathology || !data.treat_type || !data.treat_init || !data.client_type || (!data.animals || data.animals.length==0) || (!data.prescription || data.prescription.length==0)">
 								<span class="glyphicon glyphicon-floppy-save"></span>
 								{{ lang['front_record'][l] }}
 							</button>
@@ -588,9 +599,6 @@
 										<th>suit pvt</th><td>{{ t.follow_sample?lang['front_yes'][l]:lang['front_no'][l] }}</td>
 									</tr>
 									<tr>
-										<th>dur/frq</th><td>{{ t.duration }} / {{ t.frequency }}</td>
-									</tr>
-									<tr>
 										<th>client</th><td>{{ lang[t.client_type][l] }}</td>
 									</tr>
 									<th>délivré</th><td>{{ t.delivered?lang['front_yes'][l]:lang['front_no'][l] }}</td>
@@ -605,10 +613,14 @@
 							</td>
 							<td>
 								<table class="table">
-									<tr ng-repeat="p in t.prescription">
+									<tr ng-repeat-start="p in t.prescription">
 										<td>{{ p.name }}</td>
 										<td>{{ p.quantity_init+' / '+p.quantity }} {{ ((p.nunit!='vrac' && p.nunit!=undefined)?lang[p.nunit][l] +' de '+ p.qunit + p.unit:p.unit) }}</td>
 									</tr>
+									<tr>
+										<th>dur/frq</th><td>{{ p.duration }} / {{ lang[p.frequency][l] }}</td>
+									</tr>
+									<tr ng-hide="true" ng-repeat-end></tr>
 								</table>
 							</td>
 						</tr>
