@@ -1,6 +1,10 @@
 var lang =
 {
 		'list':['FR', 'EN'],
+		's':{/* mise au pluriel */
+			'FR':'s',
+			'EN':'s'
+		},
 		'front_disconnect':{
 			'FR':'déconnecter',
 			'EN':'disconnect'
@@ -121,6 +125,14 @@ var lang =
 			'FR':'en',
 			'EN':'in'
 		},
+		'front_during':{
+			'FR':'pdt.',
+			'EN':'dur.'
+		},
+		'front_day':{
+			'FR':'j',
+			'EN':'d'
+		},
 		'front_profile_manager':{
 			'FR':'Configuration du profil',
 			'EN':'Profile manager'
@@ -134,16 +146,16 @@ var lang =
 			'EN':'Treatment'
 		},
 		'front_start_date':{
-			'FR':'date de démarrage',
-			'EN':'start date'
+			'FR':'démarrage',
+			'EN':'start'
 		},
 		'front_pathology':{
 			'FR':'pathologie',
 			'EN':'pathology'
 		},
 		'front_treat_type':{
-			'FR':'type de traitement',
-			'EN':'treatment type'
+			'FR':'type',
+			'EN':'type'
 		},
 		'front_treat_init':{
 			'FR':'initialisation',
@@ -158,12 +170,12 @@ var lang =
 			'EN':'delivered prescription'
 		},
 		'front_treat_duration':{
-			'FR':'durée (en jours)',
-			'EN':'duration (in days)'
+			'FR':'durée',
+			'EN':'duration'
 		},
 		'front_treat_frequency':{
-			'FR':'fréquence (par jours)',
-			'EN':'frequency (per days)'
+			'FR':'fréquence',
+			'EN':'frequency'
 		},
 		'front_animals':{
 			'FR':'Animaux',
@@ -194,7 +206,7 @@ var lang =
 			'EN':'client type'
 		},
 		'front_animal_environment':{
-			'FR':'environement',
+			'FR':'environnement',
 			'EN':'environment'
 		},
 		'front_treat_prescription':{
@@ -210,8 +222,12 @@ var lang =
 			'EN':'product'
 		},
 		'front_product_quantity':{
-			'FR':'quantité suite',
-			'EN':'next quantity'
+			'FR':'qté',
+			'EN':'qty'
+		},
+		'front_product_quantity_info':{
+			'FR':'[ini./suiv.]',
+			'EN':'[ini./next]'
 		},
 		'front_product_quantity_init':{
 			'FR':'quantité initiale',
@@ -348,6 +364,10 @@ var lang =
 	    	'EN':'other'
 	    },
 	    /* === ENUM TRA_DISPENSE_MODE === */
+	    'front_treat_mode':{
+	    	'FR':'mode',
+	    	'EN':'mode'
+	    },
 	    'tra_dm_inj':{
 	    	'FR':'injection',
 	    	'EN':'injection'
@@ -367,6 +387,10 @@ var lang =
         'tra_dm_po':{
 	    	'FR':'per-os',
 	    	'EN':'per-os'
+	    },
+        'tra_dm_vb':{
+	    	'FR':'buccal',
+	    	'EN':'buccal'
 	    },
         'tra_dm_loc':{
 	    	'FR':'local',
@@ -417,24 +441,24 @@ var lang =
 	    	'EN':'unique'
 	    },
         'tra_freq_1pd':{
-	    	'FR':'1 fois par jour',
-	    	'EN':'1 time daily'
+	    	'FR':'1 fois/j',
+	    	'EN':'1 time/d'
 	    },
         'tra_freq_2pd':{
-	    	'FR':'2 fois par jour',
-	    	'EN':'2 times daily'
+	    	'FR':'2 fois/j',
+	    	'EN':'2 times/d'
 	    },
         'tra_freq_3pd':{
-	    	'FR':'3 fois par jour',
-	    	'EN':'3 times daily'
+	    	'FR':'3 fois/j',
+	    	'EN':'3 times/d'
 	    },
         'tra_freq_1p2d':{
-	    	'FR':'tous les 2 jours',
-	    	'EN':'every 2 days'
+	    	'FR':'tous les 2 j',
+	    	'EN':'every 2 d'
 	    },
         'tra_freq_1pw':{
-	    	'FR':'1 fois par semaine',
-	    	'EN':'1 time per week'
+	    	'FR':'1 fois/sem.',
+	    	'EN':'1 time/week'
 	    },
 	    /* === ENUM ANIMALS ===*/
 	    'ani_sp_bovin' : {

@@ -237,16 +237,27 @@ legend{
 	&.adder{
 		th{
 			padding: 0;
+			.legend{
+				font-weight: normal;
+			}
 		}
 		td{
 			padding: 0 0.5em 0 0;
-			button.btn-double{
+		}
+		button{
+			height: auto;
+			&.btn-h-2{
 				line-height: 4.75em;
-				height: auto;
+			}
+			&.btn-h-3{
+				line-height: 6em;
+			}
+			&.btn-h-4{
+				line-height: 7.5em;
 			}
 		}
 	}
-	td.adder{
+	.adder{
 		padding: 0;
 		width: 8%;
 	}

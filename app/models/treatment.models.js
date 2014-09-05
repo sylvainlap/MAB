@@ -32,14 +32,6 @@ var TreatmentSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
-	duration: {
-		type: Number,
-		required: true
-	},
-	frequency: {
-		type: Number,
-		required: true
-	},
 	client_type: {
 		type: String,
 		required: true

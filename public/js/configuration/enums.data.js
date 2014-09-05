@@ -30,8 +30,9 @@ var enums =
         "tra_init_initial", 
         "tra_init_extension"
     ],
-    "tra_dispense_mode" : [
+    "tra_mode" : [
         "tra_dm_inj",
+        "tra_dm_vb",
         "tra_dm_im",
         "tra_dm_iu",
         "tra_dm_in",

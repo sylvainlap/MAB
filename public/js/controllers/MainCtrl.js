@@ -207,18 +207,23 @@ mabapp.controller('MainCtrl',[
 		 * 
 		 */
 		buildProduct : function(){
-			var q = $scope.tmp.product.quantity;
-			var qi = $scope.tmp.product.quantity_init;
+			var buff = [];
+			for(var i in $scope.tmp.product){
+				buff[i] = $scope.tmp.product[i];
+			}
 			$scope.tmp.product = findOne($scope.products, 'name', $scope.tmp.productName);
-			$scope.tmp.product.quantity = q;
-			$scope.tmp.product.quantity_init = qi;
+			for(var i in $scope.tmp.product){
+				if(buff[i]!=udefined){
+					$scope.tmp.product[i] = buff[i];
+				}
+			}
 		},
 		/**
 		 * 
 		 */
 		addProduct : function() {
 			$scope.data.prescription.push($scope.tmp.product);
-			
+
 			if($scope.user.favs == undefined){
 				$scope.user.favs = {
 					products: {}
