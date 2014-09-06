@@ -74,7 +74,7 @@ exports.decodeToken = function(req, res, next) {
 
 exports.requireLogin = function(req, res, next) {
 	if (!req.user) {
-		res.json({ error: 'back_require_login' });
+		return res.json({ error: 'back_require_login' });
 	} else {
 		next();
 	}

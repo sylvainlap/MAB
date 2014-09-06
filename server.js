@@ -8,6 +8,7 @@ var morgan         = require('morgan');
 var mongoose       = require('mongoose');
 var lessMiddleware = require('less-middleware');
 var compression    = require('compression');
+var swig           = require('swig');
 
 /**
  * Main application.
@@ -27,6 +28,12 @@ app.use(bodyParser.json());
 app.use(lessMiddleware('/less', { dest: '/css', pathRoot: __dirname + '/public' }));
 app.use(express.static(__dirname + '/public'));
 
+// set Swig as the back-end template engine
+app.engine('views.html', swig.renderFile);
+
+app.set('view engine', 'views.html');
+app.set('views', __dirname + '/app/views');
+
 // get the models
 require('./app/models/user.models');
 require('./app/models/treatment.models');
@@ -34,6 +41,7 @@ require('./app/models/treatment.models');
 // get the routes
 require('./app/routes/core.routes')(app);
 require('./app/routes/auth.routes')(app);
+require('./app/routes/admin.routes')(app);
 require('./app/routes/api.routes')(app);
 
 // start the app
