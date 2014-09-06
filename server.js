@@ -7,6 +7,7 @@ var bodyParser     = require('body-parser');
 var morgan         = require('morgan');
 var mongoose       = require('mongoose');
 var lessMiddleware = require('less-middleware');
+var compression    = require('compression');
 
 /**
  * Main application.
@@ -20,8 +21,9 @@ var port = 8080;
 mongoose.connect(db.url);
 
 // set up express
-app.use(bodyParser.json());
 app.use(morgan(':method :url :status :req[Content-Type] :res[Content-Type]'));
+app.use(compression());
+app.use(bodyParser.json());
 app.use(lessMiddleware('/less', { dest: '/css', pathRoot: __dirname + '/public' }));
 app.use(express.static(__dirname + '/public'));
 
