@@ -1,0 +1,12 @@
+{% extends 'layout.views.html' %}
+
+{% block content %}
+	{% for user in users %}
+		<p>
+			_id : {{user.id}}<br />
+			username : <strong>{{user.username}}</strong><br />
+			structure : {{user.strusture}}<br />
+			created : {{user.created.toString()}}
+		</p>
+	{% endfor %}
+{% endblock %}
