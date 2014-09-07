@@ -13,3 +13,13 @@ exports.getUsers = function(req, res, next) {
 		res.render('users', { title: 'Users', users: users });
 	});
 };
+
+exports.getTreatments = function(req, res, next) {
+	Treatment.find(function(err, treatments) {
+		if (err)
+			return res.json({ error: 'back_err_mongo' });
+
+		res.render('treatments', { title: 'Treatments', treatments: treatments });
+	});
+};
+

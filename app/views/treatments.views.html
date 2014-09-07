@@ -1,7 +1,7 @@
 {% extends 'layout.views.html' %}
 
 {% block content %}
-	{% for user in users %}
-		<p>{{user|json}}</p>
+	{% for treatment in treatments %}
+		<p>{{treatment|json}}</p>
 	{% endfor %}
 {% endblock %}
