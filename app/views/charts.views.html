@@ -1,0 +1,14 @@
+{% extends 'layout.views.html' %}
+
+{% block content %}
+	<script src="../js/libraries/Chart.min.js"></script>
+
+	<canvas id="myChart" width="400" heignt="400"></canvas>
+
+	<script>
+		var data = {{data|safe|json}};
+		var ctx = document.getElementById("myChart").getContext("2d");
+		var myNewChart = new Chart(ctx).Line(data);
+	</script>
+
+{% endblock %}
