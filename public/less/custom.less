@@ -1,15 +1,21 @@
 @import "../css/bootstrap.min.css";
 @import "variables.less";
-@import "glyphicons.less";
+@import "proxicons.less";
 @import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,400italic,700,700italic);
 @import url(http://fonts.googleapis.com/css?family=Quicksand:400,700,300);
 
 body {
 	padding: 0;
 	font-family: 'Quicksand';
+	font-size: 10pt;
 	max-width: 1000px;
 	margin: 0 auto;
 }
+// @media screen and (orientation:portrait) and (min-width:600px){
+// 	body{
+// 		font-size: 18pt;
+// 	}
+// }
 
 // == FORMS =================================================================
 @checkbox-size: 2.5em;
@@ -49,12 +55,12 @@ input{
 		position: absolute;
 		left: -9999px;
 		& + label{
+			.proxicon;
 			position: relative;  
 			padding-left: @checkbox-size + @checkbox-padding-left;
 			line-height: @checkbox-size;
 			font-weight: normal; 
 			cursor: pointer;
-			.glyphicon;
 			&:before{// CASE
 				content: '';
 				position: absolute;  
@@ -67,9 +73,9 @@ input{
 				.inputs; 
 			}
 			&:after{// COCHE
-				.glyphicon-ok;
+				.icon-ok;
 				position: absolute;  
-				left: 0;  
+				left: 0;
 				font-size: @checkbox-size;  
 				color: @success;  
 			}
@@ -78,8 +84,8 @@ input{
 			}
 		}
 		&:not(:checked) + label:after { 
-			.glyphicon-remove;
-			top: 2px;
+			.icon-remove;
+			top: 1px;
 			color: lighten(@base-v, 30%);
 		}
 		&:checked + label:after {  
@@ -128,7 +134,7 @@ input{
 		background: transparent;
 		.border-radius(0);
 		border: none;
-		-webkit-appearance: none;
+		// -webkit-appearance: none;
 		color: #fff;
 		font-weight: bold;
 		optgroup, option{
@@ -148,7 +154,7 @@ input{
 				color: @success;
 				font-weight: bold;
 				&:before{
-					content: "♥";
+					//content: "♥";
 				}
 			}
 			font-weight: normal;
@@ -160,8 +166,10 @@ input{
 		}
 	}
 }
-.btn, .selectadv{
+.btn{
 	//.box-shadow(inset -3px -3px 5px @base-v);
+	padding: 0.25em 0.5em;
+	font-size: 1em;
 }
 .form-group{
 	margin-bottom: 0.25em;
@@ -193,7 +201,7 @@ legend{
 	width: 100%;
 	background-color: @base-v;
 	.menu-lang select{
-		font-size: 0.8em;
+		font-size: 0.9em;
 	}
 	.title{
 		font-weight: bold;
@@ -203,7 +211,8 @@ legend{
 		text-align: center;
 		color: #fff;
 		margin: 0.25em 0;
-		.glyphicon{
+		.proxicon{
+			font-size: 3em;
 			color: @base-o;
 		}
 	}
@@ -283,7 +292,7 @@ legend{
 			}
 		}
 	}
-	.adder{
+	td.adder, th.adder{
 		padding: 0;
 		width: 8%;
 	}
