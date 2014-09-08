@@ -14,7 +14,6 @@ mabapp.controller('MainCtrl',[
 	$scope.products = productsData;
 	$scope.years = [];
 	$scope.datePicker = {};
-
 	
 	//shortcuts
 	lss = localStorageService;
@@ -28,7 +27,8 @@ mabapp.controller('MainCtrl',[
 				prescription : [],
 				activity : [],
 				volume : [],
-				date_dispense: new Date()
+				date_dispense: new Date(),
+				delivered : true
 			};
 		},
 		tmp : function(){
@@ -66,46 +66,6 @@ mabapp.controller('MainCtrl',[
 			$scope.print = {};
 		}
 	};
-	$scope.reset.data();
-	$scope.reset.tmp();
-	$scope.reset.ui();
-	$scope.reset.user();
-	$scope.reset.print();
-
-	// inject favs value in the product list
-	if($scope.user.favs!=undefined){
-		for(k in $scope.user.favs.products){
-			updateOne($scope.products, 'name', k, 'clics', $scope.user.favs.products[k])
-		}
-	}
-	
-	$scope.l = $scope.user.language?$scope.user.language:'FR';
-	
-	// === WATCH ===
-//	$scope.$on('message.new', function(event){
-//		setTimeout($scope.alertMgt.clearAlerts, 5000);
-//	});
-	$scope.$watch('data', function(){
-		$scope.print.data = dump($scope.data);
-	},true);
-	$scope.$watch('tmp', function(){
-		$scope.print.tmp = dump($scope.tmp);
-	},true);
-	$scope.$watch('user', function(){
-		$scope.print.user = dump($scope.user);
-	},true);
-	$scope.$watch('products', function(){
-		$scope.print.products = dump($scope.products);
-	},true);
-	$scope.$watch('data.animals', function(){
-		$scope.tmp.species_list = [];
-		for(var i in $scope.data.animals){
-			var sp = $scope.data.animals[i]['species'].split('p_')[1];
-			if($scope.tmp.species_list.indexOf(sp)<0){
-				$scope.tmp.species_list.push(sp);
-			}
-		}
-	}, true);
 	
 	// === DATA FILTER FUNCTIONS ===
 	$scope.filterMgt = {
@@ -118,11 +78,21 @@ mabapp.controller('MainCtrl',[
 			},
 			clics : function(element){
 				return (element.clics>0)?true:false;
+			},
+			noClics : function(element){
+				return (element.clics>0)?false:true;	
 			}
 		}
 	};
 	// === DATA INCLUSION FUNCTIONS ===
 	$scope.dataMgt = {
+		updateLocalFavs : function(){
+			if($scope.user.favs!=undefined){
+				for(k in $scope.user.favs.products){
+					updateOne($scope.products, 'name', k, 'clics', $scope.user.favs.products[k])
+				}
+			}
+		},
 		/**
 		 * Record a Treatment
 		 */
@@ -146,6 +116,8 @@ mabapp.controller('MainCtrl',[
 						//$scope.messages = messageService.log(data);
 						
 						$scope.reset.data();
+						$scope.dataMgt.updateLocalFavs();
+						lss.set('user_favs', user.favs);
 						//$scope.ui.showProfile = false;
 				});
 				
@@ -213,7 +185,7 @@ mabapp.controller('MainCtrl',[
 			}
 			$scope.tmp.product = findOne($scope.products, 'name', $scope.tmp.productName);
 			for(var i in $scope.tmp.product){
-				if(buff[i]!=udefined){
+				if(buff[i]!=undefined){
 					$scope.tmp.product[i] = buff[i];
 				}
 			}
@@ -394,6 +366,36 @@ mabapp.controller('MainCtrl',[
 		}
 	};
 	
+	
+	// === WATCH ===
+	$scope.$watch('data', function(){
+		$scope.print.data = dump($scope.data);
+	},true);
+	$scope.$watch('tmp', function(){
+		$scope.print.tmp = dump($scope.tmp);
+	},true);
+	$scope.$watch('user', function(){
+		$scope.print.user = dump($scope.user);
+	},true);
+	$scope.$watch('products', function(){
+		$scope.print.products = dump($scope.products);
+	},true);
+	$scope.$watch('data.animals', function(){
+		$scope.tmp.species_list = [];
+		for(var i in $scope.data.animals){
+			var sp = $scope.data.animals[i]['species'].split('p_')[1];
+			if($scope.tmp.species_list.indexOf(sp)<0){
+				$scope.tmp.species_list.push(sp);
+			}
+		}
+	}, true);
+
+	// ==== INITIALISATIONS ====
+	$scope.reset.data();
+	$scope.reset.tmp();
+	$scope.reset.ui();
+	$scope.reset.user();
+	$scope.reset.print();
 
 	// ==== DATE PICKER ====
 	$scope.today = function() {
@@ -428,4 +430,11 @@ mabapp.controller('MainCtrl',[
 		$scope.years.push(y);
 	}
 	// END DATE
+
+
+	// inject favs value in the product list
+	$scope.dataMgt.updateLocalFavs();
+	
+	$scope.l = $scope.user.language?$scope.user.language:'FR';
+
 }]);

@@ -135,8 +135,22 @@ input{
 			background-color: #fff;
 			color: #000;
 			padding-left: 0.25em;
+			&.other{
+				border-top: 2px solid @default;
+				color: @default;
+				option{
+					color: @default;
+				}
+			}
 		}
 		option{
+			&.favs{
+				color: @success;
+				font-weight: bold;
+				&:before{
+					content: "♥";
+				}
+			}
 			font-weight: normal;
 			padding-top: 0.25em;
 			padding-bottom: 0.25em;

@@ -166,8 +166,8 @@ var lang =
 			'EN':'follow sample'
 		},
 		'front_delivered':{
-			'FR':'prescription délivrée',
-			'EN':'delivered prescription'
+			'FR':'délivrée',
+			'EN':'delivered'
 		},
 		'front_treat_duration':{
 			'FR':'durée',
