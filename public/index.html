@@ -264,11 +264,11 @@
 						<legend>{{ lang['front_treatment'][l] }}</legend>
 				<!-- == INP Date -->
 						<div class="row form-group">
-							<label class="col-xs-4">
+							<label class="col-xs-5">
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.date_dispense, 'glyphicon-ok-sign text-success':data.date_dispense}"></span>
 								{{ lang['front_start_date'][l] }}
 							</label>
-							<p class="input-group col-xs-8">
+							<p class="input-group col-xs-7">
 				            	<input class="col-xs-10 box-left" type="text"
 				            	datepicker-popup="{{format}}"
 				            	is-open="datePicker.opened"
@@ -286,11 +286,11 @@
 			            </div>
 				<!-- == INP Pathology -->
 			            <div class="form-group row">
-							<label class="col-xs-4">
+							<label class="col-xs-5">
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.pathology, 'glyphicon-ok-sign text-success':data.pathology}"></span>
 								{{ lang['front_pathology'][l] }}
 							</label>
-							<div class="selectadv col-xs-8">
+							<div class="selectadv col-xs-7">
 								<span class="arrow"></span>
 								<select name="pathology" ng-model="data.pathology">
 									<option value="{{ patho }}" ng-repeat="patho in enums['tra_pathology']">
@@ -301,11 +301,11 @@
 						</div>
 				<!-- == INP Treatment Type -->
 						<div class="form-group row">
-							<label class="col-xs-4">
+							<label class="col-xs-5">
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.treat_type, 'glyphicon-ok-sign text-success':data.treat_type}"></span>
 								{{ lang['front_treat_type'][l] }}
 							</label>
-							<div class="selectadv col-xs-8">
+							<div class="selectadv col-xs-7">
 								<span class="arrow"></span>
 								<select name="treatment_type" ng-model="data.treat_type">
 									<option value="{{ type }}" ng-repeat="type in enums['tra_type']">
@@ -316,11 +316,11 @@
 						</div>
 				<!-- == INP Treatment Init -->
 						<div class="form-group row">
-							<label class="col-xs-4">
+							<label class="col-xs-5">
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.treat_init, 'glyphicon-ok-sign text-success':data.treat_init}"></span>
 								{{ lang['front_treat_init'][l] }}
 							</label>
-							<div class="selectadv col-xs-8">
+							<div class="selectadv col-xs-7">
 								<span class="arrow"></span>
 								<select name="treatment_init" ng-model="data.treat_init">
 									<option value="{{ init }}" ng-repeat="init in enums['tra_init']">
@@ -331,22 +331,22 @@
 						</div>
 				<!-- == INP Treatment Follow Sample -->
 						<div class="form-group row">
-							<label class="col-xs-4">
+							<label class="col-xs-5">
 								<span class="glyphicon glyphicon-ok-sign text-success"></span>
 								{{ lang['front_follow_sample'][l] }}
 							</label>
 							<input type="checkbox" id="follow_sample" ng-model="data.follow_sample"/>
-							<label class="col-xs-8" for="follow_sample">
+							<label class="col-xs-7" for="follow_sample">
 								<span>{{ data.follow_sample?lang['front_yes'][l]:lang['front_no'][l] }}</span>
 							</label>
 						</div>
 				<!-- == SEL Client Type -->
 						<div class="form-group row">
-							<label class="col-xs-4">
+							<label class="col-xs-5">
 								<span class="glyphicon " ng-class="{'glyphicon-question-sign text-danger':!data.client_type, 'glyphicon-ok-sign text-success':data.client_type}"></span>
 								{{ lang['front_client_type'][l] }}
 							</label>
-							<div class="selectadv col-xs-8">
+							<div class="selectadv col-xs-7">
 								<span class="arrow"></span>
 								<select name="client_type" ng-model="data.client_type">
 									<option value="{{ client }}" 
@@ -490,24 +490,30 @@
 									<div class="selectadv">
 										<span class="arrow"></span>
 										<select name="product" ng-model="tmp.productName" ng_change="dataMgt.buildProduct()">
-											<optgroup label="favs">
-												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | orderBy:'clics':true">
-													{{ p.name }}
-												</option>
-											</optgroup>
 											<optgroup label="{{ lang['front_products_match_animal'][l] }}" ng-if="tmp.species_list.length>0">
-												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.target | orderBy:'name'">
+												<option class="favs" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | filter : filterMgt.products.target | orderBy:'clics'">
+													{{ p.name }}
+												</option>
+												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.target | filter : filterMgt.products.noClics| orderBy:'name'">
+													{{ p.name }}
+												</option>
+												<option disabled>&nbsp;</option>
+											</optgroup>
+											<optgroup class="other" label="{{ lang['front_other_products'][l] }}" ng-if="tmp.species_list.length>0">
+												<option class="favs" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | filter : filterMgt.products.notTarget | orderBy:'clics'">
+													{{ p.name }}
+												</option>
+												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.notTarget | filter : filterMgt.products.noClics| orderBy:'name'">
 													{{ p.name }}
 												</option>
 											</optgroup>
-											<optgroup label="{{ lang['front_other_products'][l] }}" ng-if="tmp.species_list.length>0">
-												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.notTarget | orderBy:'name'">
-													{{ p.name }}
-												</option>
-											</optgroup>
+
 											<optgroup label="{{ lang['front_all_products'][l] }}" ng-if="tmp.species_list.length==0">
-												<option value="{{ p.name }}" ng-repeat="p in products | orderBy : 'name'">
-													{{ p.name }}{{ ' '+p.clics}}
+												<option class="favs" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | orderBy:'clics':true">
+													{{ p.name }}
+												</option>
+												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.noClics | orderBy : 'name'">
+													{{ p.name }}
 												</option>
 											</optgroup>
 										</select>
@@ -564,14 +570,15 @@
 								</td>
 							</tr>
 						</table>
+						<legend>&nbsp;</legend>
 		<!-- == INP Treatment Follow Sample -->
 						<div class="form-group row">
-							<label class="col-xs-4">
+							<label class="col-xs-5">
 								<span class="glyphicon glyphicon-ok-sign text-success"></span>
 								{{ lang['front_delivered'][l] }}
 							</label>
 							<input type="checkbox" id="delivered" ng-model="data.delivered"/>
-							<label class="col-xs-8" for="delivered">
+							<label class="col-xs-7" for="delivered">
 								<span>{{ data.delivered?lang['front_yes'][l]:lang['front_no'][l] }}</span>
 							</label>
 						</div>
