@@ -12,6 +12,7 @@
 				
 <!-- === LANGUAGE SWITCH === -->
 				<div class="menu menu-lang selectadv pull-left">
+					<span class="arrow tiny"></span>
 					<select class="switch-lang borderless" ng-model="l">
 						<option value="{{ language }}" ng-selected="language==l" ng-repeat="language in lang.list">{{ language }}</option>
 					</select>
@@ -111,6 +112,7 @@
 							<input class="col-xs-6" type="text" name="city" placeholder="{{ lang['front_city'][l] }}" ng-model="data.school.city" />
 				<!-- == INP Promo -->
 							<div class="selectadv col-xs-2">
+								<span class="arrow"></span>
 								<select class="col-xs-2" name="promo" ng-model="data.school.promo">
 									<option value="{{ y }}" ng-selected="y==data.school.promo" ng-repeat="y in years">{{ y }}</option>
 								</select>
@@ -120,6 +122,7 @@
 						<div class="form-group row">
 							<label class="col-xs-4">{{ lang['front_language'][l] }}</label>
 							<div class="selectadv col-xs-2">
+								<span class="arrow"></span>
 								<select ng-model="data.lang">
 									<option value="{{ language }}" ng-selected="language==data.lang" ng-repeat="language in lang.list">{{ language }}</option>
 								</select>
@@ -156,6 +159,7 @@
 							<tr>
 								<td width="50%">
 									<div class="selectadv col-xs-12">
+									<span class="arrow"></span>
 										<select name="activity" ng-model="tmp.activity.name">
 											<option value="{{ species }}" ng-repeat="(species, types) in animals">{{ lang[species][l] }}</option>
 										</select>
@@ -204,6 +208,7 @@
 							<tr>
 								<td width="50%">
 									<div class="selectadv col-xs-12">
+										<span class="arrow"></span>
 										<select name="animal" ng-model="tmp.volume.raw">
 											<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
 												<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
@@ -286,6 +291,7 @@
 								{{ lang['front_pathology'][l] }}
 							</label>
 							<div class="selectadv col-xs-8">
+								<span class="arrow"></span>
 								<select name="pathology" ng-model="data.pathology">
 									<option value="{{ patho }}" ng-repeat="patho in enums['tra_pathology']">
 										{{ lang[patho][l] }}
@@ -300,6 +306,7 @@
 								{{ lang['front_treat_type'][l] }}
 							</label>
 							<div class="selectadv col-xs-8">
+								<span class="arrow"></span>
 								<select name="treatment_type" ng-model="data.treat_type">
 									<option value="{{ type }}" ng-repeat="type in enums['tra_type']">
 										{{ lang[type][l] }}
@@ -314,6 +321,7 @@
 								{{ lang['front_treat_init'][l] }}
 							</label>
 							<div class="selectadv col-xs-8">
+								<span class="arrow"></span>
 								<select name="treatment_init" ng-model="data.treat_init">
 									<option value="{{ init }}" ng-repeat="init in enums['tra_init']">
 										{{ lang[init][l] }}
@@ -339,6 +347,7 @@
 								{{ lang['front_client_type'][l] }}
 							</label>
 							<div class="selectadv col-xs-8">
+								<span class="arrow"></span>
 								<select name="client_type" ng-model="data.client_type">
 									<option value="{{ client }}" 
 										ng-repeat="client in enums['ani_client_types']">
@@ -390,8 +399,9 @@
 							</tr>
 							<tr>
 								<td width="40%">
-									<div class="selectadv">
 				<!-- == INP Animal -->
+									<div class="selectadv">
+										<span class="arrow"></span>
 										<select name="animal" ng-model="tmp.animal.raw">
 											<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
 												<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
@@ -478,6 +488,7 @@
 								<td width="40%">
 				<!-- == SEL Product -->
 									<div class="selectadv">
+										<span class="arrow"></span>
 										<select name="product" ng-model="tmp.productName" ng_change="dataMgt.buildProduct()">
 											<optgroup label="favs">
 												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | orderBy:'clics':true">
@@ -526,6 +537,7 @@
 								<td>
 				<!-- == INP Product mode -->
 									<div class="selectadv col-xs-12">
+										<span class="arrow"></span>
 										<select name="frequency" ng-model="tmp.product.mode">
 											<option value="{{ f }}" 
 												ng-repeat="f in enums['tra_mode']">
@@ -541,6 +553,7 @@
 								<td>
 				<!-- == INP Product treat frequency -->
 									<div class="selectadv col-xs-12">
+										<span class="arrow"></span>
 										<select name="frequency" ng-model="tmp.product.frequency">
 											<option value="{{ f }}" 
 												ng-repeat="(f, v) in enums['tra_frequency']">

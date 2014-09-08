@@ -105,10 +105,22 @@ input{
 }
 .selectadv{
 	.inputs;
+	position: relative;
 	overflow: hidden;
 	padding: 0;
-	background: url(../img/arrow-ffffff-down.png) no-repeat right lighten(@base-v, 20%);
+	background: none no-repeat right lighten(@base-v, 20%);
 	min-width: 80px;
+	span.arrow:after{
+		content: "▼";
+		color: @white;
+		position: absolute;
+		line-height: 2.5em;
+		top: 0;
+		right: 0.75em;
+	}	
+	span.arrow.tiny:after{
+		line-height: 2em;
+	}
 	select{
 		cursor: pointer;
 		padding-left: 0.25em;
