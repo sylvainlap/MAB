@@ -29,8 +29,8 @@ h5{._h(5);}
 .txt-r{text-align: right;}
 .txt-j{text-align: justify;}
 
-.txt-color(@c){color: @c;}
-.txt-color-l(@c){color: lighten(@c, 15%);}
+.txt-color(@c){color: desaturate(darken(@c, 20%), 20%);}
+.txt-color-l(@c){color: @c;}
 
 .txt-default{.txt-color(@default);}
 .txt-primary{.txt-color(@primary);}
@@ -116,10 +116,42 @@ h5{._h(5);}
 	border-top: 1px solid @base-v;
 }
 
-
+.alert{
+	float: left;
+	width: 100%;
+	padding: 2%;
+	overflow: hidden;
+	button{
+		span{
+			margin: 0;
+		}
+		cursor: pointer;
+		positon:absolute;
+		top: 0;
+		font-size: 1.5em;
+		font-weight: bold;
+		width: 1em;
+		height: 1em;
+		overflow: hidden;
+		display: inline-block;
+		float: right;
+		background: none;
+		border: 0;
+		color: inherit;
+	}
+}
+.alert-default{.bg(@default);.txt-default;}
+.alert-primary{.bg(@primary);.txt-primary;}
+.alert-success{.bg(@success);.txt-success;}
+.alert-info{.bg(@info);.txt-info;}
+.alert-warning{.bg(@warning);.txt-warning;}
+.alert-danger{.bg(@danger);.txt-danger;}
 
 
 // FORM
+form{
+	margin-top: 0.5em;
+}
 legend{
 	color: @base-v;
 	.separator-bottom;
@@ -141,6 +173,13 @@ label, .label{
 	line-height: @form-box-size;
 	font-weight: bold;
 	display: inline-block;
+}
+.input-addon{
+	background-color: @clickable-bg-color;
+	color: @clickable-txt-color;
+	.txt-c;
+	line-height: @form-box-size;
+
 }
 input{
 	.inputs;
@@ -356,5 +395,6 @@ table{
 .validation{
 	font-size: 1.2em;
 	padding: 1em 0;
+	margin-top: 1em;
 	.separator-top;
 }

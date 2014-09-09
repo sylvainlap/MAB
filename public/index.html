@@ -43,7 +43,7 @@
 				
 				
 <!-- === TRACE BOX === -->
-			<div class="pane pane-trace">
+			<div class="pane pane-fw pane-trace">
 				<alert ng-repeat="msg in messages" type="{{ msg.type }}" close="alertMgt.closeAlert($index)">
 					{{ lang[msg.msg][l] }}
 				</alert>
@@ -51,35 +51,35 @@
 
 <!-- === REGISTER PANE === -->
 			<div class="pane pane-register" ng-if="user.token==undefined">
-				<h3>{{ lang['front_register'][l] }}</h3>
 				<form class="form-inline" role="form">
 		<!-- == INP Username -->
-					<div class="input-group">
-						<div class="input-addon"><span class="proxicon proxicon-user"></span></div>
-						<input type="text" name="username" placeholder="{{ lang['front_username'][l] }}" ng-model="data.username" />
+					<div class="input-group row">
+						<div class="input-addon col-1"><span class="proxicon proxicon-user"></span></div>
+						<input class="col-11" type="text" name="username" placeholder="{{ lang['front_username'][l] }}" ng-model="data.username" />
 					</div>
 		<!-- == INP Password -->
-					<div class="input-group">
-						<div class="input-addon"><span class="proxicon proxicon-lock"></span></div>
-						<input type="password" name="password" placeholder="{{ lang['front_password'][l] }}" ng-model="data.password" />
+					<div class="input-group row">
+						<div class="input-addon col-1"><span class="proxicon proxicon-lock"></span></div>
+						<input class="col-11" type="password" name="password" placeholder="{{ lang['front_password'][l] }}" ng-model="data.password" />
 					</div>
 		<!-- == BTN Login -->
-					<button class="btn btn-success" ng-click="userMgt.login()">
-						<span class="proxicon proxicon-in"></span>
-						{{ lang['front_login'][l] }}
-					</button>
+					<div class="input-group row">
+						<button class="col-4 btn btn-success" ng-click="userMgt.login()">
+							<span class="proxicon proxicon-in"></span>
+							{{ lang['front_login'][l] }}
+						</button>
 		<!-- == BTN Register -->
-					<button class="btn btn-warning" ng-click="userMgt.register()">
-						<span class="proxicon proxicon-pen"></span>
-						{{ lang['front_register'][l] }}
-					</button>
+						<button class="col-4 col-ol-4 btn btn-warning" ng-click="userMgt.register()">
+							<span class="proxicon proxicon-pen"></span>
+							{{ lang['front_register'][l] }}
+						</button>
+					</div>
 				</form>
 			</div>
 				
 				
 <!-- === EDIT PROFILE PANE === -->
 			<div class="pane pane-profile" ng-if="user.token != undefined && ui.showProfile">
-				<h3>{{ lang['front_profile_manager'][l] }}</h3>
 				<form>
 				<legend>{{ lang['front_user_info'][l] }}</legend>
 		<!-- == INP Usernamer -->
@@ -126,7 +126,7 @@
 		<!-- == INP Activity -->
 					<legend>{{ lang['front_activity'][l] }}</legend>
 				<!-- == DISP Activities List -->
-					<table class="table bg-success">
+					<table class="table display bg-success">
 						<tr ng-if="!data.activity || data.activity.length==0">
 							<th class="bg-warning txt-warning">
 								<span class="proxicon proxicon-sign-warning"></span>&nbsp;
@@ -141,7 +141,7 @@
 								 {{ a.ratio + '%' }}
 							</td>
 						<!-- == BTN Activity Remove -->
-							<td class="col-1">
+							<td class="col-1 pad0">
 								<button class="col-12 btn btn-warning" type="button" ng-click="dataMgt.removeActivity($index)">
 									<span class="proxicon proxicon-minus"></span>
 								</button>
@@ -160,12 +160,14 @@
 									</div>
 								</td>
 						<!-- == INP Activity ratio -->
-								<td>
+								<td class="col-4">
 									<input class="col-12" type="number" name="ratio" ng-model="tmp.activity.ratio" />
 								</td>
-								<td><label class="col-12">%</label></td>
-						<!-- == BTN Activity Add -->
 								<td class="col-1">
+									<label class="col-12">%</label>
+								</td>
+						<!-- == BTN Activity Add -->
+								<td class="col-1 pad0">
 									<button class="col-12 btn btn-info" type="button" ng-click="dataMgt.addActivity()" ng-disabled="!tmp.activity.name||!tmp.activity.ratio">
 										<span class="proxicon proxicon-plus"></span>
 									</button>
@@ -175,7 +177,7 @@
 		<!-- == INP Volume -->
 						<legend>{{ lang['front_volume'][l] }}</legend>
 				<!-- == DISP volume List -->
-						<table class="table bg-success">
+						<table class="table display bg-success">
 							<tr ng-if="!data.volume || data.volume.length==0">
 								<th class="bg-warning txt-warning">
 									<span class="proxicon proxicon-sign-warning"></span>&nbsp;
@@ -184,13 +186,13 @@
 							</tr>
 							<tr ng-repeat="v in data.volume">
 								<td>
-									{{ lang[v.species][l] }} {{ lang[v.type][l] }} {{ lang[v.age][l] }}
+									<span class="proxicon proxicon-ok txt-success"></span>&nbsp;{{ lang[v.species][l] }} {{ lang[v.type][l] }} {{ lang[v.age][l] }}
 								</td>
 								<td class="txt-right">
 									{{ v.volume }}
 								</td>
 						<!-- == BTN Activity Remove -->
-								<td class="col-1">
+								<td class="col-1 pad0">
 									<button class="col-12 btn btn-warning" type="button" ng-click="dataMgt.removeVolume($index)">
 										<span class="proxicon proxicon-minus"></span>
 									</button>
@@ -215,11 +217,10 @@
 										</select>
 									</div>
 								</td>
-								<td>
+								<td class="col-5">
 									<input class="col-12" type="number" name="quantity" ng-model="tmp.volume.value" />
 								</td>
-								<td><label class="col-12">&nbsp;</label></td>
-								<td class="col-1">
+								<td class="col-1 pad0">
 									<button class="col-12 btn btn-info" type="button" ng-click="dataMgt.addVolume()" ng-disabled="!tmp.volume.raw||!tmp.volume.value">
 										<span class="proxicon proxicon-plus"></span>
 									</button>

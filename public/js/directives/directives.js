@@ -3,10 +3,8 @@ mabapp.directive('autoheight', function(){
 		restrict: 'A',
 		link: function(scope, element, attrs){
 			var elt = $(element[0]);
-			$(document).ready(function(){
-				console.log(elt.parent());
+			elt.ready(function(){
 				elt.height(elt.parent().height());
-				elt.css({margin: 0, padding: 0});
 			});
 		}
 	};
