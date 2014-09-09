@@ -5,6 +5,14 @@ var lang =
 			'FR':'s',
 			'EN':'s'
 		},
+		'front_history':{
+			'FR':'Historique',
+			'EN':'History'
+		},
+		'front_include':{
+			'FR':'Inclure',
+			'EN':'Include'
+		},
 		'front_disconnect':{
 			'FR':'déconnecter',
 			'EN':'disconnect'

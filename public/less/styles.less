@@ -1,0 +1,360 @@
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,400italic,700,700italic);
+@import url(http://fonts.googleapis.com/css?family=Quicksand:400,700,300);
+@import "reset-min.less";
+@import "variables.less";
+@import "proxicons.less";
+@import "layout.less";
+
+
+body {
+	font-family: @base-font;
+	font-size: @base-font-size;
+}
+
+// === TYPOS ===
+h1, h2, h3, h4, h5, legend{
+	font-weight: bold;
+	margin-bottom: 0.25em;
+	margin-top: 0.25em;
+}
+h1{._h(1);}
+h2, legend{._h(2);}
+h3{._h(3);}
+h4{._h(4);}
+h5{._h(5);}
+
+// TXT
+.txt-l{text-align: left;}
+.txt-c{text-align: center;}
+.txt-r{text-align: right;}
+.txt-j{text-align: justify;}
+
+.txt-color(@c){color: @c;}
+.txt-color-l(@c){color: lighten(@c, 15%);}
+
+.txt-default{.txt-color(@default);}
+.txt-primary{.txt-color(@primary);}
+.txt-success{.txt-color(@success);}
+.txt-info{.txt-color(@info);}
+.txt-warning{.txt-color(@warning);}
+.txt-danger{.txt-color(@danger);}
+
+// LNK
+.lnk-color(@c){
+	.txt-color(@c);
+	:hover{
+		.txt-color-l(@c);
+	}
+}
+.lnk-default{.lnk-color(@default);}
+.lnk-primary{.lnk-color(@primary);}
+.lnk-success{.lnk-color(@success);}
+.lnk-info{.lnk-color(@info);}
+.lnk-warning{.lnk-color(@warning);}
+.lnk-danger{.lnk-color(@danger);}
+
+
+
+// === Box Commmon Styles ===
+.borderless{
+	border: none;
+	background-color: @default;
+}
+.pad0{padding: 0!important;}
+
+// BG
+.bg(@c){
+	background-color: lighten(@c, 30%);
+}
+.bg-l(@c){
+	background-color: lighten(@c, 15%);
+}
+.bg-default{.bg(@default);}
+.bg-primary{.bg(@primary);}
+.bg-success{.bg(@success);}
+.bg-info{.bg(@info);}
+.bg-warning{.bg(@warning);}
+.bg-danger{.bg(@danger);}
+// BTN
+.btn-bg(@c){
+	color: @clickable-txt-color;
+	background-color: @c;
+	&:hover{
+		background-color: lighten(@c, 5%);
+	}
+}
+.btn{
+	.inputs;
+	cursor: pointer;
+	text-decoration: none;
+	height: @form-box-size;
+	line-height: @form-box-size;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	display: block;
+	&[disabled]{
+		opacity: 0.5;
+		cursor: default;
+		background-color: @default;
+		&:hover{background-color: @default;}
+	}
+}
+
+.btn-default{.btn-bg(@default);}
+.btn-primary{.btn-bg(@primary);}
+.btn-success{.btn-bg(@success);}
+.btn-info{.btn-bg(@info);}
+.btn-warning{.btn-bg(@warning);}
+.btn-danger{.btn-bg(@danger);}
+.btn-base{.btn-bg(@clickable-bg-color);}
+
+
+.separator-bottom{
+	border-bottom: 1px solid @base-v;
+}
+.separator-top{
+	border-top: 1px solid @base-v;
+}
+
+
+
+
+// FORM
+legend{
+	color: @base-v;
+	.separator-bottom;
+}
+*{
+	box-sizing: border-box;
+}
+.focus{
+	background-color: lighten(@base-o, 25%);
+}
+.inputs{
+	border: 0;
+	font-size: 1em;
+	&:focus{
+		.focus;
+	}
+}
+label, .label{
+	line-height: @form-box-size;
+	font-weight: bold;
+	display: inline-block;
+}
+input{
+	.inputs;
+	height: @form-box-size;
+	background-color: @input-bg-color;
+	padding: 0 0.5em;
+	/* hides the spin-button for firefox */
+	&[type="number"] {
+    	-moz-appearance:textfield;
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+		    -webkit-appearance: none;
+		    margin: 0;
+		}
+	}
+	&[type="checkbox"]{
+		position: absolute;
+		left: -9999px;
+		& + label{
+			.proxicon;
+			position: relative;  
+			padding-left: @form-box-size + @checkbox-offset-left;
+			line-height: @form-box-size;
+			font-weight: normal; 
+			cursor: pointer;
+			&:before{// CASE
+				content: '';
+				position: absolute;  
+				left:0;
+				top: 0;  
+				width: @form-box-size;
+				height: @form-box-size;
+				//background-color: lighten(@base-v, 40%); 
+				background-color: @white;
+				.inputs; 
+			}
+			&:after{// COCHE
+				.icon-ok;
+				position: absolute;  
+				left: 0;
+				font-size: @form-box-size;  
+				color: @success;  
+			}
+			span{
+				font-family: @base-font;
+			}
+		}
+		&:not(:checked) + label:after { 
+			.icon-remove;
+			top: 1px;
+			color: lighten(@base-v, 30%);
+		}
+		&:checked + label:after {  
+			top: 0;
+			//background-color: fadeout(@success, 50%);
+		}
+		&:checked:focus + label:before,  
+		&:not(:checked):focus + label:before {  
+			.focus;
+		}
+		&:disabled + label:before {  
+			.box-shadow(none);  
+			border-color: #bbb;  
+			background-color: #ddd;  
+		}  
+		&:disabled:checked + label:after {  
+			color: #999;  
+		}  
+		&:disabled + label {  
+			color: #aaa;  
+		}  
+	}
+}
+.selectadv{
+	.inputs;
+	position: relative;
+	overflow: hidden;
+	padding: 0;
+	background: none no-repeat right @select-bg-color;
+	min-width: @select-min-width;
+	span.arrow:after{
+		content: @select-arrow-content;
+		color: @select-txt-color;
+		position: absolute;
+		line-height: @form-box-size;
+		top: 0;
+		right: @select-arrow-offset-right;
+	}	
+	span.arrow.tiny:after{
+		line-height: @form-box-s-size;
+	}
+	select{
+		.inputs;
+		cursor: pointer;
+		font-weight: bold;
+		color: @select-txt-color;
+		padding-left: @select-option-indent;
+		width: @select-real-width;
+		height: @form-box-size;
+		background: transparent;
+		-webkit-appearance: none;
+		optgroup, option{
+			background-color: @select-option-bg-color;
+			color: @select-option-txt-color;
+			padding-left: @select-option-indent;
+			&.other{
+				border-top: 2px solid @default;
+				color: @default;
+				option{
+					color: @default;
+				}
+			}
+		}
+		option{
+			&.fav{
+				color: @success;
+				font-weight: bold;
+			}
+			font-weight: normal;
+			padding-top: @select-option-padding-v;
+			padding-bottom: @select-option-padding-v;
+		}
+	}
+}
+table{
+	td, th{
+	}
+	th{
+		font-weight: bold;
+	}
+	&.table{
+		margin: 0;
+		th{
+			padding: 0.25em 0;
+		}
+		&.display{
+			td, th{
+				padding: 0.25em 0.5em;
+			}
+		}
+		&.adder{
+			td, th{
+				padding-right: 0.5em;
+				vertical-align: top;
+			}
+			th{
+				.legend{
+					font-weight: normal;
+				}
+			}
+		}
+		.btn{
+			float: right;
+		}
+	}
+}
+
+
+.header{
+	background-color: @base-v;
+	.menu-lang select{
+		// font-size: 0.9em;
+	}
+	.title{
+		font-weight: bold;
+		font-size: 3em;
+		text-align: center;
+		color: #fff;
+		.proxicon{
+			font-size: 3em;
+			color: @base-o;
+		}
+	}
+	.menu-user{
+		color: @white;
+		.btn{
+			background-color: darken(@base-v, 10%);
+			color: @white;
+			&:hover{
+				background-color: darken(@base-v, 15%);
+			}
+		}
+		.userlabel{
+			font-weight: bold;
+			font-size: 1.1em;
+			margin-right: 1em;
+		}
+	}
+}
+
+.navigation{
+	width: 100%;
+	float: left;
+	a{
+		font-size: 1.25em;
+		padding: 0.25em 0;
+		width: 50%;
+		background-color: @base-v;
+		color: #fff;
+		text-decoration: none;
+		text-align: center;
+		cursor: pointer;
+		display: block;
+		float: left;
+		&.active{
+			color: @base-v;
+			font-weight: bold;
+			background-color: @white;
+		}
+	}
+}
+
+.validation{
+	font-size: 1.2em;
+	padding: 1em 0;
+	.separator-top;
+}

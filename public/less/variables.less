@@ -1,24 +1,15 @@
 @icon-font-path: "../fonts/";
 @icon-font-name: "proxicons";
-@icon-font-svg-id: "glyphicons_halflingsregular";
+
 @base-font: 'Quicksand';
+@base-font-size: 10pt;
+@base-max-width: 1000px;
+
+@grid: 12;
+
 ._h(@l){
 	font-size: (2-0.2*@l)*1em;
 }
-@primary: #428bca;
-@success: #5cb85c;
-@info:    #5bc0de;
-@warning: #f0ad4e;
-@danger:  #d9534f;
-@default: #999;
-@base-o: #ee8022;
-@base-v: #474b98;
-@white: #fff;
-@black: #000;
-
-@light-base-o: lighten(@base-o, 10%);
-@light-base-v: fadeOut(@base-v, 50%);
-
 .border-radius(@r){
 	border-radius: @r;
 	-moz-border-radius: @r;
@@ -39,3 +30,36 @@
 	-ms-transform: scale(@t);
 	-webkit-transform: scale(@t);
 }
+
+@primary: #428bca;
+@success: #5cb85c;
+@info:    #5bc0de;
+@warning: #f0ad4e;
+@danger:  #d9534f;
+@default: #999;
+@base-o: #ee8022;
+@base-v: #474b98;
+@white: #fff;
+@black: #000;
+@light-base-o: lighten(@base-o, 10%);
+@light-base-v: fadeOut(@base-v, 50%);
+
+@form-box-s-size: 2.0em;
+@form-box-size: 2.5em;
+
+@clickable-bg-color: lighten(@base-v, 20%);
+@clickable-txt-color: @white;
+@select-bg-color: @clickable-bg-color;
+@select-txt-color: @clickable-txt-color;
+@select-min-width: 80px;
+@select-real-width: 120%;
+@select-arrow-content: "▼";
+@select-arrow-offset-right: 0.75em;
+@select-option-indent : 0.5em;
+@select-option-padding-v : 0.25em;
+@select-option-bg-color: @white;
+@select-option-txt-color: @black;
+
+@input-bg-color: lighten(@base-v, 40%);
+@checkbox-offset-left: 0.5em;
+
