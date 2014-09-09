@@ -4,35 +4,35 @@
 		<meta charset="utf-8">
 		<title>Monitoring AB v0.1.0</title>
 
-		<link rel="stylesheet" type="text/css" href="./css/custom.css" />
+		<link rel="stylesheet" type="text/css" href="./css/styles.css" />
 	</head>
 	<body ng-controller="MainCtrl">
-		<div class="container_" ng-cloak>
+		<div ng-cloak>
 			<div class="header">
 				
 <!-- === LANGUAGE SWITCH === -->
-				<div class="menu menu-lang selectadv pull-left">
+				<div class="menu menu-lang selectadv">
 					<span class="arrow tiny"></span>
-					<select class="switch-lang borderless" ng-model="l">
+					<select class="switch-lang" ng-model="l">
 						<option value="{{ language }}" ng-selected="language==l" ng-repeat="language in lang.list">{{ language }}</option>
 					</select>
 				</div>				
 <!-- === USER MENU === -->
-				<div class="menu menu-user pull-right text-left" ng-if="user.token!=undefined">
+				<div class="menu menu-user txt-l" ng-if="user.token!=undefined">
 		<!-- == Username -->
-					<span class="userlabel">
+					<span class="userlabel label">
 						<span class="proxicon proxicon-user"></span>
 						{{ user.username }}
 					</span>
-		<!-- == BTN Profile -->
-					<a href="" class="btn" ng-click="userMgt.getProfile('open')">
-						<span class="proxicon proxicon-monitor"></span>
-						{{ lang['front_profile'][l] }}
-					</a>
 		<!-- == BTN Logout -->
 					<a href="" class="btn" ng-click="userMgt.logout()">
 						<span class="proxicon proxicon-off"></span>
 						{{ lang['front_disconnect'][l] }}
+					</a>
+		<!-- == BTN Profile -->
+					<a href="" class="btn" ng-click="userMgt.getProfile('open')">
+						<span class="proxicon proxicon-monitor"></span>
+						{{ lang['front_profile'][l] }}
 					</a>
 				</div>
 <!-- === TITLE === -->
@@ -43,7 +43,7 @@
 				
 				
 <!-- === TRACE BOX === -->
-			<div class="pane">
+			<div class="pane pane-trace">
 				<alert ng-repeat="msg in messages" type="{{ msg.type }}" close="alertMgt.closeAlert($index)">
 					{{ lang[msg.msg][l] }}
 				</alert>
@@ -51,128 +51,122 @@
 
 <!-- === REGISTER PANE === -->
 			<div class="pane pane-register" ng-if="user.token==undefined">
-				<div class="well">
-					<h3>{{ lang['front_register'][l] }}</h3>
-					<form class="form-inline" role="form">
+				<h3>{{ lang['front_register'][l] }}</h3>
+				<form class="form-inline" role="form">
 		<!-- == INP Username -->
-						<div class="input-group">
-							<div class="input-group-addon"><span class="proxicon proxicon-user"></span></div>
-							<input class="form-control" type="text" name="username" placeholder="{{ lang['front_username'][l] }}" ng-model="data.username" />
-						</div>
+					<div class="input-group">
+						<div class="input-addon"><span class="proxicon proxicon-user"></span></div>
+						<input type="text" name="username" placeholder="{{ lang['front_username'][l] }}" ng-model="data.username" />
+					</div>
 		<!-- == INP Password -->
-						<div class="input-group">
-							<div class="input-group-addon"><span class="proxicon proxicon-lock"></span></div>
-							<input class="form-control" type="password" name="password" placeholder="{{ lang['front_password'][l] }}" ng-model="data.password" />
-						</div>
+					<div class="input-group">
+						<div class="input-addon"><span class="proxicon proxicon-lock"></span></div>
+						<input type="password" name="password" placeholder="{{ lang['front_password'][l] }}" ng-model="data.password" />
+					</div>
 		<!-- == BTN Login -->
-						<button class="btn btn-success" ng-click="userMgt.login()">
-							<span class="proxicon proxicon-in"></span>
-							{{ lang['front_login'][l] }}
-						</button>
+					<button class="btn btn-success" ng-click="userMgt.login()">
+						<span class="proxicon proxicon-in"></span>
+						{{ lang['front_login'][l] }}
+					</button>
 		<!-- == BTN Register -->
-						<button class="btn btn-warning" ng-click="userMgt.register()">
-							<span class="proxicon proxicon-pen"></span>
-							{{ lang['front_register'][l] }}
-						</button>
-					</form>
-				</div>
+					<button class="btn btn-warning" ng-click="userMgt.register()">
+						<span class="proxicon proxicon-pen"></span>
+						{{ lang['front_register'][l] }}
+					</button>
+				</form>
 			</div>
 				
 				
 <!-- === EDIT PROFILE PANE === -->
 			<div class="pane pane-profile" ng-if="user.token != undefined && ui.showProfile">
-				<div class="well">
-					<h3>{{ lang['front_profile_manager'][l] }}</h3>
-					<form>
-					<legend>{{ lang['front_user_info'][l] }}</legend>
+				<h3>{{ lang['front_profile_manager'][l] }}</h3>
+				<form>
+				<legend>{{ lang['front_user_info'][l] }}</legend>
 		<!-- == INP Usernamer -->
-						<div class="form-group row">
-							<label class="col-xs-4">{{ lang['front_username'][l] }}</label>
-							<input class="col-xs-8"  type="text" name="username"placeholder="{{ lang['front_username'][l] }}" ng-model="data.username"/>
-						</div>
+					<div class="input-group row">
+						<label class="col-4">{{ lang['front_username'][l] }}</label>
+						<input class="col-8"  type="text" name="username"placeholder="{{ lang['front_username'][l] }}" ng-model="data.username"/>
+					</div>
 		<!-- == INP Password -->
-						<div class="form-group row">
-							<label class="col-xs-4">{{ lang['front_password'][l] }}</label>
-							<a class="label-like" href="#">{{ lang['front_change'][l] + ' ' + lang['front_password'][l] }}</a>
-						</div>
+					<div class="input-group row">
+						<label class="col-4">{{ lang['front_password'][l] }}</label>
+						<a class="label" href="#">{{ lang['front_change'][l] + ' ' + lang['front_password'][l] }}</a>
+					</div>
 		<!-- == INP Structure -->
-						<div class="form-group row">
-							<label class="col-xs-4">{{ lang['front_structure'][l] }}</label>
-							<input class="col-xs-8" type="text" name="structure" placeholder="{{ lang['front_structure'][l] }}" ng-model="data.structure"/>
-						</div>
+					<div class="input-group row">
+						<label class="col-4">{{ lang['front_structure'][l] }}</label>
+						<input class="col-8" type="text" name="structure" placeholder="{{ lang['front_structure'][l] }}" ng-model="data.structure"/>
+					</div>
 		<!-- == INP Localisation -->
-						<div class="form-group row">
-							<label class="col-xs-4">{{ lang['front_localisation'][l] }}</label>
-							<input class="col-xs-8" type="text" name="localisation" placeholder="{{ lang['front_localisation'][l] }}" ng-model="data.geoloc" />
-						</div>
+					<div class="input-group row">
+						<label class="col-4">{{ lang['front_localisation'][l] }}</label>
+						<input class="col-8" type="text" name="localisation" placeholder="{{ lang['front_localisation'][l] }}" ng-model="data.geoloc" />
+					</div>
 		<!-- == GRP School -->
-						<div class="form-group row">
-							<label class="col-xs-4">{{ lang['front_school'][l] }}</label>
+					<div class="input-group row">
+						<label class="col-4">{{ lang['front_school'][l] }}</label>
 				<!-- == INP City -->
-							<input class="col-xs-6" type="text" name="city" placeholder="{{ lang['front_city'][l] }}" ng-model="data.school.city" />
+						<input class="col-6" type="text" name="city" placeholder="{{ lang['front_city'][l] }}" ng-model="data.school.city" />
 				<!-- == INP Promo -->
-							<div class="selectadv col-xs-2">
-								<span class="arrow"></span>
-								<select class="col-xs-2" name="promo" ng-model="data.school.promo">
-									<option value="{{ y }}" ng-selected="y==data.school.promo" ng-repeat="y in years">{{ y }}</option>
-								</select>
-							</div>
+						<div class="selectadv col-2"><span class="arrow"></span>
+							<select class="col-2" name="promo" ng-model="data.school.promo">
+								<option value="{{ y }}" ng-selected="y==data.school.promo" ng-repeat="y in years">{{ y }}</option>
+							</select>
 						</div>
+					</div>
 		<!-- == INP Language -->
-						<div class="form-group row">
-							<label class="col-xs-4">{{ lang['front_language'][l] }}</label>
-							<div class="selectadv col-xs-2">
-								<span class="arrow"></span>
-								<select ng-model="data.lang">
-									<option value="{{ language }}" ng-selected="language==data.lang" ng-repeat="language in lang.list">{{ language }}</option>
-								</select>
-							</div>
+					<div class="input-group row">
+						<label class="col-4">{{ lang['front_language'][l] }}</label>
+						<div class="selectadv col-2"><span class="arrow"></span>
+							<select ng-model="data.lang">
+								<option value="{{ language }}" ng-selected="language==data.lang" ng-repeat="language in lang.list">{{ language }}</option>
+							</select>
 						</div>
+					</div>
 		<!-- == INP Activity -->
-						<legend>{{ lang['front_activity'][l] }}</legend>
+					<legend>{{ lang['front_activity'][l] }}</legend>
 				<!-- == DISP Activities List -->
-						<table class="table bg-success">
-							<tr ng-if="!data.activity || data.activity.length==0">
-								<th class="bg-warning text-warning">
-									<span class="proxicon proxicon-sign-warning"></span>&nbsp;
-									{{ lang['front_empty_list'][l] }}
-								</th>
-							</tr>
-							<tr ng-repeat="a in data.activity">
-								<td>
-									<span class="proxicon proxicon-ok text-success"></span>&nbsp;{{ lang[a.name][l] }}
-								</td>
-								<td class="text-right">
-									 {{ a.ratio + '%' }}
-								</td>
+					<table class="table bg-success">
+						<tr ng-if="!data.activity || data.activity.length==0">
+							<th class="bg-warning txt-warning">
+								<span class="proxicon proxicon-sign-warning"></span>&nbsp;
+								{{ lang['front_empty_list'][l] }}
+							</th>
+						</tr>
+						<tr ng-repeat="a in data.activity">
+							<td>
+								<span class="proxicon proxicon-ok txt-success"></span>&nbsp;{{ lang[a.name][l] }}
+							</td>
+							<td class="txt-right">
+								 {{ a.ratio + '%' }}
+							</td>
 						<!-- == BTN Activity Remove -->
-								<td class="text-right adder">
-									<button class="col-xs-12 btn btn-warning" type="button" ng-click="dataMgt.removeActivity($index)">
-										<span class="proxicon proxicon-minus"></span>
-									</button>
-								</td>
-							</tr>
-						</table>
+							<td class="col-1">
+								<button class="col-12 btn btn-warning" type="button" ng-click="dataMgt.removeActivity($index)">
+									<span class="proxicon proxicon-minus"></span>
+								</button>
+							</td>
+						</tr>
+					</table>
 
 				<!-- == INP Activity -->
 						<table class="table adder">
 							<tr>
-								<td width="50%">
-									<div class="selectadv col-xs-12">
-									<span class="arrow"></span>
+								<td class="col-6">
+									<div class="selectadv col-12"><span class="arrow"></span>
 										<select name="activity" ng-model="tmp.activity.name">
 											<option value="{{ species }}" ng-repeat="(species, types) in animals">{{ lang[species][l] }}</option>
 										</select>
 									</div>
 								</td>
-								<td>
 						<!-- == INP Activity ratio -->
-									<input class="col-xs-12" type="number" name="ratio" ng-model="tmp.activity.ratio" />
+								<td>
+									<input class="col-12" type="number" name="ratio" ng-model="tmp.activity.ratio" />
 								</td>
-								<td><label class="col-xs-12">%</label></td>
-								<td class="adder">
+								<td><label class="col-12">%</label></td>
 						<!-- == BTN Activity Add -->
-									<button class="col-xs-12 btn btn-info" type="button" ng-click="dataMgt.addActivity()" ng-disabled="!tmp.activity.name||!tmp.activity.ratio">
+								<td class="col-1">
+									<button class="col-12 btn btn-info" type="button" ng-click="dataMgt.addActivity()" ng-disabled="!tmp.activity.name||!tmp.activity.ratio">
 										<span class="proxicon proxicon-plus"></span>
 									</button>
 								</td>
@@ -183,7 +177,7 @@
 				<!-- == DISP volume List -->
 						<table class="table bg-success">
 							<tr ng-if="!data.volume || data.volume.length==0">
-								<th class="bg-warning text-warning">
+								<th class="bg-warning txt-warning">
 									<span class="proxicon proxicon-sign-warning"></span>&nbsp;
 									{{ lang['front_empty_list'][l] }}
 								</th>
@@ -192,12 +186,12 @@
 								<td>
 									{{ lang[v.species][l] }} {{ lang[v.type][l] }} {{ lang[v.age][l] }}
 								</td>
-								<td class="text-right">
+								<td class="txt-right">
 									{{ v.volume }}
 								</td>
 						<!-- == BTN Activity Remove -->
-								<td class="text-right adder">
-									<button class="col-xs-12 btn btn-warning" type="button" ng-click="dataMgt.removeVolume($index)">
+								<td class="col-1">
+									<button class="col-12 btn btn-warning" type="button" ng-click="dataMgt.removeVolume($index)">
 										<span class="proxicon proxicon-minus"></span>
 									</button>
 								</td>
@@ -206,9 +200,8 @@
 				<!-- == INP volume -->
 						<table class="table adder">
 							<tr>
-								<td width="50%">
-									<div class="selectadv col-xs-12">
-										<span class="arrow"></span>
+								<td class="col-6">
+									<div class="selectadv col-12"><span class="arrow"></span>
 										<select name="animal" ng-model="tmp.volume.raw">
 											<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
 												<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
@@ -223,75 +216,71 @@
 									</div>
 								</td>
 								<td>
-									<input class="col-xs-12" type="number" name="quantity" ng-model="tmp.volume.value" />
+									<input class="col-12" type="number" name="quantity" ng-model="tmp.volume.value" />
 								</td>
-								<td><label class="col-xs-12">&nbsp;</label></td>
-								<td class="adder">
-									<button class="col-xs-12 btn btn-info" type="button" ng-click="dataMgt.addVolume()" ng-disabled="!tmp.volume.raw||!tmp.volume.value">
+								<td><label class="col-12">&nbsp;</label></td>
+								<td class="col-1">
+									<button class="col-12 btn btn-info" type="button" ng-click="dataMgt.addVolume()" ng-disabled="!tmp.volume.raw||!tmp.volume.value">
 										<span class="proxicon proxicon-plus"></span>
 									</button>
 								</td>
 							</tr>
 						</table>
 		<!-- == BTN Update -->
-						<div class="validation row form-group">
-							<button class="col-xs-offset-2 col-xs-4 btn-lg btn btn-success" ng-click="userMgt.updateProfile()">
+						<div class="validation row">
+							<button class="col-ol-2 col-4 btn btn-success" ng-click="userMgt.updateProfile()">
 								<span class="proxicon proxicon-download"></span> 
 								{{ lang['front_save_changes'][l] }}
 							</button>
 		<!-- == BTN Cancel -->
-							<button class="col-xs-4 btn-lg btn btn-danger" ng-click="userMgt.getProfile('close')">
+							<button class="col-4 btn btn-danger" ng-click="userMgt.getProfile('close')">
 								<span class="proxicon proxicon-remove"></span> 
 								{{ lang['front_cancel'][l] }}
 							</button>
 						</div>
 					</form>
-				</div>
 			</div>
 				
 				
 <!-- === TREATMENT FORM PANE === -->
-			<div class="pane navigation" ng-if="user.token != undefined && !ui.showProfile">
-				<a ng-click="ui.page = 'inclusion'" ng-class="{'active':ui.page=='inclusion'}">inclusion</a>
-				<a ng-click="ui.page = 'display'" ng-class="{'active':ui.page=='display'}">display</a>
+			<div class="navigation" ng-if="user.token != undefined && !ui.showProfile">
+				<a ng-click="ui.page = 'inclusion'" ng-class="{'active':ui.page=='inclusion'}">{{ lang['front_include'][l] }}</a>
+				<a ng-click="ui.page = 'display'" ng-class="{'active':ui.page=='display'}">{{ lang['front_history'][l] }}</a>
 			</div>
+
 			<div class="pane main-pane" ng-if="user.token != undefined && !ui.showProfile">
-				<div class="inclusion-pane well" ng-if="ui.page == 'inclusion'" ng-init="reset.data()">
-					<!-- <h3>{{ lang['front_main_form_title'][l] }}</h3> -->
+				<div class="tab tab-inclusion" ng-if="ui.page == 'inclusion'" ng-init="reset.data()">
 					<form ng-submit="dataMgt.recordTreatment()">
 
 		<!-- == GRP Treatment infos -->
 						<legend>{{ lang['front_treatment'][l] }}</legend>
 				<!-- == INP Date -->
-						<div class="row form-group">
-							<label class="col-xs-5">
-								<span class="proxicon " ng-class="{'proxicon-sign-question text-danger':!data.date_dispense, 'proxicon-sign-ok text-success':data.date_dispense}"></span>
+						<div class="input-group row">
+							<label class="col-5">
+								<span class="proxicon" ng-class="{'proxicon-sign-question txt-danger':!data.date_dispense, 'proxicon-sign-ok txt-success':data.date_dispense}"></span>
 								{{ lang['front_start_date'][l] }}
 							</label>
-							<p class="input-group col-xs-7">
-				            	<input class="col-xs-10 box-left" type="text"
-				            	datepicker-popup="{{format}}"
-				            	is-open="datePicker.opened"
-				            	datepicker-options="dateOptions"
-				            	close-text="{{ lang['front_close'][l] }}"
-				            	current-text="{{ lang['front_today'][l] }}"
-				            	clear-text="{{ lang['front_clear'][l] }}"
-				            	max-date="thisday"
-				            	ng-model="data.date_dispense"
-				            	/>
-			            		<button type="button" class="col-xs-2 btn btn-default box-right" ng-click="open($event)">
-			            			<i class="proxicon proxicon-calendar"></i>
-			            		</button>
-				            </p>
-			            </div>
+							<input class="col-6" type="text"
+							datepicker-popup="{{format}}"
+							is-open="datePicker.opened"
+							datepicker-options="dateOptions"
+							close-text="{{ lang['front_close'][l] }}"
+							current-text="{{ lang['front_today'][l] }}"
+							clear-text="{{ lang['front_clear'][l] }}"
+							max-date="thisday"
+							ng-model="data.date_dispense"
+							/>
+							<button type="button" class="col-1 btn btn-base" ng-click="open($event)">
+								<span class="proxicon proxicon-calendar"></span>
+							</button>
+						</div>
 				<!-- == INP Pathology -->
-			            <div class="form-group row">
-							<label class="col-xs-5">
-								<span class="proxicon " ng-class="{'proxicon-sign-question text-danger':!data.pathology, 'proxicon-sign-ok text-success':data.pathology}"></span>
+						<div class="input-group row">
+							<label class="col-5">
+								<span class="proxicon" ng-class="{'proxicon-sign-question txt-danger':!data.pathology, 'proxicon-sign-ok txt-success':data.pathology}"></span>
 								{{ lang['front_pathology'][l] }}
 							</label>
-							<div class="selectadv col-xs-7">
-								<span class="arrow"></span>
+							<div class="selectadv col-7"><span class="arrow"></span>
 								<select name="pathology" ng-model="data.pathology">
 									<option value="{{ patho }}" ng-repeat="patho in enums['tra_pathology']">
 										{{ lang[patho][l] }}
@@ -300,13 +289,12 @@
 							</div>
 						</div>
 				<!-- == INP Treatment Type -->
-						<div class="form-group row">
-							<label class="col-xs-5">
-								<span class="proxicon " ng-class="{'proxicon-sign-question text-danger':!data.treat_type, 'proxicon-sign-ok text-success':data.treat_type}"></span>
+						<div class="input-group row">
+							<label class="col-5">
+								<span class="proxicon" ng-class="{'proxicon-sign-question txt-danger':!data.treat_type, 'proxicon-sign-ok txt-success':data.treat_type}"></span>
 								{{ lang['front_treat_type'][l] }}
 							</label>
-							<div class="selectadv col-xs-7">
-								<span class="arrow"></span>
+							<div class="selectadv col-7"><span class="arrow"></span>
 								<select name="treatment_type" ng-model="data.treat_type">
 									<option value="{{ type }}" ng-repeat="type in enums['tra_type']">
 										{{ lang[type][l] }}
@@ -315,13 +303,12 @@
 							</div>
 						</div>
 				<!-- == INP Treatment Init -->
-						<div class="form-group row">
-							<label class="col-xs-5">
-								<span class="proxicon " ng-class="{'proxicon-sign-question text-danger':!data.treat_init, 'proxicon-sign-ok text-success':data.treat_init}"></span>
+						<div class="input-group row">
+							<label class="col-5">
+								<span class="proxicon " ng-class="{'proxicon-sign-question txt-danger':!data.treat_init, 'proxicon-sign-ok txt-success':data.treat_init}"></span>
 								{{ lang['front_treat_init'][l] }}
 							</label>
-							<div class="selectadv col-xs-7">
-								<span class="arrow"></span>
+							<div class="selectadv col-7"><span class="arrow"></span>
 								<select name="treatment_init" ng-model="data.treat_init">
 									<option value="{{ init }}" ng-repeat="init in enums['tra_init']">
 										{{ lang[init][l] }}
@@ -330,24 +317,23 @@
 							</div>
 						</div>
 				<!-- == INP Treatment Follow Sample -->
-						<div class="form-group row">
-							<label class="col-xs-5">
-								<span class="proxicon proxicon-sign-ok text-success"></span>
+						<div class="input-group row">
+							<label class="col-5">
+								<span class="proxicon proxicon-sign-ok txt-success"></span>
 								{{ lang['front_follow_sample'][l] }}
 							</label>
 							<input type="checkbox" id="follow_sample" ng-model="data.follow_sample"/>
-							<label class="col-xs-7" for="follow_sample">
+							<label class="col-7" for="follow_sample">
 								<span>{{ data.follow_sample?lang['front_yes'][l]:lang['front_no'][l] }}</span>
 							</label>
 						</div>
 				<!-- == SEL Client Type -->
-						<div class="form-group row">
-							<label class="col-xs-5">
-								<span class="proxicon " ng-class="{'proxicon-sign-question text-danger':!data.client_type, 'proxicon-sign-ok text-success':data.client_type}"></span>
+						<div class="input-group row">
+							<label class="col-5">
+								<span class="proxicon " ng-class="{'proxicon-sign-question txt-danger':!data.client_type, 'proxicon-sign-ok txt-success':data.client_type}"></span>
 								{{ lang['front_client_type'][l] }}
 							</label>
-							<div class="selectadv col-xs-7">
-								<span class="arrow"></span>
+							<div class="selectadv col-7"><span class="arrow"></span>
 								<select name="client_type" ng-model="data.client_type">
 									<option value="{{ client }}" 
 										ng-repeat="client in enums['ani_client_types']">
@@ -360,92 +346,91 @@
 		<!-- == GRP Treatment Animals List Creation -->
 						<legend>{{ lang['front_animals'][l] }}</legend>
 				<!-- == DISP Animals List -->
-						<table class="table bg-success">
+						<table class="table display bg-success">
 							<tr ng-if="!data.animals || data.animals.length==0">
-								<th class="bg-danger text-danger">
+								<th class="bg-danger txt-danger">
 									<span class="proxicon proxicon-sign-warning"></span>&nbsp;
 									{{ lang['front_empty_list'][l] }}, {{ lang['front_msg_add_at_list_1_animal'][l] }}
 								</th>
 							</tr>
 							<tr ng-repeat="a in data.animals">
 								<td>
-									<span class="proxicon proxicon-ok text-success"></span>&nbsp;{{ a.quantity }} {{ lang[a.species][l] }} {{ lang[a.type][l] }} {{ lang[a.age][l] }} [<span ng-repeat="env in a.environment">{{ lang[env][l] + ' '}}</span>]
+									<span class="proxicon proxicon-ok txt-success"></span>&nbsp;{{ a.quantity }} {{ lang[a.species][l] }} {{ lang[a.type][l] }} {{ lang[a.age][l] }} [<span ng-repeat="env in a.environment">{{ lang[env][l] + ' '}}</span>]
 								</td>
 						<!-- == BTN Animal Remove -->
-								<td class="text-right adder">
-									<button class="col-xs-12 btn btn-warning" type="button" ng-click="dataMgt.removeAnimal($index)">
+								<td class="col-1 pad0">
+									<button class="col-12 btn btn-warning" type="button" ng-click="dataMgt.removeAnimal($index)">
 										<span class="proxicon proxicon-minus"></span>
 									</button>
 								</td>
 							</tr>
 						</table>
-						<table class="table adder">
-							<tr>
-								<th ng-class="{'text-danger':!tmp.animal.raw, 'text-success':tmp.animal.raw}">
-									{{ lang['front_species'][l] }}
-								</th>
-								<th ng-class="{'text-danger':!tmp.animal.quantity, 'text-success':tmp.animal.quantity}">
-									{{ lang['front_animal_quantity'][l] }}
-								</th>
-								<th ng-class="{'text-danger':!tmp.animal.envControl, 'text-success':tmp.animal.envControl}">
-									{{ lang['front_animal_environment'][l] }}
-								</th>
-								<th class="adder" rowspan="3">
-				<!-- == BTN Animal Add -->
-									<button class="col-xs-12 btn btn-h-3 btn-info" type="button" ng-click="dataMgt.addAnimal()" ng-disabled="!tmp.animal.quantity||!tmp.animal.envControl||!tmp.animal.raw">
-										<span class="proxicon proxicon-plus"></span> <!-- {{ lang['front_add'][l]}} -->
-									</button>
-								</th>
-							</tr>
-							<tr>
-								<td width="40%">
+						<div class="input-group">
+							<table class="table adder col-11">
+								<tr>
+									<th ng-class="{'txt-danger':!tmp.animal.raw, 'txt-success':tmp.animal.raw}">
+										{{ lang['front_species'][l] }}
+									</th>
+									<th ng-class="{'txt-danger':!tmp.animal.quantity, 'txt-success':tmp.animal.quantity}">
+										{{ lang['front_animal_quantity'][l] }}
+									</th>
+									<th ng-class="{'txt-danger':!tmp.animal.envControl, 'txt-success':tmp.animal.envControl}">
+										{{ lang['front_animal_environment'][l] }}
+									</th>
+								</tr>
+								<tr>
 				<!-- == INP Animal -->
-									<div class="selectadv">
-										<span class="arrow"></span>
-										<select name="animal" ng-model="tmp.animal.raw">
-											<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
-												<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
-													-- {{ lang[type][l] }} --
-												</option>
-												<option value="{{ species + '|'  + type + '|' + age + '|' + weight }}" ng-repeat="(age, weight) in ages">
-													{{ lang[species][l] + '/'  + lang[type][l] + '/' + lang[age][l] }}
-												</option>
-												<option disabled ng-repeat-end></option>
-											</optgroup>
-										</select>
-									</div>
-								</td>
-								<td width="12%">
+									<td class="col-5">
+										<div class="selectadv"><span class="arrow"></span>
+											<select name="animal" ng-model="tmp.animal.raw">
+												<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
+													<option disabled class="optssgroup" ng-repeat-start="(type, ages) in types">
+														-- {{ lang[type][l] }} --
+													</option>
+													<option value="{{ species + '|'  + type + '|' + age + '|' + weight }}" ng-repeat="(age, weight) in ages">
+														{{ lang[species][l] + '/'  + lang[type][l] + '/' + lang[age][l] }}
+													</option>
+													<option disabled ng-repeat-end></option>
+												</optgroup>
+											</select>
+										</div>
+									</td>
 				<!-- == INP Animal quantity -->
-									<input class="col-xs-12" type="number" name="quantity" ng-model="tmp.animal.quantity" />
-								</td>
-								<td>
+									<td class="col-2">
+										<input class="col-12" type="number" name="quantity" ng-model="tmp.animal.quantity" />
+									</td>
 				<!-- == SEL Animal Environment -->
-									<input type="checkbox" name="animal_env" ng-repeat-start="env in enums['ani_environment']" ng-model="tmp.animal.environment[env]" ng-change="dataMgt.buildEnvControl()" id="{{ env }}">
-									<label class="col-xs-6" for="{{ env }}" class="tiny">
-										<span>{{ lang[env][l] }}</span>
-									</label>
-									<span ng-repeat-end></span>
-								</td>
-							</tr>
-						</table>
+									<td class="col-5 row">
+										<input type="checkbox" name="animal_env" ng-repeat-start="env in enums['ani_environment']" ng-model="tmp.animal.environment[env]" ng-change="dataMgt.buildEnvControl()" id="{{ env }}">
+										<label class="col-6" for="{{ env }}" class="tiny">
+											<span>{{ lang[env][l] }}</span>
+										</label>
+										<span ng-repeat-end></span>
+									</td>
+								</tr>
+							</table>
+				<!-- == Animal add button == -->
+							<button class="col-1 btn btn-info" type="button" autoheight ng-click="dataMgt.addAnimal()" ng-disabled="!tmp.animal.quantity||!tmp.animal.envControl||!tmp.animal.raw">
+								<span class="proxicon proxicon-plus"></span>
+							</button>
+						</div>
 							
 		<!-- == GRP Treatment Products List Creation -->
 						<legend>{{ lang['front_treat_prescription'][l] }}</legend>
 				<!-- == DISP Products List -->
-						<table class="table bg-success">
+						<table class="table display bg-success">
 							<tr ng-if="!data.prescription || data.prescription.length==0">
-								<th class="bg-danger text-danger">
+								<th class="bg-danger txt-danger">
 									<span class="proxicon proxicon-sign-warning"></span>&nbsp;
 									{{ lang['front_empty_list'][l] }}, {{ lang['front_msg_add_at_list_1_product'][l] }}
 								</th>
 							</tr>
 							<tr ng-repeat="p in data.prescription">
 								<td>
-									<span class="proxicon proxicon-ok text-success"></span>&nbsp;
+									<span class="proxicon proxicon-ok txt-success"></span>&nbsp;
 									{{ 	p.name + ' (' + lang[p.mode][l] + ')'}}
 								</td>
-								<td class="text-right">
+								<td class="txt-right">
 									{{
 									p.quantity_init +
 									' ' +
@@ -455,137 +440,134 @@
 									}}
 								</td>
 							<!-- == BTN Product Remove -->
-								<td class="text-right adder">
-									<button class="col-xs-12 btn btn-warning" type="button" ng-click="dataMgt.removeProduct($index)">
+								<td class="col-1 pad0">
+									<button class="col-12 btn btn-warning" type="button" ng-click="dataMgt.removeProduct($index)">
 										<span class="proxicon proxicon-minus"></span>
 									</button>
 								</td>
 							</tr>
 						</table>
-
-						<table class="table adder">
-							<tr>
-								<th ng-class="{'text-danger':!tmp.productName, 'text-success':tmp.productName}">
-									{{ lang['front_product'][l] }}
-								</th>
-								<th  colspan="2" ng-class="{'text-danger':!tmp.product.quantity_init||!(tmp.product.quantity||enums['tra_frequency'][tmp.product.frequency]==0), 'text-success':tmp.product.quantity_init&&(tmp.product.quantity||enums['tra_frequency'][tmp.product.frequency]==0)}">
-									{{ lang['front_product_quantity'][l] + ' '}}
-									<span class="legend">{{
-										((enums['tra_frequency'][tmp.product.frequency]>0||tmp.product.frequency==undefined)?lang['front_product_quantity_info'][l]:'') +
-										'(' +
-										((tmp.product.nunit!='vrac' && tmp.product.nunit!=undefined)?lang[tmp.product.nunit][l] +' ' + lang['front_of'][l]+ ' ' + tmp.product.qunit + tmp.product.unit:tmp.product.unit) +
-										')'
-										}}
-									</span>
-								</th>
-								<th class="adder" rowspan="4">
-										<button class="col-xs-12 btn-h-4 btn btn-info" type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity_init||!(tmp.product.quantity||enums['tra_frequency'][tmp.product.frequency]==0)||!tmp.productName||!tmp.product.mode||!tmp.product.duration||!tmp.product.frequency">
-										<span class="proxicon proxicon-plus"></span>
-									</button>
-								</th>
-							</tr>
-							<tr>
-								<td width="40%">
+						<div class="input-group">
+							<table class="table adder col-11">
+								<tr>
+									<th ng-class="{'txt-danger':!tmp.productName, 'txt-success':tmp.productName}">
+										{{ lang['front_product'][l] }}
+									</th>
+									<th colspan="2" ng-class="{'txt-danger':!tmp.product.quantity_init||!(tmp.product.quantity||enums['tra_frequency'][tmp.product.frequency]==0), 'txt-success':tmp.product.quantity_init&&(tmp.product.quantity||enums['tra_frequency'][tmp.product.frequency]==0)}">
+										{{ lang['front_product_quantity'][l] + ' '}}
+										<span class="legend">{{
+											((enums['tra_frequency'][tmp.product.frequency]>0||tmp.product.frequency==undefined)?lang['front_product_quantity_info'][l]:'') +
+											'(' +
+											((tmp.product.nunit!='vrac' && tmp.product.nunit!=undefined)?lang[tmp.product.nunit][l] +' ' + lang['front_of'][l]+ ' ' + tmp.product.qunit + tmp.product.unit:tmp.product.unit) +
+											')'
+											}}
+										</span>
+									</th>
+								</tr>
+								<tr>
 				<!-- == SEL Product -->
-									<div class="selectadv">
-										<span class="arrow"></span>
-										<select name="product" ng-model="tmp.productName" ng_change="dataMgt.buildProduct()">
-											<optgroup label="{{ lang['front_products_match_animal'][l] }}" ng-if="tmp.species_list.length>0">
-												<option class="favs" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | filter : filterMgt.products.target | orderBy:'clics'">
-													♥ {{ p.name }}
-												</option>
-												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.target | filter : filterMgt.products.noClics| orderBy:'name'">
-													{{ p.name }}
-												</option>
-												<option disabled>&nbsp;</option>
-											</optgroup>
-											<optgroup class="other" label="{{ lang['front_other_products'][l] }}" ng-if="tmp.species_list.length>0">
-												<option class="favs" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | filter : filterMgt.products.notTarget | orderBy:'clics'">
-													♥ {{ p.name }}
-												</option>
-												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.notTarget | filter : filterMgt.products.noClics| orderBy:'name'">
-													{{ p.name }}
-												</option>
-											</optgroup>
+									<td class="col-5">
+										<div class="selectadv"><span class="arrow"></span>
+											<select name="product" ng-model="tmp.productName" ng_change="dataMgt.buildProduct()">
+												<optgroup label="{{ lang['front_products_match_animal'][l] }}" ng-if="tmp.species_list.length>0">
+													<option class="fav" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | filter : filterMgt.products.target | orderBy:'clics'">
+														♥ {{ p.name }}
+													</option>
+													<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.target | filter : filterMgt.products.noClics| orderBy:'name'">
+														{{ p.name }}
+													</option>
+													<option disabled>&nbsp;</option>
+												</optgroup>
+												<optgroup class="other" label="{{ lang['front_other_products'][l] }}" ng-if="tmp.species_list.length>0">
+													<option class="fav" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | filter : filterMgt.products.notTarget | orderBy:'clics'">
+														♥ {{ p.name }}
+													</option>
+													<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.notTarget | filter : filterMgt.products.noClics| orderBy:'name'">
+														{{ p.name }}
+													</option>
+												</optgroup>
 
-											<optgroup label="{{ lang['front_all_products'][l] }}" ng-if="tmp.species_list.length==0">
-												<option class="favs" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | orderBy:'clics':true">
-													♥ {{ p.name }}
-												</option>
-												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.noClics | orderBy : 'name'">
-													{{ p.name }}
-												</option>
-											</optgroup>
-										</select>
-									</div>
-								</td>
-								<td width="26%">
+												<optgroup label="{{ lang['front_all_products'][l] }}" ng-if="tmp.species_list.length==0">
+													<option class="fav" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | orderBy:'clics':true">
+														♥ {{ p.name }}
+													</option>
+													<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.noClics | orderBy : 'name'">
+														{{ p.name }}
+													</option>
+												</optgroup>
+											</select>
+										</div>
+									</td>
 				<!-- == INP Product Initial Quantity -->
-									<input  class="col-xs-12" type="number" step="any" name="product_quantity_init" ng-model="tmp.product.quantity_init" />
-								</td>
-								<td width="26%">
+									<td class="col-3">
+										<input  class="col-12" type="number" step="any" name="product_quantity_init" ng-model="tmp.product.quantity_init" />
+									</td>
 				<!-- == INP Product Quantity -->
-									<input  class="col-xs-12" type="number" step="any" name="product_quantity" ng-hide="enums['tra_frequency'][tmp.product.frequency]==0" ng-model="tmp.product.quantity" />
-								</td>
-							</tr>
-							<tr>
-								<th ng-class="{'text-danger':!tmp.product.mode, 'text-success':tmp.product.mode}">
-									<span>{{ lang['front_treat_mode'][l] }}</span>
-								</th>
-								<th ng-class="{'text-danger':!tmp.product.duration, 'text-success':tmp.product.duration}">
-									{{ lang['front_treat_duration'][l] }}
-								</th>
-								<th ng-class="{'text-danger':!tmp.product.frequency, 'text-success':tmp.product.frequency}">
-									{{ lang['front_treat_frequency'][l] }}
-								</th>
-							</tr>
-							<tr>
-								<td>
+									<td class="col-4">
+										<input  class="col-12" type="number" step="any" name="product_quantity" ng-hide="enums['tra_frequency'][tmp.product.frequency]==0" ng-model="tmp.product.quantity" />
+									</td>
+								</tr>
+								<tr>
+									<th ng-class="{'txt-danger':!tmp.product.mode, 'txt-success':tmp.product.mode}">
+										<span>{{ lang['front_treat_mode'][l] }}</span>
+									</th>
+									<th ng-class="{'txt-danger':!tmp.product.frequency, 'txt-success':tmp.product.frequency}">
+										{{ lang['front_treat_frequency'][l] }}
+									</th>
+									<th ng-class="{'txt-danger':!tmp.product.duration, 'txt-success':tmp.product.duration}">
+										{{ lang['front_treat_duration'][l] }}
+									</th>
+								</tr>
+								<tr>
 				<!-- == INP Product mode -->
-									<div class="selectadv col-xs-12">
-										<span class="arrow"></span>
-										<select name="frequency" ng-model="tmp.product.mode">
-											<option value="{{ f }}" 
-												ng-repeat="f in enums['tra_mode']">
-												{{ lang[f][l] }}
-											</option>
-										</select>
-									</div>
-								</td>
-								<td>
-				<!-- == INP Product treat duration -->
-									<input class="col-xs-12" type="number" name="duration" ng-model="tmp.product.duration" />
-								</td>
-								<td>
+									<td>
+										<div class="selectadv col-12"><span class="arrow"></span>
+											<select name="frequency" ng-model="tmp.product.mode">
+												<option value="{{ f }}" 
+													ng-repeat="f in enums['tra_mode']">
+													{{ lang[f][l] }}
+												</option>
+											</select>
+										</div>
+									</td>
 				<!-- == INP Product treat frequency -->
-									<div class="selectadv col-xs-12">
-										<span class="arrow"></span>
-										<select name="frequency" ng-model="tmp.product.frequency">
-											<option value="{{ f }}" 
-												ng-repeat="(f, v) in enums['tra_frequency']">
-												{{ lang[f][l] }}
-											</option>
-										</select>
-									</div>
-								</td>
-							</tr>
-						</table>
-						<legend>&nbsp;</legend>
+									<td>
+										<div class="selectadv col-12"><span class="arrow"></span>
+											<select name="frequency" ng-model="tmp.product.frequency">
+												<option value="{{ f }}" 
+													ng-repeat="(f, v) in enums['tra_frequency']">
+													{{ lang[f][l] }}
+												</option>
+											</select>
+										</div>
+									</td>
+				<!-- == INP Product treat duration -->
+									<td>
+										<input class="col-12" type="number" name="duration" ng-model="tmp.product.duration" />
+									</td>
+								</tr>
+				<!-- == Product add button == -->
+							</table>
+							<button class="col-1 btn btn-info" autoheight type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity_init||!(tmp.product.quantity||enums['tra_frequency'][tmp.product.frequency]==0)||!tmp.productName||!tmp.product.mode||!tmp.product.duration||!tmp.product.frequency">
+								<span class="proxicon proxicon-plus"></span>
+							</button>
+						</div>
+						<legend></legend>
 		<!-- == INP Treatment Follow Sample -->
-						<div class="form-group row">
-							<label class="col-xs-5">
-								<span class="proxicon proxicon-sign-ok text-success"></span>
+						<div class="input-group row">
+							<label class="col-5">
+								<span class="proxicon proxicon-sign-ok txt-success"></span>
 								{{ lang['front_delivered'][l] }}
 							</label>
 							<input type="checkbox" id="delivered" ng-model="data.delivered"/>
-							<label class="col-xs-7" for="delivered">
+							<label class="col-7" for="delivered">
 								<span>{{ data.delivered?lang['front_yes'][l]:lang['front_no'][l] }}</span>
 							</label>
 						</div>
 
 		<!-- == BTN Record -->
-						<div class="validation row form-group">
-							<button type="submit" class="col-xs-4 col-xs-offset-4 btn btn-lg btn-success" ng-disabled="!data.date_dispense || !data.pathology || !data.treat_type || !data.treat_init || !data.client_type || (!data.animals || data.animals.length==0) || (!data.prescription || data.prescription.length==0)">
+						<div class="validation row">
+							<button class="col-4 col-ol-4 btn btn-success" type="submit" ng-disabled="!data.date_dispense || !data.pathology || !data.treat_type || !data.treat_init || !data.client_type || (!data.animals || data.animals.length==0) || (!data.prescription || data.prescription.length==0)">
 								<span class="proxicon proxicon-download"></span>
 								{{ lang['front_record'][l] }}
 							</button>
@@ -593,9 +575,8 @@
 					</form>
 				</div>
 	<!-- == DISPLAY PANE == -->
-				<div class="display-pane well" ng-if="ui.page == 'display'" ng-init="dataMgt.getTreatments()">
-					<h3>Display</h3>
-					<table class='table table-bordered'>
+				<div class="tab tab-display" ng-if="ui.page == 'display'" ng-init="dataMgt.getTreatments()">
+					<table>
 						<!-- TODO TRANSLATE -->
 						<tr>
 							<th>date</th>
@@ -624,7 +605,7 @@
 									<th>délivré</th><td>{{ t.delivered?lang['front_yes'][l]:lang['front_no'][l] }}</td>
 								</table>
 							<td>
-								<table class="table">
+								<table>
 									<tr ng-repeat="a in t.animals">
 										<td>{{ lang[a.species][l] }} {{ lang[a.type][l] }} {{ lang[a.age][l] }}</td>
 										<td>{{ a.quantity }}</td>
@@ -632,7 +613,7 @@
 								</table>
 							</td>
 							<td>
-								<table class="table">
+								<table>
 									<tr ng-repeat-start="p in t.prescription">
 										<td>{{ p.name }}</td>
 										<td>{{ p.quantity_init+' / '+p.quantity }} {{ ((p.nunit!='vrac' && p.nunit!=undefined)?lang[p.nunit][l] +' de '+ p.qunit + p.unit:p.unit) }}</td>
@@ -648,16 +629,17 @@
 				</div>
 			</div>
 <!-- === DEBUG PANE === -->
-			<div class="pane pane-debug" ng-if="true">
+			<div class="pane pane-debug" ng-if="false">
 				<a ng-click="debug=!debug">DEBUG</a>
-				<textarea class="col-md-12 col-xs-12" ng-if="debug">DATA : {{ '\n'+ print.data }}</textarea>
-				<textarea class="col-md-12 col-xs-12" ng-if="debug">TMP : {{ '\n'+ print.tmp }}</textarea>
-				<textarea class="col-md-12 col-xs-12" ng-if="debug">USER : {{ '\n'+ print.user }}</textarea>
-				<textarea class="col-md-12 col-xs-12" ng-if="debug">PRODUCTS : {{ '\n'+ print.products }}</textarea>
+				<textarea class="col-md-12 col-12" ng-if="debug">DATA : {{ '\n'+ print.data }}</textarea>
+				<textarea class="col-md-12 col-12" ng-if="debug">TMP : {{ '\n'+ print.tmp }}</textarea>
+				<textarea class="col-md-12 col-12" ng-if="debug">USER : {{ '\n'+ print.user }}</textarea>
+				<textarea class="col-md-12 col-12" ng-if="debug">PRODUCTS : {{ '\n'+ print.products }}</textarea>
 			</div>
 		</div>
 		
 		
+		<script src="./js/libraries/jquery.min.js"></script>
 		<script src="./js/libraries/angular.min.js"></script>
 		<script src="./js/libraries/ui-bootstrap-tpls.min.js"></script>
 		<script src="./js/libraries/angular-local-storage.min.js"></script>
@@ -670,6 +652,7 @@
 		
 		<script src="./js/app.front.js"></script>
 		<script src="./js/controllers/MainCtrl.js"></script>
+		<script src="./js/directives/directives.js"></script>
 		<script src="./js/services/messageService.js"></script>
 	</body>
 </html>
