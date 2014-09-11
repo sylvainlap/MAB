@@ -322,6 +322,10 @@ var lang =
 	    	'FR': 'Votre profil a bien été mis à jour.',
 	    	'EN': 'Your profile has been successfully updated.'
 	    },
+	    'back_err_pagevet': {
+	    	'FR': 'Erreur durant la requete PageVet.',
+	    	'EN': 'Error during PageVet request.'
+	    },
 	    /* === ENUM TRA_PATHOLOGY ===*/
 		'tra_pathology_respiratory':{
 			'FR': 'respiratoire',
