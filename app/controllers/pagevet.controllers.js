@@ -18,7 +18,6 @@ var ENVIRONMENT  = 1;
 
 exports.requestPagevet = function(req, res, next) {
 	var codeCso = req.params.codeCso;
-	console.log('codeCSO' + codeCso);
 
 	// build the message
 	var message = '';
@@ -31,11 +30,15 @@ exports.requestPagevet = function(req, res, next) {
 	message += '<info101>' + codeCso + '</info101>';
 	message += '</donnees></message>';
 
+	console.log(message);
+
 	initCipher(function(cipher) {
 		var cipherText = cipher.encrypt(message);
+		console.log(cipherText);
+
 		var request = {
 			fluxPrestataire: PRESTA,
-			fluxDonnes: cipherText.toString('base64')
+			fluxDonnees: cipherText.toString('base64')
 		};
 
 		soap.createClient(SOAP_PAGEVET, function(err, client) {
@@ -64,10 +67,6 @@ function initCipher(callback) {
 	var ivSize = cipher.getIvSize();
 	var iv = '49b5e32dc26b18ff0990430eda541fb6';
 	iv = iv.substr(0, ivSize);
-
-	// DEBUG
-	console.log(KEY);
-	console.log(this.KEY);
 
 	// key with MD5 hash
 	var keySize = cipher.getKeySize();
