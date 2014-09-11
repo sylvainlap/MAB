@@ -1,6 +1,7 @@
+*{
+	box-sizing: border-box;
+}
 body{
-	float: left;
-	width: 100%;
 	max-width: @base-max-width;
 	margin: 0 auto;
 	padding: 0;
@@ -35,6 +36,9 @@ body{
 .grid-col(@c){
 	.row &{
 		float: left;
+	}
+	.row td&{
+		float: none;
 	}
 	width: @c/@grid*100%;
 }
@@ -85,7 +89,19 @@ legend, .row, table{
 	float: left;
 	width: 100%;
 }
+
 .input-group{
 	margin-bottom: 0.5em;
 	float: left;
+}
+.alert{
+	float: left;
+	width: 100%;
+}
+.navigation{
+	width: 100%;
+	float: left;
+	a{
+		width: 50%;
+	}
 }
