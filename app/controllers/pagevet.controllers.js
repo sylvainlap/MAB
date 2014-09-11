@@ -1,9 +1,10 @@
 /**
  * Module dependencies.
  */
-var soap    = require('soap');
-var crypto  = require('crypto');
-var mcrypt  = require('mcrypt').MCrypt;
+var soap   = require('soap');
+var crypto = require('crypto');
+var mcrypt = require('mcrypt').MCrypt;
+var xml2js = require('xml2js').parseString;
 
 /**
  * Constants.
@@ -19,6 +20,10 @@ var ENVIRONMENT  = 1;
 exports.requestPagevet = function(req, res, next) {
 	var codeCso = req.params.codeCso;
 
+	// is it a number ?
+	if (isNaN(codeCso))
+		return res.json({ error: 'back_err_pagevet' });
+
 	// build the message
 	var message = '';
 	message += '<?xml version="1.0" encoding="UTF-8"?>';
@@ -30,35 +35,41 @@ exports.requestPagevet = function(req, res, next) {
 	message += '<info101>' + codeCso + '</info101>';
 	message += '</donnees></message>';
 
-	initCipher(function(cipher) {
-		var cipherText = cipher.encrypt(message);
-
+	initCipher('rijndael-256', 'ofb', function(cipher) {
 		var request = {
 			fluxPrestataire: PRESTA,
-			fluxDonnees: cipherText.toString('base64')
+			fluxDonnees: cipher.encrypt(message).toString('base64')
 		};
 
 		soap.createClient(SOAP_PAGEVET, function(err, client) {
+			if (err)
+				return res.json({ error: 'back_err_pagevet' });
+
 			client.ANNURVET(request, function(err, result) {
 				if (err)
-					console.log(err);
+					return res.json({ error: 'back_err_pagevet' });
 
-				console.log(result);
+				if ((result.erreur != '') || (result.reponse == ''))
+					console.log(result.erreur);
+					return res.json({ error: 'back_err_pagevet' });
 
-				// tester que result.erreur est bien vide.
 				var plaintext = cipher.decrypt(new Buffer(result.reponse, 'base64'));
 
 				console.log(plaintext);
+				xml2js(plaintext, function(err, result) {
+					if (err)
+						return res.json({ error: 'back_err_pagevet' });
 
-				// transformer le XML en JSON
-				res.send(plaintext);
+					console.log(result);
+					res.json(result);
+				});
 			});
 		});
 	});
 }
 
-function initCipher(callback) {
-	var cipher = new mcrypt('rijndael-256', 'ofb');
+function initCipher(algo, mode, callback) {
+	var cipher = new mcrypt(algo, mode);
 
 	// init vector
 	var ivSize = cipher.getIvSize();
