@@ -48,7 +48,7 @@ body{
 .grid-col-or(@c){
 	margin-right: @c/@grid*100%;
 }
-.col-1{.grid-col(1)};
+.col-1{.grid-col(1);};
 .col-2{.grid-col(2)};
 .col-3{.grid-col(3)};
 .col-4{.grid-col(4)};
@@ -60,6 +60,7 @@ body{
 .col-10{.grid-col(10)};
 .col-11{.grid-col(11)};
 .col-12{.grid-col(12)};
+
 .col-ol-1{.grid-col-ol(1)};
 .col-ol-2{.grid-col-ol(2)};
 .col-ol-3{.grid-col-ol(3)};
@@ -103,5 +104,63 @@ legend, .row, table{
 	float: left;
 	a{
 		width: 50%;
+	}
+}
+
+.mobile, .tablet{
+	font-size: @base-font-size*1.2;
+	.col-1, .col-2, .col-3, .col-4, .col-5,	.col-6,
+	.col-7, .col-8, .col-9, .col-10, .col-11, .col-12{
+		&.col-xs-0{display: none;};
+		&.col-xs-1{.grid-col(1);};
+		&.col-xs-2{.grid-col(2)};
+		&.col-xs-3{.grid-col(3)};
+		&.col-xs-4{.grid-col(4)};
+		&.col-xs-5{.grid-col(5)};
+		&.col-xs-6{.grid-col(6)};
+		&.col-xs-7{.grid-col(7)};
+		&.col-xs-8{.grid-col(8)};
+		&.col-xs-9{.grid-col(9)};
+		&.col-xs-10{.grid-col(10)};
+		&.col-xs-11{.grid-col(11)};
+		&.col-xs-12{.grid-col(12)};
+	};
+	.col-ol-1, .col-ol-2, .col-ol-3, .col-ol-4, .col-ol-5,	.col-ol-6,
+	.col-ol-7, .col-ol-8, .col-ol-9, .col-ol-10, .col-ol-11, .col-ol-12{
+		&.col-ol-xs-0{.grid-col-ol(0)};
+		&.col-ol-xs-1{.grid-col-ol(1)};
+		&.col-ol-xs-2{.grid-col-ol(2)};
+		&.col-ol-xs-3{.grid-col-ol(3)};
+		&.col-ol-xs-4{.grid-col-ol(4)};
+		&.col-ol-xs-5{.grid-col-ol(5)};
+		&.col-ol-xs-6{.grid-col-ol(6)};
+		&.col-ol-xs-7{.grid-col-ol(7)};
+		&.col-ol-xs-8{.grid-col-ol(8)};
+		&.col-ol-xs-9{.grid-col-ol(9)};
+		&.col-ol-xs-10{.grid-col-ol(10)};
+		&.col-ol-xs-11{.grid-col-ol(11)};
+		&.col-ol-xs-12{.grid-col-ol(12)};
+	}
+	.col-or-1, .col-or-2, .col-or-3, .col-or-4, .col-or-5,	.col-or-6,
+	.col-or-7, .col-or-8, .col-or-9, .col-or-10, .col-or-11, .col-or-12{
+		&.col-or-xs-0{.grid-col-ol(0)};
+		&.col-or-xs-1{.grid-col-ol(1)};
+		&.col-or-xs-2{.grid-col-ol(2)};
+		&.col-or-xs-3{.grid-col-ol(3)};
+		&.col-or-xs-4{.grid-col-ol(4)};
+		&.col-or-xs-5{.grid-col-ol(5)};
+		&.col-or-xs-6{.grid-col-ol(6)};
+		&.col-or-xs-7{.grid-col-ol(7)};
+		&.col-or-xs-8{.grid-col-ol(8)};
+		&.col-or-xs-9{.grid-col-ol(9)};
+		&.col-or-xs-10{.grid-col-ol(10)};
+		&.col-or-xs-11{.grid-col-ol(11)};
+		&.col-or-xs-12{.grid-col-ol(12)};
+	}
+	.table.adder{
+		margin-bottom: 0.5em;
+		td:last-child, th:last-child{
+			padding-right: 0;
+		}
 	}
 }

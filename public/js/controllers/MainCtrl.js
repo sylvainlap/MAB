@@ -365,7 +365,17 @@ mabapp.controller('MainCtrl',[
 			$scope.messages.splice(0, $scope.messages.length);
 		}
 	};
-	
+	// === DEVICE DETECTION ===
+	var uap = new UAParser();
+	$scope.client = uap.getResult();
+	$scope.client.screen = {
+		ih : window.innerHeight,
+		iw : window.innerWidth,
+		ri : window.innerWidth/window.innerHeight,
+		h : window.screen.height,
+		w: window.screen.width,
+		r : window.screen.width/window.screen.height
+	};
 	
 	// === WATCH ===
 	$scope.$watch('data', function(){

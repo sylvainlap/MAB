@@ -300,29 +300,27 @@ input{
 		}
 	}
 }
-table{
-	// th, td{
-	// 	float: none!important;
-	// }
-	th{
+div.table{
+	.th{
 		font-weight: bold;
 	}
 	&.table{
 		margin: 0;
-		th{
+		.th{
 			padding: 0.25em 0;
 		}
 		&.display{
-			td, th{
-				padding: 0.25em 0.5em;
+			.td, .th{
+				padding: 0 0.5em;
+				line-height: 2.5em;
 			}
 		}
 		&.adder{
-			td, th{
+			.td, .th{
 				padding-right: 0.5em;
 				vertical-align: top;
 			}
-			th{
+			.th{
 				.legend{
 					font-weight: normal;
 				}
