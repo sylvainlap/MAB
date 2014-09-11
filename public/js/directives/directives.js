@@ -7,7 +7,7 @@ mabapp.directive('autoheight', function(){
 				return e.parentNode.offsetHeight;
 			};
 			scope.$watch(function(){return getParentH(elt);}, function(){
-				elt.style.height = getParentH(elt)+'px';
+				setTimeout(function(){elt.style.height = getParentH(elt)+'px'}, 50);
 			});
 		}
 	};
