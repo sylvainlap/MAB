@@ -42,6 +42,7 @@ require('./app/models/treatment.models');
 require('./app/routes/core.routes')(app);
 require('./app/routes/auth.routes')(app);
 require('./app/routes/admin.routes')(app);
+require('./app/routes/pagevet.routes')(app);
 require('./app/routes/api.routes')(app);
 
 // start the app
