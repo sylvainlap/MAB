@@ -30,11 +30,8 @@ exports.requestPagevet = function(req, res, next) {
 	message += '<info101>' + codeCso + '</info101>';
 	message += '</donnees></message>';
 
-	console.log(message);
-
 	initCipher(function(cipher) {
 		var cipherText = cipher.encrypt(message);
-		console.log(cipherText);
 
 		var request = {
 			fluxPrestataire: PRESTA,
@@ -49,7 +46,7 @@ exports.requestPagevet = function(req, res, next) {
 				console.log(result);
 
 				// tester que result.erreur est bien vide.
-				var plaintext = cipher.decrypt(new Buffer(result.response, 'base64'));
+				var plaintext = cipher.decrypt(new Buffer(result.reponse, 'base64'));
 
 				console.log(plaintext);
 
