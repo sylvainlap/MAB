@@ -49,20 +49,21 @@ exports.requestPagevet = function(req, res, next) {
 				if (err)
 					return res.json({ error: 'back_err_pagevet' });
 
-				if ((result.erreur != '') || (result.reponse == ''))
+				if (typeof result.erreur == 'string') {
 					console.log(result.erreur);
 					return res.json({ error: 'back_err_pagevet' });
+				} else {
+					var plaintext = cipher.decrypt(new Buffer(result.reponse, 'base64'));
 
-				var plaintext = cipher.decrypt(new Buffer(result.reponse, 'base64'));
+					console.log(plaintext);
+					xml2js(plaintext, function(err, result) {
+						if (err)
+							return res.json({ error: 'back_err_pagevet' });
 
-				console.log(plaintext);
-				xml2js(plaintext, function(err, result) {
-					if (err)
-						return res.json({ error: 'back_err_pagevet' });
-
-					console.log(result);
-					res.json(result);
-				});
+						console.log(result);
+						res.json(result);
+					});
+				}
 			});
 		});
 	});
