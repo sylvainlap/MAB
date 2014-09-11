@@ -78,39 +78,3 @@ function initCipher(callback) {
 
 	callback(cipher);
 }
-
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-exports.register = function(req, res, next) {
-	User.findOne({ username: req.body.username }, function(err, user) {
-		if (user)
-			return res.json({ error: 'back_username_exists' });
-
-		user = new User(req.body);
-		user.save(function(err) {
-			if (err)
-				return res.json({ error: 'back_err_val_account' });
-
-			// all went good, now we send the token
-			generateToken(user.id, function(token) {
-				res.json({ message: 'back_logged', token: token, _id: user.id, lang:user.lang, favs:user.favs });
-			});
-		});
-	});
-};
-
-
