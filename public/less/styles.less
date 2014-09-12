@@ -12,6 +12,9 @@ body {
 }
 
 // === TYPOS ===
+strong{
+	font-weight: bold;
+}
 h1, h2, h3, h4, h5, legend{
 	font-weight: bold;
 	margin-bottom: 0.25em;
@@ -331,7 +334,35 @@ div.table{
 		}
 	}
 }
-
+.browser-pb{
+	p{
+		font-size: 1.5em;
+		line-height: 2em;
+		margin: 1em 0;
+		.txt-c;
+		.btn{
+			width: auto;
+		}
+		a{
+			text-decoration: none;
+			&.update{
+				padding: 1em;
+			}
+		}
+	}
+	.browser-list{
+		margin-top: 2em;
+		a{
+			padding: 0.5em;
+			font-weight: bold;
+			color: @white;
+			background-color: @clickable-bg-color;
+			:hover{
+				background-color: darken(@clickable-bg-color, 10%);
+			}
+		}
+	}
+}
 
 .header{
 	background-color: @base-v;

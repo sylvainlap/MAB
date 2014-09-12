@@ -376,6 +376,7 @@ mabapp.controller('MainCtrl',[
 		w: window.screen.width,
 		r : window.screen.width/window.screen.height
 	};
+	$scope.client.ok = true;
 	
 	// === WATCH ===
 	$scope.$watch('data', function(){

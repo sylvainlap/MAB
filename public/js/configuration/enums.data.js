@@ -56,5 +56,12 @@ var enums =
     "ani_client_types" : [ 
         "ani_client_professional", 
         "ani_client_private"
-    ]
+    ],
+    "browser_list" : {
+        'firefox' : {'link':'https://www.mozilla.org/firefox/new/'},
+        'chrome' : {'link':'https://www.google.com/chrome/browser/'},
+        'safari' : {'link':'https://www.apple.com/safari/'},
+        'ie' : {'link':'http://windows.microsoft.com/internet-explorer'},
+        'opera' : {'link':'http://www.opera.com'}
+    }
 };

@@ -8,9 +8,24 @@
 		<link rel="stylesheet" type="text/css" href="./css/styles.css" />
 	</head>
 	<body ng-controller="MainCtrl" ng-class="client.device.type">
-		<div ng-cloak>
+		<div ng-if="false" ng-cloak>
+			<div class="pane browser-pb">
+				<p>Sorry, <br />Your browser<br />
+				<strong>
+					<script>document.write(navigator.appName);</script> version <script>document.write(navigator.appVersion.split(" (")[0]);</script></strong>.<br />Is too old for this app.</p>
+				<p>
+					Thanks for update or change it !
+				<p class="browser-list">
+					<a href="https://www.mozilla.org/firefox/new/" target="_blank">Firefox</a>
+					<a href="https://www.google.com/chrome/browser/" target="_blank">Chrome</a>
+			        <a href="https://www.apple.com/safari/" target="_blank">Safari</a>
+			        <a href="http://windows.microsoft.com/internet-explorer" target="_blank">Internet Explorer</a>
+			        <a href="http://www.opera.com" target="_blank">Opera</a>
+				</p>
+			</div>
+		</div>
+		<div class="hide" ng-class="'unHide'" ng-cloak>
 			<div class="header">
-				
 <!-- === LANGUAGE SWITCH === -->
 				<div class="menu menu-lang selectadv">
 					<span class="arrow tiny"></span>
@@ -629,7 +644,6 @@
 				<textarea class="col-md-12 col-12" ng-if="debug">PRODUCTS : {{ '\n'+ print.products }}</textarea> -->
 			</div>
 		</div>
-		
 		<script src="./js/libraries/ua-parser.min.js"></script>
 		<script src="./js/libraries/angular.min.js"></script>
 		<script src="./js/libraries/ui-bootstrap-tpls.min.js"></script>
