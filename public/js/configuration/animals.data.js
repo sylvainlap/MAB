@@ -46,4 +46,19 @@ var animals =
 			'ani_ag_adult' : 20
 		}
 	}
+//	,
+//	ani_sp_equin : {
+//		'ani_ty_race' : {
+//			'ani_ag_0' : 10,
+//			'ani_ag_01' : 10,
+//			'ani_ag_1' : 10,
+//			'ani_ag_2' : 10,
+//			'ani_ag_15' : 10,
+//			'ani_ag_20' : 10
+//		},
+//		'ani_ty_cart' : {},
+//		'ani_ty_miniature' : {},
+//		'ani_ty_pony' : {},
+//		'ani_ty_donkey' : {}
+//	}
 };
