@@ -106,6 +106,51 @@ legend, .row, table{
 		width: 50%;
 	}
 }
+ul.dropdown-menu{
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	z-index: 1000;
+	border: 3px solid @base-v;
+	padding: 0.5em;
+	background-color: @white;
+	li{
+		padding: 0;
+		float: left;
+		clear: both;
+		width: 100%;
+	}
+	.btn-group{
+			float: left;
+			.btn{
+				float: left;
+				margin-right: 0.25em;
+			}
+	}
+	.pull-right{
+		float: right;
+	}
+	.btn-default{
+		.btn-base;
+	}
+	table{
+		th{
+			.glyphicon-chevron-left:before{
+				.icon-arrow-left;
+			}
+			.glyphicon-chevron-right:before{
+				.icon-arrow-right;
+			}
+			.btn{
+				width: 100%;
+			}
+		}
+	}
+	.text-center{
+		.txt-c;
+	}
+}
 
 .mobile, .tablet{
 	font-size: @base-font-size*1.2;
