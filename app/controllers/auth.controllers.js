@@ -8,6 +8,14 @@ var User     = mongoose.model('User');
 
 var jwtTokenSecret = '1mB4tm3n';
 
+exports.generateToken = function(req, res, nex) {
+	var auth = req.params.auth;
+	console.log('je vais generer un token avec ce auth');
+	// TODO generer le token
+}
+
+// TOUT CE QUI EST EN DESSOUS VA ETRE ENLEVE
+
 exports.register = function(req, res, next) {
 	User.findOne({ username: req.body.username }, function(err, user) {
 		if (user)

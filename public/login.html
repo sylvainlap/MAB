@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<title>Login</title>
+	</head>
+	<body>
+		<p><i class="fa fa-spinner fa-spin"></i> Login in progres...</p>
+		<script type="text/javascript">
+			// parse the Query String
+			var QueryString = (function() {
+				var queryString = {};
+				var query = window.location.search.slice(1);
+				var vars = query.split('&');
+				for (var i = 0, c = vars.length; i < c; i++) {
+					var pair = vars[i].split('=');
+					queryString[pair[0]] = pair[1];
+				}
+				return queryString;
+			})();
+
+			alert(QueryString.auth);
+
+			// AJAX request
+			(function() {
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						// TODO : enregistrer le token dans le local storage
+						alert(xhr.responseText);
+					} else {
+						alert('AJAX error !');
+					}
+				}
+				xhr.open('GET', '/generateToken/' + QueryString.auth, true);
+				xhr.send();
+			})();
+		</script>
+	</body>
+</html>
