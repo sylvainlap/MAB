@@ -16,7 +16,7 @@ exports.generateToken = function(req, res, next) {
 };
 
 exports.login = function(req, res, next) {
-	res.sendFile(path.join(__dirname, 'public', 'login.html'));
+	res.sendFile(path.join(__dirname, '../../public/login.html'));
 };
 
 // TOUT CE QUI EST EN DESSOUS VA ETRE ENLEVE
