@@ -39,7 +39,6 @@ require('./app/models/user.models');
 require('./app/models/treatment.models');
 
 // get the routes
-require('./app/routes/core.routes')(app);
 require('./app/routes/auth.routes')(app);
 require('./app/routes/admin.routes')(app);
 require('./app/routes/pagevet.routes')(app);
