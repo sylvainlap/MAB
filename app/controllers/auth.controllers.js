@@ -1,17 +1,20 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose');
-var moment   = require('moment');
-var jwt      = require('jwt-simple');
-var path     = require('path');
-var User     = mongoose.model('User');
-
-var jwtTokenSecret = '1mB4tm3n';
+var mongoose  = require('mongoose');
+var moment    = require('moment');
+var jwt       = require('jwt-simple');
+var path      = require('path');
+var crypto    = require('./crypto.controllers');
+var CONSTANTS = require('../../config/constants');
+var User      = mongoose.model('User');
 
 exports.generateToken = function(req, res, next) {
 	var auth = req.params.auth;
 	console.log('je vais generer un token avec ce auth');
+	// modifier les carateres interdits en URL
+	plaintext = crypto.decrypt(new Buffer(auth, 'base64'));
+	console.log(plaintext);
 	// TODO generer le token
 };
 
@@ -68,7 +71,7 @@ exports.decodeToken = function(req, res, next) {
 
 	if (token) {
 		try {
-			var decoded = jwt.decode(token, jwtTokenSecret);
+			var decoded = jwt.decode(token, CONSTANTS.JWT_SECRET);
 			User.findOne({ _id: decoded.iss }, function(err, user) {
 				if (err)
 					return res.json({ error: 'back_no_user' });
@@ -134,6 +137,6 @@ function generateToken(id, callback) {
 	var token = jwt.encode({
 		iss: id,
 		exp: expires
-	}, jwtTokenSecret);
+	}, CONSTANTS.JWT_SECRET);
 	callback(token);
 }
