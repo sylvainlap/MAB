@@ -4,6 +4,7 @@
 var mongoose = require('mongoose');
 var moment   = require('moment');
 var jwt      = require('jwt-simple');
+var path     = require('path');
 var User     = mongoose.model('User');
 
 var jwtTokenSecret = '1mB4tm3n';
@@ -15,7 +16,7 @@ exports.generateToken = function(req, res, next) {
 };
 
 exports.login = function(req, res, next) {
-	res.sendFile('./public/login.html');
+	res.sendFile(path.join(__dirname, 'public', 'login.html'));
 };
 
 // TOUT CE QUI EST EN DESSOUS VA ETRE ENLEVE
