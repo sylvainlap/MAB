@@ -8,11 +8,15 @@ var User     = mongoose.model('User');
 
 var jwtTokenSecret = '1mB4tm3n';
 
-exports.generateToken = function(req, res, nex) {
+exports.generateToken = function(req, res, next) {
 	var auth = req.params.auth;
 	console.log('je vais generer un token avec ce auth');
 	// TODO generer le token
-}
+};
+
+exports.login = function(req, res, next) {
+	res.sendFile('./public/login.html');
+};
 
 // TOUT CE QUI EST EN DESSOUS VA ETRE ENLEVE
 
@@ -34,7 +38,7 @@ exports.register = function(req, res, next) {
 	});
 };
 
-exports.login = function(req, res, next) {
+/*exports.login = function(req, res, next) {
 	User.findOne({ username: req.body.username }, function(err, user) {
 		if (err)
 			return res.json({ error: 'back_err_mongo' });
@@ -56,7 +60,7 @@ exports.login = function(req, res, next) {
 			}
 		});
 	});
-};
+};*/
 
 exports.decodeToken = function(req, res, next) {
 	var token = req.headers['x-access-token'];
