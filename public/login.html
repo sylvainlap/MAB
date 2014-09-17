@@ -26,9 +26,10 @@
 				xhr.onreadystatechange = function() {
 					if (xhr.readyState == 4 && xhr.status == 200) {
 						res = xhr.responseText;
+						alert(typeof res);
 						localStorage.clear();
-						localStorage.setItem('token', res.token);
-						localStorage.setItem('_id', res._id);
+						localStorage.setItem('token', res.toJSON().token);
+						localStorage.setItem('_id', res.toJSON()._id);
 						window.location.replace('http://91.121.35.7:8080');
 					}
 				}
