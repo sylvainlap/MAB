@@ -11,11 +11,23 @@ var User      = mongoose.model('User');
 
 exports.generateToken = function(req, res, next) {
 	var auth = req.params.auth;
-	console.log('je vais generer un token avec ce auth');
-	// modifier les carateres interdits en URL
-	plaintext = crypto.decrypt(new Buffer(auth, 'base64'));
-	console.log(plaintext);
-	// TODO generer le token
+	auth = auth.replace(/-/g, '+').replace(/_/g, '/').replace(/\./g, '=');
+	auth = crypto.decrypt(new Buffer(auth, 'base64'));
+	console.log(auth.toString());
+
+	auth = auth.toString().split('|');
+	var codeCso = auth[0];
+	var md5ToTest = auth[1].slice(0,32);
+
+	console.log(codeCso + ' / ' + md5ToTest);
+
+	var ip = req.ip;
+
+	console.log(ip);
+
+	generateToken(codeCso, function(token) {
+		res.json({ message: 'back_logged', token: token, _id: codeCso });
+	});
 };
 
 exports.login = function(req, res, next) {
