@@ -24,7 +24,7 @@ exports.generateToken = function(req, res, next) {
 
 	console.log('req.ip ' + req.ip);
 	console.log('req.ips ' + req.ips);
-	console.log('req.headers ' + req.headers);
+	console.log('req.headers ' + req.headers['x-forwarded-for']);
 
 	console.log(codeCso + ' / ' + md5ToTest + ' / ' + md5Computed);
 

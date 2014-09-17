@@ -26,7 +26,7 @@
 				xhr.onreadystatechange = function() {
 					if (xhr.readyState == 4 && xhr.status == 200) {
 						res = xhr.responseText;
-						alert('res');
+						alert(res);
 						localStorage.clear();
 						localStorage.setItem('token', 'toto');
 						localStorage.setItem('_id', 'titi');
