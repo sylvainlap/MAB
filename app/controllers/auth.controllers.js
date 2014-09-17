@@ -28,7 +28,7 @@ exports.generateToken = function(req, res, next) {
 	console.log(codeCso + ' / ' + md5ToTest + ' / ' + md5Computed);
 
 	generateToken(codeCso, function(token) {
-		res.json({ message: 'back_logged', token: token, _id: codeCso });
+		res.json({ token: token, _id: codeCso });
 	});
 };
 

@@ -25,8 +25,11 @@
 				var xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = function() {
 					if (xhr.readyState == 4 && xhr.status == 200) {
-						// TODO : enregistrer le token dans le local storage
-						alert(xhr.responseText);
+						res = xhr.responseText;
+						localStorage.clear();
+						localStorage.setItem('token', res.token);
+						localStorage.setItem('_id', res._id);
+						window.location.replace('http://91.121.35.7:8080');
 					}
 				}
 				xhr.open('GET', '/generateToken/' + QueryString.auth, true);
