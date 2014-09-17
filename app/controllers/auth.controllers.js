@@ -27,7 +27,6 @@ exports.generateToken = function(req, res, next) {
 	console.log('x-forwarded-for ' + req.headers['x-forwarded-for']);
 	console.log('req.connection.remoteAddress ' + req.connection.remoteAddress);
 	console.log('req.socket.remoteAddress ' + req.socket.remoteAddress);
-	console.log('req.connection.socket.remoteAddress ' + req.connection.socket.remoteAddress)
 
 	console.log(codeCso + ' / ' + md5ToTest + ' / ' + md5Computed);
 
