@@ -34,6 +34,9 @@ app.engine('views.html', swig.renderFile);
 app.set('view engine', 'views.html');
 app.set('views', __dirname + '/app/views');
 
+// trust proxy
+app.enable('trust proxy');
+
 // get the models
 require('./app/models/user.models');
 require('./app/models/treatment.models');

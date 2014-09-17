@@ -22,6 +22,9 @@ exports.generateToken = function(req, res, next) {
 	// build the md5
 	var md5Computed = crypto.md5(req.ip + moment().format('YYYYMMDD') + codeCso);
 
+	console.log(req.ip);
+	console.log(req.ips);
+
 	console.log(codeCso + ' / ' + md5ToTest + ' / ' + md5Computed);
 
 	generateToken(codeCso, function(token) {
