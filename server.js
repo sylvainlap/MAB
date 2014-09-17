@@ -21,8 +21,11 @@ var port = 8080;
 // db connection
 mongoose.connect(db.url);
 
+// trust proxy
+//app.set('trust proxy', true);
+
 // set up express
-app.use(morgan(':method :url :status :req[Content-Type] :res[Content-Type]'));
+app.use(morgan(':remote-addr - :remote-user - :req[X-Forwarded-For] - :method :url :status :req[Content-Type] :res[Content-Type]'));
 app.use(compression());
 app.use(bodyParser.json());
 app.use(lessMiddleware('/less', { dest: '/css', pathRoot: __dirname + '/public' }));
@@ -33,9 +36,6 @@ app.engine('views.html', swig.renderFile);
 
 app.set('view engine', 'views.html');
 app.set('views', __dirname + '/app/views');
-
-// trust proxy
-app.set('trust proxy', true);
 
 // get the models
 require('./app/models/user.models');

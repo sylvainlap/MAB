@@ -24,8 +24,10 @@ exports.generateToken = function(req, res, next) {
 
 	console.log('req.ip ' + req.ip);
 	console.log('req.ips ' + req.ips);
-	console.log('req.headers ' + req.headers['x-forwarded-for']);
-	console.log('req.connection ' + req.connection.remoteAddress);
+	console.log('x-forwarded-for ' + req.headers['x-forwarded-for']);
+	console.log('req.connection.remoteAddress ' + req.connection.remoteAddress);
+	console.log('req.socket.remoteAddress ' + req.socket.remoteAddress);
+	console.log('req.connection.socket.remoteAddress ' + req.connection.socket.remoteAddress)
 
 	console.log(codeCso + ' / ' + md5ToTest + ' / ' + md5Computed);
 
