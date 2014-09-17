@@ -35,7 +35,7 @@ app.set('view engine', 'views.html');
 app.set('views', __dirname + '/app/views');
 
 // trust proxy
-app.enable('trust proxy');
+app.set('trust proxy', true);
 
 // get the models
 require('./app/models/user.models');
