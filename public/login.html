@@ -20,8 +20,6 @@
 				return queryString;
 			})();
 
-			alert(QueryString.auth);
-
 			// AJAX request
 			(function() {
 				var xhr = new XMLHttpRequest();
@@ -29,9 +27,6 @@
 					if (xhr.readyState == 4 && xhr.status == 200) {
 						// TODO : enregistrer le token dans le local storage
 						alert(xhr.responseText);
-					} else {
-						alert('AJAX error !');
-					}
 				}
 				xhr.open('GET', '/generateToken/' + QueryString.auth, true);
 				xhr.send();
