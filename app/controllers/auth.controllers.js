@@ -22,12 +22,9 @@ exports.generateToken = function(req, res, next) {
 	// build the md5
 	var md5Computed = crypto.md5(req.ip + moment().format('YYYYMMDD') + codeCso);
 
-	console.log('req.ip' + req.ip);
-	console.log('req.ips' + req.ips);
-	console.log('X-Forwarded-For' + req.get('X-Forwarded-For'));
-	console.log('HTTP_X_FORWARDED_FOR' + req.get('HTTP_X_FORWARDED_FOR'));
-	console.log('HTTP_CLIENT_IP' + req.get('HTTP_CLIENT_IP'));
-	console.log('REMOTE_ADDR' + req.get('REMOTE_ADDR'));
+	console.log('req.ip ' + req.ip);
+	console.log('req.ips ' + req.ips);
+	console.log('req.headers ' + req.headers);
 
 	console.log(codeCso + ' / ' + md5ToTest + ' / ' + md5Computed);
 
