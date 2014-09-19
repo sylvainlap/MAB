@@ -22,7 +22,7 @@ var port = 8080;
 mongoose.connect(db.url);
 
 // trust proxy
-//app.set('trust proxy', true);
+app.set('trust proxy', true);
 
 // set up express
 app.use(morgan(':remote-addr - :remote-user - :req[X-Forwarded-For] - :method :url :status :req[Content-Type] :res[Content-Type]'));
@@ -42,9 +42,9 @@ require('./app/models/user.models');
 require('./app/models/treatment.models');
 
 // get the routes
-require('./app/routes/auth.routes')(app);
 require('./app/routes/admin.routes')(app);
-require('./app/routes/pagevet.routes')(app);
+require('./app/routes/user.routes')(app);
+require('./app/routes/auth.routes')(app);
 require('./app/routes/api.routes')(app);
 
 // start the app

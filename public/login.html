@@ -27,8 +27,12 @@
 					if (xhr.readyState == 4 && xhr.status == 200) {
 						res = JSON.parse(xhr.responseText);
 						localStorage.clear();
-						localStorage.setItem('token', res.token);
-						localStorage.setItem('_id', res._id);
+						localStorage.setItem('user_id', res._id);
+						localStorage.setItem('user_cso', res.codeCso);
+						localStorage.setItem('user_username', res.username);
+						localStorage.setItem('user_token', res.token);
+						localStorage.setItem('user_l', res.l);
+						localStorage.setItem('user_favs', res.favs);
 						window.location.replace('http://91.121.35.7:8080');
 					}
 				}
