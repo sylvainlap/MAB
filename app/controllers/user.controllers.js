@@ -63,15 +63,15 @@ exports.createOrGetUser = function(codeCso, callback) {
 			callback(null, user);
 		} else {
 			// user does not exist, create it
-			var infos = pagevet.requestPagevet(codeCso).donnees;
+			var infos = pagevet.requestPagevet(codeCso);
 
 			console.log(infos);
 
 			user = new User({
 				codeCso: codeCso,
-				firstname: infos['F1.IND.IDENTITE'].info106,
-				lastname: infos['F1.IND.IDENTITE'].info104,
-				email: info['F5.DPE']['F5.DPE.IDENTITE'].info2035
+				firstname: infos.donnees['F1.IND.IDENTITE'].info106,
+				lastname: infos.donnees['F1.IND.IDENTITE'].info104,
+				email: infos.donnees['F5.DPE']['F5.DPE.IDENTITE'].info2035
 			});
 			user.save(function(err, user) {
 				if (err) {
