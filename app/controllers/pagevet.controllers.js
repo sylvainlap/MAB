@@ -33,11 +33,15 @@ exports.requestPagevet = function(codeCso) {
 
 	soap.createClient(CONSTANTS.SOAP_PAGEVET, function(err, client) {
 		if (err)
+			console.log('erreur a la creation du client');
 			return { error: 'back_err_pagevet' };
 
 		client.ANNURVET(request, function(err, result) {
 			if (err)
+				console.log('erreur a la request');
 				return { error: 'back_err_pagevet' };
+
+			console.log('result ' + result);
 
 			if (typeof result.erreur == 'string') {
 				console.log(result.erreur);
