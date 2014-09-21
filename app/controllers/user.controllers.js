@@ -71,18 +71,15 @@ exports.createOrGetUser = function(codeCso, callback) {
 				return;
 			}
 
-			console.log('1 ' + result.donnees['F1.IND.IDENTITE'][0].info106);
-			console.log('2 ' + result.donnees['F1.IND.IDENTITE'][0].info104);
-			console.log('3 ' + result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2035);
-
 			user = new User({
 				codeCso: codeCso,
-				firstname: result.donnees['F1.IND.IDENTITE'].info106,
-				lastname: result.donnees['F1.IND.IDENTITE'].info104,
-				email: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'].info2035
+				firstname: result.donnees['F1.IND.IDENTITE'][0].info106,
+				lastname: result.donnees['F1.IND.IDENTITE'][0].info104,
+				email: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2035
 			});
 			user.save(function(err, user) {
 				if (err) {
+					console.log('erreur !!!!' + err);
 					callback(err);
 					return;
 				}
