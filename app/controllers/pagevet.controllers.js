@@ -22,6 +22,8 @@ exports.requestPagevet = function(codeCso) {
 	message += '<info101>' + codeCso + '</info101>';
 	message += '</donnees></message>';
 
+	console.log('message' + message);
+
 	var request = {
 		fluxPrestataire: CONSTANTS.PRESTA,
 		fluxDonnees: crypto.encrypt(message).toString('base64')
@@ -41,7 +43,8 @@ exports.requestPagevet = function(codeCso) {
 			} else {
 				var plaintext = crypto.decrypt(new Buffer(result.reponse, 'base64'));
 
-				console.log(plaintext);
+				console.log('plaintext' + plaintext.toString());
+
 				xml2js(plaintext, function(err, result) {
 					if (err)
 						return { error: 'back_err_pagevet' };
