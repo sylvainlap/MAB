@@ -7,6 +7,8 @@ var crypto    = require('./crypto.controllers');
 var CONSTANTS = require('../../config/constants');
 
 exports.requestPagevet = function(codeCso) {
+	// TODO : faire la former callback(err, result) !
+
 	// is it a number ?
 	if (isNaN(codeCso))
 		return { error: 'back_err_pagevet' };
@@ -22,8 +24,6 @@ exports.requestPagevet = function(codeCso) {
 	message += '<info101>' + codeCso + '</info101>';
 	message += '</donnees></message>';
 
-	console.log('message' + message);
-
 	var request = {
 		fluxPrestataire: CONSTANTS.PRESTA,
 		fluxDonnees: crypto.encrypt(message).toString('base64')
@@ -37,21 +37,16 @@ exports.requestPagevet = function(codeCso) {
 			if (err)
 				return { error: 'back_err_pagevet' };
 
-			console.log(result);
-
 			if (typeof result.erreur == 'string') {
 				console.log(result.erreur);
 				return { error: 'back_err_pagevet' };
 			} else {
 				var plaintext = crypto.decrypt(new Buffer(result.reponse, 'base64'));
 
-				console.log('plaintext' + plaintext.toString());
-
 				xml2js(plaintext, function(err, result) {
 					if (err)
 						return { error: 'back_err_pagevet' };
-
-					console.log(result);
+					
 					return result;
 				});
 			}
