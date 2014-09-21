@@ -46,7 +46,9 @@ exports.requestPagevet = function(codeCso) {
 				xml2js(plaintext, function(err, result) {
 					if (err)
 						return { error: 'back_err_pagevet' };
-					
+
+					console.log('result : ' + result);
+
 					return result;
 				});
 			}
