@@ -6,14 +6,12 @@ var xml2js    = require('xml2js').parseString;
 var crypto    = require('./crypto.controllers');
 var CONSTANTS = require('../../config/constants');
 
-exports.requestPagevet = function(codeCso) {
-	// TODO : faire la former callback(err, result) !
+exports.requestPagevet = function(codeCso, callback) {
+	if (isNaN(codeCso)) {
+		callback(new Error('codeCso is not a number'));
+		return;
+	}
 
-	// is it a number ?
-	if (isNaN(codeCso))
-		return { error: 'back_err_pagevet' };
-
-	// build the message
 	var message = '';
 	message += '<?xml version="1.0" encoding="UTF-8"?>';
 	message += '<message><fonction>INDIVIDU</fonction><donnees>';
@@ -24,42 +22,45 @@ exports.requestPagevet = function(codeCso) {
 	message += '<info101>' + codeCso + '</info101>';
 	message += '</donnees></message>';
 
-	console.log('message ' + message);
-
 	var request = {
 		fluxPrestataire: CONSTANTS.PRESTA,
 		fluxDonnees: crypto.encrypt(message).toString('base64')
 	};
 
 	soap.createClient(CONSTANTS.SOAP_PAGEVET, function(err, client) {
-		if (err)
+		if (err) {
 			console.log('erreur a la creation du client');
-			return { error: 'back_err_pagevet' };
+			callback(err);
+			return;
+		}
 
 		client.ANNURVET(request, function(err, result) {
-			if (err)
-				console.log('erreur a la request');
-				return { error: 'back_err_pagevet' };
+			if (err) {
+				console.log('erreur ANNURVET');
+				callback(err);
+				return;
+			}
 
 			console.log('result ' + result);
 
 			if (typeof result.erreur == 'string') {
 				console.log(result.erreur);
-				return { error: 'back_err_pagevet' };
-			} else {
-				var plaintext = crypto.decrypt(new Buffer(result.reponse, 'base64'));
-
-				console.log('plaintext ' + plaintext.toString());
-
-				xml2js(plaintext, function(err, result) {
-					if (err)
-						return { error: 'back_err_pagevet' };
-
-					console.log('result : ' + result);
-
-					return result;
-				});
+				callback(new Error(result.erreur));
+				return;
 			}
+
+			var plaintext = crypto.decrypt(new Buffer(result.reponse, 'base64'));
+			console.log('plaintext ' + plaintext.toString());
+
+			xml2js(plaintext, function(err, result) {
+				if (err) {
+					callback(err);
+					return;
+				}
+
+				console.log('result : ' + result);
+				callback(null, result);
+			});
 		});
 	});
 }

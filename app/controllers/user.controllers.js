@@ -61,24 +61,31 @@ exports.createOrGetUser = function(codeCso, callback) {
 		if (user) {
 			// user already exists
 			callback(null, user);
-		} else {
-			// user does not exist, create it
-			var infos = pagevet.requestPagevet(codeCso);
+			return;
+		}
 
-			console.log(infos);
+		// user does not exist, create it
+		pagevet.requestPagevet(codeCso, function(err, result) {
+			if (err) {
+				callback(err);
+				return;
+			}
+
+			console.log(result);
 
 			user = new User({
 				codeCso: codeCso,
-				firstname: infos.donnees['F1.IND.IDENTITE'].info106,
-				lastname: infos.donnees['F1.IND.IDENTITE'].info104,
-				email: infos.donnees['F5.DPE']['F5.DPE.IDENTITE'].info2035
+				firstname: result.donnees['F1.IND.IDENTITE'].info106,
+				lastname: result.donnees['F1.IND.IDENTITE'].info104,
+				email: result.donnees['F5.DPE']['F5.DPE.IDENTITE'].info2035
 			});
 			user.save(function(err, user) {
 				if (err) {
 					callback(err);
-				} else {
-					callback(null, user);
+					return;
 				}
+
+				callback(null, user);
 			});
 		}
 	});
