@@ -71,7 +71,8 @@ exports.createOrGetUser = function(codeCso, callback) {
 				return;
 			}
 
-			console.log(result);
+			console.log(result.donnees['F5.DPE']);
+			console.log(result.donnees['F5.DPE']['F5.DPE.IDENTITE']);
 
 			user = new User({
 				codeCso: codeCso,
