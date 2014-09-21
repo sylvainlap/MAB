@@ -6,12 +6,12 @@ var pagevet  = require('./pagevet.controllers');
 var User     = mongoose.model('User');
 
 exports.updateUser = function(req, res, next) {
-	codeCso = req.params.codeCso;
-	User.findOne({ codeCso: codeCso }, function(err, user) {
+	codeCSO = req.params.codeCSO;
+	User.findOne({ codeCSO: codeCSO }, function(err, user) {
 		if (err)
 			return res.json({ error: 'back_err_mongo' });
 
-		var infos = pagevet.requestPagevet(codeCso);
+		var infos = pagevet.requestPagevet(codeCSO);
 		console.log(infos);
 
 		// TODO update user with infos
@@ -56,8 +56,8 @@ exports.updateProfile = function(req, res, next) {
 	});
 };
 
-exports.createOrGetUser = function(codeCso, callback) {
-	User.findOne({ codeCso: codeCso }, function(err, user) {
+exports.createOrGetUser = function(codeCSO, callback) {
+	User.findOne({ codeCSO: codeCSO }, function(err, user) {
 		if (user) {
 			// user already exists
 			callback(null, user);
@@ -65,21 +65,20 @@ exports.createOrGetUser = function(codeCso, callback) {
 		}
 
 		// user does not exist, create it
-		pagevet.requestPagevet(codeCso, function(err, result) {
+		pagevet.requestPagevet(codeCSO, function(err, result) {
 			if (err) {
 				callback(err);
 				return;
 			}
 
 			user = new User({
-				codeCso: codeCso,
+				codeCSO: codeCSO,
 				firstname: result.donnees['F1.IND.IDENTITE'][0].info106,
 				lastname: result.donnees['F1.IND.IDENTITE'][0].info104,
 				email: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2035
 			});
 			user.save(function(err, user) {
 				if (err) {
-					console.log('erreur !!!!' + err);
 					callback(err);
 					return;
 				}

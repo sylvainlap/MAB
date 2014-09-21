@@ -30,7 +30,7 @@ exports.generateToken = function(req, res, next) {
 
 	userCtrl.createOrGetUser(codeCso, function(err, user) {
 		if (err)
-			return res.json({ error: 'back_err_mongo' });
+			return res.json(err);
 
 		var expires = moment().add('days', 7).valueOf();
 		var token = jwt.encode({
