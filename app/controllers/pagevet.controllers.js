@@ -58,7 +58,6 @@ exports.requestPagevet = function(codeCso, callback) {
 					return;
 				}
 
-				console.log('result : ' + result);
 				callback(null, result);
 			});
 		});

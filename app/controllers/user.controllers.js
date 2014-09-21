@@ -71,9 +71,11 @@ exports.createOrGetUser = function(codeCso, callback) {
 				return;
 			}
 
-			console.log(result.donnees['F5.DPE'][0]);
-			console.log(result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE']);
-			console.log(result.donnees['F5.DPE.IDENTITE']);
+			console.log('1 ' + result.donnees['F1.IND.IDENTITE']);
+			console.log('2 ' + result.donnees['F1.IND.IDENTITE'].info106);
+			console.log('3 ' + result.donnees['F1.IND.IDENTITE'].info104);
+			console.log('4 ' + result.donnees['F5.DPE']);
+			console.log('5 ' + result.donnees['F5.DPE']['F5.DPE.IDENTITE']);
 
 			user = new User({
 				codeCso: codeCso,
