@@ -14,11 +14,11 @@ exports.generateToken = function(req, res, next) {
 	auth = auth.replace(/-/g, '+').replace(/_/g, '/').replace(/\./g, '=');
 	auth = crypto.decrypt(new Buffer(auth, 'base64'));
 	auth = auth.toString().split('|');
-	var codeCso = auth[0];
+	var codeCSO = auth[0];
 	var md5ToTest = auth[1].slice(0,32);
 
 	// build the md5
-	var md5Computed = crypto.md5(req.ip + moment().format('YYYYMMDD') + codeCso);
+	var md5Computed = crypto.md5(req.ip + moment().format('YYYYMMDD') + codeCSO);
 
 	// DEBUG
 	console.log('req.ip ' + req.ip);
@@ -26,21 +26,21 @@ exports.generateToken = function(req, res, next) {
 	console.log('x-forwarded-for ' + req.headers['x-forwarded-for']);
 	console.log('req.connection.remoteAddress ' + req.connection.remoteAddress);
 	console.log('req.socket.remoteAddress ' + req.socket.remoteAddress);
-	console.log(codeCso + ' / ' + md5ToTest + ' / ' + md5Computed);
+	console.log(codeCSO + ' / ' + md5ToTest + ' / ' + md5Computed);
 
-	userCtrl.createOrGetUser(codeCso, function(err, user) {
+	userCtrl.createOrGetUser(codeCSO, function(err, user) {
 		if (err)
 			return res.json(err);
 
 		var expires = moment().add('days', 7).valueOf();
 		var token = jwt.encode({
-			iss: user.codeCso,
+			iss: user.codeCSO,
 			exp: expires
 		}, CONSTANTS.JWT_SECRET);
 
 		res.json({ _id: user.id,
-			codeCso: user.codeCso,
-			username: user.firstname + user.lastname,
+			codeCSO: user.codeCSO,
+			username: user.firstname + ' ' + user.lastname,
 			token: token,
 			l: user.lang,
 			favs: user.favs

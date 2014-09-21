@@ -26,7 +26,6 @@
 				xhr.onreadystatechange = function() {
 					if (xhr.readyState == 4 && xhr.status == 200) {
 						res = JSON.parse(xhr.responseText);
-						alert(res.codeCSO);
 						localStorage.clear();
 						localStorage.setItem('user_id', res._id);
 						localStorage.setItem('user_cso', res.codeCSO);

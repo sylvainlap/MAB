@@ -29,19 +29,15 @@ exports.requestPagevet = function(codeCso, callback) {
 
 	soap.createClient(CONSTANTS.SOAP_PAGEVET, function(err, client) {
 		if (err) {
-			console.log('erreur a la creation du client');
 			callback(err);
 			return;
 		}
 
 		client.ANNURVET(request, function(err, result) {
 			if (err) {
-				console.log('erreur ANNURVET');
 				callback(err);
 				return;
 			}
-
-			console.log('result ' + result);
 
 			if (typeof result.erreur == 'string') {
 				console.log(result.erreur);
@@ -50,9 +46,8 @@ exports.requestPagevet = function(codeCso, callback) {
 			}
 
 			var plaintext = crypto.decrypt(new Buffer(result.reponse, 'base64'));
-			console.log('plaintext ' + plaintext.toString());
 
-			xml2js(plaintext.toString(), function(err, result) {
+			xml2js(plaintext, function(err, result) {
 				if (err) {
 					callback(err);
 					return;
