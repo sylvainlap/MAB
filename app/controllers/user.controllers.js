@@ -60,17 +60,21 @@ exports.createOrGetUser = function(codeCso, callback) {
 	User.findOne({ codeCso: codeCso }, function(err, user) {
 		if (user) {
 			// user already exists
-			callback(user);
+			callback(null, user);
 		} else {
-			// user does not exist
-			// TODO: ask pagevet !!
+			// user does not exist, create it
+			var infos = pagevet.requestPagevet(codeCso);
+
+			console.log(infos);
+
 			user = new User({ codeCso: codeCso });
 			user.save(function(err, user) {
-				if (err)
-					return res.json({ error: 'back_err_val_account' });
-				// all went good ! callback
-				callback(user);
-			})
+				if (err) {
+					callback(err);
+				} else {
+					callback(null, user);
+				}
+			});
 		}
 	});
 }

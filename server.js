@@ -42,10 +42,10 @@ require('./app/models/user.models');
 require('./app/models/treatment.models');
 
 // get the routes
-require('./app/routes/admin.routes')(app);
 require('./app/routes/user.routes')(app);
 require('./app/routes/auth.routes')(app);
 require('./app/routes/api.routes')(app);
+require('./app/routes/admin.routes')(app);
 
 // start the app
 app.listen(port);

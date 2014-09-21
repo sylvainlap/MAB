@@ -28,15 +28,22 @@ exports.generateToken = function(req, res, next) {
 	console.log('req.socket.remoteAddress ' + req.socket.remoteAddress);
 	console.log(codeCso + ' / ' + md5ToTest + ' / ' + md5Computed);
 
-	userCtrl.createOrGetUser(codeCso, function(user) {
-		generateToken(user.codeCso, function(token) {
-			res.json({ _id: user.id,
-				codeCso: user.codeCso,
-				username: user.firstname + user.lastname,
-				token: token,
-				l: user.lang,
-				favs: user.favs
-			});
+	userCtrl.createOrGetUser(codeCso, function(err, user) {
+		if (err)
+			return res.json({ error: 'back_err_mongo' });
+
+		var expires = moment().add('days', 7).valueOf();
+		var token = jwt.encode({
+			iss: user.codeCso,
+			exp: expires
+		}, CONSTANTS.JWT_SECRET);
+
+		res.json({ _id: user.id,
+			codeCso: user.codeCso,
+			username: user.firstname + user.lastname,
+			token: token,
+			l: user.lang,
+			favs: user.favs
 		});
 	});
 };
@@ -74,12 +81,3 @@ exports.requireLogin = function(req, res, next) {
 		next();
 	}
 };
-
-function generateToken(id, callback) {
-	var expires = moment().add('days', 7).valueOf();
-	var token = jwt.encode({
-		iss: id,
-		exp: expires
-	}, CONSTANTS.JWT_SECRET);
-	callback(token);
-}
