@@ -37,6 +37,8 @@ exports.requestPagevet = function(codeCso) {
 			if (err)
 				return { error: 'back_err_pagevet' };
 
+			console.log(result);
+
 			if (typeof result.erreur == 'string') {
 				console.log(result.erreur);
 				return { error: 'back_err_pagevet' };
