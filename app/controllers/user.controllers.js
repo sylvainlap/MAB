@@ -71,14 +71,14 @@ exports.createOrGetUser = function(codeCso, callback) {
 				return;
 			}
 
-			console.log(result.donnees['F5.DPE']);
-			console.log(result.donnees['F5.DPE']['F5.DPE.IDENTITE']);
+			console.log(result.donnees['F5.DPE'][0]);
+			console.log(result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE']);
 
 			user = new User({
 				codeCso: codeCso,
 				firstname: result.donnees['F1.IND.IDENTITE'].info106,
 				lastname: result.donnees['F1.IND.IDENTITE'].info104,
-				email: result.donnees['F5.DPE']['F5.DPE.IDENTITE'].info2035
+				email: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'].info2035
 			});
 			user.save(function(err, user) {
 				if (err) {
