@@ -52,7 +52,7 @@ exports.requestPagevet = function(codeCso, callback) {
 			var plaintext = crypto.decrypt(new Buffer(result.reponse, 'base64'));
 			console.log('plaintext ' + plaintext.toString());
 
-			xml2js(plaintext, function(err, result) {
+			xml2js(plaintext.toString(), function(err, result) {
 				if (err) {
 					callback(err);
 					return;
