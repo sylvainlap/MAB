@@ -87,6 +87,6 @@ exports.createOrGetUser = function(codeCso, callback) {
 
 				callback(null, user);
 			});
-		}
+		});
 	});
 }
