@@ -105,39 +105,46 @@
 <!-- === EDIT PROFILE PANE === -->
 			<div class="pane pane-profile" ng-if="user.token != undefined && ui.showProfile">
 				<form>
-					<legend>{{ lang['front_user_info'][l] }}</legend>
+					<legend>
+						{{ lang['front_user_info'][l] }} 
+					</legend>
 		<!-- == INP Usernamer -->
 					<div class="input-group row">
-						<label class="col-4 col-xs-12">{{ lang['front_username'][l] }}</label>
-						<input class="col-8 col-xs-12"  type="text" name="username"placeholder="{{ lang['front_username'][l] }}" ng-model="data.username"/>
+						<label class="col-4 col-xs-12">CSO</label>
+						<div class="col-8 col-xs-12 label">: {{ data.codeCSO }}</div>
 					</div>
-		<!-- == INP Password -->
 					<div class="input-group row">
-						<label class="col-4 col-xs-12">{{ lang['front_password'][l] }}</label>
-						<a class="label col-8 col-xs-12" href="#">{{ lang['front_change'][l] + ' ' + lang['front_password'][l] }}</a>
+						<label class="col-4 col-xs-12">{{ lang['front_firstname'][l] }}</label>
+						<div class="col-8 col-xs-12 label">: {{ data.firstname }}</div>
+					</div>
+					<div class="input-group row">
+						<label class="col-4 col-xs-12">{{ lang['front_lastname'][l] }}</label>
+						<div class="col-8 col-xs-12 label">: {{ data.lastname }}</div>
 					</div>
 		<!-- == INP Structure -->
 					<div class="input-group row">
 						<label class="col-4 col-xs-12">{{ lang['front_structure'][l] }}</label>
-						<input class="col-8 col-xs-12" type="text" name="structure" placeholder="{{ lang['front_structure'][l] }}" ng-model="data.structure"/>
+						<div class="col-8 col-xs-12 label">: {{ data.structure }}</div>
 					</div>
 		<!-- == INP Localisation -->
 					<div class="input-group row">
 						<label class="col-4 col-xs-12">{{ lang['front_localisation'][l] }}</label>
-						<input class="col-8 col-xs-12" type="text" name="localisation" placeholder="{{ lang['front_localisation'][l] }}" ng-model="data.geoloc" />
+						<div class="col-8 col-xs-12 label">: {{ data.geoloc }}</div>
 					</div>
 		<!-- == GRP School -->
 					<div class="input-group row">
 						<label class="col-4 col-xs-12">{{ lang['front_school'][l] }}</label>
 				<!-- == INP City -->
-						<input class="col-6 col-xs-6" type="text" name="city" placeholder="{{ lang['front_city'][l] }}" ng-model="data.school.city" />
+						<div class="col-6 col-xs-6 label">: {{ data.school.city }}</div>
 				<!-- == INP Promo -->
-						<div class="selectadv col-2 col-xs-6"><span class="arrow"></span>
-							<select class="col-2" name="promo" ng-model="data.school.promo">
-								<option value="{{ y }}" ng-selected="y==data.school.promo" ng-repeat="y in years">{{ y }}</option>
-							</select>
-						</div>
+						<div class="col-6 col-xs-6 label">{{ data.school.promo }}</div>
 					</div>
+					<div class="row">
+						<button class="col-4 col-ol-4 col-xs-6 col-ol-xs-3 btn btn-info" ng-click="userMgt.updatePagevet()">
+							{{ lang['front_update'][l] }}
+						</button>
+					</div>
+					<legend></legend>
 		<!-- == INP Language -->
 					<div class="input-group row">
 						<label class="col-4 col-xs-12">{{ lang['front_language'][l] }}</label>

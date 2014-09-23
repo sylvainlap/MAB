@@ -11,8 +11,8 @@ exports.updateUser = function(req, res, next) {
 		if (err)
 			return res.json({ error: 'back_err_mongo' });
 
-		var infos = pagevet.requestPagevet(codeCSO);
-		console.log(infos);
+		var infos = pagevet.requestPagevet(codeCSO, function(){});
+		console.log("infos : " + infos);
 
 		// TODO update user with infos
 

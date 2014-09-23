@@ -33,13 +33,21 @@ var lang =
 			'FR':'utilisateur',
 			'EN':'username'
 		},
+		'front_firstname':{
+			'FR':'prénom',
+			'EN':'firstname'
+		},
+		'front_lastname':{
+			'FR':'nom',
+			'EN':'lastname'
+		},
 		'front_password':{
 			'FR':'mot de passe',
 			'EN':'password'
 		},
 		'front_user_info':{
-			'FR':'informations utilisateur',
-			'EN':'user informations'
+			'FR':'informations Pagevet',
+			'EN':'Pagevet informations'
 		},
 		'front_change':{
 			'FR':'changer de',
@@ -224,6 +232,10 @@ var lang =
 		'front_record':{
 			'FR':'enregistrer',
 			'EN':'record'
+		},
+		'front_update':{
+			'FR':'mettre à jour',
+			'EN':'update'
 		},
 		'front_product':{
 			'FR':'produit',

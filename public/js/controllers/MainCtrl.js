@@ -263,6 +263,17 @@ mabapp.controller('MainCtrl',[
 			lss.clear();
 			$scope.messages = messageService.log({message : 'msg_on_logged_out'});
 		},
+		updatePagevet : function(){
+			$http({
+				method: 'GET',
+					url:'/user/update/'+$scope.user.codeCSO,
+					headers:{'x-access-token':$scope.user.token},
+			})
+			.success(function(data){
+				$scope.messages = messageService.log(data);
+				console.log(data);
+			});
+		},
 		/**
 		 * TODO : impossible de faire autrement... je voulais faire comme pour la gestion de
 		 * ui.showUserMenu, ça ne marche que comme ça... 

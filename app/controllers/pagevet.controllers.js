@@ -6,9 +6,9 @@ var xml2js    = require('xml2js').parseString;
 var crypto    = require('./crypto.controllers');
 var CONSTANTS = require('../../config/constants');
 
-exports.requestPagevet = function(codeCso, callback) {
-	if (isNaN(codeCso)) {
-		callback(new Error('codeCso is not a number'));
+exports.requestPagevet = function(codeCSO, callback) {
+	if (isNaN(codeCSO)) {
+		callback(new Error('codeCSO is not a number'));
 		return;
 	}
 
@@ -19,7 +19,7 @@ exports.requestPagevet = function(codeCso, callback) {
 	message += '<info2>' + CONSTANTS.LICENSE + '</info2>';
 	message += '<info3>' + CONSTANTS.CLIENT + '</info3>';
 	message += '<info5>' + CONSTANTS.ENVIRONMENT + '</info5>';
-	message += '<info101>' + codeCso + '</info101>';
+	message += '<info101>' + codeCSO + '</info101>';
 	message += '</donnees></message>';
 
 	var request = {
