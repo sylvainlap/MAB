@@ -17,7 +17,7 @@ mabapp.controller('MainCtrl',[
 	
 	//shortcuts
 	lss = localStorageService;
-	
+
 	// $scope init
 	$scope.reset = {
 		data : function(){
@@ -255,57 +255,6 @@ mabapp.controller('MainCtrl',[
 	// === USER MANAGEMENT FUNCTIONS ===
 	$scope.userMgt = {
 		/**
-		 * Register new user
-		 */
-		register : function() {
-			// TODO : identification SAS
-			$http.post('/register', $scope.data)
-			.success(function(data) {
-				$scope.messages = messageService.log(data);
-				
-				// retrieve user data
-				$scope.user.username = $scope.data.username;
-				$scope.user.token = data.token;
-				$scope.user._id = data._id;
-				$scope.user.language = data.lang;
-				$scope.user.favs = data.favs;
-				// save user data in localStorageService
-				lss.set('user_username', $scope.data.username);
-				lss.set('user_token', data.token);
-				lss.set('user_id', data._id);
-				lss.set('user_l', data.lang);
-				lss.set('user_favs', data.favs);
-				
-				// clear the form
-				$scope.reset.data();
-			});
-		},
-		/**
-		 * Login known user
-		 */
-		login : function() {
-			$http.post('/login', $scope.data)
-			.success(function(data) {
-				$scope.messages = messageService.log(data);
-				
-				// retrieve user data
-				$scope.user.username = $scope.data.username;
-				$scope.user.token = data.token;
-				$scope.user._id = data._id;
-				$scope.user.language = data.lang;
-				$scope.user.favs = data.favs;
-				// save user data in localStorageService
-				lss.set('user_username', $scope.data.username);
-				lss.set('user_token', data.token);
-				lss.set('user_id', data._id);
-				lss.set('user_l', data.lang);
-				lss.set('user_favs', data.favs);
-				
-				// clear the form
-				$scope.reset.data();
-			});
-		},
-		/**
 		 * Disconnect current user
 		 */
 		logout : function() {
@@ -322,7 +271,7 @@ mabapp.controller('MainCtrl',[
 			if(t=='open'){
 				$http({
 					method:'GET',
-					url:'/profile',
+					url:'/user/profile',
 					headers:{'x-access-token':$scope.user.token}})
 					.success(function(data){
 						$scope.messages = messageService.log(data);
@@ -345,7 +294,7 @@ mabapp.controller('MainCtrl',[
 		updateProfile : function() {
 			$http({
 				method:'POST',
-				url:'/profile',
+				url:'/user/profile',
 				headers:{'x-access-token':$scope.user.token},
 				data:$scope.data})
 				.success(function(data){
