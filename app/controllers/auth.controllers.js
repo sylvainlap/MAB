@@ -7,6 +7,7 @@ var jwt       = require('jwt-simple');
 var path      = require('path');
 var crypto    = require('./crypto.controllers');
 var userCtrl  = require('./user.controllers');
+var User     = mongoose.model('User');
 var CONSTANTS = require('../../config/constants');
 
 exports.generateToken = function(req, res, next) {
@@ -34,7 +35,7 @@ exports.generateToken = function(req, res, next) {
 
 		var expires = moment().add('days', 7).valueOf();
 		var token = jwt.encode({
-			iss: user.codeCSO,
+			iss: user.id,
 			exp: expires
 		}, CONSTANTS.JWT_SECRET);
 
@@ -54,7 +55,6 @@ exports.login = function(req, res, next) {
 
 exports.decodeToken = function(req, res, next) {
 	var token = req.headers['x-access-token'];
-
 	if (token) {
 		try {
 			var decoded = jwt.decode(token, CONSTANTS.JWT_SECRET);

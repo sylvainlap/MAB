@@ -3,9 +3,11 @@ mabapp.controller('MainCtrl',[
 	'$http',
 	'$timeout',
 	'filterFilter',
-	'localStorageService',
 	'messageService',
-	function($scope, $http, $timeout, filterFilter,localStorageService, messageService) {
+	function($scope, $http, $timeout, filterFilter,messageService) {
+
+	//shortcuts
+	lss = localStorage;
 
 	// config load
 	$scope.lang = lang;
@@ -15,8 +17,6 @@ mabapp.controller('MainCtrl',[
 	$scope.years = [];
 	$scope.datePicker = {};
 	
-	//shortcuts
-	lss = localStorageService;
 
 	// $scope init
 	$scope.reset = {
@@ -55,11 +55,12 @@ mabapp.controller('MainCtrl',[
 		},
 		user : function(){
 			$scope.user = {
-				username : lss.get('user_username'),
-				token : lss.get('user_token'),
-				_id : lss.get('user_id'),
-				language : lss.get('user_l'),
-				favs : lss.get('user_favs')
+				username : lss.user_username,
+				codeCSO : lss.user_cso,
+				token : lss.user_token,
+				_id : lss.user_id,
+				language : lss.user_l,
+				favs : lss.user_favs
 			};
 		},
 		print : function(){
@@ -117,7 +118,7 @@ mabapp.controller('MainCtrl',[
 						
 						$scope.reset.data();
 						$scope.dataMgt.updateLocalFavs();
-						lss.set('user_favs', user.favs);
+						lss.user_favs = user.favs;
 						//$scope.ui.showProfile = false;
 				});
 				
@@ -259,7 +260,7 @@ mabapp.controller('MainCtrl',[
 		 */
 		logout : function() {
 			$scope.user = {};
-			lss.clearAll();
+			lss.clear();
 			$scope.messages = messageService.log({message : 'msg_on_logged_out'});
 		},
 		/**
@@ -267,12 +268,12 @@ mabapp.controller('MainCtrl',[
 		 * ui.showUserMenu, ça ne marche que comme ça... 
 		 */
 		getProfile : function(t){
-			$scope.data.username = $scope.user.username;
 			if(t=='open'){
 				$http({
 					method:'GET',
 					url:'/user/profile',
-					headers:{'x-access-token':$scope.user.token}})
+					headers:{'x-access-token':$scope.user.token}
+				})
 					.success(function(data){
 						$scope.messages = messageService.log(data);
 						for(i in data){
@@ -394,7 +395,6 @@ mabapp.controller('MainCtrl',[
 
 	// inject favs value in the product list
 	$scope.dataMgt.updateLocalFavs();
-	
-	$scope.l = $scope.user.language?$scope.user.language:'FR';
 
+	$scope.l = ($scope.user.language!='undefined'&&$scope.user.language!=undefined)?$scope.user.language:'FR';
 }]);
