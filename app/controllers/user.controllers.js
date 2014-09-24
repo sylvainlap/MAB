@@ -8,17 +8,31 @@ var User     = mongoose.model('User');
 exports.updateUser = function(req, res, next) {
 	codeCSO = req.params.codeCSO;
 	User.findOne({ codeCSO: codeCSO }, function(err, user) {
-		if (err)
-			return res.json({ error: 'back_err_mongo' });
+		if (err) {
+			res.json({ error: 'back_err_mongo' });
+			return;
+		}
 
-		var infos = pagevet.requestPagevet(codeCSO, function(){});
-		console.log("infos : " + infos);
+		pagevet.requestPagevet(codeCSO, function(err, result) {
+			if (err) {
+				res.json({ error: 'back_err_pagevet' });
+				return;
+			}
 
-		// TODO update user with infos
+			user.firstname = result.donnees['F1.IND.IDENTITE'][0].info106;
+			user.lastname = result.donnees['F1.IND.IDENTITE'][0].info104;
+			user.email = result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2035;
+			user.save(function(err, user) {
+				if (err) {
+					res.json('back_err_mongo');
+					return;
+				}
 
-		res.json(user);
+				res.json(user);
+			});
+		});
 	});
-}
+};
 
 exports.getProfile = function(req, res, next) {
 	// req.user is defined
@@ -87,4 +101,4 @@ exports.createOrGetUser = function(codeCSO, callback) {
 			});
 		});
 	});
-}
+};

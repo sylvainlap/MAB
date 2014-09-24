@@ -7,7 +7,7 @@ var jwt       = require('jwt-simple');
 var path      = require('path');
 var crypto    = require('./crypto.controllers');
 var userCtrl  = require('./user.controllers');
-var User     = mongoose.model('User');
+var User      = mongoose.model('User');
 var CONSTANTS = require('../../config/constants');
 
 exports.generateToken = function(req, res, next) {
@@ -30,8 +30,10 @@ exports.generateToken = function(req, res, next) {
 	console.log(codeCSO + ' / ' + md5ToTest + ' / ' + md5Computed);
 
 	userCtrl.createOrGetUser(codeCSO, function(err, user) {
-		if (err)
-			return res.json(err);
+		if (err) {
+			res.json(err);
+			return;
+		}
 
 		var expires = moment().add('days', 7).valueOf();
 		var token = jwt.encode({
@@ -56,18 +58,17 @@ exports.login = function(req, res, next) {
 exports.decodeToken = function(req, res, next) {
 	var token = req.headers['x-access-token'];
 	if (token) {
-		try {
-			var decoded = jwt.decode(token, CONSTANTS.JWT_SECRET);
-			User.findOne({ _id: decoded.iss }, function(err, user) {
-				if (err)
-					return res.json({ error: 'back_no_user' });
+		var decoded = jwt.decode(token, CONSTANTS.JWT_SECRET);
+		User.findOne({ _id: decoded.iss }, function(err, user) {
+			if (err) {
+				res.json({ error: 'back_no_user' });
+				return;
+			}
 
-				req.user = user;
-				return next();
-			});
-		} catch (err) {
-			next(err);
-		}
+			req.user = user;
+			next();
+			return;
+		});
 	} else {
 		req.user = undefined;
 		next();
@@ -76,7 +77,8 @@ exports.decodeToken = function(req, res, next) {
 
 exports.requireLogin = function(req, res, next) {
 	if (!req.user) {
-		return res.json({ error: 'back_require_login' });
+		res.json({ error: 'back_require_login' });
+		return;
 	} else {
 		next();
 	}
