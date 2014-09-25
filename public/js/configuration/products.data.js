@@ -1,462 +1,3326 @@
-var productsData = [
-	{
-		'name' : 'intramicine',
-		'type' : 'antibio',
-		'labo' : 'ceva',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'ovin', 'caprin', 'porcin', 'canin'],
-		'composition' : {'benzylpenicilline' : 114, 'dihydrostreptomycine' : 200}
-	},
-	{
-		'name' : 'cortexiline',
-		'type' : 'antibio',
-		'labo' : 'merial',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'canin'],
-		'composition' : {'benzylpenicilline' : 114, 'neomycine' : 120}
-	},
-	{
-		'name' : 'stop m',
-		'type' : 'antibio',
-		'labo' : 'boehringer',
-		'unit' : 'ml',
-		'qunit' : 30,
-		'nunit' : 'pro_nunit_flacon',
-		'target' : ['bovin'],
-		'composition' : {'pénéthamate' : 257}
-	},
-	{
-		'name' : 'histacline',
-		'type' : 'antibio',
-		'labo' : 'ceva',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin'],
-		'composition' : {'benzylpenicilline' : 114, 'dihydrostreptomycine' : 200}
-	},
-	{
-		'name' : 'histabiosone',
-		'type' : 'antibio',
-		'labo' : 'msd',
-		'unit' : 'ml ',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'caprin', 'porcin'],
-		'composition' : {'benzylpenicilline' : 113.6, 'dihydrostreptomycine' : 250}
-	},
-	{
-		'name' : 'vetrimoxin 48h',
-		'type' : 'antibio',
-		'labo' : 'ceva',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'porcin'],
-		'composition' : {'amoxycilline' : 150}
-	},
-	{
-		'name' : 'shotapen',
-		'type' : 'antibio',
-		'labo' : 'virbac',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'porcin', 'canin'],
-		'composition' : {'benzylpenicilline' : 131, 'dihydrostreptomycine' : 164}
-	},
-	{
-		'name' : 'clamoxyl suspension',
-		'type' : 'antibio',
-		'labo' : 'zoetis',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'ovin', 'porcin', 'canin'],
-		'composition' : {'amoxycilline' : 150}
-	},
-	{
-		'name' : 'noroclav injectable',
-		'type' : 'antibio',
-		'labo' : 'bayer',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin'],
-		'composition' : {'amoxycilline' : 140, 'acide clavulanique' : 35}
-	},
-	{
-		'name' : 'amphoprim solution',
-		'type' : 'antibio',
-		'labo' : 'virbac',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['équin', 'bovin', 'canin'],
-		'composition' : {'sulfadimidine' : 200, 'triméthoprime' : 40}
-	},
-	{
-		'name' : 'longicine',
-		'type' : 'antibio',
-		'labo' : 'vetoquinol',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'ovin', 'porcin'],
-		'composition' : {'oxytétracycline' : 200}
-	},
-	{
-		'name' : 'oxytetracycline 10%',
-		'type' : 'antibio',
-		'labo' : 'vetoquinol',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['équin', 'bovin', 'caprin', 'ovin', 'porcin'],
-		'composition' : {'oxytétracycline' : 100}
-	},
-	{
-		'name' : 'covunil',
-		'type' : 'antibio',
-		'labo' : 'merial',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin'],
-		'composition' : {'oxytétracycline' : 300}
-	},
-	{
-		'name' : 'g4',
-		'type' : 'antibio',
-		'labo' : 'virbac',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'canin'],
-		'composition' : {'gentamicine' : 40}
-	},
-	{
-		'name' : 'colicilline',
-		'type' : 'antibio',
-		'labo' : 'virbac',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'porcin'],
-		'composition' : {'ampicilline' : 100, 'colistine' : '250000ui'}
-	},
-	{
-		'name' : 'pangram 4%',
-		'type' : 'antibio',
-		'labo' : 'virbac',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'canin'],
-		'composition' : {'gentamicine' : 40}
-	},
-	{
-		'name' : 'multibio',
-		'type' : 'antibio',
-		'labo' : 'virbac',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['équin', 'bovin', 'ovin', 'porcin'],
-		'composition' : {'ampicilline' : 100, 'colistine' : '250000ui'}
-	},
-	{
-		'name' : 'zactran',
-		'type' : 'antibio',
-		'labo' : 'merial',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin'],
-		'composition' : {'gamithromycine' : 150}
-	},
-	{
-		'name' : 'draxxin',
-		'type' : 'antibio',
-		'labo' : 'zoetis',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'porcin'],
-		'composition' : {'tulathromycine' : 100}
-	},
-	{
-		'name' : 'kefloryl 300mg/ml',
-		'type' : 'antibio',
-		'labo' : 'vetoquinol',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'porcin'],
-		'composition' : {'florfenicol' : 300}
-	},
-	{
-		'name' : 'cefenil 50mg/ml',
-		'type' : 'antibio',
-		'labo' : 'ceva',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'porcin'],
-		'composition' : {'ceftiofur' : 50}
-	},
-	{
-		'name' : 'ceftiocyl 50mg/ml',
-		'type' : 'antibio',
-		'labo' : 'vetoquinol',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'porcin'],
-		'composition' : {'ceftiofur' : 50}
-	},
-	{
-		'name' : 'a 180',
-		'type' : 'antibio',
-		'labo' : 'zoetis',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin'],
-		'composition' : {'danofloxacine' : 180}
-	},
-	{
-		'name' : 'cobactan 2.5%',
-		'type' : 'antibio',
-		'labo' : 'msd',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'porcin'],
-		'composition' : {'cefquinome' : 25}
-	},
-	{
-		'name' : 'marbocyl 10%',
-		'type' : 'antibio',
-		'labo' : 'vetoquinol',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'porcin'],
-		'composition' : {'marbofloxacine' : 100}
-	},
-	{
-		'name' : 'marbocyl 2%',
-		'type' : 'antibio',
-		'labo' : 'vetoquinol',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'porcin'],
-		'composition' : {'marbofloxacine' : 20}
-	},
-	{
-		'name' : 'marbocyl bolus',
-		'type' : 'antibio',
-		'labo' : 'vetoquinol',
-		'unit' : 'mg',
-		'qunit' : 1500,
-		'nunit' : 'pro_nunit_pill',
-		'target' : ['bovin', 'porcin'],
-		'composition' : {'marbofloxacine' : 50}
-	},
-	{
-		'name' : 'marbocyl f.d.',
-		'type' : 'antibio',
-		'labo' : 'vetoquinol',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['chien', 'chat'],
-		'composition' : {'marbofloxacine' : 10}
-	},
-	{
-		'name' : 'suanovil 20',
-		'type' : 'antibio',
-		'labo' : 'merial',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'porcin'],
-		'composition' : {'spiramycine' : '600000ui'}
-	},
-	{
-		'name' : 'tylan 200',
-		'type' : 'antibio',
-		'labo' : 'elanco',
-		'unit' : 'ml',
-		'qunit' : 1,
-		'nunit' : 'vrac',
-		'target' : ['bovin', 'ovin', 'caprin', 'porcin'],
-		'composition' : {'tylosine' : 200}
-	},
-	{
-		'name' : 'intestivo',
-		'type' : 'antibio',
-		'labo' : 'virbac',
-		'unit' : 'mg',
-		'qunit' : 2500,
-		'nunit' : 'pro_nunit_pill',
-		'target' : ['bovin', 'ovin', 'caprin'],
-		'composition' : {'colistine' : '2500000ui', 'sulfaguanidine' : 1000}
-	},
-	{
-		'name' : 'synulox 500mg ogivettes',
-		'type' : 'antibio',
-		'labo' : 'zoetis',
-		'unit' : 'mg',
-		'qunit' : 2970,
-		'nunit' : 'pro_nunit_pill',
-		'target' : ['bovin'],
-		'composition' : {'amoxicilline' : 400, 'acide clavulanique' : 100}
-	},
-	{
-		'name' : 'mastiplan lc',
-		'type' : 'antibio',
-		'labo' : 'msd',
-		'unit' : 'mg',
-		'qunit' : 8000,
-		'nunit' : 'pro_nunit_injector',
-		'target' : ['bovin'],
-		'composition' : {'cefapirine' : 300}
-	},
-	{
-		'name' : 'synulox intramammaire',
-		'type' : 'antibio',
-		'labo' : 'zoetis',
-		'unit' : 'mg',
-		'qunit' : 3000,
-		'nunit' : 'pro_nunit_injector',
-		'target' : ['bovin'],
-		'composition' : {'amoxycilline' : 200, 'acide clavulanique' : 20}
-	},
-	{
-		'name' : 'ampiclox ar',
-		'type' : 'antibio',
-		'labo' : 'zoetis',
-		'unit' : 'mg',
-		'qunit' : 3000,
-		'nunit' : 'pro_nunit_injector',
-		'target' : ['bovin'],
-		'composition' : {'cloxacilline' : 200, 'ampicilline' : 75}
-	},
-	{
-		'name' : 'metricure',
-		'type' : 'antibio',
-		'labo' : 'msd',
-		'unit' : 'mg',
-		'qunit' : 19000,
-		'nunit' : 'pro_nunit_injector',
-		'target' : ['bovin'],
-		'composition' : {'cefapirine' : 500}
-	},
-	{
-		'name' : 'aureomycine oblets',
-		'type' : 'antibio',
-		'labo' : 'merial',
-		'unit' : 'mg',
-		'qunit' : 6000,
-		'nunit' : 'pro_nunit_pill',
-		'target' : ['bovin'],
-		'composition' : {'chlortétracycline' : 929.17}
-	},
-	{
-		'name' : 'orospray',
-		'type' : 'antibio',
-		'labo' : 'vetoquinol',
-		'unit' : 'mg',
-		'qunit' : 1000,
-		'nunit' : 'pro_nunit_aerosol',
-		'target' : ['bovin', 'ovin', 'caprin', 'porcin', 'canin'],
-		'composition' : {'sulfanilamide' : 500, 'chlortétracycline' : 28.50}
-	},
-	{
-		'name' : 'ubrolexin',
-		'type' : 'antibio',
-		'labo' : 'boehringer',
-		'unit' : 'mg',
-		'qunit' : 10000,
-		'nunit' : 'pro_nunit_injector',
-		'target' : ['bovin'],
-		'composition' : {'cefalexine' : 200, 'kanamycine' : '100000ui'}
-	},
-	{
-		'name' : 'pathozone',
-		'type' : 'antibio',
-		'labo' : 'zoetis',
-		'unit' : 'ml',
-		'qunit' : 10,
-		'nunit' : 'pro_nunit_injector',
-		'target' : ['bovin'],
-		'composition' : {'cefopérazone' : 250}
-	},
-	{
-		'name' : 'cobactan lc',
-		'type' : 'antibio',
-		'labo' : 'msd',
-		'unit' : 'mg',
-		'qunit' : 8000,
-		'nunit' : 'pro_nunit_injector',
-		'target' : ['bovin'],
-		'composition' : {'cefquinome' : 75}
-	},
-	{
-		'name' : 'lincocine intramammaire',
-		'type' : 'antibio',
-		'labo' : 'zoetis',
-		'unit' : 'ml',
-		'qunit' : 10,
-		'nunit' : 'pro_nunit_injector',
-		'target' : ['bovin'],
-		'composition' : {'lincomycine' : 330, 'néomycine' : 100}
-	},
-	{
-		'name' : 'masti peni',
-		'type' : 'antibio',
-		'labo' : 'virbac',
-		'unit' : 'ml',
-		'qunit' : 10,
-		'nunit' : 'pro_nunit_injector',
-		'target' : ['bovin'],
-		'composition' : {'benzylpenicilline' : 570, 'dihydrostreptomycine' : 410}
-	},
-	{
-		'name' : 'nafpenzal t',
-		'type' : 'antibio',
-		'labo' : 'msd',
-		'unit' : 'mg',
-		'qunit' : 3000,
-		'nunit' : 'pro_nunit_injector',
-		'target' : ['bovin', 'ovin', 'caprin'],
-		'composition' : {'benzylpenicilline' : 300, 'dihydrostreptomycine' : 100, 'nafcilline' : 100}
-	},
-	{
-		'name' : 'cepravin',
-		'type' : 'antibio',
-		'labo' : 'msd',
-		'unit' : 'mg',
-		'qunit' : 3000,
-		'nunit' : 'pro_nunit_injector',
-		'target' : ['bovin'],
-		'composition' : {'cefalonium' : 250}
-	},
-	{
-		'name' : 'orbenor hl',
-		'type' : 'antibio',
-		'labo' : 'zoetis',
-		'unit' : 'mg',
-		'qunit' : 3600,
-		'nunit' : 'pro_nunit_injector',
-		'target' : ['bovin'],
-		'composition' : {'cloxacilline' : 600}
-	}
+var productsData =
+[
+   {
+      "name":"orospray",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":1000,
+      "nunit":"aerosol",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "sulfanilamide":"500",
+         "chlortétracycline":"28.50"
+      }
+   },
+   {
+      "name":"aureomycine merial",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"mg",
+      "qunit":6000,
+      "nunit":"comprime",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "chlortetracycline":"1/6"
+      }
+   },
+   {
+      "name":"aureomycine oblets",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"mg",
+      "qunit":6000,
+      "nunit":"comprime",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "chlortétracycline":"929.17"
+      }
+   },
+   {
+      "name":"centraureo",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":13000,
+      "nunit":"comprime",
+      "target":[
+         "equin",
+         "bovin"
+      ],
+      "composition":{
+         "chlortetracycline":"1/26"
+      }
+   },
+   {
+      "name":"clamoxyl oblets",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":10000,
+      "nunit":"comprime",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "amoxycilline":"0.1"
+      }
+   },
+   {
+      "name":"intestivo",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":2500,
+      "nunit":"comprime",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin"
+      ],
+      "composition":{
+         "colistine":"2500000ui",
+         "sulfaguanidine":"1000"
+      }
+   },
+   {
+      "name":"marbocyl bolus",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":1500,
+      "nunit":"comprime",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "marbofloxacine":"50"
+      }
+   },
+   {
+      "name":"synulox  500mg ogivettes",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":2970,
+      "nunit":"comprime",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "amoxicilline":"400",
+         "acideclavulanique":"100"
+      }
+   },
+   {
+      "name":"panafuge poudre et solution injectable",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":20,
+      "nunit":"flacon",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "dihydrostreptomycine":"250",
+         "tetracycline":"50"
+      }
+   },
+   {
+      "name":"stop m",
+      "type":"antibio",
+      "labo":"boehringer",
+      "unit":"ml",
+      "qunit":30,
+      "nunit":"flacon",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "pénéthamate":"257"
+      }
+   },
+   {
+      "name":"ampiclox",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":3000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cloxacilline":"1/15",
+         "ampicilline":"0.025"
+      }
+   },
+   {
+      "name":"ampiclox ar",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":3000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cloxacilline":"200",
+         "ampicilline":"75"
+      }
+   },
+   {
+      "name":"cefovet",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"mg",
+      "qunit":3000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefazoline":"0.1"
+      }
+   },
+   {
+      "name":"cefovet hl",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"mg",
+      "qunit":3000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefazoline":"1/12"
+      }
+   },
+   {
+      "name":"cepravin",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"mg",
+      "qunit":3000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefalonium":"250"
+      }
+   },
+   {
+      "name":"cloxagel hl 500",
+      "type":"antibio",
+      "labo":"novartis",
+      "unit":"mg",
+      "qunit":8000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cloxacilline":"1/16",
+         "neomicyne":"42.5ui"
+      }
+   },
+   {
+      "name":"cloxamam",
+      "type":"antibio",
+      "labo":"coophavet",
+      "unit":"mg",
+      "qunit":9100,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cloxacilline":"5/91"
+      }
+   },
+   {
+      "name":"cloxine hl",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":8000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cloxacilline":"1/16"
+      }
+   },
+   {
+      "name":"cobactan lc",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"mg",
+      "qunit":8000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefquinome":"75"
+      }
+   },
+   {
+      "name":"cobactan lc",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"mg",
+      "qunit":8000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefquinome":"3/320"
+      }
+   },
+   {
+      "name":"diclomam tarissement",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":3000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cloxacilline":"1/6"
+      }
+   },
+   {
+      "name":"fatrox",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":5,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "rifaximine":"20"
+      }
+   },
+   {
+      "name":"gentamam",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"mg",
+      "qunit":9000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cloxacilline":"1/45",
+         "gentamicine":"1/18"
+      }
+   },
+   {
+      "name":"kloxerate dc",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":4500,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cloxacilline":"1/9"
+      }
+   },
+   {
+      "name":"mastiplan lc",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"mg",
+      "qunit":8000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefapirine":"300"
+      }
+   },
+   {
+      "name":"mastiplan lc",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"mg",
+      "qunit":8000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefapirine":"3/80"
+      }
+   },
+   {
+      "name":"mastitar hl",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":9000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "benzylpenicilline":"17/180",
+         "neomycine":"500/9ui"
+      }
+   },
+   {
+      "name":"metricure",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"mg",
+      "qunit":19000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefapirine":"500"
+      }
+   },
+   {
+      "name":"metricure",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"mg",
+      "qunit":19000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefapirine":"1/38"
+      }
+   },
+   {
+      "name":"nafpenzal t",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"mg",
+      "qunit":3000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "benzylpenicilline":"0.19",
+         "nafcilline":"1/30",
+         "dihydrostreptomycine":"1/30"
+      }
+   },
+   {
+      "name":"nafpenzal t",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"mg",
+      "qunit":3000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin"
+      ],
+      "composition":{
+         "benzylpenicilline":"300",
+         "dihydrostreptomycine":"100",
+         "nafcilline":"100"
+      }
+   },
+   {
+      "name":"orbenin hl",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":3000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cloxacilline":"1/6"
+      }
+   },
+   {
+      "name":"orbenin la",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":3000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cloxacilline":"1/15"
+      }
+   },
+   {
+      "name":"orbenor hl",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":3600,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cloxacilline":"600"
+      }
+   },
+   {
+      "name":"orbenor hl",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":3600,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cloxacilline":"1/6"
+      }
+   },
+   {
+      "name":"rilexine hl",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":8000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefalexine":"3/64"
+      }
+   },
+   {
+      "name":"speciorlac",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"mg",
+      "qunit":5000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "spiramycine":"240ui",
+         "neomycine":"20ui"
+      }
+   },
+   {
+      "name":"synulox intramammaire",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":3000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "amoxycilline":"200",
+         "acideclavulanique":"20"
+      }
+   },
+   {
+      "name":"synulox intramammaire",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":3000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "amoxycilline":"1/15",
+         "acideclavulanique":"1/60"
+      }
+   },
+   {
+      "name":"ubrolexin",
+      "type":"antibio",
+      "labo":"boehringer",
+      "unit":"mg",
+      "qunit":10000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefalexine":"200",
+         "kanamycine":"100000ui"
+      }
+   },
+   {
+      "name":"virbactan",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":3000,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefquinome":"0.05"
+      }
+   },
+   {
+      "name":"coliclox",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":10,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cloxacilline":"20",
+         "ampicilline":"7.5"
+      }
+   },
+   {
+      "name":"lincocine intramammaire",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":10,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "lincomycine":"33",
+         "neomycine":"10"
+      }
+   },
+   {
+      "name":"lincocine intramammaire",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":10,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "lincomycine":"330",
+         "néomycine":"100"
+      }
+   },
+   {
+      "name":"mammicine ",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":10,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cloxacilline":"20",
+         "colistine":"50000ui"
+      }
+   },
+   {
+      "name":"mammitel",
+      "type":"antibio",
+      "labo":"biove",
+      "unit":"ml",
+      "qunit":10,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "colistine":"50000ui",
+         "cloxacilline":"20"
+      }
+   },
+   {
+      "name":"masti peni",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":10,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "benzylpenicilline":"570",
+         "dihydrostreptomycine":"410"
+      }
+   },
+   {
+      "name":"masti peni",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":10,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "benzylpenicilline":"57",
+         "dihydrostreptomycine":"41"
+      }
+   },
+   {
+      "name":"pathozone",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":10,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefopérazone":"250"
+      }
+   },
+   {
+      "name":"pathozone",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":10,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefaperazone":"25"
+      }
+   },
+   {
+      "name":"pirsue",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":10,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "pirlimycine":"5"
+      }
+   },
+   {
+      "name":"rilexine traitement",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":10,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefalexine":"20"
+      }
+   },
+   {
+      "name":"ubrolexin",
+      "type":"antibio",
+      "labo":"boehringer",
+      "unit":"ml",
+      "qunit":10,
+      "nunit":"injecteur",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefalexine":"20",
+         "kanamycine":"10000ui"
+      }
+   },
+   {
+      "name":"a 180",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "danofloxacine":"180"
+      }
+   },
+   {
+      "name":"acti methoxine solution inj",
+      "type":"antibio",
+      "labo":"biove",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin"
+      ],
+      "composition":{
+         "sulfadimethoxine":"200"
+      }
+   },
+   {
+      "name":"acti tetra i",
+      "type":"antibio",
+      "labo":"biove",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "caprin",
+         "ovin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "oxytetracycline":"50"
+      }
+   },
+   {
+      "name":"advocine 25 bovin solution inj",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "danofloxacine":"25"
+      }
+   },
+   {
+      "name":"amphoprim solution",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "canin"
+      ],
+      "composition":{
+         "sulfadimidine":"200",
+         "triméthoprime":"40"
+      }
+   },
+   {
+      "name":"ampicoline suspension huileuse injectable",
+      "type":"antibio",
+      "labo":"qalian",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "ovin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "ampicilline":"100",
+         "colistine":"250000ui"
+      }
+   },
+   {
+      "name":"ampidexalone",
+      "type":"antibio",
+      "labo":"coophavet",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "ovin",
+         "porcin",
+         "volaille"
+      ],
+      "composition":{
+         "ampicilline":"87",
+         "colistine":"250000ui"
+      }
+   },
+   {
+      "name":"ampiject 10 g",
+      "type":"antibio",
+      "labo":"coophavet",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "porcin",
+         "volaille"
+      ],
+      "composition":{
+         "ampicilline":"20"
+      }
+   },
+   {
+      "name":"baytril 10% porcin 1 injection",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "enrofloxacine":"100"
+      }
+   },
+   {
+      "name":"baytril 10% solution injectable bovin porcin",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "enrofloxacine":"100"
+      }
+   },
+   {
+      "name":"baytril 2,5 % solution buvable veau",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "enrofloxacine":"25"
+      }
+   },
+   {
+      "name":"baytril 2,5% solution injectable porcin",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "porcin"
+      ],
+      "composition":{
+         "enrofloxacine":"25"
+      }
+   },
+   {
+      "name":"baytril 5% solution injectable bovins",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "enrofloxacine":"50"
+      }
+   },
+   {
+      "name":"belcopeni 5 poudre injectable ",
+      "type":"antibio",
+      "labo":"coophavet",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "caprin",
+         "ovin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "colistine":"500000ui",
+         "ampicilline":"300"
+      }
+   },
+   {
+      "name":"borgal 24% injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "caprin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "sulfadoxine":"200",
+         "trimethoprime":"40"
+      }
+   },
+   {
+      "name":"captalin solution injectable",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "spiramycine":"1000000ui"
+      }
+   },
+   {
+      "name":"cefenil  rtu 50 mg/ml porcins bovins",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "ceftiofur":"50"
+      }
+   },
+   {
+      "name":"cefenil 50 mg/ml",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "ceftiofur":"50"
+      }
+   },
+   {
+      "name":"cefenil 50mg/ml",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "ceftiofur":"50"
+      }
+   },
+   {
+      "name":"ceftiocyl 50 mg/ml suspension injectable",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "ceftiofur":"50"
+      }
+   },
+   {
+      "name":"ceftiocyl 50mg/ml",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "ceftiofur":"50"
+      }
+   },
+   {
+      "name":"cemay 50 mg/ml suspension injectable",
+      "type":"antibio",
+      "labo":"axience",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "ceftiofur":"50"
+      }
+   },
+   {
+      "name":"cevaxel 50 mg/ml",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "ceftiofur":"50"
+      }
+   },
+   {
+      "name":"cevaxel rtu suspension injectable",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "ceftiofur":"50"
+      }
+   },
+   {
+      "name":"clamoxyl la ",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "amoxycilline":"150"
+      }
+   },
+   {
+      "name":"clamoxyl suspension",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "amoxycilline":"150"
+      }
+   },
+   {
+      "name":"clamoxyl suspension injectable",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "amoxycilline":"150"
+      }
+   },
+   {
+      "name":"cobactan 2,5% suspension injectable",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "cefquinome":"25"
+      }
+   },
+   {
+      "name":"cobactan 2.5%",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "cefquinome":"25"
+      }
+   },
+   {
+      "name":"cobactan 4,5% poudre soluble bovin equin ",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin"
+      ],
+      "composition":{
+         "cefquinome":"45"
+      }
+   },
+   {
+      "name":"cobactan la 7,5% suspension injectable",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "cefquinome":"75"
+      }
+   },
+   {
+      "name":"cofamox 15 la",
+      "type":"antibio",
+      "labo":"coophavet",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "amoxycilline":"150"
+      }
+   },
+   {
+      "name":"colampi i",
+      "type":"antibio",
+      "labo":"bbiove",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin"
+      ],
+      "composition":{
+         "colistine":"250000ui",
+         "ampiciline":"100"
+      }
+   },
+   {
+      "name":"colfen 300mg/ml",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "florfenicol":"300"
+      }
+   },
+   {
+      "name":"colicilline",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "ampicilline":"100",
+         "colistine":"250000ui"
+      }
+   },
+   {
+      "name":"colicilline suspension injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "colistine":"250000ui",
+         "ampiciline":"100"
+      }
+   },
+   {
+      "name":"convenia 80 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefovecine":"80"
+      }
+   },
+   {
+      "name":"cortexiline",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "canin"
+      ],
+      "composition":{
+         "benzylpenicilline":"114",
+         "neomycine":"120"
+      }
+   },
+   {
+      "name":"cortexiline suspension injectable",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "canin"
+      ],
+      "composition":{
+         "benzylpenicilline":"114",
+         "neomycine":"120"
+      }
+   },
+   {
+      "name":"covunil",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "oxytétracycline":"300"
+      }
+   },
+   {
+      "name":"covunil suspension injectable",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "oxytetracycline":"300"
+      }
+   },
+   {
+      "name":"cyclosol 200 la solution injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "oxytetracycline":"200"
+      }
+   },
+   {
+      "name":"denagard solution injectable 162,2",
+      "type":"antibio",
+      "labo":"novartis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "porcin"
+      ],
+      "composition":{
+         "tiamuline":"162.20"
+      }
+   },
+   {
+      "name":"depocilline suspension injectable",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin",
+         "equin",
+         "ovin",
+         "canin"
+      ],
+      "composition":{
+         "benzylpenicilline":"170.41"
+      }
+   },
+   {
+      "name":"draxxin",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "tulathromycine":"100"
+      }
+   },
+   {
+      "name":"draxxin solution injectable",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "tulathromycine":"100"
+      }
+   },
+   {
+      "name":"duoprim solution injectable",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "canin",
+         "equin",
+         "caprin",
+         "porcin",
+         "volaille"
+      ],
+      "composition":{
+         "sulfadoxine":"200",
+         "trimethoprime":"40"
+      }
+   },
+   {
+      "name":"duphacycline la",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin"
+      ],
+      "composition":{
+         "oxytetracycline":"200"
+      }
+   },
+   {
+      "name":"duphamox la suspension injectable",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "amoxycilline":"150"
+      }
+   },
+   {
+      "name":"duplocilline suspension injectable",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "canin"
+      ],
+      "composition":{
+         "benzylpenicilline":"177.15"
+      }
+   },
+   {
+      "name":"duracykline suspesion injectable la 20%",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "oxytetracycline":"200"
+      }
+   },
+   {
+      "name":"eficur 50 mg/ml suspension injectable",
+      "type":"antibio",
+      "labo":"hypra",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "cetiofur":"50"
+      }
+   },
+   {
+      "name":"engemycine 10% solution injectable",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin"
+      ],
+      "composition":{
+         "oxytetracycline":"100"
+      }
+   },
+   {
+      "name":"enrocare 10% solutio injectable bovin porcin",
+      "type":"antibio",
+      "labo":"axience",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "enrofloxacine":"100"
+      }
+   },
+   {
+      "name":"enrocare 2,5 % solution injectable chien et chat",
+      "type":"antibio",
+      "labo":"axience",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "enrofloxacine":"50"
+      }
+   },
+   {
+      "name":"enrocare 5% solution injectable bovin porcin",
+      "type":"antibio",
+      "labo":"axience",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "enrofloxacine":"25"
+      }
+   },
+   {
+      "name":"erythrocine 200 solution injectable",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin",
+         "ovin"
+      ],
+      "composition":{
+         "erythromycine":"200"
+      }
+   },
+   {
+      "name":"excenel rtu 50 mg/ml suspension injectable",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "ceftiofur":"50"
+      }
+   },
+   {
+      "name":"excenel solution",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "ceftiofur":"50"
+      }
+   },
+   {
+      "name":"finoxaline 50 mg solution injectable",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "oxytetracycline":"100"
+      }
+   },
+   {
+      "name":"florgane 300 mg/ml suspension injectable",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "florfenicol":"300"
+      }
+   },
+   {
+      "name":"florkem 300 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "florfenicol":"300"
+      }
+   },
+   {
+      "name":"forcyl 160 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "marbofloxacine":"160"
+      }
+   },
+   {
+      "name":"forcyl swine 160 mg/ml",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "porcin"
+      ],
+      "composition":{
+         "marbofloxacine":"160"
+      }
+   },
+   {
+      "name":"forticine 4% solution injectable",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "gentamicine":"40"
+      }
+   },
+   {
+      "name":"g4",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "canin"
+      ],
+      "composition":{
+         "gentamicine":"40"
+      }
+   },
+   {
+      "name":"g4 solution injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "canin"
+      ],
+      "composition":{
+         "gentamicine":"40"
+      }
+   },
+   {
+      "name":"histabiosone suspension injectable",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "caprin",
+         "porcin"
+      ],
+      "composition":{
+         "benzylpenicilline":"113.6",
+         "dihydrostreptomycine":"250"
+      }
+   },
+   {
+      "name":"histacline",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "benzylpenicilline":"114",
+         "dihydrostreptomycine":"200"
+      }
+   },
+   {
+      "name":"histacline suspension injectable",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "benzylpenicilline":"114",
+         "dihydrostreptomycine":"200"
+      }
+   },
+   {
+      "name":"intramicine",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "benzylpenicilline":"114",
+         "dihydrostreptomycine":"200"
+      }
+   },
+   {
+      "name":"kefloril 300 mg/mlsolution injectable",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "florfenicol":"300"
+      }
+   },
+   {
+      "name":"kefloryl 300mg/ml",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "florfenicol":"300"
+      }
+   },
+   {
+      "name":"linco-spectin 150 solution injectable",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "canin",
+         "caprin",
+         "porcin",
+         "volaille"
+      ],
+      "composition":{
+         "lincomycine":"50",
+         "spectinomycine":"100"
+      }
+   },
+   {
+      "name":"lincocine 100 mg solution injectable",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "lincomycine":"40"
+      }
+   },
+   {
+      "name":"linspec solution injectable",
+      "type":"antibio",
+      "labo":"chanelle pharmaceuticals manufacturing",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "canin",
+         "porcin"
+      ],
+      "composition":{
+         "lincomycine":"50",
+         "spectinomycine":"100"
+      }
+   },
+   {
+      "name":"longamox suspension injectable",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "amoxycilline":"150"
+      }
+   },
+   {
+      "name":"longicine",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "oxytétracycline":"200"
+      }
+   },
+   {
+      "name":"longicine solution injectable",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "oxytetracycline":"200"
+      }
+   },
+   {
+      "name":"marbocare 100 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"axience",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "marbofloxacine":"100"
+      }
+   },
+   {
+      "name":"marbocare 20 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"axience",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "marbofloxacine":"20"
+      }
+   },
+   {
+      "name":"marbocyl 10%",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "marbofloxacine":"100"
+      }
+   },
+   {
+      "name":"marbocyl 10% solution injectable",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "marbofloxacine":"100"
+      }
+   },
+   {
+      "name":"marbocyl 2%",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "marbofloxacine":"20"
+      }
+   },
+   {
+      "name":"marbocyl 2% solution injectable",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "marbofloxacine":"20"
+      }
+   },
+   {
+      "name":"marbocyl f.d.",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "marbofloxacine":"10"
+      }
+   },
+   {
+      "name":"marbocyl fd injectable",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "marbofloxacine":"10"
+      }
+   },
+   {
+      "name":"marbonor 100 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"baker",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "marbofloxacine":"100"
+      }
+   },
+   {
+      "name":"marbox 100 mg/ml injectable bovin porcin",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "marbofloxacine":"100"
+      }
+   },
+   {
+      "name":"marfloquin 100 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "marbofloxacine":"100"
+      }
+   },
+   {
+      "name":"marfloquin 20 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "marbofloxacine":"20"
+      }
+   },
+   {
+      "name":"micotil 300 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"elanco",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "tilmicosine":""
+      }
+   },
+   {
+      "name":"multibio",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "ampicilline":"100",
+         "colistine":"250000ui"
+      }
+   },
+   {
+      "name":"multibio suspension injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "ampiciline":"100",
+         "colistine":"250000ui"
+      }
+   },
+   {
+      "name":"naxcel 100 mg/ml solution injectable bovin",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "ceftiofur":"100"
+      }
+   },
+   {
+      "name":"naxcel 200 mg/ml solution injectable porcin",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "porcin"
+      ],
+      "composition":{
+         "ceftiofur":"200"
+      }
+   },
+   {
+      "name":"norfenicol 300 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "florfenicol":"300"
+      }
+   },
+   {
+      "name":"noroclav injectable",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "amoxycilline":"140",
+         "acideclavulanique":"35"
+      }
+   },
+   {
+      "name":"noroclav suspension injectable",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "canin"
+      ],
+      "composition":{
+         "amoxycilline":"140",
+         "acideclavulanique":"35"
+      }
+   },
+   {
+      "name":"norotyl la 150 mg/ml suspension injectable",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "porcin"
+      ],
+      "composition":{
+         "tylosine":"150"
+      }
+   },
+   {
+      "name":"nuflor 300 mg solution injectable bocins ovins",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "porcin"
+      ],
+      "composition":{
+         "florfenicol":"300"
+      }
+   },
+   {
+      "name":"nuflor 450 mg solutio injectable bovins",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "florfenicol":"450"
+      }
+   },
+   {
+      "name":"oxy tetra la 20%",
+      "type":"antibio",
+      "labo":"phoenix pharmaceutical",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "oxytetracycline":"200"
+      }
+   },
+   {
+      "name":"oxytetracycline 10 % solution injectable",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "caprin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "oxytetracycline":"100"
+      }
+   },
+   {
+      "name":"oxytetracycline 10%",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "caprin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "oxytétracycline":"100"
+      }
+   },
+   {
+      "name":"oxytetracycline 5%",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "ovin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "oxytetracycline":"50"
+      }
+   },
+   {
+      "name":"panadia poudre injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "oxytetracycline":"80"
+      }
+   },
+   {
+      "name":"pangram 4%",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "canin"
+      ],
+      "composition":{
+         "gentamicine":"40"
+      }
+   },
+   {
+      "name":"pangram 4% soultion injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "canin"
+      ],
+      "composition":{
+         "pangram":"40000ui"
+      }
+   },
+   {
+      "name":"pen-hista-strep suspension injectable",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "caprin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "gentamicine":"40"
+      }
+   },
+   {
+      "name":"peni dhs suspension injectable",
+      "type":"antibio",
+      "labo":"coophavet",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin"
+      ],
+      "composition":{
+         "benzylpenicilline":"114",
+         "dihydrostreptomycine":"250"
+      }
+   },
+   {
+      "name":"penijectyl suspension injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin"
+      ],
+      "composition":{
+         "benzylpenicilline":"114",
+         "dihydrostreptomycine":"164"
+      }
+   },
+   {
+      "name":"pharmasin 200 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"huvepharma",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin"
+      ],
+      "composition":{
+         "tylosine":"200000ui"
+      }
+   },
+   {
+      "name":"potencil suspension injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "tylosine":"200"
+      }
+   },
+   {
+      "name":"quinotryl 100 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "enrofloxacine":"100"
+      }
+   },
+   {
+      "name":"quinotryl 50 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "enrofloxacine":"50"
+      }
+   },
+   {
+      "name":"readycef 50 mg/ml injectable bovin porcin",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "ceftiofur":"50"
+      }
+   },
+   {
+      "name":"resflor solution injectable",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "ceftiofur":"50"
+      }
+   },
+   {
+      "name":"respitryl 100 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "enrofloxacine":"100"
+      }
+   },
+   {
+      "name":"rilexine 1 g poudre injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"154"
+      }
+   },
+   {
+      "name":"rilexine 250 mg poudre injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"38.5"
+      }
+   },
+   {
+      "name":"rilexine suspension injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"150"
+      }
+   },
+   {
+      "name":"selectan 300 mg solution injectable",
+      "type":"antibio",
+      "labo":"hipra",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "florfenicol":"300"
+      }
+   },
+   {
+      "name":"septotryl 24 % solution injectable",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "trimethoprime":"40",
+         "sulfadimethoxine":"200"
+      }
+   },
+   {
+      "name":"shotaflor  300 mg/mlsolution injectable porc",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "porcin"
+      ],
+      "composition":{
+         "florfenicol":"300"
+      }
+   },
+   {
+      "name":"shotaflor 300 mg/ml solution injectable bovin",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "florfenicol":"300"
+      }
+   },
+   {
+      "name":"shotapen",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "benzylpenicilline":"131",
+         "dihydrostreptomycine":"164"
+      }
+   },
+   {
+      "name":"sodibio suspension injectable",
+      "type":"antibio",
+      "labo":"biove",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "ampiciline":"100",
+         "colistine":"250000ui"
+      }
+   },
+   {
+      "name":"sodicoly solution injectable",
+      "type":"antibio",
+      "labo":"biove",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin",
+         "ovin"
+      ],
+      "composition":{
+         "colistine":"20000ui"
+      }
+   },
+   {
+      "name":"spectam solution injectable",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin"
+      ],
+      "composition":{
+         "spectinomycine":"100"
+      }
+   },
+   {
+      "name":"spirovet solution injectable",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "spiramycine":"600000ui"
+      }
+   },
+   {
+      "name":"suanovil 20",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "spiramycine":"600000ui"
+      }
+   },
+   {
+      "name":"suanovil 20 solution injectable",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "spiramycine":"600000ui"
+      }
+   },
+   {
+      "name":"sufadimerazine injectable et buvable",
+      "type":"antibio",
+      "labo":"coophavet",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "porcin",
+         "caprin"
+      ],
+      "composition":{
+         "sulfadimerazine":"300"
+      }
+   },
+   {
+      "name":"sulfadimerazine csi injectable et buvable",
+      "type":"antibio",
+      "labo":"qalian",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "volaille",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "sulfadimerazine":"304.7"
+      }
+   },
+   {
+      "name":"sulfadimerazine noe injectable et buvable",
+      "type":"antibio",
+      "labo":"qalian",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "volaille",
+         "porcin",
+         "lapin"
+      ],
+      "composition":{
+         "sulfadimerazine":"308"
+      }
+   },
+   {
+      "name":"sulfalon solution injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "porcin",
+         "canin"
+      ],
+      "composition":{
+         "sulfadimethoxine":"200"
+      }
+   },
+   {
+      "name":"suramox 10 suspension injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "canin",
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "amoxycilline":"100"
+      }
+   },
+   {
+      "name":"suramox 15% la suspension injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "amoxycilline":"150"
+      }
+   },
+   {
+      "name":"synulox suspension injectable",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "amoxycilline":"140",
+         "acideclavulanique":"35"
+      }
+   },
+   {
+      "name":"tenaline la solution injectable",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "oxytetracycline":"200"
+      }
+   },
+   {
+      "name":"terralon 20% la solution injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "oxytetracycline":"200"
+      }
+   },
+   {
+      "name":"terramycine 100 solution injectable",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin"
+      ],
+      "composition":{
+         "oxytetracycline":"100"
+      }
+   },
+   {
+      "name":"terramycine la solution injectable",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "oxytetracycline":"200"
+      }
+   },
+   {
+      "name":"tribrissen injectable",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "equin",
+         "porcin"
+      ],
+      "composition":{
+         "sulfadiazine":"400",
+         "trimethoprime":"80"
+      }
+   },
+   {
+      "name":"trisulmix liquide solution injectable",
+      "type":"antibio",
+      "labo":"coophavet",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin"
+      ],
+      "composition":{
+         "trimethoprime":"40",
+         "sulfadimethoxine":"186"
+      }
+   },
+   {
+      "name":"truleva rtu  50 mg/ml suspension injectable",
+      "type":"antibio",
+      "labo":"continental farmaceutica",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "ceftiofur":"50"
+      }
+   },
+   {
+      "name":"tylan 200",
+      "type":"antibio",
+      "labo":"elanco",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin"
+      ],
+      "composition":{
+         "tylosine":"200"
+      }
+   },
+   {
+      "name":"tylan 200 injectable",
+      "type":"antibio",
+      "labo":"elanco",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin"
+      ],
+      "composition":{
+         "tylosine":"200"
+      }
+   },
+   {
+      "name":"tylaxen 200 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "ovin",
+         "caprin",
+         "porcin"
+      ],
+      "composition":{
+         "tylosine":"200000ui"
+      }
+   },
+   {
+      "name":"ubiflox 100mg solution injectable",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "marbofloxacine":"100"
+      }
+   },
+   {
+      "name":"ubiflox 20 mg solution injectable",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "marbofloxacine":"20"
+      }
+   },
+   {
+      "name":"vetmulin 162 mg/ml solution injectable porc",
+      "type":"antibio",
+      "labo":"huvepharma",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "porcin"
+      ],
+      "composition":{
+         "tiamuline":"162.20"
+      }
+   },
+   {
+      "name":"vetrigen gentamycine injectable",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "gentamicine":"40"
+      }
+   },
+   {
+      "name":"vetrimoxin 48h",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "amoxycilline":"150"
+      }
+   },
+   {
+      "name":"vetrimoxin 48h suspension injectable",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "porcin"
+      ],
+      "composition":{
+         "amoxycilline":"150"
+      }
+   },
+   {
+      "name":"virgocilline solution injectable",
+      "type":"antibio",
+      "labo":"coophavet",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "equin",
+         "bovin",
+         "ovin",
+         "porcin"
+      ],
+      "composition":{
+         "colistine":"500000ui"
+      }
+   },
+   {
+      "name":"zactran",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "gamithromycine":"150"
+      }
+   },
+   {
+      "name":"zactran bovin solution injectable",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "gamithromycine":"150"
+      }
+   },
+   {
+      "name":"zuprevo 180 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin"
+      ],
+      "composition":{
+         "tildipirosine":"180"
+      }
+   },
+   {
+      "name":"zuprevo 40 mg/ml solution injectable",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "porcin"
+      ],
+      "composition":{
+         "tildipirosine":"40"
+      }
+   },
+   {
+      "name":"histabiosone",
+      "type":"antibio",
+      "labo":"msd",
+      "unit":"ml ",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "bovin",
+         "caprin",
+         "porcin"
+      ],
+      "composition":{
+         "benzylpenicilline":"113.6",
+         "dihydrostreptomycine":"250"
+      }
+   }
 ];
