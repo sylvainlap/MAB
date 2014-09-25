@@ -26,7 +26,7 @@ var UserSchema = new Schema({
 		type: String,
 	},
 	geoloc: {
-		type: String,
+		type: Schema.Types.Mixed,
 	},
 	activity: {
 		type: [Schema.Types.Mixed],

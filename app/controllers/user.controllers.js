@@ -22,6 +22,13 @@ exports.updateUser = function(req, res, next) {
 			user.firstname = result.donnees['F1.IND.IDENTITE'][0].info106;
 			user.lastname = result.donnees['F1.IND.IDENTITE'][0].info104;
 			user.email = result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2035;
+			user.structure = result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2020;
+			user.geoloc = {
+				city: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2030[0],
+				postcode: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2028[0],
+				country: "",
+				state: ""
+			};
 			user.save(function(err, user) {
 				if (err) {
 					res.json('back_err_mongo');
