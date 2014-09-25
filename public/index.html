@@ -481,7 +481,7 @@
 										{{ lang['front_product'][l] }}
 									</div>
 									<div class="col-12 selectadv"><span class="arrow"></span>
-										<select name="product" ng-model="tmp.productName" ng_change="dataMgt.buildProduct()">
+										<select name="product" ng-model="tmp.productName" ng-change="dataMgt.buildProduct()">
 											<optgroup label="{{ lang['front_products_match_animal'][l] }}" ng-if="tmp.species_list.length>0">
 												<option class="fav" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | filter : filterMgt.products.target | orderBy:'clics'">
 													♥ {{ p.name }}

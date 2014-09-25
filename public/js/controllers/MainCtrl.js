@@ -197,7 +197,7 @@ mabapp.controller('MainCtrl',[
 		addProduct : function() {
 			$scope.data.prescription.push($scope.tmp.product);
 
-			if($scope.user.favs == undefined){
+			if($scope.user.favs == undefined || $scope.user.favs.products == undefined){
 				$scope.user.favs = {
 					products: {}
 				};
