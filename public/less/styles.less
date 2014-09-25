@@ -318,9 +318,16 @@ div.table{
 			}
 		}
 		&.adder{
+			.mobile &, .tablet &{margin-bottom: 0.5em;}
 			.td, .th{
 				padding-right: 0.5em;
 				vertical-align: top;
+				.mobile &, .tablet &{
+					padding-right: 0;
+					&.xs-p-r{
+						padding-right: 0.5em;
+					}
+				}
 			}
 			.th{
 				.legend{
@@ -418,4 +425,10 @@ div.table{
 	padding: 1em 0;
 	margin-top: 1em;
 	.separator-top;
+}
+
+.pane-profile{
+	label{
+		color: @base-v;
+	}
 }

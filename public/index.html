@@ -110,37 +110,37 @@
 					</legend>
 		<!-- == INP Usernamer -->
 					<div class="input-group row">
-						<label class="col-4 col-xs-12">CSO</label>
-						<div class="col-8 col-xs-12 label">: {{ data.codeCSO }}</div>
+						<label class="col-4">CSO</label>
+						<div class="col-8 label">: {{ data.codeCSO }}</div>
 					</div>
 					<div class="input-group row">
-						<label class="col-4 col-xs-12">{{ lang['front_firstname'][l] }}</label>
-						<div class="col-8 col-xs-12 label">: {{ data.firstname }}</div>
+						<label class="col-4">{{ lang['front_firstname'][l] }}</label>
+						<div class="col-8 label">: {{ data.firstname }}</div>
 					</div>
 					<div class="input-group row">
-						<label class="col-4 col-xs-12">{{ lang['front_lastname'][l] }}</label>
-						<div class="col-8 col-xs-12 label">: {{ data.lastname }}</div>
+						<label class="col-4">{{ lang['front_lastname'][l] }}</label>
+						<div class="col-8 label">: {{ data.lastname }}</div>
 					</div>
 		<!-- == INP Structure -->
 					<div class="input-group row">
-						<label class="col-4 col-xs-12">{{ lang['front_structure'][l] }}</label>
-						<div class="col-8 col-xs-12 label">: {{ data.structure }}</div>
+						<label class="col-4">{{ lang['front_structure'][l] }}</label>
+						<div class="col-8 label">: {{ data.structure }}</div>
 					</div>
 		<!-- == INP Localisation -->
 					<div class="input-group row">
-						<label class="col-4 col-xs-12">{{ lang['front_localisation'][l] }}</label>
-						<div class="col-8 col-xs-12 label">: {{ data.geoloc.postcode + ' ' + data.geoloc.city }}</div>
+						<label class="col-4">{{ lang['front_localisation'][l] }}</label>
+						<div class="col-8 label">: {{ data.geoloc.postcode + ' ' + data.geoloc.city }}</div>
 					</div>
 		<!-- == GRP School -->
 					<div class="input-group row">
-						<label class="col-4 col-xs-12">{{ lang['front_school'][l] }}</label>
+						<label class="col-4">{{ lang['front_school'][l] }}</label>
 				<!-- == INP City -->
-						<div class="col-6 col-xs-6 label">: {{ data.school.city }}</div>
+						<div class="col-6 label">: {{ data.school.city }}</div>
 				<!-- == INP Promo -->
-						<div class="col-6 col-xs-6 label">{{ data.school.promo }}</div>
+						<div class="col-6 label">{{ data.school.promo }}</div>
 					</div>
 					<div class="row">
-						<button class="col-4 col-ol-4 col-xs-6 col-ol-xs-3 btn btn-info" ng-click="userMgt.updatePagevet()">
+						<button class="col-4 col-ol-4 col-xs-12 col-ol-xs-0 btn btn-info" ng-click="userMgt.updatePagevet()">
 							{{ lang['front_update'][l] }}
 						</button>
 					</div>
@@ -182,7 +182,7 @@
 
 				<!-- == INP Activity -->
 					<div class="table adder row">
-						<div class="col-6 col-xs-7 td">
+						<div class="col-6 col-xs-7 td xs-p-r">
 							<div class="selectadv col-12"><span class="arrow"></span>
 								<select name="activity" ng-model="tmp.activity.name">
 									<option value="{{ species }}" ng-repeat="(species, types) in animals">{{ lang[species][l] }}</option>
@@ -190,7 +190,7 @@
 							</div>
 						</div>
 					<!-- == INP Activity ratio -->
-						<div class="col-4 col-xs-3 td">
+						<div class="col-4 col-xs-3 td xs-p-r">
 							<input class="col-12" type="number" step="any" min="0" max="100" name="ratio" ng-model="tmp.activity.ratio" />
 						</div>
 						<div class="col-1 col-xs-0 td">
@@ -230,7 +230,7 @@
 					</div>
 				<!-- == INP volume -->
 					<div class="table adder row">
-						<div class="col-6 col-xs-7 td">
+						<div class="col-6 col-xs-7 td xs-p-r">
 							<div class="selectadv col-12"><span class="arrow"></span>
 								<select name="animal" ng-model="tmp.volume.raw">
 									<optgroup label="{{ lang[species][l] }}" ng-repeat="(species, types) in animals">
@@ -245,7 +245,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="col-5 col-xs-3 td">
+						<div class="col-5 col-xs-3 td xs-p-r">
 							<input class="col-12" type="number" min="0" name="quantity" ng-model="tmp.volume.value" />
 						</div>
 						<div class="col-1 col-xs-2 pad0">
@@ -415,7 +415,7 @@
 									</div>
 								</div>
 				<!-- == INP Animal quantity -->
-								<div class="col-2 col-xs-4 td">
+								<div class="col-2 col-xs-4 td xs-p-r">
 									<div class="col-12 th" ng-class="{'txt-danger':!tmp.animal.quantity, 'txt-success':tmp.animal.quantity}">
 										{{ lang['front_animal_quantity'][l] }}
 									</div>
@@ -523,7 +523,7 @@
 											}}
 										</span>
 									</div>
-									<div class="col-6 td">
+									<div class="col-6 td xs-p-r">
 										<input class="col-12" type="number" min="0" step="any" name="product_quantity_init" ng-model="tmp.product.quantity_init" />
 									</div>
 									<div class="col-6 td pad0">
@@ -531,7 +531,7 @@
 									</div>
 								</div>
 				<!-- == INP Product mode -->
-								<div class="col-4 col-xs-4 td">
+								<div class="col-4 col-xs-4 td xs-p-r">
 									<div class="th col-12" ng-class="{'txt-danger':!tmp.product.mode, 'txt-success':tmp.product.mode}">
 										<span>{{ lang['front_treat_mode'][l] }}</span>
 									</div>
@@ -546,7 +546,7 @@
 									
 								</div>
 				<!-- == INP Product treat frequency -->
-								<div class="col-4 col-xs-4 td">
+								<div class="col-4 col-xs-4 td xs-p-r">
 									<div class="th col-12" ng-class="{'txt-danger':!tmp.product.frequency, 'txt-success':tmp.product.frequency}">
 										{{ lang['front_treat_frequency'][l] }}
 									</div>
