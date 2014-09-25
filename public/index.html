@@ -191,7 +191,7 @@
 						</div>
 					<!-- == INP Activity ratio -->
 						<div class="col-4 col-xs-3 td">
-							<input class="col-12" type="number" name="ratio" ng-model="tmp.activity.ratio" />
+							<input class="col-12" type="number" step="any" min="0" max="100" name="ratio" ng-model="tmp.activity.ratio" />
 						</div>
 						<div class="col-1 col-xs-0 td">
 							<label class="col-12">%</label>
@@ -246,7 +246,7 @@
 							</div>
 						</div>
 						<div class="col-5 col-xs-3 td">
-							<input class="col-12" type="number" name="quantity" ng-model="tmp.volume.value" />
+							<input class="col-12" type="number" min="0" name="quantity" ng-model="tmp.volume.value" />
 						</div>
 						<div class="col-1 col-xs-2 pad0">
 							<button class="col-12 btn btn-info" type="button" ng-click="dataMgt.addVolume()" ng-disabled="!tmp.volume.raw||!tmp.volume.value">
@@ -419,7 +419,7 @@
 									<div class="col-12 th" ng-class="{'txt-danger':!tmp.animal.quantity, 'txt-success':tmp.animal.quantity}">
 										{{ lang['front_animal_quantity'][l] }}
 									</div>
-									<input class="col-12" type="number" name="quantity" ng-model="tmp.animal.quantity" />
+									<input class="col-12" type="number" name="quantity" min="1" ng-model="tmp.animal.quantity" />
 								</div>
 				<!-- == SEL Animal Environment -->
 								<div class="col-5 col-xs-8 td">
@@ -524,10 +524,10 @@
 										</span>
 									</div>
 									<div class="col-6 td">
-										<input class="col-12" type="number" step="any" name="product_quantity_init" ng-model="tmp.product.quantity_init" />
+										<input class="col-12" type="number" min="0" step="any" name="product_quantity_init" ng-model="tmp.product.quantity_init" />
 									</div>
 									<div class="col-6 td pad0">
-										<input class="col-12" type="number" step="any" name="product_quantity" ng-hide="enums['tra_frequency'][tmp.product.frequency]==0" ng-model="tmp.product.quantity" />
+										<input class="col-12" type="number" min="0" step="any" name="product_quantity" ng-hide="enums['tra_frequency'][tmp.product.frequency]==0" ng-model="tmp.product.quantity" />
 									</div>
 								</div>
 				<!-- == INP Product mode -->
@@ -565,7 +565,7 @@
 										{{ lang['front_treat_duration'][l] }}
 									</div>
 									<div class="col-12 td pad0">
-										<input class="col-12" type="number" name="duration" ng-model="tmp.product.duration" />
+										<input class="col-12" type="number" min="0" name="duration" ng-model="tmp.product.duration" />
 									</div>
 								</div>
 				<!-- == Product add button == -->
