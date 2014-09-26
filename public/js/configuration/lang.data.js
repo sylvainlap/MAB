@@ -61,6 +61,10 @@ var lang =
 			'FR':'non',
 			'EN':'no'
 		},
+		'front_wait':{
+			'FR':'Patientez',
+			'EN':'Wait'
+		},
 		'front_structure':{
 			'FR':'structure',
 			'EN':'structure'

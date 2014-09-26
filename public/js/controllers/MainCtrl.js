@@ -16,6 +16,7 @@ mabapp.controller('MainCtrl',[
 	$scope.products = productsData;
 	$scope.years = [];
 	$scope.datePicker = {};
+	$scope.sendingTreatment = false;
 	
 
 	// $scope init
@@ -98,6 +99,8 @@ mabapp.controller('MainCtrl',[
 		 * Record a Treatment
 		 */
 		recordTreatment : function() {
+			$scope.sendingTreatment = true;
+			
 			$scope.data.user = $scope.user;
 			$scope.data.veterinary = $scope.user._id;
 			$http({
@@ -110,7 +113,7 @@ mabapp.controller('MainCtrl',[
 				// TODO à vérifier... manque d’élégance.
 				$http({
 					method:'POST',
-					url:'/profile',
+					url:'/user/profile',
 					headers:{'x-access-token':$scope.user.token},
 					data:$scope.user})
 					.success(function(data){
@@ -118,12 +121,13 @@ mabapp.controller('MainCtrl',[
 						
 						$scope.reset.data();
 						$scope.dataMgt.updateLocalFavs();
-						lss.user_favs = user.favs;
+						lss.user_favs = data.favs;
 						//$scope.ui.showProfile = false;
 				});
 				
-				//$scope.reset.data();
+				$scope.sendingTreatment = false;
 			});
+				
 		},
 		/**
 		 * 
