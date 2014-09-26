@@ -64,7 +64,7 @@
 						localStorage.setItem('user_username', res.username);
 						localStorage.setItem('user_token', res.token);
 						localStorage.setItem('user_l', res.l);
-						localStorage.setItem('user_favs', res.favs);
+						localStorage.setItem('user_favs', JSON.stringify(res.favs));
 						window.location.replace('http://91.121.35.7:8080');
 					}
 				}

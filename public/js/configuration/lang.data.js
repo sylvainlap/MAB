@@ -583,19 +583,19 @@ var lang =
 	    	'FR':'particulier',
 	    	'EN':'private'
 	    },
-	    'pro_nunit_pill': {
+	    'comprime': {
 	    	'FR':'comprimé',
 	    	'EN':'pill'
 	    },
-	    'pro_nunit_injector': {
+	    'injecteur': {
 	    	'FR':'injecteur',
 	    	'EN':'injector'
 	    },
-	    'pro_nunit_flacon': {
+	    'flacon': {
 	    	'FR':'flacon',
 	    	'EN':'flacon'
 	    },
-	    'pro_nunit_aerosol': {
+	    'aerosol': {
 	    	'FR':'aerosol',
 	    	'EN':'aerosol'
 	    }

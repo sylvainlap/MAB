@@ -13,4 +13,15 @@ mabapp.directive('autoheight', function(){
 			}
 		}
 	};
+})
+.directive('dropdown', function(){
+	return {
+		restrict: 'A',
+		link: function(scope, element, attrs){
+			element.addClass('up');
+			element.on('click', function(){
+				element.toggleClass('up');
+			});
+		}
+	};
 });

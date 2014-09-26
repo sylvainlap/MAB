@@ -426,7 +426,39 @@ div.table{
 	margin-top: 1em;
 	.separator-top;
 }
+.tab-display{
+	h3, h4{
+		color: @base-v;
+	}
+	.treatment{
+		border-bottom: 1px solid @base-v;
+	}
+	.item-group{
+		cursor: pointer;
+		.bg-info;
+		padding: 0.5em;
+		margin: 0.25em 0;
+		.item{
+			display: block;
+			border-bottom: 1px dashed @default;
+		}
+		.proxicon{
+			float: right;
+		}
+		.proxicon:before{
+			.icon-arrow-top;
+		}
+		&.up{
+			.item{
+				display: none;
+			}
+			.proxicon:before{
+				.icon-arrow-bottom;
+			}
+		}
 
+	}
+}
 .pane-profile{
 	label{
 		color: @base-v;

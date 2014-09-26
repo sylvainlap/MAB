@@ -483,7 +483,7 @@
 									<div class="col-12 selectadv"><span class="arrow"></span>
 										<select name="product" ng-model="tmp.productName" ng-change="dataMgt.buildProduct()">
 											<optgroup label="{{ lang['front_products_match_animal'][l] }}" ng-if="tmp.species_list.length>0">
-												<option class="fav" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | filter : filterMgt.products.target | orderBy:'clics'">
+												<option class="fav" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | filter : filterMgt.products.target | orderBy:'clics':true">
 													♥ {{ p.name }}
 												</option>
 												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.target | filter : filterMgt.products.noClics| orderBy:'name'">
@@ -492,7 +492,7 @@
 												<option disabled>&nbsp;</option>
 											</optgroup>
 											<optgroup class="other" label="{{ lang['front_other_products'][l] }}" ng-if="tmp.species_list.length>0">
-												<option class="fav" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | filter : filterMgt.products.notTarget | orderBy:'clics'">
+												<option class="fav" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | filter : filterMgt.products.notTarget | orderBy:'clics':true">
 													♥ {{ p.name }}
 												</option>
 												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.notTarget | filter : filterMgt.products.noClics| orderBy:'name'">
@@ -505,7 +505,7 @@
 													♥ {{ p.name }}
 												</option>
 												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.noClics | orderBy : 'name'">
-													{{ p.name }}
+													{{ p.name + ' ('+p.clics+')'}}
 												</option>
 											</optgroup>
 										</select>
@@ -601,65 +601,53 @@
 				</div>
 	<!-- == DISPLAY PANE == -->
 				<div class="tab tab-display" ng-if="ui.page == 'display'" ng-init="dataMgt.getTreatments()">
-					<table>
-						<!-- TODO TRANSLATE -->
-						<tr>
-							<th>date</th>
-							<th>{{ lang['front_pathology'][l] }}</th>
-							<th>traitement</th>
-							<th>{{ lang['front_animals'][l] }}</th>
-							<th>{{ lang['front_treat_prescription'][l] }}</th>
-						</tr>
-						<tr ng-repeat="t in data">
-							<td>{{ t.date_dispense.slice(0,t.date_dispense.indexOf('T')) }}</td>
-							<td>{{ lang[t.pathology][l] }}</td>
-							<td>
-								<table class="table">
-									<tr>
-										<th>type</th><td>{{ lang[t.treat_type][l] }}</td>
-									</tr>
-									<tr>
-										<th>initial</th><td>{{ lang[t.treat_init][l] }}</td>
-									</tr>
-									<tr>
-										<th>suit pvt</th><td>{{ t.follow_sample?lang['front_yes'][l]:lang['front_no'][l] }}</td>
-									</tr>
-									<tr>
-										<th>client</th><td>{{ lang[t.client_type][l] }}</td>
-									</tr>
-									<th>délivré</th><td>{{ t.delivered?lang['front_yes'][l]:lang['front_no'][l] }}</td>
-								</table>
-							<td>
-								<table>
-									<tr ng-repeat="a in t.animals">
-										<td>{{ lang[a.species][l] }} {{ lang[a.type][l] }} {{ lang[a.age][l] }}</td>
-										<td>{{ a.quantity }}</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table>
-									<tr ng-repeat-start="p in t.prescription">
-										<td>{{ p.name }}</td>
-										<td>{{ p.quantity_init+' / '+p.quantity }} {{ ((p.nunit!='vrac' && p.nunit!=undefined)?lang[p.nunit][l] +' de '+ p.qunit + p.unit:p.unit) }}</td>
-									</tr>
-									<tr>
-										<th>dur/frq</th><td>{{ p.duration }} / {{ lang[p.frequency][l] }}</td>
-									</tr>
-									<tr ng-hide="true" ng-repeat-end></tr>
-								</table>
-							</td>
-						</tr>
-					</table>
+					<div class="treatment row" ng-repeat="t in data | orderBy : 'date_dispense' : true">
+						<h3>{{ t.date_dispense.slice(0,t.date_dispense.indexOf('T')) }}</h3>
+						<div class="td col-6">
+							<strong>{{ lang['front_pathology'][l] }}</strong> : {{ lang[t.pathology][l] }}
+						</div>
+						<div class="td col-6">
+							<strong>{{ lang['front_treat_type'][l] }}</strong> : {{ lang[t.treat_type][l] }}
+						</div>
+						<div class="td col-6">
+							<strong>{{ lang['front_treat_init'][l] }}</strong> : {{ lang[t.treat_init][l] }}
+						</div>
+						<div class="td col-6">
+							<strong>{{ lang['front_follow_sample'][l] }}</strong> : {{ t.follow_sample?lang['front_yes'][l]:lang['front_no'][l] }}
+						</div>
+						<div class="td col-6">
+							<strong>{{ lang['front_client_type'][l] }}</strong> : {{ lang[t.client_type][l] }}
+						</div>
+						<div class="td col-6">
+							<strong>{{ lang['front_delivered'][l] }}</strong> : {{ t.delivered?lang['front_yes'][l]:lang['front_no'][l] }}
+						</div>
+						<div class="td col-12 item-group" dropdown>
+							<h4><span class="proxicon"></span>{{ lang['front_treat_prescription'][l] }} :</h4>
+							<div class="row item" ng-repeat="p in t.prescription">
+								<div class="col-6 col-xs-6 td">
+									<strong>{{ 	p.name + ' (' + lang[p.mode][l] + ')'}}</strong>
+								</div>
+								<div class="col-6 col-xs-6 td txt-r">
+									{{
+									p.quantity_init +
+									' ' +
+									((p.frequency!=0)?lang['front_then'][l]+' '+p.quantity+' ':'') +
+									((p.nunit!='vrac' && p.nunit!=undefined)?lang[p.nunit][l]+(p.quantity_init>1?lang['s'][l]:''):p.unit) +
+									((p.frequency!=0)?' '+lang[p.frequency][l]+' '+lang['front_during'][l]+' '+p.duration+' '+lang['front_day'][l]:'')
+									}}
+								</div>
+							</div>
+						</div>
+						<div class="td col-12 item-group" dropdown>
+							<h4><span class="proxicon"></span> {{ lang['front_animals'][l] }} :</h4>
+							<div class="row item" ng-repeat="a in t.animals">
+								<div class="col-12 col-xs-12 td">
+									{{ a.quantity }} {{ lang[a.species][l] }} {{ lang[a.type][l] }} {{ lang[a.age][l] }} [<span ng-repeat="env in a.environment">{{ lang[env][l] + ' '}}</span>]
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
-<!-- === DEBUG PANE === -->
-			<div class="pane pane-debug" ng-if="true">
-				<!-- <a ng-click="debug=!debug">DEBUG</a>
-				<textarea class="col-md-12 col-12" ng-if="debug">DATA : {{ '\n'+ print.data }}</textarea>
-				<textarea class="col-md-12 col-12" ng-if="debug">TMP : {{ '\n'+ print.tmp }}</textarea>
-				<textarea class="col-md-12 col-12" ng-if="debug">USER : {{ '\n'+ print.user }}</textarea>
-				<textarea class="col-md-12 col-12" ng-if="debug">PRODUCTS : {{ '\n'+ print.products }}</textarea> -->
 			</div>
 		</div>
 		<script src="./js/libraries/ua-parser.min.js"></script>

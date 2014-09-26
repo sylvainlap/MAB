@@ -61,7 +61,7 @@ mabapp.controller('MainCtrl',[
 				token : lss.user_token,
 				_id : lss.user_id,
 				language : lss.user_l,
-				favs : lss.user_favs
+				favs : JSON.parse(lss.user_favs)
 			};
 		},
 		print : function(){
@@ -93,6 +93,7 @@ mabapp.controller('MainCtrl',[
 				for(k in $scope.user.favs.products){
 					updateOne($scope.products, 'name', k, 'clics', $scope.user.favs.products[k])
 				}
+				lss.user_favs = JSON.stringify($scope.user.favs);
 			}
 		},
 		/**
@@ -110,19 +111,13 @@ mabapp.controller('MainCtrl',[
 				data:$scope.data})
 			.success(function(data){
 				$scope.messages = messageService.log(data);
-				// TODO à vérifier... manque d’élégance.
 				$http({
 					method:'POST',
 					url:'/user/profile',
 					headers:{'x-access-token':$scope.user.token},
 					data:$scope.user})
 					.success(function(data){
-						//$scope.messages = messageService.log(data);
-						
-						$scope.reset.data();
 						$scope.dataMgt.updateLocalFavs();
-						lss.user_favs = data.favs;
-						//$scope.ui.showProfile = false;
 				});
 				
 				$scope.sendingTreatment = false;
@@ -184,16 +179,16 @@ mabapp.controller('MainCtrl',[
 		 * 
 		 */
 		buildProduct : function(){
-			var buff = [];
-			for(var i in $scope.tmp.product){
-				buff[i] = $scope.tmp.product[i];
-			}
+			// var buff = [];
+			// for(var i in $scope.tmp.product){
+			// 	buff[i] = $scope.tmp.product[i];
+			// }
 			$scope.tmp.product = findOne($scope.products, 'name', $scope.tmp.productName);
-			for(var i in $scope.tmp.product){
-				if(buff[i]!=undefined){
-					$scope.tmp.product[i] = buff[i];
-				}
-			}
+			// for(var i in $scope.tmp.product){
+			// 	if(buff[i]!=undefined){
+			// 		$scope.tmp.product[i] = buff[i];
+			// 	}
+			// }
 		},
 		/**
 		 * 
@@ -201,7 +196,7 @@ mabapp.controller('MainCtrl',[
 		addProduct : function() {
 			$scope.data.prescription.push($scope.tmp.product);
 
-			if($scope.user.favs == undefined || $scope.user.favs.products == undefined){
+			if($scope.user.favs == undefined){
 				$scope.user.favs = {
 					products: {}
 				};
@@ -410,6 +405,5 @@ mabapp.controller('MainCtrl',[
 
 	// inject favs value in the product list
 	$scope.dataMgt.updateLocalFavs();
-
 	$scope.l = ($scope.user.language!='undefined'&&$scope.user.language!=undefined)?$scope.user.language:'FR';
 }]);
