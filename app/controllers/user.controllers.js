@@ -4,6 +4,7 @@
 var mongoose = require('mongoose');
 var pagevet  = require('./pagevet.controllers');
 var User     = mongoose.model('User');
+var util     = require('util');
 
 exports.updateUser = function(req, res, next) {
 	codeCSO = req.params.codeCSO;
@@ -27,7 +28,7 @@ exports.updateUser = function(req, res, next) {
 				return;
 			}
 
-			console.log(result);
+			console.log(util.inspect(result, false, null));
 
 			user.firstname = result.donnees['F1.IND.IDENTITE'][0].info106;
 			user.lastname = result.donnees['F1.IND.IDENTITE'][0].info104;
@@ -47,6 +48,7 @@ exports.updateUser = function(req, res, next) {
 
 			// 	res.json(user);
 			// });
+			res.json(user);
 		});
 	});
 };
