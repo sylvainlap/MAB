@@ -14,12 +14,9 @@ exports.updateUser = function(req, res, next) {
 			return;
 		}
 
-		// TOUT CA C'EST POUR DU DEBUG !
-
 		if (!user) {
-			// res.json({ error: 'back_no_user' });
-			// return;
-			user = {};
+			res.json({ error: 'back_no_user' });
+			return;
 		}
 
 		pagevet.requestPagevet(codeCSO, function(err, result) {
@@ -37,18 +34,17 @@ exports.updateUser = function(req, res, next) {
 			user.geoloc = {
 				city: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2030[0],
 				postcode: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2028[0],
-				country: "",
+				country: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2031[0],
 				state: ""
 			};
-			// user.save(function(err, user) {
-			// 	if (err) {
-			// 		res.json('back_err_mongo');
-			// 		return;
-			// 	}
+			user.save(function(err, user) {
+				if (err) {
+					res.json('back_err_mongo');
+					return;
+				}
 
-			// 	res.json(user);
-			// });
-			res.json(user);
+				res.json(user);
+			});
 		});
 	});
 };
@@ -108,7 +104,14 @@ exports.createOrGetUser = function(codeCSO, callback) {
 				codeCSO: codeCSO,
 				firstname: result.donnees['F1.IND.IDENTITE'][0].info106,
 				lastname: result.donnees['F1.IND.IDENTITE'][0].info104,
-				email: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2035
+				email: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2035,
+				structure: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2020,
+				geoloc: {
+					city: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2030[0],
+					postcode: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2028[0],
+					country: result.donnees['F5.DPE'][0]['F5.DPE.IDENTITE'][0].info2031[0],
+					state: ""
+				}
 			});
 			user.save(function(err, user) {
 				if (err) {
