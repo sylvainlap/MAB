@@ -13,11 +13,21 @@ exports.updateUser = function(req, res, next) {
 			return;
 		}
 
+		// TOUT CA C'EST POUR DU DEBUG !
+
+		if (!user) {
+			// res.json({ error: 'back_no_user' });
+			// return;
+			user = {};
+		}
+
 		pagevet.requestPagevet(codeCSO, function(err, result) {
 			if (err) {
 				res.json({ error: 'back_err_pagevet' });
 				return;
 			}
+
+			console.log(result);
 
 			user.firstname = result.donnees['F1.IND.IDENTITE'][0].info106;
 			user.lastname = result.donnees['F1.IND.IDENTITE'][0].info104;
@@ -29,14 +39,14 @@ exports.updateUser = function(req, res, next) {
 				country: "",
 				state: ""
 			};
-			user.save(function(err, user) {
-				if (err) {
-					res.json('back_err_mongo');
-					return;
-				}
+			// user.save(function(err, user) {
+			// 	if (err) {
+			// 		res.json('back_err_mongo');
+			// 		return;
+			// 	}
 
-				res.json(user);
-			});
+			// 	res.json(user);
+			// });
 		});
 	});
 };
