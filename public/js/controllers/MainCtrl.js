@@ -17,6 +17,8 @@ mabapp.controller('MainCtrl',[
 	$scope.years = [];
 	$scope.datePicker = {};
 	$scope.sendingTreatment = false;
+	$scope.updatingPagevetInfo = false;
+	$scope.updatingProfile = false;
 	
 
 	// $scope init
@@ -179,16 +181,7 @@ mabapp.controller('MainCtrl',[
 		 * 
 		 */
 		buildProduct : function(){
-			// var buff = [];
-			// for(var i in $scope.tmp.product){
-			// 	buff[i] = $scope.tmp.product[i];
-			// }
 			$scope.tmp.product = findOne($scope.products, 'name', $scope.tmp.productName);
-			// for(var i in $scope.tmp.product){
-			// 	if(buff[i]!=undefined){
-			// 		$scope.tmp.product[i] = buff[i];
-			// 	}
-			// }
 		},
 		/**
 		 * 
@@ -263,6 +256,7 @@ mabapp.controller('MainCtrl',[
 			$scope.messages = messageService.log({message : 'msg_on_logged_out'});
 		},
 		updatePagevet : function(){
+			$scope.updatingPagevetInfo = true;
 			$http({
 				method: 'GET',
 					url:'/user/update/'+$scope.user.codeCSO,
@@ -271,6 +265,7 @@ mabapp.controller('MainCtrl',[
 			.success(function(data){
 				$scope.messages = messageService.log(data);
 				console.log(data);
+				$scope.updatingPagevetInfo = false;
 			});
 		},
 		/**
@@ -303,6 +298,7 @@ mabapp.controller('MainCtrl',[
 		 * Update user profile
 		 */
 		updateProfile : function() {
+			$scope.updatingProfile = true;
 			$http({
 				method:'POST',
 				url:'/user/profile',
@@ -312,6 +308,7 @@ mabapp.controller('MainCtrl',[
 					$scope.messages = messageService.log(data);
 					
 					$scope.reset.data();
+					$scope.updatingProfile = false;
 					$scope.ui.showProfile = false;
 			});
 		}

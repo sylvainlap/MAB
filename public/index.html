@@ -140,9 +140,12 @@
 						<div class="col-6 label">{{ data.school.promo }}</div>
 					</div>
 					<div class="row">
-						<button class="col-4 col-ol-4 col-xs-12 col-ol-xs-0 btn btn-info" ng-click="userMgt.updatePagevet()">
+						<button ng-if="!updatingPagevetInfo" class="col-4 col-ol-4 col-xs-12 col-ol-xs-0 btn btn-info" ng-click="userMgt.updatePagevet()">
 							{{ lang['front_update'][l] }}
 						</button>
+						<div ng-if="updatingPagevetInfo" class="loading col-4 col-ol-4 col-xs-12 col-ol-xs-0">
+							<span class="proxicon proxicon-spinner proxicon-spin-1"></span>&nbsp;{{ lang['front_wait'][l] }}
+						</div>
 					</div>
 					<legend></legend>
 		<!-- == INP Language -->
@@ -256,10 +259,13 @@
 					</div>
 		<!-- == BTN Update -->
 					<div class="validation row">
-						<button class="col-ol-2 col-4 col-xs-6 col-ol-xs-0 btn btn-success" ng-click="userMgt.updateProfile()">
+						<button ng-if="!updatingProfile" class="col-ol-2 col-4 col-xs-6 col-ol-xs-0 btn btn-success" ng-click="userMgt.updateProfile()">
 							<span class="proxicon proxicon-download"></span> 
 							{{ lang['front_save_changes'][l] }}
 						</button>
+						<div ng-if="updatingProfile" class="loading col-ol-2 col-4 col-xs-6 col-ol-xs-0">
+							<span class="proxicon proxicon-spinner proxicon-spin-1"></span>&nbsp;{{ lang['front_wait'][l] }}
+						</div>
 		<!-- == BTN Cancel -->
 						<button class="col-4 col-xs-6 btn btn-danger" ng-click="userMgt.getProfile('close')">
 							<span class="proxicon proxicon-remove"></span> 
