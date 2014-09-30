@@ -17,7 +17,8 @@ var productsData =
       "composition":{
          "sulfanilamide":"500",
          "chlortétracycline":"28.50"
-      }
+      },
+      "mode":""
    },
    {
       "name":"aureomycine merial",
@@ -31,7 +32,8 @@ var productsData =
       ],
       "composition":{
          "chlortetracycline":"1/6"
-      }
+      },
+      "mode":"intra utérine"
    },
    {
       "name":"aureomycine oblets",
@@ -45,7 +47,8 @@ var productsData =
       ],
       "composition":{
          "chlortétracycline":"929.17"
-      }
+      },
+      "mode":"intra utérine"
    },
    {
       "name":"centraureo",
@@ -60,7 +63,8 @@ var productsData =
       ],
       "composition":{
          "chlortetracycline":"1/26"
-      }
+      },
+      "mode":"intra utérine"
    },
    {
       "name":"clamoxyl oblets",
@@ -74,7 +78,8 @@ var productsData =
       ],
       "composition":{
          "amoxycilline":"0.1"
-      }
+      },
+      "mode":""
    },
    {
       "name":"intestivo",
@@ -91,7 +96,8 @@ var productsData =
       "composition":{
          "colistine":"2500000ui",
          "sulfaguanidine":"1000"
-      }
+      },
+      "mode":""
    },
    {
       "name":"marbocyl bolus",
@@ -106,7 +112,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"50"
-      }
+      },
+      "mode":""
    },
    {
       "name":"synulox  500mg ogivettes",
@@ -121,7 +128,8 @@ var productsData =
       "composition":{
          "amoxicilline":"400",
          "acideclavulanique":"100"
-      }
+      },
+      "mode":""
    },
    {
       "name":"panafuge poudre et solution injectable",
@@ -136,7 +144,8 @@ var productsData =
       "composition":{
          "dihydrostreptomycine":"250",
          "tetracycline":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"stop m",
@@ -150,7 +159,8 @@ var productsData =
       ],
       "composition":{
          "pénéthamate":"257"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"ampiclox",
@@ -165,7 +175,8 @@ var productsData =
       "composition":{
          "cloxacilline":"1/15",
          "ampicilline":"0.025"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"ampiclox ar",
@@ -180,7 +191,8 @@ var productsData =
       "composition":{
          "cloxacilline":"200",
          "ampicilline":"75"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cefovet",
@@ -194,7 +206,8 @@ var productsData =
       ],
       "composition":{
          "cefazoline":"0.1"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cefovet hl",
@@ -208,7 +221,8 @@ var productsData =
       ],
       "composition":{
          "cefazoline":"1/12"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cepravin",
@@ -222,7 +236,8 @@ var productsData =
       ],
       "composition":{
          "cefalonium":"250"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cloxagel hl 500",
@@ -237,7 +252,8 @@ var productsData =
       "composition":{
          "cloxacilline":"1/16",
          "neomicyne":"42.5ui"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cloxamam",
@@ -251,7 +267,8 @@ var productsData =
       ],
       "composition":{
          "cloxacilline":"5/91"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cloxine hl",
@@ -265,7 +282,8 @@ var productsData =
       ],
       "composition":{
          "cloxacilline":"1/16"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cobactan lc",
@@ -279,7 +297,8 @@ var productsData =
       ],
       "composition":{
          "cefquinome":"75"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cobactan lc",
@@ -293,7 +312,8 @@ var productsData =
       ],
       "composition":{
          "cefquinome":"3/320"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"diclomam tarissement",
@@ -307,7 +327,8 @@ var productsData =
       ],
       "composition":{
          "cloxacilline":"1/6"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"fatrox",
@@ -321,7 +342,8 @@ var productsData =
       ],
       "composition":{
          "rifaximine":"20"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"gentamam",
@@ -336,7 +358,8 @@ var productsData =
       "composition":{
          "cloxacilline":"1/45",
          "gentamicine":"1/18"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"kloxerate dc",
@@ -350,7 +373,8 @@ var productsData =
       ],
       "composition":{
          "cloxacilline":"1/9"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"mastiplan lc",
@@ -364,7 +388,8 @@ var productsData =
       ],
       "composition":{
          "cefapirine":"300"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"mastiplan lc",
@@ -378,7 +403,8 @@ var productsData =
       ],
       "composition":{
          "cefapirine":"3/80"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"mastitar hl",
@@ -393,7 +419,8 @@ var productsData =
       "composition":{
          "benzylpenicilline":"17/180",
          "neomycine":"500/9ui"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"metricure",
@@ -407,7 +434,8 @@ var productsData =
       ],
       "composition":{
          "cefapirine":"500"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"metricure",
@@ -421,7 +449,8 @@ var productsData =
       ],
       "composition":{
          "cefapirine":"1/38"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"nafpenzal t",
@@ -437,7 +466,8 @@ var productsData =
          "benzylpenicilline":"0.19",
          "nafcilline":"1/30",
          "dihydrostreptomycine":"1/30"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"nafpenzal t",
@@ -455,7 +485,8 @@ var productsData =
          "benzylpenicilline":"300",
          "dihydrostreptomycine":"100",
          "nafcilline":"100"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"orbenin hl",
@@ -469,7 +500,8 @@ var productsData =
       ],
       "composition":{
          "cloxacilline":"1/6"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"orbenin la",
@@ -483,7 +515,8 @@ var productsData =
       ],
       "composition":{
          "cloxacilline":"1/15"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"orbenor hl",
@@ -497,7 +530,8 @@ var productsData =
       ],
       "composition":{
          "cloxacilline":"600"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"orbenor hl",
@@ -511,7 +545,8 @@ var productsData =
       ],
       "composition":{
          "cloxacilline":"1/6"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"rilexine hl",
@@ -525,7 +560,8 @@ var productsData =
       ],
       "composition":{
          "cefalexine":"3/64"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"speciorlac",
@@ -540,7 +576,8 @@ var productsData =
       "composition":{
          "spiramycine":"240ui",
          "neomycine":"20ui"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"synulox intramammaire",
@@ -555,7 +592,8 @@ var productsData =
       "composition":{
          "amoxycilline":"200",
          "acideclavulanique":"20"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"synulox intramammaire",
@@ -570,7 +608,8 @@ var productsData =
       "composition":{
          "amoxycilline":"1/15",
          "acideclavulanique":"1/60"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"ubrolexin",
@@ -585,7 +624,8 @@ var productsData =
       "composition":{
          "cefalexine":"200",
          "kanamycine":"100000ui"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"virbactan",
@@ -599,7 +639,8 @@ var productsData =
       ],
       "composition":{
          "cefquinome":"0.05"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"coliclox",
@@ -614,7 +655,8 @@ var productsData =
       "composition":{
          "cloxacilline":"20",
          "ampicilline":"7.5"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"lincocine intramammaire",
@@ -629,7 +671,8 @@ var productsData =
       "composition":{
          "lincomycine":"33",
          "neomycine":"10"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"lincocine intramammaire",
@@ -644,7 +687,8 @@ var productsData =
       "composition":{
          "lincomycine":"330",
          "néomycine":"100"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"mammicine ",
@@ -659,7 +703,8 @@ var productsData =
       "composition":{
          "cloxacilline":"20",
          "colistine":"50000ui"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"mammitel",
@@ -674,7 +719,8 @@ var productsData =
       "composition":{
          "colistine":"50000ui",
          "cloxacilline":"20"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"masti peni",
@@ -689,7 +735,8 @@ var productsData =
       "composition":{
          "benzylpenicilline":"570",
          "dihydrostreptomycine":"410"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"masti peni",
@@ -704,7 +751,8 @@ var productsData =
       "composition":{
          "benzylpenicilline":"57",
          "dihydrostreptomycine":"41"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"pathozone",
@@ -718,7 +766,8 @@ var productsData =
       ],
       "composition":{
          "cefopérazone":"250"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"pathozone",
@@ -732,7 +781,8 @@ var productsData =
       ],
       "composition":{
          "cefaperazone":"25"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"pirsue",
@@ -746,7 +796,8 @@ var productsData =
       ],
       "composition":{
          "pirlimycine":"5"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"rilexine traitement",
@@ -760,7 +811,8 @@ var productsData =
       ],
       "composition":{
          "cefalexine":"20"
-      }
+      },
+      "mode":"intra mammaire"
    },
    {
       "name":"ubrolexin",
@@ -775,7 +827,8 @@ var productsData =
       "composition":{
          "cefalexine":"20",
          "kanamycine":"10000ui"
-      }
+      },
+      "mode":"intra utérine"
    },
    {
       "name":"a 180",
@@ -789,7 +842,8 @@ var productsData =
       ],
       "composition":{
          "danofloxacine":"180"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"acti methoxine solution inj",
@@ -805,7 +859,8 @@ var productsData =
       ],
       "composition":{
          "sulfadimethoxine":"200"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"acti tetra i",
@@ -824,7 +879,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"advocine 25 bovin solution inj",
@@ -839,7 +895,8 @@ var productsData =
       ],
       "composition":{
          "danofloxacine":"25"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"amphoprim solution",
@@ -856,7 +913,8 @@ var productsData =
       "composition":{
          "sulfadimidine":"200",
          "triméthoprime":"40"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"ampicoline suspension huileuse injectable",
@@ -875,7 +933,8 @@ var productsData =
       "composition":{
          "ampicilline":"100",
          "colistine":"250000ui"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"ampidexalone",
@@ -894,7 +953,8 @@ var productsData =
       "composition":{
          "ampicilline":"87",
          "colistine":"250000ui"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"ampiject 10 g",
@@ -911,7 +971,8 @@ var productsData =
       ],
       "composition":{
          "ampicilline":"20"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"baytril 10% porcin 1 injection",
@@ -926,7 +987,8 @@ var productsData =
       ],
       "composition":{
          "enrofloxacine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"baytril 10% solution injectable bovin porcin",
@@ -941,7 +1003,8 @@ var productsData =
       ],
       "composition":{
          "enrofloxacine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"baytril 2,5 % solution buvable veau",
@@ -955,7 +1018,8 @@ var productsData =
       ],
       "composition":{
          "enrofloxacine":"25"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"baytril 2,5% solution injectable porcin",
@@ -969,7 +1033,8 @@ var productsData =
       ],
       "composition":{
          "enrofloxacine":"25"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"baytril 5% solution injectable bovins",
@@ -985,7 +1050,8 @@ var productsData =
       ],
       "composition":{
          "enrofloxacine":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"belcopeni 5 poudre injectable ",
@@ -1005,7 +1071,8 @@ var productsData =
       "composition":{
          "colistine":"500000ui",
          "ampicilline":"300"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"borgal 24% injectable",
@@ -1024,7 +1091,8 @@ var productsData =
       "composition":{
          "sulfadoxine":"200",
          "trimethoprime":"40"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"captalin solution injectable",
@@ -1038,7 +1106,8 @@ var productsData =
       ],
       "composition":{
          "spiramycine":"1000000ui"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cefenil  rtu 50 mg/ml porcins bovins",
@@ -1053,7 +1122,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cefenil 50 mg/ml",
@@ -1068,7 +1138,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cefenil 50mg/ml",
@@ -1083,7 +1154,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"ceftiocyl 50 mg/ml suspension injectable",
@@ -1098,7 +1170,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"ceftiocyl 50mg/ml",
@@ -1113,7 +1186,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cemay 50 mg/ml suspension injectable",
@@ -1128,7 +1202,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cevaxel 50 mg/ml",
@@ -1143,7 +1218,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cevaxel rtu suspension injectable",
@@ -1158,7 +1234,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"clamoxyl la ",
@@ -1176,7 +1253,8 @@ var productsData =
       ],
       "composition":{
          "amoxycilline":"150"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"clamoxyl suspension",
@@ -1193,7 +1271,8 @@ var productsData =
       ],
       "composition":{
          "amoxycilline":"150"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"clamoxyl suspension injectable",
@@ -1210,7 +1289,8 @@ var productsData =
       ],
       "composition":{
          "amoxycilline":"150"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cobactan 2,5% suspension injectable",
@@ -1225,7 +1305,8 @@ var productsData =
       ],
       "composition":{
          "cefquinome":"25"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cobactan 2.5%",
@@ -1240,7 +1321,8 @@ var productsData =
       ],
       "composition":{
          "cefquinome":"25"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cobactan 4,5% poudre soluble bovin equin ",
@@ -1255,7 +1337,8 @@ var productsData =
       ],
       "composition":{
          "cefquinome":"45"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cobactan la 7,5% suspension injectable",
@@ -1269,7 +1352,8 @@ var productsData =
       ],
       "composition":{
          "cefquinome":"75"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cofamox 15 la",
@@ -1283,7 +1367,8 @@ var productsData =
       ],
       "composition":{
          "amoxycilline":"150"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"colampi i",
@@ -1301,7 +1386,8 @@ var productsData =
       "composition":{
          "colistine":"250000ui",
          "ampiciline":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"colfen 300mg/ml",
@@ -1316,7 +1402,8 @@ var productsData =
       ],
       "composition":{
          "florfenicol":"300"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"colicilline",
@@ -1332,7 +1419,8 @@ var productsData =
       "composition":{
          "ampicilline":"100",
          "colistine":"250000ui"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"colicilline suspension injectable",
@@ -1348,7 +1436,8 @@ var productsData =
       "composition":{
          "colistine":"250000ui",
          "ampiciline":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"convenia 80 mg/ml solution injectable",
@@ -1362,7 +1451,8 @@ var productsData =
       ],
       "composition":{
          "cefovecine":"80"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cortexiline",
@@ -1378,7 +1468,8 @@ var productsData =
       "composition":{
          "benzylpenicilline":"114",
          "neomycine":"120"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cortexiline suspension injectable",
@@ -1394,7 +1485,8 @@ var productsData =
       "composition":{
          "benzylpenicilline":"114",
          "neomycine":"120"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"covunil",
@@ -1408,7 +1500,8 @@ var productsData =
       ],
       "composition":{
          "oxytétracycline":"300"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"covunil suspension injectable",
@@ -1422,7 +1515,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"300"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"cyclosol 200 la solution injectable",
@@ -1438,7 +1532,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"200"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"denagard solution injectable 162,2",
@@ -1452,7 +1547,8 @@ var productsData =
       ],
       "composition":{
          "tiamuline":"162.20"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"depocilline suspension injectable",
@@ -1470,7 +1566,8 @@ var productsData =
       ],
       "composition":{
          "benzylpenicilline":"170.41"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"draxxin",
@@ -1485,7 +1582,8 @@ var productsData =
       ],
       "composition":{
          "tulathromycine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"draxxin solution injectable",
@@ -1500,7 +1598,8 @@ var productsData =
       ],
       "composition":{
          "tulathromycine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"duoprim solution injectable",
@@ -1521,7 +1620,8 @@ var productsData =
       "composition":{
          "sulfadoxine":"200",
          "trimethoprime":"40"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"duphacycline la",
@@ -1538,7 +1638,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"200"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"duphamox la suspension injectable",
@@ -1556,7 +1657,8 @@ var productsData =
       ],
       "composition":{
          "amoxycilline":"150"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"duplocilline suspension injectable",
@@ -1571,7 +1673,8 @@ var productsData =
       ],
       "composition":{
          "benzylpenicilline":"177.15"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"duracykline suspesion injectable la 20%",
@@ -1585,7 +1688,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"200"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"eficur 50 mg/ml suspension injectable",
@@ -1600,7 +1704,8 @@ var productsData =
       ],
       "composition":{
          "cetiofur":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"engemycine 10% solution injectable",
@@ -1617,7 +1722,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"enrocare 10% solutio injectable bovin porcin",
@@ -1632,7 +1738,8 @@ var productsData =
       ],
       "composition":{
          "enrofloxacine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"enrocare 2,5 % solution injectable chien et chat",
@@ -1646,7 +1753,8 @@ var productsData =
       ],
       "composition":{
          "enrofloxacine":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"enrocare 5% solution injectable bovin porcin",
@@ -1662,7 +1770,8 @@ var productsData =
       ],
       "composition":{
          "enrofloxacine":"25"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"erythrocine 200 solution injectable",
@@ -1678,7 +1787,8 @@ var productsData =
       ],
       "composition":{
          "erythromycine":"200"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"excenel rtu 50 mg/ml suspension injectable",
@@ -1693,7 +1803,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"excenel solution",
@@ -1709,7 +1820,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"finoxaline 50 mg solution injectable",
@@ -1723,7 +1835,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"florgane 300 mg/ml suspension injectable",
@@ -1737,7 +1850,8 @@ var productsData =
       ],
       "composition":{
          "florfenicol":"300"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"florkem 300 mg/ml solution injectable",
@@ -1752,7 +1866,8 @@ var productsData =
       ],
       "composition":{
          "florfenicol":"300"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"forcyl 160 mg/ml solution injectable",
@@ -1766,7 +1881,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"160"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"forcyl swine 160 mg/ml",
@@ -1780,7 +1896,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"160"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"forticine 4% solution injectable",
@@ -1794,7 +1911,8 @@ var productsData =
       ],
       "composition":{
          "gentamicine":"40"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"g4",
@@ -1809,7 +1927,8 @@ var productsData =
       ],
       "composition":{
          "gentamicine":"40"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"g4 solution injectable",
@@ -1824,7 +1943,8 @@ var productsData =
       ],
       "composition":{
          "gentamicine":"40"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"histabiosone suspension injectable",
@@ -1841,7 +1961,8 @@ var productsData =
       "composition":{
          "benzylpenicilline":"113.6",
          "dihydrostreptomycine":"250"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"histacline",
@@ -1856,7 +1977,8 @@ var productsData =
       "composition":{
          "benzylpenicilline":"114",
          "dihydrostreptomycine":"200"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"histacline suspension injectable",
@@ -1871,7 +1993,8 @@ var productsData =
       "composition":{
          "benzylpenicilline":"114",
          "dihydrostreptomycine":"200"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"intramicine",
@@ -1890,7 +2013,8 @@ var productsData =
       "composition":{
          "benzylpenicilline":"114",
          "dihydrostreptomycine":"200"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"kefloril 300 mg/mlsolution injectable",
@@ -1905,7 +2029,8 @@ var productsData =
       ],
       "composition":{
          "florfenicol":"300"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"kefloryl 300mg/ml",
@@ -1920,7 +2045,8 @@ var productsData =
       ],
       "composition":{
          "florfenicol":"300"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"linco-spectin 150 solution injectable",
@@ -1940,7 +2066,8 @@ var productsData =
       "composition":{
          "lincomycine":"50",
          "spectinomycine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"lincocine 100 mg solution injectable",
@@ -1955,7 +2082,8 @@ var productsData =
       ],
       "composition":{
          "lincomycine":"40"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"linspec solution injectable",
@@ -1972,7 +2100,8 @@ var productsData =
       "composition":{
          "lincomycine":"50",
          "spectinomycine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"longamox suspension injectable",
@@ -1988,7 +2117,8 @@ var productsData =
       ],
       "composition":{
          "amoxycilline":"150"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"longicine",
@@ -2004,7 +2134,8 @@ var productsData =
       ],
       "composition":{
          "oxytétracycline":"200"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"longicine solution injectable",
@@ -2020,7 +2151,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"200"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"marbocare 100 mg/ml solution injectable",
@@ -2035,7 +2167,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"marbocare 20 mg/ml solution injectable",
@@ -2050,7 +2183,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"20"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"marbocyl 10%",
@@ -2065,7 +2199,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"marbocyl 10% solution injectable",
@@ -2080,7 +2215,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"marbocyl 2%",
@@ -2095,7 +2231,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"20"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"marbocyl 2% solution injectable",
@@ -2110,7 +2247,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"20"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"marbocyl f.d.",
@@ -2124,7 +2262,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"10"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"marbocyl fd injectable",
@@ -2138,7 +2277,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"10"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"marbonor 100 mg/ml solution injectable",
@@ -2153,7 +2293,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"marbox 100 mg/ml injectable bovin porcin",
@@ -2168,7 +2309,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"marfloquin 100 mg/ml solution injectable",
@@ -2183,7 +2325,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"marfloquin 20 mg/ml solution injectable",
@@ -2198,7 +2341,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"20"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"micotil 300 mg/ml solution injectable",
@@ -2212,7 +2356,8 @@ var productsData =
       ],
       "composition":{
          "tilmicosine":""
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"multibio",
@@ -2230,7 +2375,8 @@ var productsData =
       "composition":{
          "ampicilline":"100",
          "colistine":"250000ui"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"multibio suspension injectable",
@@ -2248,7 +2394,8 @@ var productsData =
       "composition":{
          "ampiciline":"100",
          "colistine":"250000ui"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"naxcel 100 mg/ml solution injectable bovin",
@@ -2262,7 +2409,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"naxcel 200 mg/ml solution injectable porcin",
@@ -2276,7 +2424,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"200"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"norfenicol 300 mg/ml solution injectable",
@@ -2291,7 +2440,8 @@ var productsData =
       ],
       "composition":{
          "florfenicol":"300"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"noroclav injectable",
@@ -2306,7 +2456,8 @@ var productsData =
       "composition":{
          "amoxycilline":"140",
          "acideclavulanique":"35"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"noroclav suspension injectable",
@@ -2322,7 +2473,8 @@ var productsData =
       "composition":{
          "amoxycilline":"140",
          "acideclavulanique":"35"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"norotyl la 150 mg/ml suspension injectable",
@@ -2336,7 +2488,8 @@ var productsData =
       ],
       "composition":{
          "tylosine":"150"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"nuflor 300 mg solution injectable bocins ovins",
@@ -2350,7 +2503,8 @@ var productsData =
       ],
       "composition":{
          "florfenicol":"300"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"nuflor 450 mg solutio injectable bovins",
@@ -2364,7 +2518,8 @@ var productsData =
       ],
       "composition":{
          "florfenicol":"450"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"oxy tetra la 20%",
@@ -2380,7 +2535,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"200"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"oxytetracycline 10 % solution injectable",
@@ -2398,7 +2554,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"oxytetracycline 10%",
@@ -2416,7 +2573,8 @@ var productsData =
       ],
       "composition":{
          "oxytétracycline":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"oxytetracycline 5%",
@@ -2434,7 +2592,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"panadia poudre injectable",
@@ -2448,7 +2607,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"80"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"pangram 4%",
@@ -2463,7 +2623,8 @@ var productsData =
       ],
       "composition":{
          "gentamicine":"40"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"pangram 4% soultion injectable",
@@ -2478,7 +2639,8 @@ var productsData =
       ],
       "composition":{
          "pangram":"40000ui"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"pen-hista-strep suspension injectable",
@@ -2495,7 +2657,8 @@ var productsData =
       ],
       "composition":{
          "gentamicine":"40"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"peni dhs suspension injectable",
@@ -2513,7 +2676,8 @@ var productsData =
       "composition":{
          "benzylpenicilline":"114",
          "dihydrostreptomycine":"250"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"penijectyl suspension injectable",
@@ -2531,7 +2695,8 @@ var productsData =
       "composition":{
          "benzylpenicilline":"114",
          "dihydrostreptomycine":"164"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"pharmasin 200 mg/ml solution injectable",
@@ -2548,7 +2713,8 @@ var productsData =
       ],
       "composition":{
          "tylosine":"200000ui"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"potencil suspension injectable",
@@ -2564,7 +2730,8 @@ var productsData =
       ],
       "composition":{
          "tylosine":"200"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"quinotryl 100 mg/ml solution injectable",
@@ -2579,7 +2746,8 @@ var productsData =
       ],
       "composition":{
          "enrofloxacine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"quinotryl 50 mg/ml solution injectable",
@@ -2594,7 +2762,8 @@ var productsData =
       ],
       "composition":{
          "enrofloxacine":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"readycef 50 mg/ml injectable bovin porcin",
@@ -2609,7 +2778,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"resflor solution injectable",
@@ -2623,7 +2793,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"50"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"respitryl 100 mg/ml solution injectable",
@@ -2637,7 +2808,8 @@ var productsData =
       ],
       "composition":{
          "enrofloxacine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"rilexine 1 g poudre injectable",
@@ -2651,7 +2823,8 @@ var productsData =
       ],
       "composition":{
          "cefalexine":"154"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"rilexine 250 mg poudre injectable",
@@ -2665,7 +2838,8 @@ var productsData =
       ],
       "composition":{
          "cefalexine":"38.5"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"rilexine suspension injectable",
@@ -2679,7 +2853,8 @@ var productsData =
       ],
       "composition":{
          "cefalexine":"150"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"selectan 300 mg solution injectable",
@@ -2694,7 +2869,8 @@ var productsData =
       ],
       "composition":{
          "florfenicol":"300"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"septotryl 24 % solution injectable",
@@ -2711,7 +2887,8 @@ var productsData =
       "composition":{
          "trimethoprime":"40",
          "sulfadimethoxine":"200"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"shotaflor  300 mg/mlsolution injectable porc",
@@ -2725,7 +2902,8 @@ var productsData =
       ],
       "composition":{
          "florfenicol":"300"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"shotaflor 300 mg/ml solution injectable bovin",
@@ -2739,7 +2917,8 @@ var productsData =
       ],
       "composition":{
          "florfenicol":"300"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"shotapen",
@@ -2756,7 +2935,8 @@ var productsData =
       "composition":{
          "benzylpenicilline":"131",
          "dihydrostreptomycine":"164"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"sodibio suspension injectable",
@@ -2776,7 +2956,8 @@ var productsData =
       "composition":{
          "ampiciline":"100",
          "colistine":"250000ui"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"sodicoly solution injectable",
@@ -2792,7 +2973,8 @@ var productsData =
       ],
       "composition":{
          "colistine":"20000ui"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"spectam solution injectable",
@@ -2810,7 +2992,8 @@ var productsData =
       ],
       "composition":{
          "spectinomycine":"100"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"spirovet solution injectable",
@@ -2825,7 +3008,8 @@ var productsData =
       ],
       "composition":{
          "spiramycine":"600000ui"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"suanovil 20",
@@ -2840,7 +3024,8 @@ var productsData =
       ],
       "composition":{
          "spiramycine":"600000ui"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"suanovil 20 solution injectable",
@@ -2855,7 +3040,8 @@ var productsData =
       ],
       "composition":{
          "spiramycine":"600000ui"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"sufadimerazine injectable et buvable",
@@ -2872,7 +3058,8 @@ var productsData =
       ],
       "composition":{
          "sulfadimerazine":"300"
-      }
+      },
+      "mode":"injectable"
    },
    {
       "name":"sulfadimerazine csi injectable et buvable",
@@ -2891,7 +3078,8 @@ var productsData =
       ],
       "composition":{
          "sulfadimerazine":"304.7"
-      }
+      },
+      "mode":""
    },
    {
       "name":"sulfadimerazine noe injectable et buvable",
@@ -2910,7 +3098,8 @@ var productsData =
       ],
       "composition":{
          "sulfadimerazine":"308"
-      }
+      },
+      "mode":""
    },
    {
       "name":"sulfalon solution injectable",
@@ -2927,7 +3116,8 @@ var productsData =
       ],
       "composition":{
          "sulfadimethoxine":"200"
-      }
+      },
+      "mode":""
    },
    {
       "name":"suramox 10 suspension injectable",
@@ -2943,7 +3133,8 @@ var productsData =
       ],
       "composition":{
          "amoxycilline":"100"
-      }
+      },
+      "mode":""
    },
    {
       "name":"suramox 15% la suspension injectable",
@@ -2958,7 +3149,8 @@ var productsData =
       ],
       "composition":{
          "amoxycilline":"150"
-      }
+      },
+      "mode":""
    },
    {
       "name":"synulox suspension injectable",
@@ -2973,7 +3165,8 @@ var productsData =
       "composition":{
          "amoxycilline":"140",
          "acideclavulanique":"35"
-      }
+      },
+      "mode":""
    },
    {
       "name":"tenaline la solution injectable",
@@ -2989,7 +3182,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"200"
-      }
+      },
+      "mode":""
    },
    {
       "name":"terralon 20% la solution injectable",
@@ -3005,7 +3199,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"200"
-      }
+      },
+      "mode":""
    },
    {
       "name":"terramycine 100 solution injectable",
@@ -3023,7 +3218,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"100"
-      }
+      },
+      "mode":""
    },
    {
       "name":"terramycine la solution injectable",
@@ -3039,7 +3235,8 @@ var productsData =
       ],
       "composition":{
          "oxytetracycline":"200"
-      }
+      },
+      "mode":""
    },
    {
       "name":"tribrissen injectable",
@@ -3058,7 +3255,8 @@ var productsData =
       "composition":{
          "sulfadiazine":"400",
          "trimethoprime":"80"
-      }
+      },
+      "mode":""
    },
    {
       "name":"trisulmix liquide solution injectable",
@@ -3076,7 +3274,8 @@ var productsData =
       "composition":{
          "trimethoprime":"40",
          "sulfadimethoxine":"186"
-      }
+      },
+      "mode":""
    },
    {
       "name":"truleva rtu  50 mg/ml suspension injectable",
@@ -3091,7 +3290,8 @@ var productsData =
       ],
       "composition":{
          "ceftiofur":"50"
-      }
+      },
+      "mode":""
    },
    {
       "name":"tylan 200",
@@ -3108,7 +3308,8 @@ var productsData =
       ],
       "composition":{
          "tylosine":"200"
-      }
+      },
+      "mode":""
    },
    {
       "name":"tylan 200 injectable",
@@ -3125,7 +3326,8 @@ var productsData =
       ],
       "composition":{
          "tylosine":"200"
-      }
+      },
+      "mode":""
    },
    {
       "name":"tylaxen 200 mg/ml solution injectable",
@@ -3142,7 +3344,8 @@ var productsData =
       ],
       "composition":{
          "tylosine":"200000ui"
-      }
+      },
+      "mode":""
    },
    {
       "name":"ubiflox 100mg solution injectable",
@@ -3157,7 +3360,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"100"
-      }
+      },
+      "mode":""
    },
    {
       "name":"ubiflox 20 mg solution injectable",
@@ -3172,7 +3376,8 @@ var productsData =
       ],
       "composition":{
          "marbofloxacine":"20"
-      }
+      },
+      "mode":""
    },
    {
       "name":"vetmulin 162 mg/ml solution injectable porc",
@@ -3186,7 +3391,8 @@ var productsData =
       ],
       "composition":{
          "tiamuline":"162.20"
-      }
+      },
+      "mode":""
    },
    {
       "name":"vetrigen gentamycine injectable",
@@ -3201,7 +3407,8 @@ var productsData =
       ],
       "composition":{
          "gentamicine":"40"
-      }
+      },
+      "mode":""
    },
    {
       "name":"vetrimoxin 48h",
@@ -3216,7 +3423,8 @@ var productsData =
       ],
       "composition":{
          "amoxycilline":"150"
-      }
+      },
+      "mode":""
    },
    {
       "name":"vetrimoxin 48h suspension injectable",
@@ -3231,7 +3439,8 @@ var productsData =
       ],
       "composition":{
          "amoxycilline":"150"
-      }
+      },
+      "mode":""
    },
    {
       "name":"virgocilline solution injectable",
@@ -3248,7 +3457,8 @@ var productsData =
       ],
       "composition":{
          "colistine":"500000ui"
-      }
+      },
+      "mode":""
    },
    {
       "name":"zactran",
@@ -3262,7 +3472,8 @@ var productsData =
       ],
       "composition":{
          "gamithromycine":"150"
-      }
+      },
+      "mode":""
    },
    {
       "name":"zactran bovin solution injectable",
@@ -3276,7 +3487,8 @@ var productsData =
       ],
       "composition":{
          "gamithromycine":"150"
-      }
+      },
+      "mode":""
    },
    {
       "name":"zuprevo 180 mg/ml solution injectable",
@@ -3290,7 +3502,8 @@ var productsData =
       ],
       "composition":{
          "tildipirosine":"180"
-      }
+      },
+      "mode":""
    },
    {
       "name":"zuprevo 40 mg/ml solution injectable",
@@ -3304,7 +3517,8 @@ var productsData =
       ],
       "composition":{
          "tildipirosine":"40"
-      }
+      },
+      "mode":""
    },
    {
       "name":"histabiosone",
@@ -3321,6 +3535,1266 @@ var productsData =
       "composition":{
          "benzylpenicilline":"113.6",
          "dihydrostreptomycine":"250"
-      }
+      },
+      "mode":""
+   },
+   {
+      "name":"amoxival 200mg quadri",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"mg",
+      "qunit":700,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"2/7"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"amoxival 40 félin",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"mg",
+      "qunit":175,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"8/35"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"amoxival 400mg quadri",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"mg",
+      "qunit":1400,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"2/7"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"antirobe 150mg",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":440,
+      "nunit":"gelule",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "clindamycine":"15/44"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"antirobe 25mg",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":250,
+      "nunit":"gelule",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "clindamycine":"0.1"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"antirobe 300mg",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":650,
+      "nunit":"gelule",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "clindamycine":"6/13"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"antirobe 75mg",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":265,
+      "nunit":"gelule",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "clindamycine":"15/53"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"antirobe gouttes",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"goutte",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "clindamycine":"25"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"baytril s 15 mg",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"mg",
+      "qunit":60,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "enrofloxacine":"0.25"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"baytril s 150 mg",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"mg",
+      "qunit":420,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "enrofloxacine":"5/14"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"baytril s 250 mg",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"mg",
+      "qunit":700,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "enrofloxacine":"5/14"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"baytril s 50 mg",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"mg",
+      "qunit":120,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "enrofloxacine":"5/12"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"bieskadog",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"ml",
+      "qunit":1,
+      "nunit":"vrac",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "framycetine":"6400ui",
+         "sulfaguanidine":"200"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"buccoval chien nain",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":195,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "spiramycine":"5000/13ui",
+         "metronidazole":"5/78"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"buccoval grand chien",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":1950,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "spiramycine":"5000/13ui",
+         "metronidazole":"5/78"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"buccoval petit chien",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":975,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "spiramycine":"5000/13ui",
+         "metronidazole":"5/78"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"canidiarix",
+      "type":"antibio",
+      "labo":"tvm",
+      "unit":"mg",
+      "qunit":440.2,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "sulfaguanidine":"1000/2201",
+         "framycétine":"335/4402"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"cefaseptin p 300mg",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":700,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"3/7"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"cefaseptin p 750mg",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":1750,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"3/7"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"cefaseptin p 75mg",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":250,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"0.3"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"cephacare f 250",
+      "type":"antibio",
+      "labo":"axience",
+      "unit":"mg",
+      "qunit":350,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"5/7"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"cephacare f 50",
+      "type":"antibio",
+      "labo":"axience",
+      "unit":"mg",
+      "qunit":70,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"5/7"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"cephacare f 500",
+      "type":"antibio",
+      "labo":"axience",
+      "unit":"mg",
+      "qunit":700,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"5/7"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"clamoxyl 200mg",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":600,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"1/3"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"clamoxyl 400mg",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":1200,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"1/3"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"clamoxyl 40mg",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":280,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"1/7"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"clavaseptin 250 mg",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":476,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"50/119",
+         "acideclavulanique":"25/238"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"clavaseptin 50 mg",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":95.2,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"50/119",
+         "acideclavulanique":"25/238"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"clavaseptin 500 mg",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":952,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"50/119",
+         "acideclavulanique":"25/238"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"clavobay 250",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"mg",
+      "qunit":875,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"8/35",
+         "acideclavulanique":"2/35"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"clavobay 50",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"mg",
+      "qunit":175,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"8/35",
+         "acideclavulanique":"2/35"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"clavobay 500",
+      "type":"antibio",
+      "labo":"bayer",
+      "unit":"mg",
+      "qunit":1750,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"8/35",
+         "acideclavulanique":"2/35"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"doxyval 100mg quadri",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":600,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "doxycycline":"1/6"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"doxyval 20",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":165,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "doxycycline":"4/33"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"doxyval 250mg quadri",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":1500,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "doxycycline":"1/6"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"felidiarix",
+      "type":"antibio",
+      "labo":"tvm",
+      "unit":"mg",
+      "qunit":110.1,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "sulfaguanidine":"500/1101",
+         "framycetine":"335/4404"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"fluidixine comprimés chats et chiens nains",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":90,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"5/18"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"fluidixine comprimés chiens",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":359,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"100/359"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"intestidog chiens",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":888,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "sulfaguanidine":"125/222"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"kesium 250mg",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":476,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"50/119",
+         "acideclavulanique":"25/238"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"kesium 500mg",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":952,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"50/119",
+         "acideclavulanique":"25/238"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"kesium 50mg",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":95.2,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"50/119",
+         "acideclavulanique":"25/238"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"kesium 62.5mg",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":187.5,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"4/15",
+         "acideclavulanique":"1/15"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"marbocyl p 20mg",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":280,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "marbofloxacine":"1/14"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"marbocyl p 5mg",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":70,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "marbofloxacine":"1/14"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"marbocyl p 80mg",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":1120,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "marbofloxacine":"1/14"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"noroclav p 250",
+      "type":"antibio",
+      "labo":"axience",
+      "unit":"mg",
+      "qunit":875,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"8/35",
+         "acideclavulanique":"2/35"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"noroclav p 50",
+      "type":"antibio",
+      "labo":"axience",
+      "unit":"mg",
+      "qunit":175,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"8/35",
+         "acideclavulanique":"2/35"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"noroclav p 500",
+      "type":"antibio",
+      "labo":"axience",
+      "unit":"mg",
+      "qunit":1750,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"8/35",
+         "acideclavulanique":"2/35"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"rilexine observance comprimés 300",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":720,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"5/12"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"rilexine observance comprimés 600",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":1440,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"5/12"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"rilexine observance comprimés 75",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":180,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"5/12"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"ronaxan 100",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"mg",
+      "qunit":390,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "doxycycline":"10/39"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"ronaxan 20",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"mg",
+      "qunit":78,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "doxycycline":"10/39"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"ronaxan 250",
+      "type":"antibio",
+      "labo":"merial",
+      "unit":"mg",
+      "qunit":975,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "doxycycline":"10/39"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"septotryl colistine bolus",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":1687.2,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "sulfamethoxypyridazine":"1250/2109",
+         "colistine":"2500000/2109ui"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"septotryl comprimés chat chiens nains",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":79,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "sulfamethoxypyridazine":"50/79",
+         "trimethoprime":"10/79"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"septotryl comprimés chiens",
+      "type":"antibio",
+      "labo":"vetoquinol",
+      "unit":"mg",
+      "qunit":370,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "sulfamethoxypyridazine":"25/37",
+         "trimethoprime":"5/37"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"spiraphar chats et petits chiens",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":120,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "dimetridazole":"1/6",
+         "spiramycine":"1250ui"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"sultrian 100",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":200,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "sulfamethoxazole":"0.5",
+         "trimethoprime":"0.1"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"sultrian 400",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":600,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "sulfamethoxazole":"4/6",
+         "trimethoprime":"2/15"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"suramox  200",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":1150,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"4/23"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"suramox  40",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":230,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"4/23"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"suramox  400",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":2300,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"4/23"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"synulox 250",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":875,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"8/35",
+         "acideclavulanique":"2/35"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"synulox 50",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":175,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"8/35",
+         "acideclavulanique":"2/35"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"synulox 500",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":1750,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"8/35",
+         "acideclavulanique":"2/35"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"synulox gouttes",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":1700,
+      "nunit":"flacon",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"162/425",
+         "acideclavulanique":"81/850"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"tenotryl 150mg",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":550,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "enrofloxacine":"3/11"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"tenotryl 15mg",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":55,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "enrofloxacine":"3/11"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"tenotryl 50mg",
+      "type":"antibio",
+      "labo":"virbac",
+      "unit":"mg",
+      "qunit":183.3,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "enrofloxacine":"500/1833"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"terramycine poudre soluble",
+      "type":"antibio",
+      "labo":"zoetis",
+      "unit":"mg",
+      "qunit":1000,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "oxytetracycline":"0.05"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"therios 300mg quadri",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":700,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"3/7"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"therios 750mg quadri",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":1750,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"3/7"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"therios 60 félin",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":200,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"0.3"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"Therios 75 félin",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":250,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "cefalexine":"0.3"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"vetrimoxin 150mg comprimés",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"mg",
+      "qunit":500,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"0.3"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"vetrimoxin 450mg comprimés",
+      "type":"antibio",
+      "labo":"ceva",
+      "unit":"mg",
+      "qunit":1500,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "amoxicilline":"0.3"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"xeden 15",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":200,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "enrofloxacine":"15"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"xeden 150",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":1500,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "enrofloxacine":"150"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"xeden 200",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":2000,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "enrofloxacine":"200"
+      },
+      "mode":"orale"
+   },
+   {
+      "name":"xeden 50",
+      "type":"antibio",
+      "labo":"sogeval",
+      "unit":"mg",
+      "qunit":500,
+      "nunit":"comprime",
+      "target":[
+         "canin"
+      ],
+      "composition":{
+         "enrofloxacine":"50"
+      },
+      "mode":"orale"
    }
-];
+]
