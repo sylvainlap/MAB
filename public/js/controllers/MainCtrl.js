@@ -63,7 +63,7 @@ mabapp.controller('MainCtrl',[
 				token : lss.user_token,
 				_id : lss.user_id,
 				language : lss.user_l,
-				favs : (lss.user_favs!=undefined)?JSON.parse(lss.user_favs):{}
+				favs : ((lss.user_favs!=undefined)&&(lss.user_favs!='undefined'))?JSON.parse(lss.user_favs):{}
 			};
 		},
 		print : function(){
