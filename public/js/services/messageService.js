@@ -1,4 +1,7 @@
-mabapp.service('messageService', ['$rootScope', function($rootScope){
+mabapp
+// === MESSAGE SERVICE ========
+// = manage messages from app =
+.service('messageService', ['$rootScope', function($rootScope){
 	this.log = function(data){
 		var messages = [];
 		if(data && data.message && data.message!=''){

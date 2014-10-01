@@ -1,4 +1,7 @@
-mabapp.directive('autoheight', function(){
+mabapp
+// === AUTOHEIGHT =======================
+// = set the height to the parent’s one =
+.directive('autoheight', function(){
 	return {
 		restrict: 'A',
 		link: function(scope, element, attrs){
@@ -14,6 +17,8 @@ mabapp.directive('autoheight', function(){
 		}
 	};
 })
+// === DROPDOWN ================
+// = toggle visibility on clic =
 .directive('dropdown', function(){
 	return {
 		restrict: 'A',

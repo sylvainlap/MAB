@@ -6,23 +6,47 @@ mabapp.controller('MainCtrl',[
 	'messageService',
 	function($scope, $http, $timeout, filterFilter,messageService) {
 
-	//shortcuts
+	// =================
+	// === SHORTCUTS ===
 	lss = localStorage;
 
-	// config load
+	// ======================
+	// === CONFIG LOADING ===
 	$scope.lang = lang;
 	$scope.enums = enums;
 	$scope.animals = animals;
 	$scope.products = productsData;
-	$scope.years = [];
-	$scope.datePicker = {};
-	$scope.sendingTreatment = false;
-	$scope.updatingPagevetInfo = false;
-	$scope.updatingProfile = false;
+
+	// ========================
+	// === DEVICE DETECTION ===
+	// ========================
+	var uap = new UAParser();
+	$scope.client = uap.getResult();
+	$scope.client.screen = {
+		ih : window.innerHeight,
+		iw : window.innerWidth,
+		ri : window.innerWidth/window.innerHeight,
+		h : window.screen.height,
+		w: window.screen.width,
+		r : window.screen.width/window.screen.height
+	};
+	
+	
+	// +------------------------------------------------------------------------------------------------------------------------+
+	// | +--------------------------------------------------------------------------------------------------------------------+ |
+	// | |   											~<( FUNCTION DEFINITIONS )>~										  | |
+	// | +--------------------------------------------------------------------------------------------------------------------+ |
+	// +------------------------------------------------------------------------------------------------------------------------+
 	
 
-	// $scope init
+	// ============================
+	// === INIT/RESET FUNCTIONS ===
+	// ============================
 	$scope.reset = {
+		/**
+		 *	Init DATA.
+		 *	DATA object stores form data in order to send it to the api
+		 */
 		data : function(){
 			$scope.data = {
 				school : {},
@@ -34,6 +58,10 @@ mabapp.controller('MainCtrl',[
 				delivered : true
 			};
 		},
+		/**
+		 *	Init TMP.
+		 *	TMP object stores temporary data used in some DATA fields construction
+		 */
 		tmp : function(){
 			$scope.tmp = {
 				animal:{
@@ -49,6 +77,10 @@ mabapp.controller('MainCtrl',[
 				$scope.tmp.animal.environment[enums['ani_environment'][e]] = false;
 			}
 		},
+		/**
+		 *	Init UI.
+		 *	UI object contains informations on the display of the app page
+		 */
 		ui : function(){
 			$scope.ui = {
 				showProfile : false,
@@ -56,6 +88,10 @@ mabapp.controller('MainCtrl',[
 				page : 'inclusion'
 			}
 		},
+		/**
+		 *	Init USER.
+		 *	USER object stores user informations
+		 */
 		user : function(){
 			$scope.user = {
 				username : lss.user_username,
@@ -65,33 +101,51 @@ mabapp.controller('MainCtrl',[
 				language : lss.user_l,
 				favs : ((lss.user_favs!=undefined)&&(lss.user_favs!='undefined'))?JSON.parse(lss.user_favs):{}
 			};
-		},
-		print : function(){
-			$scope.print = {};
 		}
 	};
 	
+	// =============================
 	// === DATA FILTER FUNCTIONS ===
+	// =============================
 	$scope.filterMgt = {
 		products : {
+			/** 
+			 *	@return	TRUE if the product.target match with the species selected
+			 */
 			target : function(element){
-				return (intersect_safe(element.target, $scope.tmp.species_list).length>0)?true:false;
+				return (intersect(element.target, $scope.tmp.species_list).length>0)?true:false;
 			},
+			/** 
+			 *	@return	TRUE if the product.target doesn’t match the species selected	
+			 */
 			notTarget : function(element){
-				return (intersect_safe(element.target, $scope.tmp.species_list).length>0)?false:true;
+				return (intersect(element.target, $scope.tmp.species_list).length>0)?false:true;
 			},
+			/** 
+			 *	@return	TRUE if the products has some clics (which means it’s in the user.favs)
+			 */
 			clics : function(element){
 				return (element.clics>0)?true:false;
 			},
+			/** 
+			 *	@return	TRUE if the products hasn’t any clic (which means it isn’t in the user.favs)	
+			 */
 			noClics : function(element){
 				return (element.clics>0)?false:true;	
 			}
 		}
 	};
+
+	// ================================
 	// === DATA INCLUSION FUNCTIONS ===
+	// ================================
 	$scope.dataMgt = {
+		/**
+		 *	Updates the product.clics in the local products list (in the select).
+		 *	Updates the localStorage.user_favs
+		 */
 		updateLocalFavs : function(){
-			if($scope.user.favs!=undefined){
+			if($scope.user.favs != undefined){
 				for(k in $scope.user.favs.products){
 					updateOne($scope.products, 'name', k, 'clics', $scope.user.favs.products[k])
 				}
@@ -99,7 +153,9 @@ mabapp.controller('MainCtrl',[
 			}
 		},
 		/**
-		 * Record a Treatment
+		 * 	Record the current Treatment (DATA object)
+		 *	Update the user(.favs) in distant DB
+		 *	Update the local favs (@call updateLocalFavs)
 		 */
 		recordTreatment : function() {
 			$scope.sendingTreatment = true;
@@ -127,7 +183,7 @@ mabapp.controller('MainCtrl',[
 				
 		},
 		/**
-		 * 
+		 * 	Get all the current user’s stored treatments. All the treatments are stored in the DATA object
 		 */
 		getTreatments : function() {
 			$http({
@@ -140,6 +196,9 @@ mabapp.controller('MainCtrl',[
 				$scope.data = data;
 			});
 		},
+		/**
+		 *	Check if one of the environment checkbox is checked.
+		 */
 		buildEnvControl : function() {
 			var envControl = false;
 			Object.keys($scope.tmp.animal.environment).forEach(function(k){
@@ -148,7 +207,7 @@ mabapp.controller('MainCtrl',[
 			$scope.tmp.animal.envControl = envControl;
 		},
 		/**
-		 * Build and add the animal object from the selected value
+		 *	Build and add the tmp.animal object into the data.animals list
 		 */
 		addAnimal : function() {
 			var animal = $scope.tmp.animal.raw.split('|');
@@ -172,19 +231,20 @@ mabapp.controller('MainCtrl',[
 			}
 		},
 		/**
-		 * remove animal from selection
+		 *	remove animal from selection (data.animals)
 		 */
 		removeAnimal : function(index) {
 			$scope.data.animals.splice(index, 1);
 		},
 		/**
-		 * 
+		 *	Get the product object from the local product list, matching its name
 		 */
 		buildProduct : function(){
 			$scope.tmp.product = findOne($scope.products, 'name', $scope.tmp.productName);
 		},
 		/**
-		 * 
+		 *	Build and add the tmp.product object into the data.prescription list
+		 *	Update the user.favs
 		 */
 		addProduct : function() {
 			$scope.data.prescription.push($scope.tmp.product);
@@ -205,26 +265,26 @@ mabapp.controller('MainCtrl',[
 			$scope.tmp.productName = undefined;
 		},
 		/**
-		 * 
+		 *	Remove a product from selection (data.prescription)
 		 */
 		removeProduct : function(index) {
 			$scope.data.prescription.splice(index, 1);
 		},
 		/**
-		 * 
+		 *	Add the tmp.activity in the data.activity list
 		 */
 		addActivity : function() {
 			$scope.data.activity.push($scope.tmp.activity);
 			$scope.tmp.activity = {};
 		},
 		/**
-		 * 
+		 *	Remove an activity from the selection (data.activity)
 		 */
 		removeActivity : function(index) {
 			$scope.data.activity.splice(index, 1);
 		},
 		/**
-		 * Build and add the animal object from the selected value
+		 * Build and add the volume object in the data.volume list
 		 */
 		addVolume : function() {
 			var animal = $scope.tmp.volume.raw.split('|');
@@ -238,23 +298,28 @@ mabapp.controller('MainCtrl',[
 			$scope.tmp.volume = {};
 		},
 		/**
-		 * remove animal from selection
+		 * Remove a volume from selection
 		 */
 		removeVolume : function(index) {
 			$scope.data.volume.splice(index, 1);
 		}
 	};
 	
+	// =================================
 	// === USER MANAGEMENT FUNCTIONS ===
+	// =================================
 	$scope.userMgt = {
 		/**
-		 * Disconnect current user
+		 *	Disconnect current user
 		 */
 		logout : function() {
 			$scope.user = {};
 			lss.clear();
 			$scope.messages = messageService.log({message : 'msg_on_logged_out'});
 		},
+		/**
+		 *	GET the Pagevet information in the user profile
+		 */
 		updatePagevet : function(){
 			$scope.updatingPagevetInfo = true;
 			$http({
@@ -269,8 +334,7 @@ mabapp.controller('MainCtrl',[
 			});
 		},
 		/**
-		 * TODO : impossible de faire autrement... je voulais faire comme pour la gestion de
-		 * ui.showUserMenu, ça ne marche que comme ça... 
+		 *	Show the profile page and get profile data from the DB
 		 */
 		getProfile : function(t){
 			if(t=='open'){
@@ -295,7 +359,7 @@ mabapp.controller('MainCtrl',[
 			}
 		},
 		/**
-		 * Update user profile
+		 *	Update the user profile in DB and close profile page.
 		 */
 		updateProfile : function() {
 			$scope.updatingProfile = true;
@@ -314,40 +378,34 @@ mabapp.controller('MainCtrl',[
 		}
 	};
 
+	// ===========================
+	// === ALERT MGT FUNCTIONS ===
+	// ===========================
 	$scope.alertMgt = {
+		/**
+		 *	Close the current alert (clic on the cross)
+		 */
 		closeAlert : function(index) {
 			$scope.messages.splice(index, 1);
 		},
+		/**
+		 *	Close all alerts
+		 */
 		clearAlerts : function() {
 			$scope.messages.splice(0, $scope.messages.length);
 		}
 	};
-	// === DEVICE DETECTION ===
-	var uap = new UAParser();
-	$scope.client = uap.getResult();
-	$scope.client.screen = {
-		ih : window.innerHeight,
-		iw : window.innerWidth,
-		ri : window.innerWidth/window.innerHeight,
-		h : window.screen.height,
-		w: window.screen.width,
-		r : window.screen.width/window.screen.height
-	};
-	$scope.client.ok = true;
-	
-	// === WATCH ===
-	$scope.$watch('data', function(){
-		$scope.print.data = dump($scope.data);
-	},true);
-	$scope.$watch('tmp', function(){
-		$scope.print.tmp = dump($scope.tmp);
-	},true);
-	$scope.$watch('user', function(){
-		$scope.print.user = dump($scope.user);
-	},true);
-	$scope.$watch('products', function(){
-		$scope.print.products = dump($scope.products);
-	},true);
+
+
+	// +------------------------------------------------------------------------------------------------------------------------+
+	// | +--------------------------------------------------------------------------------------------------------------------+ |
+	// | |   											~<( INITIALISATIONS AND CALLS )>~									  | |
+	// | +--------------------------------------------------------------------------------------------------------------------+ |
+	// +------------------------------------------------------------------------------------------------------------------------+
+
+
+	// ===========================
+	// === $WATCH DECLARATIONS ===
 	$scope.$watch('data.animals', function(){
 		$scope.tmp.species_list = [];
 		for(var i in $scope.data.animals){
@@ -358,24 +416,27 @@ mabapp.controller('MainCtrl',[
 		}
 	}, true);
 
-	// ==== INITIALISATIONS ====
+	// =======================
+	// === INITIALISATIONS ===
+	$scope.sendingTreatment = false;
+	$scope.updatingPagevetInfo = false;
+	$scope.updatingProfile = false;
 	$scope.reset.data();
 	$scope.reset.tmp();
 	$scope.reset.ui();
 	$scope.reset.user();
-	$scope.reset.print();
+	$scope.dataMgt.updateLocalFavs();
+	$scope.l = (($scope.user.language != 'undefined') && ($scope.user.language != undefined))?$scope.user.language:'FR';
 
-	// ==== DATE PICKER ====
+	// ===================
+	// === DATE PICKER ===
 	$scope.today = function() {
 		$scope.data.date_dispense = new Date();
 		$scope.thisday = new Date();
 	};
-	$scope.today();
-
 	$scope.clear = function () {
 		$scope.date_dispense = null;
 	};
-
 	$scope.open = function($event) {
 		$event.preventDefault();
 		$event.stopPropagation();
@@ -384,23 +445,20 @@ mabapp.controller('MainCtrl',[
 		}, 50);
 	};
 
+	$scope.years = [];
+	$scope.datePicker = {};
 	$scope.dateOptions = {
 		formatYear: 'yy',
 		startingDay: 1,
 		formatDayTitle: 'MM/yy'
 	};
-
 	$scope.initDate = new Date('2016-15-20');
 	$scope.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 	$scope.format = $scope.formats[0];
-
+	$scope.today();
 	for(var y=$scope.thisday.getFullYear() - 100; y<=$scope.thisday.getFullYear(); y++){
 		$scope.years.push(y);
 	}
-	// END DATE
-
-
-	// inject favs value in the product list
-	$scope.dataMgt.updateLocalFavs();
-	$scope.l = ($scope.user.language!='undefined'&&$scope.user.language!=undefined)?$scope.user.language:'FR';
+	// === END DATE PICKER ===
+	// =======================
 }]);
