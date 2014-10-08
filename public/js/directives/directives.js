@@ -5,8 +5,8 @@ mabapp
 	return {
 		restrict: 'A',
 		link: function(scope, element, attrs){
-			if(scope.client.device.type!='mobile'&&scope.client.device.type!='tablet'){
-				var elt = element[0];
+			var elt = element[0];
+			if((scope.client.device.type!='mobile' && scope.client.device.type!='tablet') || (elt.className.indexOf("ahf")>0)){
 				var getParentH = function(e){
 					return e.parentNode.offsetHeight;
 				};

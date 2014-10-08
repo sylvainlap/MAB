@@ -316,6 +316,14 @@ div.table{
 				padding: 0 0.5em;
 				line-height: 2.5em;
 			}
+			.row.bb{
+				.td, .th{
+					border-top: @success 1px solid;
+				}
+				.btn{
+					border-top: darken(@warning, 10%) 1px solid;	
+				}
+			}
 		}
 		&.adder{
 			.mobile &, .tablet &{margin-bottom: 0.5em;}

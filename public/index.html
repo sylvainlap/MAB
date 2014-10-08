@@ -523,7 +523,7 @@
 							</div>
 							<!--===================================== 
 								== 6.8.1.2. LIST Animals           ==-->
-							<div class="row" ng-repeat="a in data.animals">
+							<div class="row bb" ng-repeat="a in data.animals">
 								<div class="col-11 col-xs-10 td">
 									<span class="proxicon proxicon-ok txt-success"></span>&nbsp;{{ a.quantity }} {{ lang[a.species][l] }} {{ lang[a.type][l] }} {{ lang[a.age][l] }} [<span ng-repeat="env in a.environment">{{ lang[env][l] + ' '}}</span>]
 								</div>
@@ -609,27 +609,26 @@
 
 							<!--===================================== 
 								== 6.9.1.2. LIST Producs          ==-->
-							<div class="row" ng-repeat="p in data.prescription">
+							<div class="row bb" ng-repeat="p in data.prescription">
 								<div class="col-5 col-xs-5 td">
 									<span class="proxicon proxicon-ok txt-success"></span>&nbsp;
 									{{ 	p.name + ' (' + lang[p.mode][l] + ')'}}
+									({{ lang['front_delivered'][l] }}&nbsp;:&nbsp;{{ p.delivered?lang['front_yes'][l]:lang['front_no'][l] }})
 								</div>
 								<div class="col-6 col-xs-5 td txt-r">
 									{{
 									p.quantity_init +
 									' ' +
-									((p.frequency!=0)?lang['front_then'][l]+' '+p.quantity+' ':'') +
+									((p.frequency!='tra_freq_unique')?lang['front_then'][l]+' '+p.quantity+' ':'') +
 									((p.nunit!='vrac' && p.nunit!=undefined)?lang[p.nunit][l]+(p.quantity_init>1?lang['s'][l]:''):p.unit) +
-									((p.frequency!=0)?' '+lang[p.frequency][l]+' '+lang['front_during'][l]+' '+p.duration+' '+lang['front_day'][l]:'')
+									((p.frequency!='tra_freq_unique')?' '+lang[p.frequency][l]+' '+lang['front_during'][l]+' '+p.duration+' '+lang['front_day'][l]:'')
 									}}
 								</div>
 								<!--=========================== 
 									== BTN REMOVE Product    ==-->
-								<div class="col-1 col-xs-2 pad0">
-									<button class="col-12 btn btn-warning" type="button" ng-click="dataMgt.removeProduct($index)">
-										<span class="proxicon proxicon-minus"></span>
-									</button>
-								</div>
+								<button autoheight class="col-1 col-xs-2 pad0 btn btn-warning ahf" type="button" ng-click="dataMgt.removeProduct($index)">
+									<span class="proxicon proxicon-minus"></span>
+								</button>
 							</div>
 						</div>
 
@@ -743,7 +742,7 @@
 
 								<!--===================================== 
 									== 6.9.2.4. SEL Frequency          ==-->
-								<div class="col-4 col-xs-4 td xs-p-r">
+								<div class="col-3 col-xs-3 td xs-p-r">
 									<div class="th col-12" ng-class="{'txt-danger':!tmp.product.frequency, 'txt-success':tmp.product.frequency}">
 										{{ lang['front_treat_frequency'][l] }}
 									</div>
@@ -759,41 +758,38 @@
 
 								<!--===================================== 
 									== 6.9.2.5. INP Duration           ==-->
-								<div class="col-4 col-xs-4 td">
+								<div class="col-3 col-xs-3 td xs-p-r" ng-hide="enums['tra_frequency'][tmp.product.frequency]==0">
 									<div class="th col-12" ng-class="{'txt-danger':!tmp.product.duration, 'txt-success':tmp.product.duration}">
 										{{ lang['front_treat_duration'][l] }}
 									</div>
-									<div class="col-12 td pad0">
+									<div class="col-12 td">
 										<input class="col-12" type="number" min="0" name="duration" ng-model="tmp.product.duration" />
+									</div>
+								</div>
+
+								<!--===================================== 
+									== 6.9.2.6. CHKBX Delivered           ==-->
+								<div class="col-2 col-xs-2 td">
+									<div class="th col-12">
+										{{ lang['front_delivered'][l] }}
+									</div>
+									<div class="col-12 td">
+										<input type="checkbox" id="delivered" ng-model="tmp.product.delivered"/>
+										<label class="" for="delivered">
+											<span>{{ tmp.product.delivered?lang['front_yes'][l]:lang['front_no'][l] }}</span>
+										</label>
 									</div>
 								</div>
 
 							</div>
 							<!--===================================== 
-								== 6.9.2.6. BTN ADD PRODUCT        ==-->
-							<button class="col-1 col-xs-12 btn btn-info" autoheight type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity_init||!(tmp.product.quantity||enums['tra_frequency'][tmp.product.frequency]==0)||!tmp.productName||!tmp.product.mode||!tmp.product.duration||!tmp.product.frequency">
+								== 6.9.2.7. BTN ADD PRODUCT        ==-->
+							<button class="col-1 col-xs-12 btn btn-info" autoheight type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity_init||!(tmp.product.quantity||enums['tra_frequency'][tmp.product.frequency]==0)||!tmp.productName||!tmp.product.mode||(!tmp.product.duration&&tmp.product.frequency!='tra_freq_unique')||!tmp.product.frequency">
 								<span class="proxicon proxicon-plus"></span>
 							</button>
 						</div>
 
 						
-						<!--============================= 
-							== 6.10. LGND SEPARATOR     ==-->
-						<legend></legend>
-
-						<!--===================================== 
-							== 6.11. CHKBX Delivered           ==-->
-						<div class="input-group row">
-							<label class="col-5 col-xs-12">
-								<span class="proxicon proxicon-sign-ok txt-success"></span>
-								{{ lang['front_delivered'][l] }}
-							</label>
-							<input type="checkbox" id="delivered" ng-model="data.delivered"/>
-							<label class="col-7 col-xs-12" for="delivered">
-								<span>{{ data.delivered?lang['front_yes'][l]:lang['front_no'][l] }}</span>
-							</label>
-						</div>
-
 						<!--===================================== 
 							== 6.11. BTN GRP RECORD TREATMENT  ==-->
 						<div class="validation row">
@@ -841,9 +837,6 @@
 						<div class="td col-6">
 							<strong>{{ lang['front_client_type'][l] }}</strong> : {{ lang[t.client_type][l] }}
 						</div>
-						<div class="td col-6">
-							<strong>{{ lang['front_delivered'][l] }}</strong> : {{ t.delivered?lang['front_yes'][l]:lang['front_no'][l] }}
-						</div>
 						
 						<!--=============================== 
 							== 7.3. PRESCRIPTION         ==-->
@@ -851,7 +844,8 @@
 							<h4><span class="proxicon"></span>{{ lang['front_treat_prescription'][l] }} :</h4>
 							<div class="row item" ng-repeat="p in t.prescription">
 								<div class="col-6 col-xs-6 td">
-									<strong>{{ 	p.name + ' (' + lang[p.mode][l] + ')'}}</strong>
+									<strong>{{ 	p.name + ' (' + lang[p.mode][l] + ')'}}</strong><br/>
+									({{ lang['front_delivered'][l] }} : {{ p.delivered?lang['front_yes'][l]:lang['front_no'][l] }})
 								</div>
 								<div class="col-6 col-xs-6 td txt-r">
 									{{

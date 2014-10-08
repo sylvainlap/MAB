@@ -48,14 +48,14 @@ mabapp.controller('MainCtrl',[
 		 *	DATA object stores form data in order to send it to the api
 		 */
 		data : function(){
+			$scope.data = {};
 			$scope.data = {
 				school : {},
 				animals : [],
 				prescription : [],
 				activity : [],
 				volume : [],
-				date_dispense: new Date(),
-				delivered : true
+				date_dispense: new Date()
 			};
 		},
 		/**
@@ -63,12 +63,15 @@ mabapp.controller('MainCtrl',[
 		 *	TMP object stores temporary data used in some DATA fields construction
 		 */
 		tmp : function(){
+			$scope.tmp = {};
 			$scope.tmp = {
 				animal:{
 					environment:{},
 					envControl:false,
 				},
-				product:{},
+				product:{
+					delivered : true
+				},
 				species_list:[],
 				activity:{},
 				volume : {}
@@ -82,6 +85,7 @@ mabapp.controller('MainCtrl',[
 		 *	UI object contains informations on the display of the app page
 		 */
 		ui : function(){
+			$scope.ui = {};
 			$scope.ui = {
 				showProfile : false,
 				showUserMenu : false,
@@ -93,6 +97,7 @@ mabapp.controller('MainCtrl',[
 		 *	USER object stores user informations
 		 */
 		user : function(){
+			$scope.user = {};
 			$scope.user = {
 				username : lss.user_username,
 				codeCSO : lss.user_cso,
@@ -176,6 +181,7 @@ mabapp.controller('MainCtrl',[
 					data:$scope.user})
 					.success(function(data){
 						$scope.dataMgt.updateLocalFavs();
+						$scope.reset.data();
 				});
 				
 				$scope.sendingTreatment = false;
@@ -241,12 +247,15 @@ mabapp.controller('MainCtrl',[
 		 */
 		buildProduct : function(){
 			$scope.tmp.product = findOne($scope.products, 'name', $scope.tmp.productName);
+			$scope.tmp.product.delivered = true;
 		},
 		/**
 		 *	Build and add the tmp.product object into the data.prescription list
 		 *	Update the user.favs
 		 */
 		addProduct : function() {
+			var dur = $scope.tmp.product.duration;
+			$scope.tmp.product.duration = (dur==undefined)?0:dur;
 			$scope.data.prescription.push($scope.tmp.product);
 
 			if($scope.user.favs == undefined){

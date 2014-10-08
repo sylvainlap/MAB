@@ -585,7 +585,11 @@ var lang =
 	    },
 	    'comprime': {
 	    	'FR':'comprimé',
-	    	'EN':'pill'
+	    	'EN':'tablet'
+	    },
+	    'gelule': {
+	    	'FR':'gélule',
+	    	'EN':'capsule'
 	    },
 	    'injecteur': {
 	    	'FR':'injecteur',
