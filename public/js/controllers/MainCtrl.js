@@ -387,6 +387,114 @@ mabapp.controller('MainCtrl',[
 		}
 	};
 
+	// ===================================
+	// === CHARTS MANAGEMENT FUNCTIONS ===
+	// ===================================
+
+	$scope.charts = [
+		{// MOI
+			type : 'bar',
+			config: {
+				title: 'Quantité de produit / masse d’animal traité',
+				tooltips: true,
+				labels: false,
+				mouseover: function() {},
+				mouseout: function() {},
+				click: function() {},
+				legend: {
+					display: true,
+					position: 'left'
+				},
+				innerRadius: 0,
+				lineLegend: 'lineEnd'
+			},
+			data: {
+				series: [],
+				data: [{"x": "", "y": [], "tooltip": ""}]
+			}
+		},
+		{// MOI
+			type : 'pie',
+			config: {
+				title: 'Quantité de produit',
+				tooltips: true,
+				labels: false,
+				mouseover: function() {},
+				mouseout: function() {},
+				click: function() {},
+				legend: {
+					display: false,
+					position: 'left'
+				},
+				innerRadius: 0,
+				lineLegend: 'lineEnd'
+			},
+			data: {
+				series: [],
+				data: []
+			}
+		}
+	];
+	$scope.chartsMgt = {
+		/**
+		 * 	Get the stats
+		 */
+		getStats : function() {
+			$http({
+				method:'GET',
+				url:'/api/treatment',
+				headers:{'x-access-token':$scope.user.token, 'uid':$scope.user._id}
+			})
+			.success(function(data){
+				$scope.messages = messageService.log(data);
+				// $scope.data = data;
+
+				$scope.chartsData = [];
+				for(var i = 0, l = data.length; i < l ; i++){
+					var treat = data[i];
+
+					var mT = 0;
+					for(var j = 0 , m = treat.animals.length ; j<m ; j++){
+						var ani = treat.animals[j];
+						mT = mT + animals[ani.species][ani.type][ani.age] * ani.quantity;
+					}
+
+					var pres = treat.prescription;
+					for(var j = 0 , m = pres.length ; j<m ; j++){
+						var product = pres[j];
+						var existing = _.find($scope.chartsData, {'pName':product.name});
+						if(existing==undefined){
+							$scope.chartsData.push(
+								{
+									pName: product.name,
+									qte: parseFloat(product.quantity_init) + parseFloat(product.quantity==undefined||product.quantity==null?0:product.quantity) * parseFloat($scope.enums.tra_frequency[product.frequency]) * parseFloat(product.duration),
+									mT: mT  
+								}
+							);
+						} else {
+							existing.qte = parseFloat(existing.qte) + parseFloat(product.quantity_init) + parseFloat(product.quantity==undefined||product.quantity==null?0:product.quantity) * parseFloat($scope.enums.tra_frequency[product.frequency]) * parseFloat(product.duration);
+							existing.mT = parseFloat(existing.mT) + parseFloat(mT);
+						}
+					}
+				}
+
+				for(var i = 0 , l = $scope.chartsData.length ; i <l ; i++){
+					var d = $scope.chartsData[i];
+					$scope.charts[0]['data']['series'].push(d.pName);
+					$scope.charts[0]['data']['data'][0]['y'].push(Math.round(d.qte*100/d.mT)/100);
+
+					console.log(Math.round(d.qte*100)/100);
+					$scope.charts[1]['data']['data'].push({
+						"x" : d.pName,
+						"y" : [Math.round(d.qte*100)/100]
+					});
+				}
+
+
+			});
+		}
+	};
+
 	// ===========================
 	// === ALERT MGT FUNCTIONS ===
 	// ===========================

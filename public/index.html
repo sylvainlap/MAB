@@ -396,6 +396,7 @@
 			<div class="navigation" ng-if="user.token != undefined && !ui.showProfile">
 				<a ng-click="ui.page = 'inclusion'" ng-class="{'active':ui.page=='inclusion'}">{{ lang['front_include'][l] }}</a>
 				<a ng-click="ui.page = 'display'" ng-class="{'active':ui.page=='display'}">{{ lang['front_history'][l] }}</a>
+				<a ng-click="ui.page = 'charts'" ng-class="{'active':ui.page=='charts'}">{{ lang['front_stats'][l] }}</a>
 			</div>
 
 
@@ -810,11 +811,11 @@
 				</div>
 
 
-			<!--
-			============================
-			=== 7. DISPLAY PANE      ===
-			============================ -->
-			<div class="tab tab-display" ng-if="ui.page == 'display'" ng-init="dataMgt.getTreatments()">
+				<!--
+				============================
+				=== 7. DISPLAY PANE      ===
+				============================ -->
+				<div class="tab tab-display" ng-if="ui.page == 'display'" ng-init="dataMgt.getTreatments()">
 					<div class="treatment row" ng-repeat="t in data | orderBy : 'date_dispense' : true">
 						<!--=================== 
 							== 7.1. DATE     ==-->
@@ -872,6 +873,16 @@
 
 					</div>
 				</div>
+
+
+				<!--
+				============================
+				=== 8. CHARTS PANE       ===
+				============================ -->
+				<div class="tab tab-charts" ng-if="ui.page == 'charts'" ng-init="chartsMgt.getStats()">
+					<div ac-chart="charts[0].type" ac-data="charts[0].data" ac-config="charts[0].config" id='chart-1' class='chart row'></div>
+					<div ac-chart="charts[1].type" ac-data="charts[1].data" ac-config="charts[1].config" id='chart-2' class='chart row'></div> 
+				</div>
 			</div>
 		</div>
 
@@ -879,8 +890,11 @@
 
 
 		<!-- LIBRARIES -->
+		<script src="./js/libraries/lodash.min.js"></script>
 		<script src="./js/libraries/ua-parser.min.js"></script>
 		<script src="./js/libraries/angular.min.js"></script>
+		<script src="./js/libraries/d3.min.js"></script>
+		<script src="./js/libraries/angular-charts.min.js"></script>
 		<script src="./js/libraries/ui-bootstrap-tpls.min.js"></script>
 		<script src ="./js/libraries/queryJson.js"></script>
 

@@ -9,6 +9,10 @@ var lang =
 			'FR':'Historique',
 			'EN':'History'
 		},
+		'front_stats':{
+			'FR':'Statistiques',
+			'EN':'Charts'
+		},
 		'front_include':{
 			'FR':'Inclure',
 			'EN':'Include'

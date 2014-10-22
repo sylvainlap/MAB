@@ -1,3 +1,5 @@
 var mabapp = angular.module('mabapp',
-		['ui.bootstrap'
+		[
+			'ui.bootstrap',
+			'angularCharts'
 		]);
