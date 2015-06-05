@@ -20,20 +20,20 @@ var TreatmentSchema = new Schema({
 		type: String,
 		required: true
 	},
-	treat_type: {
+	treat_type: {//obsolete >> à virer
 		type: String,
 		required: true
 	},
-	treat_init: {
-		type: String,
+	treat_init: {// Premier traitement ? bool
+		type: Boolean,
 		required: true
 	},
 	follow_sample: {
 		type: Boolean,
 		default: false
 	},
-	client_type: {
-		type: String,
+	client_type: {// is pro ? bool
+		type: Boolean,
 		required: true
 	},
 	delivered: {

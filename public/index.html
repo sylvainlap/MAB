@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="Content-Language" content="fr-FR" />
 		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-		
+
 		<title>Monitoring AB v0.1.0</title>
 		<meta name="description" content="Monitoring antibio vétérinaire" />
 		<meta name="keywords" content="MAB" />
@@ -26,7 +26,7 @@
 		<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 		<meta name="msapplication-TileColor" content="#474b98">
 		<meta name="msapplication-TileImage" content="/mstile-144x144.png">
-		
+
 		<link rel="stylesheet" type="text/css" href="./css/styles.css" />
 	</head>
 
@@ -82,19 +82,19 @@
 				=== 1.2. USER MENU  ===
 				======================= -->
 				<div class="menu menu-user txt-l" ng-if="user.token!=undefined">
-					<!--========================== 
+					<!--==========================
 						== 1.2.1. SPAN Username ==-->
 					<span class="userlabel label">
 						<span class="proxicon proxicon-user"></span>
 						{{ user.username }}
 					</span>
-					<!--======================= 
+					<!--=======================
 						== 1.2.2. BTN Logout ==-->
 					<a href="" class="btn" ng-click="userMgt.logout()">
 						<span class="proxicon proxicon-off"></span>
 						{{ lang['front_disconnect'][l] }}
 					</a>
-					<!--======================== 
+					<!--========================
 						== 1.2.3. BTN Profile ==-->
 					<a href="" class="btn" ng-click="userMgt.getProfile('open')">
 						<span class="proxicon proxicon-monitor"></span>
@@ -130,7 +130,7 @@
 			============================ -->
 			<div class="pane pane-register" ng-if="user.token==undefined">
 				<form class="form-inline" role="form">
-					<!--======================== 
+					<!--========================
 						== 3.1. BTN Login     ==-->
 					<div class="input-group row">
 						<a href="http://site.sapv.fr/connecteur.php?auth=PROXIMCREATION-SNVEL" class="col-4 col-ol-4 col-xs-6 col-ol-xs-3 btn btn-success">
@@ -148,79 +148,79 @@
 			============================ -->
 			<div class="pane pane-profile" ng-if="user.token != undefined && ui.showProfile">
 				<form>
-					<!--======================================== 
+					<!--========================================
 						== 4.1. LGND Pagevet Informations     ==-->
 					<legend>
-						{{ lang['front_user_info'][l] }} 
+						{{ lang['front_user_info'][l] }}
 					</legend>
 
-					<!--======================= 
+					<!--=======================
 						== 4.2. SPAN CSO     ==-->
 					<div class="input-group row">
 						<label class="col-4">CSO</label>
 						<div class="col-8 label">: {{ data.codeCSO }}</div>
 					</div>
 
-					<!--============================= 
+					<!--=============================
 						== 4.3. SPAN Firstname     ==-->
 					<div class="input-group row">
 						<label class="col-4">{{ lang['front_firstname'][l] }}</label>
 						<div class="col-8 label">: {{ data.firstname }}</div>
 					</div>
 
-					<!--============================= 
+					<!--=============================
 						== 4.4. SPAN Lasttname     ==-->
 					<div class="input-group row">
 						<label class="col-4">{{ lang['front_lastname'][l] }}</label>
 						<div class="col-8 label">: {{ data.lastname }}</div>
 					</div>
 
-					<!--============================= 
+					<!--=============================
 						== 4.5. SPAN Structure     ==-->
 					<div class="input-group row">
 						<label class="col-4">{{ lang['front_structure'][l] }}</label>
 						<div class="col-8 label">: {{ data.structure }}</div>
 					</div>
 
-					<!--============================= 
+					<!--=============================
 						== 4.6. SPAN Localisation  ==-->
 					<div class="input-group row">
 						<label class="col-4">{{ lang['front_localisation'][l] }}</label>
 						<div class="col-8 label">: {{ data.geoloc.postcode + ' ' + data.geoloc.city }}</div>
 					</div>
 
-					<!--============================= 
+					<!--=============================
 						== 4.7. GRP School     ==-->
 					<div class="input-group row">
 						<label class="col-4">{{ lang['front_school'][l] }}</label>
-						<!--============================= 
+						<!--=============================
 						== 4.7.1. SPAN City            ==-->
 						<div class="col-6 label">: {{ data.school.city }}</div>
-						<!--============================= 
+						<!--=============================
 						== 4.7.2. SPAN Promo            ==-->
 						<div class="col-6 label">{{ data.school.promo }}</div>
 					</div>
 
-					<!--============================= 
+					<!--=============================
 						== 4.8. BTN Update Pagevet ==-->
 					<div class="row">
-						<!--====================== 
+						<!--======================
 							== 4.8.1 BTN Update ==-->
 						<button ng-if="!updatingPagevetInfo" class="col-4 col-ol-4 col-xs-12 col-ol-xs-0 btn btn-info" ng-click="userMgt.updatePagevet()">
 							{{ lang['front_update'][l] }}
 						</button>
-						<!--=========================== 
+						<!--===========================
 							== 4.8.2 LOADING SPINNER ==-->
 						<div ng-if="updatingPagevetInfo" class="loading col-4 col-ol-4 col-xs-12 col-ol-xs-0">
 							<span class="proxicon proxicon-spinner proxicon-spin-1"></span>&nbsp;{{ lang['front_wait'][l] }}
 						</div>
 					</div>
 
-					<!--============================= 
+					<!--=============================
 						== 4.9. LGND SEPARATOR     ==-->
 					<legend></legend>
 
-					<!--============================= 
+					<!--=============================
 						== 4.10. SEL Language      ==-->
 					<div class="input-group row">
 						<label class="col-4 col-xs-12">{{ lang['front_language'][l] }}</label>
@@ -231,14 +231,14 @@
 						</div>
 					</div>
 
-					<!--============================= 
+					<!--=============================
 						== 4.11. ADDER Activity    ==-->
 					<legend>{{ lang['front_activity'][l] }}</legend>
-					
-					<!--========================================== 
+
+					<!--==========================================
 						== 4.11.1. DISPLAY SELECTED Activity    ==-->
 					<div class="table display bg-success row">
-						<!--===================================== 
+						<!--=====================================
 							== 4.11.1.1. SPAN IF Empty list    ==-->
 						<div class="row" ng-if="!data.activity || data.activity.length==0">
 							<div class="col-12 th bg-warning txt-warning">
@@ -247,7 +247,7 @@
 							</div>
 						</div>
 
-						<!--===================================== 
+						<!--=====================================
 							== 4.11.1.2. LIST Activity         ==-->
 						<div class="row" ng-repeat="a in data.activity">
 							<div class="col-6 col-xs-5 td">
@@ -256,7 +256,7 @@
 							<div class="col-5 col-xs-5 td txt-r">
 								 {{ a.ratio + '%' }}
 							</div>
-							<!--=========================== 
+							<!--===========================
 								== BTN REMOVE Activity   ==-->
 							<div class="col-1 col-xs-2 pad0 td">
 								<button class="col-12 btn btn-warning" type="button" ng-click="dataMgt.removeActivity($index)">
@@ -266,10 +266,10 @@
 						</div>
 					</div>
 
-					<!--================================== 
+					<!--==================================
 						== 4.11.2. SELECTER Activity    ==-->
 					<div class="table adder row">
-						<!--===================================== 
+						<!--=====================================
 							== 4.11.2.1. SEL Activity          ==-->
 						<div class="col-6 col-xs-7 td xs-p-r">
 							<div class="selectadv col-12"><span class="arrow"></span>
@@ -278,7 +278,7 @@
 								</select>
 							</div>
 						</div>
-						<!--===================================== 
+						<!--=====================================
 							== 4.11.2.2. INP Amount in %       ==-->
 						<div class="col-4 col-xs-3 td xs-p-r">
 							<input class="col-12" type="number" step="any" min="0" max="100" name="ratio" ng-model="tmp.activity.ratio" />
@@ -286,7 +286,7 @@
 						<div class="col-1 col-xs-0 td">
 							<label class="col-12">%</label>
 						</div>
-						<!--===================================== 
+						<!--=====================================
 							== 4.11.2.3 BTN ADD Activity       ==-->
 						<div class="col-1 col-xs-2 pad0 td">
 							<button class="col-12 btn btn-info" type="button" ng-click="dataMgt.addActivity()" ng-disabled="!tmp.activity.name||!tmp.activity.ratio">
@@ -295,14 +295,14 @@
 						</div>
 					</div>
 
-					<!--============================= 
+					<!--=============================
 						== 4.12. ADDER Volume      ==-->
 					<legend>{{ lang['front_volume'][l] }}</legend>
 
-					<!--========================================== 
+					<!--==========================================
 						== 4.12.1. DISPLAY SELECTED Volume      ==-->
 					<div class="table display bg-success row">
-						<!--===================================== 
+						<!--=====================================
 							== 4.12.1.1. SPAN IF Empty list    ==-->
 						<div class="row" ng-if="!data.volume || data.volume.length==0">
 							<div class="col-12 th bg-warning txt-warning">
@@ -311,7 +311,7 @@
 							</div>
 						</div>
 
-						<!--===================================== 
+						<!--=====================================
 							== 4.12.1.2. LIST Volume           ==-->
 						<div class="row" ng-repeat="v in data.volume">
 							<div class="col-6 col-xs-5 td">
@@ -320,7 +320,7 @@
 							<div class="col-5 col-xs-5 td txt-r">
 								{{ v.volume }}
 							</div>
-							<!--=========================== 
+							<!--===========================
 								== BTN REMOVE Volume     ==-->
 							<div class="col-1 col-xs-2 pad0 td">
 								<button class="col-12 btn btn-warning" type="button" ng-click="dataMgt.removeVolume($index)">
@@ -330,10 +330,10 @@
 						</div>
 					</div>
 
-					<!--================================== 
+					<!--==================================
 						== 4.12.2. SELECTER Volume      ==-->
 					<div class="table adder row">
-						<!--===================================== 
+						<!--=====================================
 							== 4.12.2.1. SEL Volume            ==-->
 						<div class="col-6 col-xs-7 td xs-p-r">
 							<div class="selectadv col-12"><span class="arrow"></span>
@@ -350,12 +350,12 @@
 								</select>
 							</div>
 						</div>
-						<!--===================================== 
+						<!--=====================================
 							== 4.12.2.2. INP Volume value      ==-->
 						<div class="col-5 col-xs-3 td xs-p-r">
 							<input class="col-12" type="number" min="0" name="quantity" ng-model="tmp.volume.value" />
 						</div>
-						<!--===================================== 
+						<!--=====================================
 							== 4.11.2.3 BTN ADD Volume         ==-->
 						<div class="col-1 col-xs-2 pad0">
 							<button class="col-12 btn btn-info" type="button" ng-click="dataMgt.addVolume()" ng-disabled="!tmp.volume.raw||!tmp.volume.value">
@@ -364,30 +364,30 @@
 						</div>
 					</div>
 
-					<!--================================== 
+					<!--==================================
 						== 4.13. GRP Profile buttons    ==-->
 					<div class="validation row">
-						<!--===================================== 
+						<!--=====================================
 							== 4.13.1. BTN Update Profile      ==-->
 						<button ng-if="!updatingProfile" class="col-ol-2 col-4 col-xs-6 col-ol-xs-0 btn btn-success" ng-click="userMgt.updateProfile()">
-							<span class="proxicon proxicon-download"></span> 
+							<span class="proxicon proxicon-download"></span>
 							{{ lang['front_save_changes'][l] }}
 						</button>
-						<!--===================================== 
+						<!--=====================================
 							== 4.13.2. LOADING SPINNER         ==-->
 						<div ng-if="updatingProfile" class="loading col-ol-2 col-4 col-xs-6 col-ol-xs-0">
 							<span class="proxicon proxicon-spinner proxicon-spin-1"></span>&nbsp;{{ lang['front_wait'][l] }}
 						</div>
-						<!--===================================== 
+						<!--=====================================
 							== 4.13.3. BTN Cancel Profile      ==-->
 						<button class="col-4 col-xs-6 btn btn-danger" ng-click="userMgt.getProfile('close')">
-							<span class="proxicon proxicon-remove"></span> 
+							<span class="proxicon proxicon-remove"></span>
 							{{ lang['front_cancel'][l] }}
 						</button>
 					</div>
 				</form>
 			</div>
-				
+
 
 			<!--
 			============================
@@ -408,11 +408,11 @@
 				<div class="tab tab-inclusion" ng-if="ui.page == 'inclusion'" ng-init="reset.data()">
 					<form ng-submit="dataMgt.recordTreatment()">
 
-						<!--===================================== 
+						<!--=====================================
 							== 6.1. LGND TREATMENT INFOS        ==-->
 						<legend>{{ lang['front_treatment'][l] }}</legend>
 
-						<!--=============================== 
+						<!--===============================
 							== 6.2. INP START DATE        ==-->
 						<div class="input-group row">
 							<label class="col-5 col-xs-12">
@@ -433,7 +433,7 @@
 								<span class="proxicon proxicon-calendar"></span>
 							</button>
 						</div>
-						<!--=============================== 
+						<!--===============================
 							== 6.3. SEL Pathology        ==-->
 						<div class="input-group row">
 							<label class="col-5 col-xs-12">
@@ -448,38 +448,8 @@
 								</select>
 							</div>
 						</div>
-						<!--=============================== 
-							== 6.4. SEL Type             ==-->
-						<div class="input-group row">
-							<label class="col-5 col-xs-12">
-								<span class="proxicon" ng-class="{'proxicon-sign-question txt-danger':!data.treat_type, 'proxicon-sign-ok txt-success':data.treat_type}"></span>
-								{{ lang['front_treat_type'][l] }}
-							</label>
-							<div class="selectadv col-7 col-xs-12"><span class="arrow"></span>
-								<select name="treatment_type" ng-model="data.treat_type">
-									<option value="{{ type }}" ng-repeat="type in enums['tra_type']">
-										{{ lang[type][l] }}
-									</option>
-								</select>
-							</div>
-						</div>
-						<!--=============================== 
-							== 6.5. SEL Initialisation   ==-->
-						<div class="input-group row">
-							<label class="col-5 col-xs-12">
-								<span class="proxicon " ng-class="{'proxicon-sign-question txt-danger':!data.treat_init, 'proxicon-sign-ok txt-success':data.treat_init}"></span>
-								{{ lang['front_treat_init'][l] }}
-							</label>
-							<div class="selectadv col-7 col-xs-12"><span class="arrow"></span>
-								<select name="treatment_init" ng-model="data.treat_init">
-									<option value="{{ init }}" ng-repeat="init in enums['tra_init']">
-										{{ lang[init][l] }}
-									</option>
-								</select>
-							</div>
-						</div>
-						<!--=============================== 
-							== 6.6. CHKBX Follow Sample    ==-->
+						<!--===============================
+							== 6.4. CHKBX Follow Sample    ==-->
 						<div class="input-group row">
 							<label class="col-5 col-xs-12">
 								<span class="proxicon proxicon-sign-ok txt-success"></span>
@@ -490,31 +460,39 @@
 								<span>{{ data.follow_sample?lang['front_yes'][l]:lang['front_no'][l] }}</span>
 							</label>
 						</div>
-						<!--=============================== 
-							== 6.7. SEL Client Type      ==-->
+						<!--===============================
+							== 6.5. CHKBX Initialisation    ==-->
 						<div class="input-group row">
 							<label class="col-5 col-xs-12">
-								<span class="proxicon " ng-class="{'proxicon-sign-question txt-danger':!data.client_type, 'proxicon-sign-ok txt-success':data.client_type}"></span>
+								<span class="proxicon proxicon-sign-ok txt-success"></span>
+								{{ lang['front_treat_init'][l] }}
+							</label>
+							<input type="checkbox" id="treat_init" ng-model="data.treat_init"/>
+							<label class="col-7 col-xs-12" for="treat_init">
+								<span>{{ data.treat_init?lang['front_yes'][l]:lang['front_no'][l] }}</span>
+							</label>
+						</div>
+						<!--===============================
+							== 6.6. CHKBX Client Type    ==-->
+						<div class="input-group row">
+							<label class="col-5 col-xs-12">
+								<span class="proxicon proxicon-sign-ok txt-success"></span>
 								{{ lang['front_client_type'][l] }}
 							</label>
-							<div class="selectadv col-7 col-xs-12"><span class="arrow"></span>
-								<select name="client_type" ng-model="data.client_type">
-									<option value="{{ client }}" 
-										ng-repeat="client in enums['ani_client_types']">
-										{{ lang[client][l] }}
-									</option>
-								</select>
-							</div>
+							<input type="checkbox" id="client_type" ng-model="data.client_type"/>
+							<label class="col-7 col-xs-12" for="client_type">
+								<span>{{ data.client_type?lang['front_yes'][l]:lang['front_no'][l] }}</span>
+							</label>
 						</div>
-						
-						<!--============================= 
+
+						<!--=============================
 							== 6.8. ADDER Animals         ==-->
 						<legend>{{ lang['front_animals'][l] }}</legend>
 
-						<!--========================================== 
+						<!--==========================================
 							== 6.8.1. DISPLAY SELECTED Animals      ==-->
 						<div class="table display bg-success row">
-							<!--===================================== 
+							<!--=====================================
 								== 6.8.1.1. SPAN IF Empty list    ==-->
 							<div class="row" ng-if="!data.animals || data.animals.length==0">
 								<div class="col-12 th bg-danger txt-danger">
@@ -522,13 +500,13 @@
 									{{ lang['front_empty_list'][l] }}, {{ lang['front_msg_add_at_list_1_animal'][l] }}
 								</div>
 							</div>
-							<!--===================================== 
+							<!--=====================================
 								== 6.8.1.2. LIST Animals           ==-->
 							<div class="row bb" ng-repeat="a in data.animals">
 								<div class="col-11 col-xs-10 td">
 									<span class="proxicon proxicon-ok txt-success"></span>&nbsp;{{ a.quantity }} {{ lang[a.species][l] }} {{ lang[a.type][l] }} {{ lang[a.age][l] }} [<span ng-repeat="env in a.environment">{{ lang[env][l] + ' '}}</span>]
 								</div>
-								<!--=========================== 
+								<!--===========================
 									== BTN REMOVE Animal     ==-->
 								<div class="col-1 col-xs-2 pad0">
 									<button class="col-12 btn btn-warning" type="button" ng-click="dataMgt.removeAnimal($index)">
@@ -538,11 +516,11 @@
 							</div>
 						</div>
 
-						<!--================================== 
+						<!--==================================
 							== 6.8.2. SELECTER Animal       ==-->
 						<div class="input-group row">
 							<div class="table adder col-11 col-xs-12">
-								<!--===================================== 
+								<!--=====================================
 									== 6.8.2.1. SEL Animals            ==-->
 								<div class="col-5 col-xs-12 td">
 									<div class="col-12 th" ng-class="{'txt-danger':!tmp.animal.raw, 'txt-success':tmp.animal.raw}">
@@ -562,7 +540,7 @@
 										</select>
 									</div>
 								</div>
-								<!--===================================== 
+								<!--=====================================
 									== 6.8.2.2. INP Animal Qty         ==-->
 								<div class="col-2 col-xs-4 td xs-p-r">
 									<div class="col-12 th" ng-class="{'txt-danger':!tmp.animal.quantity, 'txt-success':tmp.animal.quantity}">
@@ -570,7 +548,7 @@
 									</div>
 									<input class="col-12" type="number" name="quantity" min="1" ng-model="tmp.animal.quantity" />
 								</div>
-								<!--===================================== 
+								<!--=====================================
 									== 6.8.2.3. CHKBX GRP Environment  ==-->
 								<div class="col-5 col-xs-8 td">
 									<div class="col-12 th" ng-class="{'txt-danger':!tmp.animal.envControl, 'txt-success':tmp.animal.envControl}">
@@ -585,21 +563,21 @@
 									</div>
 								</div>
 							</div>
-							<!--===================================== 
+							<!--=====================================
 								== 6.8.2.4. BTN ADD ANIMAL         ==-->
 							<button class="col-1 col-xs-12 btn btn-info" type="button" autoheight ng-click="dataMgt.addAnimal()" ng-disabled="!tmp.animal.quantity||!tmp.animal.envControl||!tmp.animal.raw">
 								<span class="proxicon proxicon-plus"></span>
 							</button>
 						</div>
 
-						<!--============================= 
+						<!--=============================
 							== 6.9. ADDER Product      ==-->
 						<legend>{{ lang['front_treat_prescription'][l] }}</legend>
 
-						<!--========================================== 
+						<!--==========================================
 							== 6.9.1. DISPLAY SELECTED Products     ==-->
 						<div class="table display bg-success row">
-							<!--===================================== 
+							<!--=====================================
 								== 6.9.1.1. SPAN IF Empty list    ==-->
 							<div class="row" ng-if="!data.prescription || data.prescription.length==0">
 								<div class="col-12 th bg-danger txt-danger">
@@ -608,7 +586,7 @@
 								</div>
 							</div>
 
-							<!--===================================== 
+							<!--=====================================
 								== 6.9.1.2. LIST Producs          ==-->
 							<div class="row bb" ng-repeat="p in data.prescription">
 								<div class="col-5 col-xs-5 td">
@@ -625,7 +603,7 @@
 									((p.frequency!='tra_freq_unique')?' '+lang[p.frequency][l]+' '+lang['front_during'][l]+' '+p.duration+' '+lang['front_day'][l]:'')
 									}}
 								</div>
-								<!--=========================== 
+								<!--===========================
 									== BTN REMOVE Product    ==-->
 								<button autoheight class="col-1 col-xs-2 pad0 btn btn-warning ahf" type="button" ng-click="dataMgt.removeProduct($index)">
 									<span class="proxicon proxicon-minus"></span>
@@ -633,11 +611,11 @@
 							</div>
 						</div>
 
-						<!--================================== 
+						<!--==================================
 							== 6.9.2. SELECTER Product      ==-->
 						<div class="input-group row">
 							<div class="table adder col-11 col-xs-12">
-								<!--===================================== 
+								<!--=====================================
 									== 6.9.2.1. SEL Product name       ==-->
 								<div class="col-5 col-xs-12 td">
 									<div class="col-12 th" ng-class="{'txt-danger':!tmp.productName, 'txt-success':tmp.productName}">
@@ -646,15 +624,15 @@
 									<div class="col-12 selectadv"><span class="arrow"></span>
 										<select name="product" ng-model="tmp.productName" ng-change="dataMgt.buildProduct()">
 
-											<!--=============================== 
+											<!--===============================
 												== MATCHING SELECTED ANIMALS ==-->
 											<optgroup label="{{ lang['front_products_match_animal'][l] }}" ng-if="tmp.species_list.length>0">
-												<!--========== 
+												<!--==========
 													== FAVS ==-->
 												<option class="fav" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | filter : filterMgt.products.target | orderBy:'clics':true">
 													♥ {{ p.name }}
 												</option>
-												<!--=========== 
+												<!--===========
 													== OTHER ==-->
 												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.target | filter : filterMgt.products.noClics| orderBy:'name'">
 													{{ p.name }}
@@ -662,30 +640,30 @@
 												<option disabled>&nbsp;</option>
 											</optgroup>
 
-											<!--================== 
+											<!--==================
 												== NOT MATCHING ==-->
 											<optgroup class="other" label="{{ lang['front_other_products'][l] }}" ng-if="tmp.species_list.length>0">
-												<!--========== 
+												<!--==========
 													== FAVS ==-->
 												<option class="fav" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | filter : filterMgt.products.notTarget | orderBy:'clics':true">
 													♥ {{ p.name }}
 												</option>
-												<!--========== 
+												<!--==========
 													== OTHER ==-->
 												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.notTarget | filter : filterMgt.products.noClics| orderBy:'name'">
 													{{ p.name }}
 												</option>
 											</optgroup>
 
-											<!--============================== 
+											<!--==============================
 												== ALL (NO SELECTED ANIMAL) ==-->
 											<optgroup label="{{ lang['front_all_products'][l] }}" ng-if="tmp.species_list.length==0">
-												<!--========== 
+												<!--==========
 													== FAVS ==-->
 												<option class="fav" value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.clics | orderBy:'clics':true">
 													♥ {{ p.name }}
 												</option>
-												<!--========== 
+												<!--==========
 													== OTHER ==-->
 												<option value="{{ p.name }}" ng-repeat="p in products | filter : filterMgt.products.noClics | orderBy : 'name'">
 													{{ p.name }}
@@ -696,10 +674,10 @@
 									</div>
 								</div>
 
-								<!--===================================== 
+								<!--=====================================
 									== 6.9.2.2. IMP Qty                ==-->
 								<div class="col-7 col-xs-12 td">
-									<!--============================== 
+									<!--==============================
 										== LABEL CONSTRUCTION       ==-->
 									<div class="col-12 th" ng-class="{'txt-danger':!tmp.product.quantity_init||!(tmp.product.quantity||enums['tra_frequency'][tmp.product.frequency]==0), 'txt-success':tmp.product.quantity_init&&(tmp.product.quantity||enums['tra_frequency'][tmp.product.frequency]==0)}">
 										{{ lang['front_product_quantity'][l] + ' '}}
@@ -712,20 +690,20 @@
 										</span>
 									</div>
 
-									<!--============================== 
+									<!--==============================
 										== Initial Qty              ==-->
 									<div class="col-6 td xs-p-r">
 										<input class="col-12" type="number" min="0" step="any" name="product_quantity_init" ng-model="tmp.product.quantity_init" />
 									</div>
 
-									<!--============================== 
+									<!--==============================
 										== Next Qty                 ==-->
 									<div class="col-6 td pad0">
 										<input class="col-12" type="number" min="0" step="any" name="product_quantity" ng-hide="enums['tra_frequency'][tmp.product.frequency]==0" ng-model="tmp.product.quantity" />
 									</div>
 								</div>
 
-								<!--===================================== 
+								<!--=====================================
 									== 6.9.2.3. SEL Mode               ==-->
 								<div class="col-4 col-xs-4 td xs-p-r">
 									<div class="th col-12" ng-class="{'txt-danger':!tmp.product.mode, 'txt-success':tmp.product.mode}">
@@ -733,7 +711,7 @@
 									</div>
 									<div class="selectadv col-12"><span class="arrow"></span>
 										<select name="mode" ng-model="tmp.product.mode">
-											<option value="{{ f }}" 
+											<option value="{{ f }}"
 												ng-repeat="f in enums['tra_mode']">
 												{{ lang[f][l] }}
 											</option>
@@ -741,7 +719,7 @@
 									</div>
 								</div>
 
-								<!--===================================== 
+								<!--=====================================
 									== 6.9.2.4. SEL Frequency          ==-->
 								<div class="col-3 col-xs-3 td xs-p-r">
 									<div class="th col-12" ng-class="{'txt-danger':!tmp.product.frequency, 'txt-success':tmp.product.frequency}">
@@ -749,7 +727,7 @@
 									</div>
 									<div class="selectadv col-12"><span class="arrow"></span>
 										<select name="frequency" ng-model="tmp.product.frequency">
-											<option value="{{ f }}" 
+											<option value="{{ f }}"
 												ng-repeat="(f, v) in enums['tra_frequency']">
 												{{ lang[f][l] }}
 											</option>
@@ -757,7 +735,7 @@
 									</div>
 								</div>
 
-								<!--===================================== 
+								<!--=====================================
 									== 6.9.2.5. INP Duration           ==-->
 								<div class="col-3 col-xs-3 td xs-p-r" ng-hide="enums['tra_frequency'][tmp.product.frequency]==0">
 									<div class="th col-12" ng-class="{'txt-danger':!tmp.product.duration, 'txt-success':tmp.product.duration}">
@@ -768,7 +746,7 @@
 									</div>
 								</div>
 
-								<!--===================================== 
+								<!--=====================================
 									== 6.9.2.6. CHKBX Delivered           ==-->
 								<div class="col-2 col-xs-2 td">
 									<div class="th col-12">
@@ -783,24 +761,35 @@
 								</div>
 
 							</div>
-							<!--===================================== 
+							<!--=====================================
 								== 6.9.2.7. BTN ADD PRODUCT        ==-->
 							<button class="col-1 col-xs-12 btn btn-info" autoheight type="button" ng-click="dataMgt.addProduct()" ng-disabled="!tmp.product.quantity_init||!(tmp.product.quantity||enums['tra_frequency'][tmp.product.frequency]==0)||!tmp.productName||!tmp.product.mode||(!tmp.product.duration&&tmp.product.frequency!='tra_freq_unique')||!tmp.product.frequency">
 								<span class="proxicon proxicon-plus"></span>
 							</button>
 						</div>
 
-						
-						<!--===================================== 
+
+						<!--=====================================
 							== 6.11. BTN GRP RECORD TREATMENT  ==-->
 						<div class="validation row">
-							<!--========================= 
+							<!--=========================
 								== 6.11.1. BTN RECORD  ==-->
-							<button ng-if="!sendingTreatment" class="col-4 col-ol-4 col-xs-12 col-ol-xs-0 btn btn-success" type="submit" ng-disabled="!data.date_dispense || !data.pathology || !data.treat_type || !data.treat_init || !data.client_type || (!data.animals || data.animals.length==0) || (!data.prescription || data.prescription.length==0)">
+							<button
+								ng-if="!sendingTreatment"
+								class="col-4 col-ol-4 col-xs-12 col-ol-xs-0 btn btn-success"
+								type="submit"
+								ng-disabled="
+										!data.date_dispense
+									|| !data.pathology
+									|| (!data.animals
+									||	data.animals.length==0)
+									|| (!data.prescription
+									|| data.prescription.length==0)
+								">
 								<span class="proxicon proxicon-download"></span>
 								{{ lang['front_record'][l] }}
 							</button>
-							<!--============================== 
+							<!--==============================
 								== 6.11.2. LOADING SPINNER  ==-->
 							<div ng-if="sendingTreatment" class="loading col-4 col-ol-4 col-xs-12 col-ol-xs-0">
 								<span class="proxicon proxicon-spinner proxicon-spin-1"></span>&nbsp;{{ lang['front_wait'][l] }}
@@ -817,11 +806,11 @@
 				============================ -->
 				<div class="tab tab-display" ng-if="ui.page == 'display'" ng-init="dataMgt.getTreatments()">
 					<div class="treatment row" ng-repeat="t in data | orderBy : 'date_dispense' : true">
-						<!--=================== 
+						<!--===================
 							== 7.1. DATE     ==-->
 						<h3>{{ t.date_dispense.slice(0,t.date_dispense.indexOf('T')) }}</h3>
-						
-						<!--=============================== 
+
+						<!--===============================
 							== 7.2. TREATMENTS INFOS     ==-->
 						<div class="td col-6">
 							<strong>{{ lang['front_pathology'][l] }}</strong> : {{ lang[t.pathology][l] }}
@@ -838,8 +827,8 @@
 						<div class="td col-6">
 							<strong>{{ lang['front_client_type'][l] }}</strong> : {{ lang[t.client_type][l] }}
 						</div>
-						
-						<!--=============================== 
+
+						<!--===============================
 							== 7.3. PRESCRIPTION         ==-->
 						<div class="td col-12 item-group" dropdown>
 							<h4><span class="proxicon"></span>{{ lang['front_treat_prescription'][l] }} :</h4>
@@ -859,8 +848,8 @@
 								</div>
 							</div>
 						</div>
-						
-						<!--=============================== 
+
+						<!--===============================
 							== 7.4. ANIMALS              ==-->
 						<div class="td col-12 item-group" dropdown>
 							<h4><span class="proxicon"></span> {{ lang['front_animals'][l] }} :</h4>
@@ -881,7 +870,7 @@
 				============================ -->
 				<div class="tab tab-charts" ng-if="ui.page == 'charts'" ng-init="chartsMgt.getStats()">
 					<div ac-chart="charts[0].type" ac-data="charts[0].data" ac-config="charts[0].config" id='chart-1' class='chart row'></div>
-					<div ac-chart="charts[1].type" ac-data="charts[1].data" ac-config="charts[1].config" id='chart-2' class='chart row'></div> 
+					<div ac-chart="charts[1].type" ac-data="charts[1].data" ac-config="charts[1].config" id='chart-2' class='chart row'></div>
 				</div>
 			</div>
 		</div>
@@ -903,7 +892,7 @@
 		<script src="./js/configuration/enums.data.js"></script>
 		<script src="./js/configuration/animals.data.js"></script>
 		<script src="./js/configuration/products.data.js"></script>
-		
+
 		<!-- APP -->
 		<script src="./js/app.front.js"></script>
 		<script src="./js/controllers/MainCtrl.js"></script>

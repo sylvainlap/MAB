@@ -182,12 +182,12 @@ var lang =
 			'EN':'type'
 		},
 		'front_treat_init':{
-			'FR':'initialisation',
-			'EN':'initialisation'
+			'FR':'premier traitement',
+			'EN':'first treatment'
 		},
 		'front_follow_sample':{
-			'FR':'suite prélèvement',
-			'EN':'follow sample'
+			'FR':'prélèvement bactério',
+			'EN':'bacterio sample'
 		},
 		'front_delivered':{
 			'FR':'délivrée',
@@ -226,8 +226,8 @@ var lang =
 			'EN':'quantity'
 		},
 		'front_client_type':{
-			'FR':'type de client',
-			'EN':'client type'
+			'FR':'client pro',
+			'EN':'pro client'
 		},
 		'front_animal_environment':{
 			'FR':'environnement',
@@ -354,43 +354,43 @@ var lang =
         'tra_pathology_urinary':{
         	'FR':'urinaire',
         	'EN':'urinary'
-        }, 
+        },
         'tra_pathology_genital':{
         	'FR':'génitale',
         	'EN':'genital'
-        }, 
+        },
         'tra_pathology_mastitis':{
         	'FR':'mammite',
         	'EN':'mastitis'
-        }, 
+        },
         'tra_pathology_digestive':{
         	'FR':'digestive',
         	'EN':'digestive'
-        }, 
+        },
         'tra_pathology_peritonitis':{
         	'FR':'péritonite',
         	'EN':'peritonitis'
-        }, 
+        },
         'tra_pathology_trauma':{
         	'FR':'traumatologie',
         	'EN':'trauma'
-        }, 
+        },
         'tra_pathology_limping':{
         	'FR':'boiterie',
         	'EN':'limping'
-        }, 
+        },
         'tra_pathology_post-surgery':{
         	'FR':'post-chirurgie',
         	'EN':'post-surgery'
-        }, 
+        },
         'tra_pathology_ocular':{
         	'FR':'oculaire',
         	'EN':'ocular'
-        }, 
+        },
         'tra_pathology_fever':{
         	'FR':'fièvre',
         	'EN':'fever'
-        }, 
+        },
         'tra_pathology_other':{
 	    	'FR':'autre',
 	    	'EN':'other'
@@ -401,7 +401,7 @@ var lang =
 	    	'EN':'mode'
 	    },
 	    'tra_dm_inj':{
-	    	'FR':'injection',
+	    	'FR':'injection (IM/IV/SC/IP)',
 	    	'EN':'injection'
 	    },
         'tra_dm_im':{
@@ -420,9 +420,21 @@ var lang =
 	    	'FR':'per-os',
 	    	'EN':'per-os'
 	    },
-        'tra_dm_vb':{
-	    	'FR':'buccal',
-	    	'EN':'buccal'
+        'tra_dm_ia':{
+	    	'FR':'intra-articulaire',
+	    	'EN':'intra-articular'
+	    },
+        'tra_dm_sg':{
+	    	'FR':'sous-garrot',
+	    	'EN':'under-withers'
+	    },
+        'tra_dm_io':{
+	    	'FR':'oculaire',
+	    	'EN':'ocular'
+	    },
+        'tra_dm_cut':{
+	    	'FR':'cutané',
+	    	'EN':'cutaneous'
 	    },
         'tra_dm_loc':{
 	    	'FR':'local',
@@ -432,19 +444,19 @@ var lang =
 	    'vet_activities_cattle':{
 	    	'FR':'bovin',
 	    	'EN':'cattle'
-	    }, 
+	    },
         'vet_activities_porcine':{
 	    	'FR':'porcine',
 	    	'EN':'porcine'
-	    }, 
+	    },
         'vet_activities_goat':{
 	    	'FR':'caprin',
 	    	'EN':'goat'
-	    }, 
+	    },
         'vet_activities_equine':{
 	    	'FR':'équine',
 	    	'EN':'equine'
-	    }, 
+	    },
         'vet_activities_canine':{
 	    	'FR':'canine',
 	    	'EN':'canine'
@@ -453,7 +465,7 @@ var lang =
         'tra_type_local':{
 	    	'FR':'local',
 	    	'EN':'local'
-	    }, 
+	    },
         'tra_type_general':{
 	    	'FR':'général',
 	    	'EN':'general'
@@ -462,7 +474,7 @@ var lang =
         'tra_init_initial':{
 	    	'FR':'initial',
 	    	'EN':'initial'
-	    }, 
+	    },
         'tra_init_extension':{
 	    	'FR':'extension',
 	    	'EN':'extension'
@@ -561,19 +573,19 @@ var lang =
 	    	'FR':'reproducteur',
 	    	'EN':'reproducer'
 	    },
-		
+
 	    'ani_environment_alone' : {
 	    	'FR':'isolé',
 	    	'EN':'alone'
-	    }, 
+	    },
         'ani_environment_group' : {
 	    	'FR':'groupe',
 	    	'EN':'group'
-	    }, 
+	    },
         'ani_environment_building' : {
 	    	'FR':'batiment',
 	    	'EN':'building'
-	    }, 
+	    },
         'ani_environment_grazing' : {
 	    	'FR':'patûrage',
 	    	'EN':'grazing'
@@ -582,7 +594,7 @@ var lang =
 	    'ani_client_professional': {
 	    	'FR':'professionel',
 	    	'EN':'professional'
-	    }, 
+	    },
         'ani_client_private': {
 	    	'FR':'particulier',
 	    	'EN':'private'
